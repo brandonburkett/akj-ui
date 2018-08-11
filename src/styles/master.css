@@ -1860,20 +1860,21 @@ tr {
   max-width: 1000px;
   margin: 0 auto;
 }
-#testimonial {
+.quote {
   background: rgb(067, 091, 013);
   color: #ffffff;
   position: relative;
-  z-index: 5;
+  /*z-index: 5;*/
 }
-.quote {
+.quote .content {
   width: 80%;
   max-width: 700px;
   margin: 100px auto;
   font-size: 1.7em;
   line-height: 1.3em;
 }
-.attribute {
+.quote .attribute {
+  display: block;
   font-family: 'amblelight_condensed_italic', sans-serif;
   font-size: 0.8em;
 }

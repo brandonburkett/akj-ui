@@ -1,5 +1,6 @@
 import React from 'react';
 import Head from '../../components/head/head';
+import Quote from '../../components/quote/quote';
 
 export interface IProps {
   location: {
@@ -30,14 +31,18 @@ const NoMatch = (props: IProps) => (
         </div>
       </section>
 
-      <section id="testimonial" className="group">
-        <div className="quote">
-          <p>
-            &ldquo;The most difficult rival you will ever face is yourself.&rdquo; - Sekiguchi Komei
-            sensei
-          </p>
-        </div>
-      </section>
+      {/*<section id="testimonial" className="group">*/}
+      {/*<div className="quote">*/}
+      {/*<p>*/}
+      {/*&ldquo;The most difficult rival you will ever face is yourself.&rdquo; - Sekiguchi Komei*/}
+      {/*sensei*/}
+      {/*</p>*/}
+      {/*</div>*/}
+      {/*</section>*/}
+      <Quote
+        content="The most difficult rival you will ever face is yourself."
+        author="Sekiguchi Komei sensei"
+      />
     </div>
   </React.Fragment>
 );
