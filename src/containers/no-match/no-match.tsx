@@ -25,7 +25,6 @@ const NoMatch = (props: IProps) => (
                 The page you're looking for either doesn't exist or there was an internal error for
                 your request.
               </p>
-              <p>&nbsp;</p>
             </div>
           </div>
         </div>

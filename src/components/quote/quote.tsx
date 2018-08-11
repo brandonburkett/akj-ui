@@ -1,5 +1,8 @@
 import React, { StatelessComponent } from 'react';
 
+// styles
+import './quote.css';
+
 export interface IProps {
   content: string;
   quotes?: boolean;
