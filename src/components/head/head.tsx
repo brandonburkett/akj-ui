@@ -1,7 +1,7 @@
 /**
  * Dependencies
  */
-import React, {PureComponent, ReactNode} from 'react';
+import React, { PureComponent, ReactNode } from 'react';
 import Helmet from 'react-helmet';
 
 // image includes
@@ -15,13 +15,13 @@ import defaultOgpImage from './images/ogp-mon-1200-630.png';
 export interface IProps {
   base?: string;
   env?: string;
-  gtmId?: string,
-  title: string,
-  desc: string,
-  path: string,
-  image?: string,
-  noIndex?: boolean,
-  children?: ReactNode,
+  gtmId?: string;
+  title: string;
+  desc: string;
+  path: string;
+  image?: string;
+  noIndex?: boolean;
+  children?: ReactNode;
 }
 
 /**
@@ -39,17 +39,7 @@ class Head extends PureComponent<IProps> {
   };
 
   render() {
-    const {
-      base,
-      env,
-      gtmId,
-      title,
-      desc,
-      path,
-      image,
-      noIndex,
-      children,
-    } = this.props;
+    const { base, env, gtmId, title, desc, path, image, noIndex, children } = this.props;
 
     // default title if one is not provided
     const defaultTitle = 'Austin Komei Jyuku';
@@ -62,28 +52,28 @@ class Head extends PureComponent<IProps> {
     // social sharing tags
     // @see: http://ogp.me/
     const fb = [
-      {property: 'og:type', content: 'website'},
-      {property: 'og:image', content: canonicalImage},
-      {property: 'og:url', content: canonicalUrl},
-      {property: 'og:site_name', content: defaultTitle},
-      {property: 'og:title', content: title},
-      {property: 'og:description', content: desc},
-      {property: 'og:locale', content: 'en_US'},
+      { property: 'og:type', content: 'website' },
+      { property: 'og:image', content: canonicalImage },
+      { property: 'og:url', content: canonicalUrl },
+      { property: 'og:site_name', content: defaultTitle },
+      { property: 'og:title', content: title },
+      { property: 'og:description', content: desc },
+      { property: 'og:locale', content: 'en_US' },
     ];
 
     // @see: https://dev.twitter.com/cards/markup
     const twitter = [
-      {property: 'twitter:site', content: '@akjdojo'},
-      {property: 'twitter:title', content: title.substring(0, 69)},
-      {property: 'twitter:description', content: desc.substring(0, 199)},
-      {property: 'twitter:card', content: 'summary_large_image'},
-      {property: 'twitter:image', content: canonicalImage},
+      { property: 'twitter:site', content: '@akjdojo' },
+      { property: 'twitter:title', content: title.substring(0, 69) },
+      { property: 'twitter:description', content: desc.substring(0, 199) },
+      { property: 'twitter:card', content: 'summary_large_image' },
+      { property: 'twitter:image', content: canonicalImage },
     ];
     // end social sharing tags
 
     // generic link tags and apple touch icons
     const helmetLinks = [
-      {rel: 'canonical', href: canonicalUrl},
+      { rel: 'canonical', href: canonicalUrl },
       // favicon and apple icons handled automatically by electrode with PWA
       // For favicon, see /config/sw-config.js
       // { rel: 'apple-touch-icon', sizes: '180x180', href: icon },
@@ -112,23 +102,17 @@ class Head extends PureComponent<IProps> {
       >
         {/* base element */}
         <base href={base} />
-
         {/* character set */}
         <meta charSet="utf-8" />
-
         {/* title attributes and value */}
         <title lang="en">{title}</title>
         <meta name="description" content={desc} />
-
         (/* viewport */}
-              <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         (/* canonical */}
         <link rel="canonical" href={canonicalUrl} />
-
         {/* block robot if not on .com or explicit noIndex */}
         {noIndex ? <meta name="robots" content="noindex" /> : null}
-
         {/* GTM */}
         {env !== 'development' ? (
           <script>
@@ -143,7 +127,6 @@ class Head extends PureComponent<IProps> {
             `}
           </script>
         ) : null}
-
         {children}
       </Helmet>
     );
