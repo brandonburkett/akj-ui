@@ -1,5 +1,9 @@
 {
   "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
+  "rules": {
+    // do not force "public" on classes
+    "member-access": [true, "no-public"]
+  },
   "linterOptions": {
     "exclude": [
       "config/**/*.js",
