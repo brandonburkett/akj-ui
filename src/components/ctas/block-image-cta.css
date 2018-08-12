@@ -1,0 +1,118 @@
+.block-image-cta {
+  position: relative;
+  width: 33.3333333%;
+  float: left;
+  text-decoration: none;
+  display: block;
+  color: #ffffff;
+  overflow: hidden;
+}
+.block-image-info {
+  display: inline-block;
+  width: auto;
+  min-width: 50%;
+  height: 2.6em;
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+.black-image-title {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 10px 20px;
+  font-size: 1em;
+  line-height: 1.1em;
+  font-family: 'amblelight_condensed', sans-serif;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+.block-image-details {
+  opacity: 0;
+  padding: 40px 20px;
+  font-family: 'amblelight_condensed', sans-serif;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
+}
+.block-image-icon {
+  opacity: 1;
+  padding: 1px 15px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 2em;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+.block-image-cta:hover .block-image-info,
+.block-image-cta:focus .block-image-info {
+  width: 100%;
+  height: 100%;
+}
+.block-image-cta:hover .black-image-title,
+.block-image-cta:focus .black-image-title {
+  font-size: 3em;
+  font-family: 'amblelight_condensed', sans-serif;
+}
+.block-image-cta:hover .block-image-details,
+.block-image-cta:focus .block-image-details {
+  opacity: 1;
+  font-family: 'amblelight_condensed', sans-serif;
+  padding: 20px;
+}
+.block-image-cta:hover .block-image-icon,
+.block-image-cta:focus .block-image-icon {
+  opacity: 0;
+}
+
+/* Responsive Style Sheet */
+@media screen and (min-width: 320px) {
+  .block-image-cta {
+    width: 100%;
+    border-bottom: 1px solid #ffffff;
+  }
+  .block-image-info {
+    width: 100%;
+  }
+  .block-image-details {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .block-image-cta {
+    width: 100%;
+    border-bottom: 1px solid #ffffff;
+  }
+  .block-image-details {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .block-image-info {
+    width: 80%;
+  }
+  .block-image-details {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .block-image-cta {
+    width: 33.3333333%;
+    border-bottom: none;
+  }
+}

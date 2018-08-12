@@ -5,7 +5,7 @@ import { BrowserRouter, Switch } from 'react-router-dom';
 import StandardLayoutRoute from './containers/layouts/standard-layout-route';
 
 // page containers
-// import Home from 'containers/home/home';
+import Home from './containers/home/home';
 import NoMatch from './containers/no-match/no-match';
 
 /**
@@ -14,7 +14,7 @@ import NoMatch from './containers/no-match/no-match';
 const App: React.StatelessComponent = () => (
   <BrowserRouter>
     <Switch>
-      {/*<Route exact path="/" component={Home}/>*/}
+      <StandardLayoutRoute exact={true} path="/" component={Home} />
       <StandardLayoutRoute component={NoMatch} />
     </Switch>
   </BrowserRouter>

@@ -114,16 +114,6 @@
   #quote .intro {
     font-size: 1.2em;
   }
-  .quote_snapshot {
-    width: 100%;
-    border-bottom: 1px solid #ffffff;
-  }
-  .snapshot_info {
-    width: 100%;
-  }
-  .snapshot_details {
-    display: none;
-  }
 
   /* Interior */
   .introduction .intro {
@@ -396,13 +386,6 @@
   .quote_snapshots {
     width: 45%;
     float: right;
-  }
-  .quote_snapshot {
-    width: 100%;
-    border-bottom: 1px solid #ffffff;
-  }
-  .snapshot_details {
-    display: none;
   }
 
   /* Interior */
@@ -705,16 +688,7 @@
   #quote .intro {
     font-size: 2em;
   }
-  .snapshot_info {
-    width: 80%;
-  }
-  .snapshot_details {
-    display: block;
-  }
 
-  #isshin .intro {
-    font-size: 2em;
-  }
   .service p {
     font-size: 1em;
   }
@@ -899,18 +873,6 @@
     float: none;
     width: 80%;
     margin: 100px auto;
-  }
-  .quote_snapshots {
-    width: 100%;
-    float: none;
-  }
-  .quote_snapshot {
-    width: 33.3333333%;
-    border-bottom: none;
-  }
-
-  #isshin .intro {
-    font-size: 2.2em;
   }
 
   /* Interior */

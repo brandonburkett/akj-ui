@@ -1,0 +1,102 @@
+/* Homepage Quote Panel */
+#quote.home {
+  background: rgb(110, 024, 011);
+  color: #ffffff;
+  top: 100%;
+  -webkit-transform: translateZ(1px);
+  -moz-transform: translateZ(1px);
+  -o-transform: translateZ(1px);
+  transform: translateZ(1px);
+  position: relative;
+  z-index: 2;
+}
+#quote {
+  position: relative;
+  background: #0072df;
+  color: #ffffff;
+  z-index: 2;
+  top: 40px;
+}
+#quote .intro {
+  width: 90%;
+  max-width: 700px;
+  margin: 100px auto;
+  font-size: 2.2em;
+  line-height: 1.2em;
+}
+#quote .fine_print {
+  font-size: 0.5em;
+  white-space: nowrap;
+}
+#quote .intro .link:link,
+#quote .intro .link:visited {
+  color: rgb(255, 255, 255);
+  color: rgba(255, 255, 255, 0.6);
+  border: none;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+#quote .intro .link:hover,
+#quote .intro .link:focus {
+  color: rgb(255, 255, 255);
+  color: rgba(255, 255, 255, 1);
+  border: none;
+}
+
+#quote_landing {
+  margin: 0;
+  padding: 40px 0 0 0;
+  position: relative;
+  z-index: 2;
+}
+
+/* block quote container */
+.home-ctas {
+  width: 100%;
+}
+
+/* homepage Footer */
+.isshin {
+  background: #eae6db;
+  padding: 1px 0 10px 0;
+  -webkit-transform: translateZ(1px);
+  -moz-transform: translateZ(1px);
+  -o-transform: translateZ(1px);
+  transform: translateZ(1px);
+  position: relative;
+  z-index: 2;
+}
+.isshin .intro {
+  width: 90%;
+  max-width: 700px;
+  margin: 100px auto;
+  font-size: 2.2em;
+  line-height: 1.2em;
+}
+
+/* Responsive Style Sheet */
+@media screen and (min-width: 600px) {
+  .home-ctas {
+    width: 45%;
+    float: right;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .isshin .intro {
+    font-size: 2em;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .home-ctas {
+    width: 100%;
+    float: none;
+  }
+
+  .isshin .intro {
+    font-size: 2.2em;
+  }
+}

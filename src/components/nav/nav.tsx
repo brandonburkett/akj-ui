@@ -84,10 +84,10 @@ class Nav extends React.PureComponent<any, IState> {
     return (
       <header className="masthead group" role="banner">
         <div className="brand">
-          <a href="/">
+          <Link to="/">
             <img src={imgMon} alt="Dojo homepage" />
             Austin Komei Jyuku
-          </a>
+          </Link>
         </div>
         <nav
           className={`site-menu ${isOpen ? 'open' : ''}`}
