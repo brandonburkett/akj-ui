@@ -10,11 +10,7 @@ export interface IProps {
 
 const NoMatch: React.StatelessComponent<IProps> = props => (
   <React.Fragment>
-    <Head
-      title="Not Found"
-      desc="Page not found really long desc would go here to seee what happens"
-      path={props.location.pathname}
-    />
+    <Head title="Not Found" desc="Page not found." path={props.location.pathname} />
     <div id="main" className="group" role="main">
       <section id="info_panel" className="info_panel_details">
         <div className="panel_content">

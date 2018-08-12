@@ -6,6 +6,7 @@ import './nav.css';
 
 // images
 import imgMon from './images/komei-jyuku-mon-64.png';
+import imgMenuClose from './images/menu-close.png';
 import imgMenu from './images/menu.png';
 
 /**
@@ -88,35 +89,47 @@ class Nav extends React.PureComponent<any, IState> {
             Austin Komei Jyuku
           </a>
         </div>
-        <div className={`site-menu ${isOpen ? 'open' : ''}`} ref={this.menuRef}>
-          <button className="menu-icon" onClick={this.toggleMenu}>
+        <nav
+          className={`site-menu ${isOpen ? 'open' : ''}`}
+          ref={this.menuRef}
+          role="navigation"
+          aria-label="Site Navigation"
+        >
+          <button
+            className="menu-icon"
+            onClick={this.toggleMenu}
+            aria-expanded={isOpen}
+            aria-controls="aria-menu-list"
+          >
             <div className="menu-title">Menu</div>
-            <img src={imgMenu} alt="Menu icon" />
+
+            <img className="menu-open-img" src={imgMenu} alt="Open menu" />
+            <img className="menu-close-img" src={imgMenuClose} alt="Close menu" />
           </button>
-          <nav className="menu-bar group" role="navigation">
-            <ul id="nav-list" className="nav-list">
+          <div id="aria-menu-list" className="menu-bar group" aria-hidden={!isOpen}>
+            <ul id="nav-list" className="nav-list" role="menubar">
               <li className="nav-list-item">
-                <Link className="nav-parent" to="/">
+                <Link className="nav-parent" to="/" role="menuitem">
                   Home
                 </Link>
               </li>
               <li className="nav-list-item">
-                <Link className="nav-parent" to="/iaijutsu">
+                <Link className="nav-parent" to="/iaijutsu" role="menuitem">
                   Iaijutsu
                 </Link>
               </li>
               <li className="nav-list-item">
-                <Link className="nav-parent" to="/naginatajutsu">
+                <Link className="nav-parent" to="/naginatajutsu" role="menuitem">
                   Naginatajutsu
                 </Link>
               </li>
               <li className="nav-list-item">
-                <Link className="nav-parent" to="/seminars">
+                <Link className="nav-parent" to="/seminars" role="menuitem">
                   Seminars
                 </Link>
               </li>
               <li className="nav-list-item">
-                <Link className="nav-parent" to="/schedule">
+                <Link className="nav-parent" to="/schedule" role="menuitem">
                   Schedule
                 </Link>
               </li>
@@ -126,12 +139,13 @@ class Nav extends React.PureComponent<any, IState> {
                   href="http://www.cafepress.com/akjdojo"
                   target="_blank"
                   rel="noopener noreferrer"
+                  role="menuitem"
                 >
                   Shop
                 </a>
               </li>
               <li className="nav-list-item">
-                <a className="nav-parent" href="mailto:brandon@komeijyuku.com">
+                <a className="nav-parent" href="mailto:brandon@komeijyuku.com" role="menuitem">
                   Contact
                 </a>
               </li>
@@ -170,8 +184,8 @@ class Nav extends React.PureComponent<any, IState> {
                 <div className="social-link">Flickr</div>
               </a>
             </div>
-          </nav>
-        </div>
+          </div>
+        </nav>
       </header>
     );
   }
