@@ -2,6 +2,10 @@
   "name": "akj-ui",
   "version": "2.0.0",
   "private": true,
+  "engines": {
+    "node": ">= 10",
+    "npm": ">= 6"
+  },
   "scripts": {
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
