@@ -2,6 +2,9 @@ import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 import Nav from '../../components/nav/nav';
 
+/**
+ * Standard layout, scrolls to top.
+ */
 class StandardLayout extends React.PureComponent<RouteComponentProps<any>> {
   // scroll to top on page changes
   componentDidMount() {
