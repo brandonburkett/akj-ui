@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Route, RouteComponentProps, RouteProps } from 'react-router';
-import Nav from '../../components/nav/nav';
+import StandardLayout from './standard-layout';
 
 /**
  * Standard Layout with drop down nav
@@ -17,10 +17,13 @@ const StandardLayoutRoute: React.StatelessComponent<RouteProps> = ({
     <Route
       {...props}
       render={(renderProps: RouteComponentProps<any>) => (
-        <React.Fragment>
-          <Nav />
+        <StandardLayout
+          location={renderProps.location}
+          history={renderProps.history}
+          match={renderProps.match}
+        >
           <Component {...renderProps} />
-        </React.Fragment>
+        </StandardLayout>
       )}
     />
   );

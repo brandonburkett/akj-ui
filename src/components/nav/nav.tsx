@@ -19,7 +19,7 @@ export interface IState {
 /**
  * Masthead and navigation
  */
-class Nav extends React.PureComponent<any, IState> {
+class Nav extends React.PureComponent<{}, IState> {
   readonly menuRef: React.RefObject<HTMLDivElement>;
 
   constructor(props: any) {
