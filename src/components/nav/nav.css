@@ -55,7 +55,7 @@
 .menu-bar {
   background: rgb(004, 021, 003);
   background: rgba(004, 021, 003, 0.9);
-  box-shadow: 0px 0px 10px 5px rgb(004, 021, 003);
+  box-shadow: 0 0 10px 2px rgb(004, 021, 003);
   color: #ffffff;
   width: 250px;
   padding: 5px 0 0 0;
