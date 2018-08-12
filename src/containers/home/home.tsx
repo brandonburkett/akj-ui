@@ -14,12 +14,14 @@ import BlockImageCTA from '../../components/ctas/block-image-cta';
 import Head from '../../components/head/head';
 import ResponsiveImage from '../../components/images/responsive-image';
 
+// props
 export interface IProps {
   location: {
     pathname: string;
   };
 }
 
+// homepage component
 const Home: React.StatelessComponent<IProps> = props => (
   <React.Fragment>
     <Head
@@ -42,13 +44,14 @@ const Home: React.StatelessComponent<IProps> = props => (
     {/*</div>*/}
     {/*</section>*/}
 
-    <div id="main_push" className="group" role="main">
+    <div className="below-fold group" role="main">
       <section className="home group">
         <p className="intro">
-          The Austin Komei Jyuku is a traditional budo and Japanese swordsmanship dojo. It is an
-          official Komei Jyuku branch school which is headed by Sekiguchi Komei sensei. The dojo was
-          founded in 2008 and Brandon Burkett sensei is head instructor. At the Austin Komei Jyuku,
-          we train in Yamauchi-Ha Muso Jikiden Eishin-ryu iaijutsu and Ryouen-ryu naginatajutsu.
+          Austin Komei Jyuku is a traditional budo and Japanese swordsmanship dojo. It is an
+          official Komei Jyuku branch school which is headed by Sekiguchi Komei sensei. Brandon
+          Burkett sensei opened the dojo in in 2008 and is the head instructor. At Austin Komei
+          Jyuku, we train in Yamauchi-Ha Muso Jikiden Eishin-ryu iaijutsu and Ryouen-ryu
+          naginatajutsu.
         </p>
 
         <div className="home-ctas group">

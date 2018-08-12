@@ -1,5 +1,5 @@
 /* Homepage Quote Panel */
-#quote.home {
+.home {
   background: rgb(110, 024, 011);
   color: #ffffff;
   top: 100%;
@@ -10,46 +10,25 @@
   position: relative;
   z-index: 2;
 }
-#quote {
-  position: relative;
-  background: #0072df;
-  color: #ffffff;
-  z-index: 2;
-  top: 40px;
-}
-#quote .intro {
+.home .intro {
   width: 90%;
   max-width: 700px;
   margin: 100px auto;
   font-size: 2.2em;
   line-height: 1.2em;
 }
-#quote .fine_print {
-  font-size: 0.5em;
-  white-space: nowrap;
-}
-#quote .intro .link:link,
-#quote .intro .link:visited {
+.home .intro .link:link,
+.home .intro .link:visited {
   color: rgb(255, 255, 255);
   color: rgba(255, 255, 255, 0.6);
   border: none;
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
-#quote .intro .link:hover,
-#quote .intro .link:focus {
+.home .intro .link:hover,
+.home .intro .link:focus {
   color: rgb(255, 255, 255);
   color: rgba(255, 255, 255, 1);
   border: none;
-}
-
-#quote_landing {
-  margin: 0;
-  padding: 40px 0 0 0;
-  position: relative;
-  z-index: 2;
 }
 
 /* block quote container */
@@ -77,20 +56,50 @@
 }
 
 /* Responsive Style Sheet */
+@media screen and (min-width: 320px) {
+  .home .intro {
+    font-size: 1.2em;
+  }
+}
+
 @media screen and (min-width: 600px) {
+  .home .intro {
+    font-size: 1.4em;
+    float: left;
+    width: 40%;
+    margin: 50px 0 0 5%;
+  }
+
   .home-ctas {
     width: 45%;
     float: right;
   }
 }
 
+@media screen and (min-width: 768px) {
+  .home .intro {
+    font-size: 1.8em;
+  }
+}
+
 @media screen and (min-width: 1024px) {
+  .home .intro {
+    font-size: 2em;
+  }
+
   .isshin .intro {
     font-size: 2em;
   }
 }
 
 @media screen and (min-width: 1200px) {
+  .home .intro {
+    font-size: 2.2em;
+    float: none;
+    width: 80%;
+    margin: 100px auto;
+  }
+
   .home-ctas {
     width: 100%;
     float: none;

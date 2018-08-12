@@ -1353,7 +1353,7 @@ tr {
   position: relative;
   top: 0;
 }
-#main_push {
+.below-fold {
   position: absolute;
   top: 100%;
   width: 100%;
@@ -1465,60 +1465,6 @@ tr {
 }
 .scroll_cue a {
   padding: 25px 25px;
-}
-
-/* Homepage Quote Panel */
-#quote.home {
-  background: rgb(110, 024, 011);
-  color: #ffffff;
-  top: 100%;
-  -webkit-transform: translateZ(1px);
-  -moz-transform: translateZ(1px);
-  -o-transform: translateZ(1px);
-  transform: translateZ(1px);
-  position: relative;
-  z-index: 2;
-}
-#quote {
-  position: relative;
-  background: #0072df;
-  color: #ffffff;
-  z-index: 2;
-  top: 40px;
-}
-#quote .intro {
-  width: 90%;
-  max-width: 700px;
-  margin: 100px auto;
-  font-size: 2.2em;
-  line-height: 1.2em;
-}
-#quote .fine_print {
-  font-size: 0.5em;
-  white-space: nowrap;
-}
-#quote .intro .link:link,
-#quote .intro .link:visited {
-  color: rgb(255, 255, 255);
-  color: rgba(255, 255, 255, 0.6);
-  border: none;
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-}
-#quote .intro .link:hover,
-#quote .intro .link:focus {
-  color: rgb(255, 255, 255);
-  color: rgba(255, 255, 255, 1);
-  border: none;
-}
-
-#quote_landing {
-  margin: 0;
-  padding: 40px 0 0 0;
-  position: relative;
-  z-index: 2;
 }
 
 /* Interior pages */
