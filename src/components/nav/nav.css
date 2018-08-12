@@ -1,0 +1,173 @@
+/* Masthead */
+.masthead {
+  position: fixed;
+  width: 100%;
+  height: 42px;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  transform: translateZ(2px);
+  background: rgb(004, 021, 003);
+  background: rgba(004, 021, 003, 0.9);
+}
+.brand {
+  position: relative;
+  margin: 6px;
+  transition: all 1s ease;
+}
+
+.brand img {
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
+}
+
+.brand a {
+  color: #ffffff;
+  text-decoration: none;
+  /*font-family: 'ambleregular', sans-serif;*/
+}
+
+.site-menu {
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  z-index: 100;
+  display: inline-block;
+  background: rgb(004, 021, 003);
+  background: rgba(004, 021, 003, 0);
+  cursor: pointer;
+}
+.site-menu.open {
+  background: rgb(004, 021, 003);
+  background: rgba(004, 021, 003, 0);
+}
+.menu-title {
+  position: absolute;
+  /*top: 12px;*/
+  right: 40px;
+  white-space: nowrap;
+  opacity: 1;
+  transition: all 0.2s ease;
+}
+
+/* Main Navigation Menubar */
+.menu-bar {
+  background: rgb(004, 021, 003);
+  background: rgba(004, 021, 003, 0.9);
+  box-shadow: 0px 0px 10px 5px rgb(004, 021, 003);
+  color: #ffffff;
+  width: 250px;
+  padding: 5px 0 0 0;
+  position: absolute;
+  right: 0;
+  display: none;
+}
+.menu-icon {
+  /* remove default button styles */
+  background: none;
+  color: inherit;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+
+  padding: 10px;
+  position: relative;
+}
+.menu-close {
+  position: absolute;
+  top: 11px;
+  left: 10px;
+  opacity: 0;
+}
+.site-menu.open > .menu-bar {
+  display: block;
+}
+
+.menu-bar .nav-list {
+  list-style: none;
+  z-index: 1;
+  border: none;
+}
+.menu-bar .nav-list-item {
+  position: relative;
+}
+.menu-bar .nav-parent:link,
+.menu-bar .nav-parent:visited {
+  color: #ffffff;
+  text-decoration: none;
+  padding: 10px;
+  display: block;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.menu-bar .nav-parent:hover,
+.menu-bar .nav-parent:focus {
+  background: rgb(067, 091, 013);
+}
+
+/* Social Links */
+.social {
+  border-top: 1px solid #000000;
+  height: 41px;
+  text-align: center;
+  background: rgb(067, 091, 013);
+}
+.facebook,
+.youtube,
+.twitter,
+.instagram {
+  width: 20px;
+  height: 20px;
+  overflow: hidden;
+  display: inline-block;
+  margin: 10px 4px 10px 4px;
+}
+.facebook:link,
+.facebook:visited {
+  background: url(./images/facebook.jpg) left top no-repeat;
+}
+.facebook:hover,
+.facebook:focus {
+  background: url(./images/facebook.jpg) left bottom no-repeat;
+}
+.youtube:link,
+.youtube:visited {
+  background: url(./images/youtube.jpg) left top no-repeat;
+}
+.youtube:hover,
+.youtube:focus {
+  background: url(./images/youtube.jpg) left bottom no-repeat;
+}
+.twitter:link,
+.twitter:visited {
+  background: url(./images/twitter.jpg) left top no-repeat;
+}
+.twitter:hover,
+.twitter:focus {
+  background: url(./images/twitter.jpg) left bottom no-repeat;
+}
+.instagram:link,
+.instagram:visited {
+  background: url(./images/instagram.jpg) left top no-repeat;
+}
+.instagram:hover,
+.instagram:focus {
+  background: url(./images/instagram.jpg) left bottom no-repeat;
+}
+.social-link {
+  margin: 20px;
+}
+
+@media screen and (min-width: 320px) {
+  .menu-title {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .menu-title {
+    display: block;
+  }
+}

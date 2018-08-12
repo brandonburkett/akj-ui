@@ -153,10 +153,6 @@
     display: none;
   }
 
-  .menu_title {
-    display: none;
-  }
-
   h1 {
     font-size: 2em;
   }
@@ -286,9 +282,6 @@
   .login_title {
     display: block;
   }
-  .menu_title {
-    display: block;
-  }
 
   /* End 480+ Pixel Styles */
 } /*********************************/
@@ -413,10 +406,6 @@
   }
 
   /* Interior */
-  .introduction .intro {
-    font-size: 1.8em;
-  }
-
   .intro_title {
     font-size: 3em;
   }

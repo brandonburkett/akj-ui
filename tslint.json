@@ -2,7 +2,13 @@
   "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
   "rules": {
     // do not force "public" on classes
-    "member-access": [true, "no-public"]
+    "member-access": [true, "no-public"],
+
+    // enable lambdas, reduce to warning
+    "jsx-no-lambda": { "severity": "warning" },
+
+    // enable console.og, reduce to warning
+    "no-console": { "severity": "warning" }
   },
   "linterOptions": {
     "exclude": [

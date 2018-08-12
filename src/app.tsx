@@ -1,5 +1,8 @@
 import * as React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Switch } from 'react-router-dom';
+
+// layouts
+import StandardLayoutRoute from './containers/layouts/standard-layout-route';
 
 // page containers
 // import Home from 'containers/home/home';
@@ -7,14 +10,12 @@ import NoMatch from './containers/no-match/no-match';
 
 /**
  * Application routes
- * @returns {*}
- * @constructor
  */
-const App = () => (
+const App: React.StatelessComponent = () => (
   <BrowserRouter>
     <Switch>
       {/*<Route exact path="/" component={Home}/>*/}
-      <Route component={NoMatch} />
+      <StandardLayoutRoute component={NoMatch} />
     </Switch>
   </BrowserRouter>
 );
