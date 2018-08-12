@@ -34,7 +34,7 @@ REACT_APP_SECRET_CODE=abcdef
 ```
 
 | Environment Var | Development | Production      |
-|-------------|-----------------------------------|
+|-------------|-----------------|------------------|
 | NODE_ENV | development | production |
 | PORT  | 3000  | |
 | HOST  | 0.0.0.0 | |
