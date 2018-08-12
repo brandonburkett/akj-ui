@@ -3,6 +3,7 @@ This is an ui app using [TypeScript-React-Starter](https://github.com/Microsoft/
 [Create-React-App](hhttps://github.com/facebook/create-react-app).  It includes the following customizations
 * stylelint + style-lint-recommended
 * using nlf-helmet for title and meta tag management
+* prettier for css and ts / tsx files
 
 ## Project scripts
 See full package.json for full configuration.
