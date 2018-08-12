@@ -1,12 +1,16 @@
 import React, { StatelessComponent } from 'react';
 import { Link } from 'react-router-dom';
 
+// ui components
+import ResponsiveImage from '../../components/images/responsive-image';
+
 // styles
 import './block-image-cta.css';
 
 // images
 import imgMore from './images/more.png';
 
+// props
 export interface IProps {
   to: string;
   title?: string;
@@ -33,7 +37,7 @@ const BlockImageCTA: StatelessComponent<IProps> = ({
   children,
 }) => (
   <Link className="block-image-cta" to={to}>
-    <img className="fit-img" src={imgSrc} alt={imgAlt} />
+    <ResponsiveImage src={imgSrc} alt={imgAlt} />
     <div className="block-image-info">
       <div className="black-image-title">{title}</div>
       <div className="block-image-details">{content}</div>
