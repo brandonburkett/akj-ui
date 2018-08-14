@@ -51,6 +51,7 @@ Uses [CircleCI](https://circleci.com/) for CI/CD.
 
 ## TODO Tasks
 * [ ] split up original css file for each component
+* [ ] higher res homepage icons on image CTAs
 * [ ] NoMatch component min viewport width
 * [ ] progressive web app icons and manifest config
 * [ ] a11y support with typescript

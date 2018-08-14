@@ -56,7 +56,7 @@ class FullScreenParallaxImage extends React.PureComponent<IProps, {}> {
       const yPos = -(windowScrollY / parallaxSpeed);
 
       // put together our final background position
-      const coords = '50% ' + yPos + 'px';
+      const coords = `50% ${yPos}px`;
 
       // move the background slower than foreground
       this.backgroundRef.current.style.backgroundPosition = coords;
