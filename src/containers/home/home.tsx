@@ -35,7 +35,11 @@ const Home: React.StatelessComponent<IProps> = props => {
         desc="The Austin Komei Jyuku dojo is an official Komei Jyuku branch dojo and teaches Yamauchi-Ha Muso Jikiden Eishin-ryu Iaijutsu under Sekiguchi Komei Sensei in Austin, Texas."
         path={props.location.pathname}
       />
-      <FullScreenParallaxImage backgroundImgSrc={imgKoiLily} scrollToRef={scrollToRef}>
+      <FullScreenParallaxImage
+        backgroundImgSrc={imgKoiLily}
+        scrollToRef={scrollToRef}
+        parallaxSpeed={5}
+      >
         <div className="big-brand">
           <div className="logo">
             <ResponsiveImage src={imgMjerKanji} alt="Muso Jikidien Eishin-ryu Iaijutsu" />

@@ -109,27 +109,47 @@ class Nav extends React.PureComponent<{}, IState> {
           <div id="aria-menu-list" className="menu-bar group" aria-hidden={!isOpen}>
             <ul id="nav-list" className="nav-list" role="menubar">
               <li className="nav-list-item">
-                <Link className="nav-parent" to="/" role="menuitem">
+                <Link className="nav-parent" to="/" role="menuitem" onClick={this.toggleMenu}>
                   Home
                 </Link>
               </li>
               <li className="nav-list-item">
-                <Link className="nav-parent" to="/iaijutsu" role="menuitem">
+                <Link
+                  className="nav-parent"
+                  to="/iaijutsu"
+                  role="menuitem"
+                  onClick={this.toggleMenu}
+                >
                   Iaijutsu
                 </Link>
               </li>
               <li className="nav-list-item">
-                <Link className="nav-parent" to="/naginatajutsu" role="menuitem">
+                <Link
+                  className="nav-parent"
+                  to="/naginatajutsu"
+                  role="menuitem"
+                  onClick={this.toggleMenu}
+                >
                   Naginatajutsu
                 </Link>
               </li>
               <li className="nav-list-item">
-                <Link className="nav-parent" to="/seminars" role="menuitem">
+                <Link
+                  className="nav-parent"
+                  to="/seminars"
+                  role="menuitem"
+                  onClick={this.toggleMenu}
+                >
                   Seminars
                 </Link>
               </li>
               <li className="nav-list-item">
-                <Link className="nav-parent" to="/schedule" role="menuitem">
+                <Link
+                  className="nav-parent"
+                  to="/schedule"
+                  role="menuitem"
+                  onClick={this.toggleMenu}
+                >
                   Schedule
                 </Link>
               </li>

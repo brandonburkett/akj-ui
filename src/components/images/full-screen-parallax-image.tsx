@@ -11,25 +11,57 @@ export interface IProps {
   content?: string;
   backgroundImgSrc: string;
   scrollToRef?: React.RefObject<HTMLElement>;
-}
-
-export interface IState {
-  parallaxSpeed: number;
+  parallaxSpeed?: number;
 }
 
 /**
  * Full screen image with scroll to ref support
  */
-class FullScreenParallaxImage extends React.PureComponent<IProps, IState> {
+class FullScreenParallaxImage extends React.PureComponent<IProps, {}> {
+  static defaultProps: Partial<IProps> = {
+    content: '',
+    parallaxSpeed: 5,
+    title: '',
+  };
+
+  readonly backgroundRef: React.RefObject<HTMLDivElement>;
+
   constructor(props: IProps) {
     super(props);
 
-    this.state = {
-      parallaxSpeed: 5,
-    };
+    // refs
+    this.backgroundRef = React.createRef();
 
     // bindings
     this.handleScroll = this.handleScroll.bind(this);
+    this.handleParallaxScroll = this.handleParallaxScroll.bind(this);
+  }
+
+  // handle scroll parallax
+  componentDidMount() {
+    document.addEventListener('scroll', this.handleParallaxScroll);
+  }
+
+  // end handle scroll parallax
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleParallaxScroll);
+  }
+
+  handleParallaxScroll() {
+    const { parallaxSpeed } = this.props;
+
+    if (this.backgroundRef && this.backgroundRef.current && parallaxSpeed) {
+      // calc scroll y to move slower than foreground
+      const windowScrollY = window.pageYOffset || window.scrollY;
+      const yPos = -(windowScrollY / parallaxSpeed);
+
+      // put together our final background position
+      const coords = '50% ' + yPos + 'px';
+
+      // move the background slower than foreground
+      this.backgroundRef.current.style.backgroundPosition = coords;
+      // console.log('handleParallaxScroll', coords, this.backgroundRef.current.style);
+    }
   }
 
   handleScroll(e: React.KeyboardEvent | React.MouseEvent) {
@@ -48,6 +80,7 @@ class FullScreenParallaxImage extends React.PureComponent<IProps, IState> {
         <div
           className="cover-image"
           style={{ background: `#000000 url('${backgroundImgSrc}') 50% 0px / cover no-repeat` }}
+          ref={this.backgroundRef}
         >
           {/* if children, render children only.. otherwise look at title / content */}
           {children ? (
