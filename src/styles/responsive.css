@@ -105,27 +105,6 @@
     width: 320px;
   }
 
-  /* logo */
-  .logo {
-    width: 100px;
-  }
-
-  /* Interior */
-  .introduction .intro {
-    font-size: 1.2em;
-    margin: 20px auto;
-  }
-  .service_logo {
-    margin: 0 auto 20px;
-  }
-  .introduction {
-    height: 75%;
-  }
-
-  .intro_title {
-    font-size: 2em;
-  }
-
   /* Full View Button */
   .full_view {
     display: block;
@@ -366,29 +345,12 @@
     width: 564px;
   }
 
-  /* logo */
-  .logo {
-    width: 150px;
-  }
-
   /* Interior */
-  .intro_title {
-    font-size: 3em;
-  }
-
   .service p {
     font-size: 1.2em;
   }
   .service_logo {
     margin: 0 auto 40px;
-  }
-  .introduction {
-    height: 50%;
-  }
-
-  /* Project Detail */
-  .introduction .intro {
-    font-size: 1.8em;
   }
 
   h1 {
@@ -491,11 +453,6 @@
   /* Content */
   .content {
     width: 720px;
-  }
-
-  /* logo */
-  .logo {
-    width: 175px;
   }
 
   /* End 768+ Pixel Styles */
@@ -656,11 +613,6 @@
   /* Content */
   .content {
     width: 960px;
-  }
-
-  /* logo */
-  .logo {
-    width: 180px;
   }
 
   .service p {
@@ -835,10 +787,6 @@
   /* Content */
   .content {
     width: 1104px;
-  }
-
-  .logo {
-    width: 233px;
   }
 
   /* Interior */

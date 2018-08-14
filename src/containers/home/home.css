@@ -31,6 +31,28 @@
   border: none;
 }
 
+/* homepage specific parallax styling */
+.big-brand {
+  width: 90%;
+  max-width: 700px;
+  min-height: 400px;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  font-size: 1em;
+  line-height: 1.2em;
+  text-align: center;
+}
+.logo {
+  margin: 75px auto;
+  width: 233px;
+  max-width: 50%;
+  position: relative;
+}
+
 /* block quote container */
 .home-ctas {
   width: 100%;
@@ -60,6 +82,10 @@
   .home .intro {
     font-size: 1.2em;
   }
+
+  .logo {
+    width: 100px;
+  }
 }
 
 @media screen and (min-width: 600px) {
@@ -68,6 +94,10 @@
     float: left;
     width: 40%;
     margin: 50px 0 0 5%;
+  }
+
+  .logo {
+    width: 150px;
   }
 
   .home-ctas {
@@ -80,11 +110,19 @@
   .home .intro {
     font-size: 1.8em;
   }
+
+  .logo {
+    width: 175px;
+  }
 }
 
 @media screen and (min-width: 1024px) {
   .home .intro {
     font-size: 2em;
+  }
+
+  .logo {
+    width: 180px;
   }
 
   .isshin .intro {
@@ -98,6 +136,10 @@
     float: none;
     width: 80%;
     margin: 100px auto;
+  }
+
+  .logo {
+    width: 233px;
   }
 
   .home-ctas {

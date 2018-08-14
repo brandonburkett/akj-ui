@@ -22,7 +22,7 @@ export interface IState {
 class Nav extends React.PureComponent<{}, IState> {
   readonly menuRef: React.RefObject<HTMLDivElement>;
 
-  constructor(props: any) {
+  constructor(props: {}) {
     super(props);
 
     // init state

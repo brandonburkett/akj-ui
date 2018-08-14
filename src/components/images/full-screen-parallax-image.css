@@ -1,0 +1,97 @@
+.cover-parallax {
+  /*background: #ffffff url("images/lilly.jpg") no-repeat right top;
+  background-size: cover;*/
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+.cover-image {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  background-position: 50% 0px;
+  background-size: cover;
+}
+.cover-text {
+  position: relative;
+  z-index: 3;
+  padding: 20% 0;
+}
+.cover-title {
+  color: #ffffff;
+  text-shadow: 2px 2px 2px #000000;
+  width: 80%;
+  max-width: 700px;
+  margin: 40px auto 0 auto;
+}
+.cover-content {
+  color: #ffffff;
+  text-shadow: 2px 1px #000000;
+  width: 80%;
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 1.7em;
+  line-height: 1.3em;
+}
+
+.cover-scroll-cue {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
+  z-index: 4;
+}
+.cover-scroll-cue button {
+  padding: 25px 25px;
+}
+
+/* Responsive Style Sheet */
+@media screen and (min-width: 320px) {
+  .cover-text .cover-content {
+    font-size: 1.2em;
+    margin: 20px auto;
+  }
+  .cover-text {
+    height: 75%;
+  }
+  .cover-title {
+    font-size: 2em;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  /* Interior */
+  .cover-title {
+    font-size: 3em;
+  }
+  .cover-text {
+    height: 50%;
+  }
+  .cover-text .cover-content {
+    font-size: 1.8em;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  /* Interior */
+  .cover-content {
+    font-size: 2em;
+  }
+
+  /* Full View Button */
+  .full_view {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .cover-content {
+    font-size: 2.2em;
+  }
+}
