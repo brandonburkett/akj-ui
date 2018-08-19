@@ -2,6 +2,7 @@ import * as React from 'react';
 
 // images
 import imgKobushidori from './images/kobushidori-1500.jpg';
+import imageGallery from './iaijutsu-image-gallery';
 
 // ui components
 import BelowFold from '../../components/below-fold/below-fold';
@@ -11,6 +12,7 @@ import FullScreenParallaxImage from '../../components/images/full-screen-paralla
 import PanelContent from '../../components/panels/panel-content';
 import PanelSection from '../../components/panels/panel-section';
 import Quote from '../../components/quote/quote';
+import SlideGallery from '../../components/images/slide-gallery';
 
 // props
 export interface IProps {
@@ -19,8 +21,11 @@ export interface IProps {
   };
 }
 
-// iaijutsu page component
+/**
+ * Iai page component
+ */
 const Iaijutsu: React.StatelessComponent<IProps> = props => {
+  // refs
   const scrollToRef = React.createRef<HTMLDivElement>();
 
   return (
@@ -87,6 +92,9 @@ const Iaijutsu: React.StatelessComponent<IProps> = props => {
               </p>
             </div>
           </PanelContent>
+
+          {/* image gallery */}
+          <SlideGallery items={imageGallery} />
 
           {/*<div className="hilite_group group">*/}
           {/*<horizontal-gallery className="horizontal_gallery" data-autoplay="true" data-wait-time="4000"*/}

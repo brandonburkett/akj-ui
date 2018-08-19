@@ -8,7 +8,13 @@
     "jsx-no-lambda": { "severity": "warning" },
 
     // enable console.og, reduce to warning
-    "no-console": { "severity": "warning" }
+    "no-console": { "severity": "warning" },
+
+    // this rule is silly
+    "ordered-imports": [true, {
+      "import-sources-order": "any",
+      "named-imports-order": "case-insensitive"
+    }]
   },
   "linterOptions": {
     "exclude": [
