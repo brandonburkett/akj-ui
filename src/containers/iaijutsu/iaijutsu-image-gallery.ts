@@ -27,4 +27,7 @@ export const imageGalleryRaw: string[] = [
   imgGallery12,
 ];
 
-export default imageGalleryRaw.map(image => ({ original: image }));
+export default imageGalleryRaw.map(image => ({
+  bulletClass: 'slide-gallery-bullet',
+  original: image,
+}));

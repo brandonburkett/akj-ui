@@ -1,6 +1,6 @@
 .info-panel-details {
   background: #aaa88f;
-  z-index: 2;
+  z-index: 3;
   position: relative;
 }
 .info-panel-details h1,

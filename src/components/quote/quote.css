@@ -3,7 +3,7 @@
   color: #ffffff;
   position: relative;
   min-height: 50vh;
-  z-index: 5;
+  z-index: 2;
 }
 .quote .content {
   width: 80%;

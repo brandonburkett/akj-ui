@@ -19,18 +19,30 @@ class SlideGallery extends React.PureComponent<ReactImageGalleryProps> {
 
     // bindings
     this.stopAutoplayClick = this.stopAutoplayClick.bind(this);
+    this.touchPause = this.touchPause.bind(this);
     this.renderLeftNav = this.renderLeftNav.bind(this);
     this.renderRightNav = this.renderRightNav.bind(this);
+    this.renderPlayPauseButton = this.renderPlayPauseButton.bind(this);
+    this.renderFullscreenButton = this.renderFullscreenButton.bind(this);
   }
 
   // stop auto play and pass through gallery click (next / previous / bullet)
   stopAutoplayClick(
     e: React.MouseEvent<HTMLElement>,
-    onClick: (e: React.MouseEvent<HTMLElement>) => void,
+    onClick?: (e: React.MouseEvent<HTMLElement>) => void,
   ) {
     if (this.galleryRef && this.galleryRef.current) {
       this.galleryRef.current.pause();
-      onClick(e);
+
+      if (onClick) {
+        onClick(e);
+      }
+    }
+  }
+
+  touchPause() {
+    if (this.galleryRef && this.galleryRef.current) {
+      this.galleryRef.current.pause();
     }
   }
 
@@ -56,6 +68,33 @@ class SlideGallery extends React.PureComponent<ReactImageGalleryProps> {
     );
   }
 
+  renderPlayPauseButton(onClick: (e: React.MouseEvent<HTMLElement>) => void, isPlaying: boolean) {
+    return (
+      <button
+        type="button"
+        aria-label="Play or Pause Slideshow"
+        className={`image-gallery-play-button${isPlaying ? ' active' : ''} slide-gallery-play`}
+        onClick={onClick}
+      />
+    );
+  }
+
+  renderFullscreenButton(
+    onClick: (e: React.MouseEvent<HTMLElement>) => void,
+    isFullscreen: boolean,
+  ) {
+    return (
+      <button
+        type="button"
+        aria-label="Open Fullscreen"
+        className={`image-gallery-fullscreen-button${
+          isFullscreen ? ' active' : ''
+        } slide-gallery-fullscreen`}
+        onClick={onClick}
+      />
+    );
+  }
+
   render() {
     return (
       <div className="slide-gallery-group group">
@@ -67,10 +106,15 @@ class SlideGallery extends React.PureComponent<ReactImageGalleryProps> {
             lazyLoad={true}
             showThumbnails={false}
             showBullets={true}
-            showFullscreenButton={false}
+            showFullscreenButton={true}
+            useBrowserFullscreen={false}
             autoPlay={true}
+            preventDefaultTouchmoveEvent={true}
             renderLeftNav={this.renderLeftNav}
             renderRightNav={this.renderRightNav}
+            renderPlayPauseButton={this.renderPlayPauseButton}
+            renderFullscreenButton={this.renderFullscreenButton}
+            onTouchStart={this.touchPause}
           />
         </div>
       </div>

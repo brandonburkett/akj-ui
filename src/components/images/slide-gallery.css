@@ -9,11 +9,11 @@
 }
 
 .image-gallery-left-nav.slide-gallery-previous-control {
-  margin-left: -0.8em;
+  margin-left: -1em;
 }
 
 .image-gallery-right-nav.slide-gallery-next-control {
-  margin-right: -0.8em;
+  margin-right: -1em;
 }
 
 .image-gallery-left-nav.slide-gallery-previous-control::before,
@@ -27,54 +27,70 @@
   font-size: 5.1em;
 }
 
-.horizontal_gallery .horizontal_gallery_nav_group {
-  position: absolute;
-  bottom: 20px;
-  left: 0;
-  z-index: 99;
-  width: 100%;
-  text-align: center;
+.image-gallery-bullets .image-gallery-bullet.slide-gallery-bullet {
+  border-radius: 0;
+  border: 1px solid #eae6db;
 }
-.horizontal_gallery .horizontal_gallery_nav {
-  width: 10px;
-  height: 10px;
-  background: rgb(110, 024, 011);
-  overflow: hidden;
-  display: inline-block;
-  -webkit-border-radius: 12px;
-  -moz-border-radius: 12px;
-  border-radius: 12px;
-  border: 1px solid rgb(110, 024, 011);
-  margin-bottom: 7px;
-  margin-left: 5px;
-  margin-right: 5px;
-  opacity: 0.5;
-  cursor: pointer;
+
+.image-gallery-bullets .image-gallery-bullet.slide-gallery-bullet.active {
+  background: #eae6db;
+  padding: 6px;
 }
-.horizontal_gallery .horizontal_gallery_nav:hover,
-.horizontal_gallery_nav:focus {
-  background: rgb(110, 024, 011);
-  width: 12px;
-  height: 12px;
-  margin-left: 4px;
-  margin-right: 4px;
-  opacity: 1;
+
+.image-gallery-play-button.slide-gallery-play::before,
+.image-gallery-fullscreen-button.slide-gallery-fullscreen::before {
+  color: #eae6db;
 }
-.horizontal_gallery .horizontal_gallery_nav_active {
-  width: 12px;
-  height: 12px;
-  background: rgb(110, 024, 011);
-  overflow: hidden;
-  display: inline-block;
-  cursor: default;
-  -webkit-border-radius: 12px;
-  -moz-border-radius: 12px;
-  border-radius: 12px;
-  border: 1px solid rgb(110, 024, 011);
-  margin-bottom: 7px;
-  margin-left: 4px;
-  margin-right: 4px;
+
+/* Responsive Style Sheet */
+@media screen and (min-width: 320px) {
+  .slide-gallery-images {
+    width: 95%;
+  }
+
+  .image-gallery-left-nav.slide-gallery-previous-control,
+  .image-gallery-right-nav.slide-gallery-next-control {
+    display: none;
+  }
+
+  .image-gallery-bullets .image-gallery-bullet.slide-gallery-bullet.active {
+    background: #eae6db;
+    padding: 4px;
+  }
 }
-.horizontal_gallery .horizontal_gallery_nav_text {
-  padding: 10px;
+
+/* iphone x landscape specifically */
+@media screen and (height: 375px) {
+  .image-gallery-play-button.slide-gallery-play,
+  .image-gallery-fullscreen-button.slide-gallery-fullscreen {
+    bottom: 30px;
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .slide-gallery-images {
+    width: 80%;
+  }
+
+  .image-gallery-left-nav.slide-gallery-previous-control,
+  .image-gallery-right-nav.slide-gallery-next-control {
+    display: block;
+  }
+
+  .image-gallery-left-nav.slide-gallery-previous-control:hover,
+  .image-gallery-right-nav.slide-gallery-next-control:hover {
+    font-size: 3.5em;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .image-gallery-left-nav.slide-gallery-previous-control:hover,
+  .image-gallery-right-nav.slide-gallery-next-control:hover {
+    font-size: 5.1em;
+  }
+
+  .image-gallery-bullets .image-gallery-bullet.slide-gallery-bullet.active {
+    background: #eae6db;
+    padding: 6px;
+  }
 }
