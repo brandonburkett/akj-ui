@@ -135,6 +135,7 @@ fieldset,
 form,
 label,
 legend,
+table,
 caption,
 tbody,
 tfoot,
@@ -143,6 +144,7 @@ tr,
 th,
 td,
 article,
+aside,
 canvas,
 details,
 embed,
@@ -160,27 +162,51 @@ summary,
 time,
 mark,
 audio,
-aside {
+video {
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+  margin: 0;
+  padding: 0;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
   display: block;
 }
+
 ol,
 ul {
   list-style: none;
 }
+
 blockquote,
 q {
   quotes: none;
 }
+
 blockquote:before,
 blockquote:after,
 q:before,
 q:after {
   content: none;
 }
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
 /* Micro Clearfix - Nicolas Gallagher: http://nicolasgallagher.com/micro-clearfix-hack/ */
 .group:before,
 .group:after {
