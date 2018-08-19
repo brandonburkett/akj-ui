@@ -1,0 +1,14 @@
+.info-panel-details {
+  background: #aaa88f;
+  z-index: 2;
+  position: relative;
+}
+.info-panel-details h1,
+.info-panel-details h2,
+.info-panel-details h3,
+.info-panel-details h4,
+.info-panel-details p,
+.info-panel-details strong,
+.info-panel-details li {
+  color: #000000;
+}

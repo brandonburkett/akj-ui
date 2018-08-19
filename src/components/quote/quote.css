@@ -2,6 +2,7 @@
   background: rgb(067, 091, 013);
   color: #ffffff;
   position: relative;
+  min-height: 50vh;
   /*z-index: 5;*/
 }
 .quote .content {

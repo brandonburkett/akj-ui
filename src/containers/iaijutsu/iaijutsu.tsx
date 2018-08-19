@@ -1,0 +1,263 @@
+import * as React from 'react';
+
+// images
+import imgKobushidori from './images/kobushidori-1500.jpg';
+
+// ui components
+import BelowFold from '../../components/below-fold/below-fold';
+import Head from '../../components/head/head';
+import FullScreenParallaxImage from '../../components/images/full-screen-parallax-image';
+// import ResponsiveImage from '../../components/images/responsive-image';
+import PanelContent from '../../components/panels/panel-content';
+import PanelSection from '../../components/panels/panel-section';
+import Quote from '../../components/quote/quote';
+
+// props
+export interface IProps {
+  location: {
+    pathname: string;
+  };
+}
+
+// iaijutsu page component
+const Iaijutsu: React.StatelessComponent<IProps> = props => {
+  const scrollToRef = React.createRef<HTMLDivElement>();
+
+  return (
+    <React.Fragment>
+      <Head
+        title="Muso Jikiden Eishin-ryu Iaijutsu"
+        desc="The Austin Komei Jyuku dojo teaches Yamauchi-Ha Muso Jikidien Eishin-ryu Iaijutsu under Sekiguchi Komei sensei."
+        path={props.location.pathname}
+      />
+      <FullScreenParallaxImage
+        backgroundImgSrc={imgKobushidori}
+        scrollToRef={scrollToRef}
+        parallaxSpeed={5}
+        title="Muso Jikiden Eishin-ryu Iaijutsu"
+        content="Traditional Japanese swordsmanship classes are held on Tuesdays from 8:00pm - 9:00pm and Thursday from 8:30pm - 9:30pm at the Austin Sports Center in Cedar Park."
+      />
+
+      <BelowFold role="main" ref={scrollToRef}>
+        <PanelSection>
+          <PanelContent>
+            <div className="cs12">
+              <h2>History</h2>
+            </div>
+            <div className="cs6">
+              <p>
+                Muso Jikiden Eishin-ryu (<span lang="ja">無雙直傳英信流居合術</span>) translates to
+                &ldquo;peerless, direct transmission, true-faith style&rdquo;. It is the second
+                oldest martial art from Japan with an unbroken history of 450 years that was founded
+                in 1590. The founder of Muso Jikiden Eishin-ryu was Hayashizaki Jinsuke Shigenobu,
+                who also founded Hayashizaki Shimmei Muso-ryu, Muso-ryu, Hayashizaki-ryu,
+                Hayashizaki Jinsuke-ryu, Muso Shinden-ryu, and Jushin-ryu. It is said he confined
+                himself for approximately a hundred days in the Hayashizaki Myojin Shrine, where he
+                received divine inspiration for a new body of sword techniques using a long sword.
+              </p>
+              <p>
+                The term &lsquo;Eishin&rsquo; came from 7th generation headmaster, Hasegawa
+                Chikaranosuke Eishin, who officially called the art Muso Jikiden Eishin-ryu. He also
+                served the Tokugawa family in Nagoya and excelled in Kyudo. The title
+                &lsquo;Muso&rsquo; (unparalleled / peerless) refers to the fact that Hasegawa Eishin
+                was praised by Toyotomi Hideyoshi as &ldquo;a swordsman without equal&rdquo; when he
+                saw a demonstration of his iaijutsu.
+              </p>
+            </div>
+            <div className="cs6">
+              <p>
+                The 9th generation headmaster, Hayashi Rokudayu Morimasa, served the Tosa domain and
+                established Eishin-ryu there. The 17th generation headmaster, Oe Masamichi
+                formalized many of the waza in Muso Jikiden Eishin Ryu. He changed the names of the
+                Omori-ryu and Hasegawa-ryu, (both styles were integrated into Eishin-ryu at the
+                time) into Seiza no Bu and Tatehiza no Bu. Masamichi also organized the waza into
+                logical order within each set. Yamauchi Toyotake, the 18th generation headmaster is
+                the grandson of Yamauchi Yodo, the daimyo of Tosa. Yamauchi Toyotake taught many
+                students in Tokyo and Kyoto and even served when called to do military service in
+                1941. The 20th generation, Onoe Masamitsu, inherited it and passed it to the current
+                21st generation, Sekiguchi Komei.
+              </p>
+            </div>
+            <div className="cs12">
+              <hr className="black" />
+              <p>
+                The current (21st) soke is Sekiguchi Komei sensei. He created the Komei Jyuku, an
+                international body of students, and spreads iaijutsu with the isshin / one heart (
+                <span lang="ja">一心</span>) philosophy.
+              </p>
+            </div>
+          </PanelContent>
+
+          {/*<div className="hilite_group group">*/}
+          {/*<horizontal-gallery className="horizontal_gallery" data-autoplay="true" data-wait-time="4000"*/}
+          {/*data-infinity="true" data-animation-time="1000">*/}
+          {/*<div className="gallery_imgs">*/}
+          {/*<div className="hilite_img_placeholder">*/}
+          {/*<img className="fit_img" src="media/content-images/hilite-placeholder.jpg" alt="">*/}
+          {/*</div>*/}
+          {/*<div className="horizontal_gallery_imgs">*/}
+          {/*<div className="horizontal_gallery_img" ng-repeat="image in galleryImages">*/}
+          {/*<img className="fit_img lazy" data-original="{{ image.url }}" alt="{{ image.title }}" lazy-load*/}
+          {/*lazy-height="image.height" lazy-width="image.width">*/}
+          {/*</div>*/}
+          {/*</div>*/}
+          {/*</div>*/}
+
+          {/*<!-- gallery nav -->*/}
+          {/*<div className="horizontal_gallery_nav_group">*/}
+          {/*<a className="horizontal_gallery_nav_active" ng-repeat="image in galleryImages"*/}
+          {/*ng-href="#horizontal_gallery_img_{{ $index }}" data-index="{{ $index }}" tabIndex="{{ $index }}">*/}
+          {/*<div className="horizontal_gallery_nav_text">Image {{$index +1}}</div>*/}
+          {/*</a>*/}
+          {/*</div>*/}
+          {/*<!-- end gallery nav -->*/}
+
+          {/*<!-- gallery controls -->*/}
+          {/*<div className="horizontal_gallery_control">*/}
+          {/*<div className="prev_control">*/}
+          {/*<span className="prev_slide" tabIndex="0">‹</span>*/}
+          {/*</div>*/}
+          {/*<div className="next_control">*/}
+          {/*<span className="next_slide" tabIndex="0">›</span>*/}
+          {/*</div>*/}
+          {/*</div>*/}
+          {/*<!-- end gallery controls -->*/}
+          {/*</horizontal-gallery>*/}
+          {/*</div>*/}
+
+          <PanelContent>
+            <div className="cs4">
+              <h3>Lineage</h3>
+              <ul className="ul_square">
+                <li>Hayashizaki Jinsuke Shigenobu</li>
+                <li>Tamiya Heibei Shigemasa</li>
+                <li>Nagano Muraku Nyudo Kinrosai</li>
+                <li>Momo Gumbei Mitsushige</li>
+                <li>Arikawa Shozaemon Munetsugu</li>
+                <li>Banno Dan'emon no Jo Nobusada</li>
+                <li>Hasegawa Chikaranosuke Eishin (Hidenobu)</li>
+                <li>Arai Seitetsu Kiyonobu</li>
+                <li>Hayashi Rokudayu Morimasa</li>
+                <li>Hayashi Yasudayu Seisho</li>
+                <li>Oguro Motoemon Kiyokatsu</li>
+              </ul>
+
+              <h4>Tanimura-Ha</h4>
+              <ul className="ul_square">
+                <li>Hayashi Masu no Jo Masanri</li>
+                <li>Yoda Yorikatsu</li>
+                <li>Hayashi Yadayu Masayori</li>
+                <li>Tanimura Kame no Jo Yorikatsu</li>
+                <li>Goto Magobei Masasuke</li>
+                <li>Oe Masamishi</li>
+              </ul>
+
+              <h4>Yamauchi-Ha</h4>
+              <ul className="ul_square">
+                <li>Yamauchi Toyotake</li>
+                <li>Kono Kanemitsu</li>
+                <li>Onoue Masamitsu</li>
+                <li>Sekiguchi Komei</li>
+              </ul>
+            </div>
+
+            <div className="cs4">
+              <h3>Kata</h3>
+              <h4>Shoden Seiza no Bu</h4>
+              <ol className="ol_decimal">
+                <li>Mae</li>
+                <li>Migi</li>
+                <li>Hidari</li>
+                <li>Ushiro</li>
+                <li>Yaegaki</li>
+                <li>Ukenagashi</li>
+                <li>Kaishaku</li>
+                <li>Tsukekomi</li>
+                <li>Tsukikage</li>
+                <li>Oikaze</li>
+                <li>Nukiuchi</li>
+              </ol>
+
+              <h4>Chuden Tatehiza no Bu</h4>
+              <ol className="ol_decimal">
+                <li>Yokogumo</li>
+                <li>Toraisoku</li>
+                <li>Inazuma</li>
+                <li>Ukigumo</li>
+                <li>Oroshi</li>
+                <li>Iwanami</li>
+                <li>Urokogaeshi</li>
+                <li>Namigaeshi</li>
+                <li>Takiotoshi</li>
+                <li>Makko</li>
+              </ol>
+
+              <h4>Okuden Tachi Waza no Bu</h4>
+              <ol className="ol_decimal">
+                <li>Yukizure</li>
+                <li>Tsuredachi</li>
+                <li>Somakuri</li>
+                <li>Sodome</li>
+                <li>Shinobu</li>
+                <li>Yukichigai</li>
+                <li>Sode Surigaeshi</li>
+                <li>Moniri</li>
+                <li>Kabezoe</li>
+                <li>Ukenagashi</li>
+                <li>Ittomagoi (Ichi, Ni, San)</li>
+              </ol>
+
+              <h4>Okuden Suwari Waza</h4>
+              <ol className="ol_decimal">
+                <li>Kasumi</li>
+                <li>Sunegakoi</li>
+                <li>Tozume</li>
+                <li>Towaki</li>
+                <li>Shihogiri</li>
+                <li>Tanashita</li>
+                <li>Ryozume</li>
+                <li>Torabashiri</li>
+              </ol>
+            </div>
+
+            <div className="cs4">
+              <h3>Kumitachi</h3>
+              <h4>Nanahon Me No Kata</h4>
+              <ol className="ol_decimal">
+                <li>Deai</li>
+                <li>Kobushidori</li>
+                <li>Zetsumyoken</li>
+                <li>Dokumyoken</li>
+                <li>Tsubadome</li>
+                <li>Ukenagashi</li>
+                <li>Mappo</li>
+              </ol>
+
+              <h4>Tsume-Iai</h4>
+              <ol className="ol_decimal">
+                <li>Hasso</li>
+                <li>Kobushidori</li>
+                <li>Iwanami</li>
+                <li>Yaegaki</li>
+                <li>Urokugaeshi</li>
+                <li>Kuraiyurumi</li>
+                <li>Tsubame Gaeshi</li>
+                <li>Gansekiotoshi</li>
+                <li>Suigetsuto</li>
+                <li>Kazumiken</li>
+                <li>Uchikomi</li>
+              </ol>
+            </div>
+          </PanelContent>
+        </PanelSection>
+
+        <Quote
+          content="Once you understand the long sword, you will know all shorter swords."
+          author="Sekiguchi Komei sensei"
+        />
+      </BelowFold>
+    </React.Fragment>
+  );
+};
+
+export default Iaijutsu;

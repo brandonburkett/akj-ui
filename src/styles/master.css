@@ -636,12 +636,6 @@ body {
   margin: 0 2% 0 0;
 }
 
-/* Content */
-.content {
-  margin: 0 auto;
-  width: 960px;
-}
-
 /* Sections */
 h1 {
   font-size: 4em;
@@ -1352,11 +1346,7 @@ tr {
 #main {
   position: relative;
   top: 0;
-}
-.below-fold {
-  position: absolute;
-  top: 100%;
-  width: 100%;
+  min-height: 100vh;
 }
 
 /* Interior pages */
@@ -1567,29 +1557,6 @@ tr {
 .service_logo img {
   width: 100px;
   margin: 0 auto;
-}
-
-.info_panel_details {
-  background: #aaa88f;
-  z-index: 2;
-  position: relative;
-}
-.info_panel_details h1,
-.info_panel_details h2,
-.info_panel_details h3,
-.info_panel_details h4,
-.info_panel_details p,
-.info_panel_details strong,
-.info_panel_details li {
-  color: #000000;
-}
-.info_panel_details .form_fieldsets {
-  color: #000000;
-}
-
-.panel_content {
-  padding: 100px 0;
-  border-top: none;
 }
 
 #about .content {

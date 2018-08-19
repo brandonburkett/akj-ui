@@ -12,6 +12,7 @@ import imgMjerKanji from './images/mjer-kanji.png';
 import imgNaginata from './images/naginata-800.jpg';
 
 // ui components
+import BelowFold from '../../components/below-fold/below-fold';
 import BlockImageCTA from '../../components/ctas/block-image-cta';
 import Head from '../../components/head/head';
 import FullScreenParallaxImage from '../../components/images/full-screen-parallax-image';
@@ -50,7 +51,7 @@ const Home: React.StatelessComponent<IProps> = props => {
         </div>
       </FullScreenParallaxImage>
 
-      <div className="below-fold group" role="main" ref={scrollToRef}>
+      <BelowFold role="main" ref={scrollToRef}>
         <section className="home group">
           <p className="intro">
             Austin Komei Jyuku is a traditional budo and Japanese swordsmanship dojo. It is an
@@ -94,7 +95,7 @@ const Home: React.StatelessComponent<IProps> = props => {
             <ResponsiveImage src={imgIsshin} alt="一心 - one heart" />
           </div>
         </section>
-      </div>
+      </BelowFold>
     </React.Fragment>
   );
 };
