@@ -10,9 +10,18 @@ import './slide-gallery.css';
  */
 class SlideGallery extends React.PureComponent<ReactImageGalleryProps> {
   readonly galleryRef: React.RefObject<ReactImageGallery>;
+  protected translateZElems: NodeListOf<HTMLElement> | null;
+  protected body: HTMLBodyElement | null;
+  protected fullScreenMode: boolean;
 
   constructor(props: ReactImageGalleryProps) {
     super(props);
+
+    // default to false, not needed in state as there is no re-render
+    this.fullScreenMode = false;
+
+    // dom elems
+    this.translateZElems = null;
 
     // refs
     this.galleryRef = React.createRef();
@@ -24,6 +33,20 @@ class SlideGallery extends React.PureComponent<ReactImageGalleryProps> {
     this.renderRightNav = this.renderRightNav.bind(this);
     this.renderPlayPauseButton = this.renderPlayPauseButton.bind(this);
     this.renderFullscreenButton = this.renderFullscreenButton.bind(this);
+    this.toggleTranslateZ = this.toggleTranslateZ.bind(this);
+  }
+
+  // get translateZ elements so we can turn them off during full screen mode
+  // they mess with position: fixed :(
+  componentDidMount() {
+    this.translateZElems = document.querySelectorAll('.translate-z');
+    this.body = document.querySelector('body');
+  }
+
+  // clean up references
+  componentWillUnmount() {
+    this.translateZElems = null;
+    this.body = null;
   }
 
   // stop auto play and pass through gallery click (next / previous / bullet)
@@ -95,6 +118,37 @@ class SlideGallery extends React.PureComponent<ReactImageGalleryProps> {
     );
   }
 
+  // toggle transform as it causes a bug with position fixed
+  toggleTranslateZ() {
+    if (this.translateZElems) {
+      this.translateZElems.forEach(elem => {
+        if (!this.fullScreenMode) {
+          // not in full screen mode, but about to be
+          elem.style.transform = 'none';
+        } else {
+          // in full screen mode, about to be off
+          elem.style.transform = '';
+          elem.removeAttribute('style');
+        }
+      });
+    }
+
+    // toggle overflow on body element to stop scrolling
+    if (this.body) {
+      if (!this.fullScreenMode) {
+        // not in full screen mode, but about to be
+        this.body.style.overflow = 'hidden';
+      } else {
+        // in full screen mode, about to be off
+        this.body.style.overflow = '';
+        this.body.removeAttribute('style');
+      }
+    }
+
+    // toggle full screen mode tracker
+    this.fullScreenMode = !this.fullScreenMode;
+  }
+
   render() {
     return (
       <div className="slide-gallery-group group">
@@ -110,11 +164,13 @@ class SlideGallery extends React.PureComponent<ReactImageGalleryProps> {
             useBrowserFullscreen={false}
             autoPlay={true}
             preventDefaultTouchmoveEvent={true}
+            useTranslate3D={false}
             renderLeftNav={this.renderLeftNav}
             renderRightNav={this.renderRightNav}
             renderPlayPauseButton={this.renderPlayPauseButton}
             renderFullscreenButton={this.renderFullscreenButton}
             onTouchStart={this.touchPause}
+            onScreenChange={this.toggleTranslateZ}
           />
         </div>
       </div>
