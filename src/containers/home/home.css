@@ -3,13 +3,17 @@
   background: rgb(110, 024, 011);
   color: #ffffff;
   top: 100%;
-  -webkit-transform: translateZ(1px);
-  -moz-transform: translateZ(1px);
-  -o-transform: translateZ(1px);
-  transform: translateZ(1px);
   position: relative;
-  z-index: 2;
+
+  /* needs to be above full screen parallax */
+  z-index: 1;
 }
+
+/* needed for chrome z-index flicker where you can see background */
+.home.translate-z {
+  transform: translateZ(1px);
+}
+
 .home .intro {
   width: 90%;
   max-width: 700px;
@@ -62,13 +66,17 @@
 .isshin {
   background: #eae6db;
   padding: 1px 0 10px 0;
-  -webkit-transform: translateZ(1px);
-  -moz-transform: translateZ(1px);
-  -o-transform: translateZ(1px);
-  transform: translateZ(1px);
   position: relative;
-  z-index: 2;
+
+  /* needs to be above full screen parallax */
+  z-index: 1;
 }
+
+/* needed for chrome z-index flicker where you can see background */
+.isshin.translate-z {
+  transform: translateZ(1px);
+}
+
 .isshin .intro {
   width: 90%;
   max-width: 700px;

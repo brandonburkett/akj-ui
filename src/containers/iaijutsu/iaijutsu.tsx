@@ -96,79 +96,53 @@ const Iaijutsu: React.StatelessComponent<IProps> = props => {
           {/* image gallery */}
           <SlideGallery items={imageGallery} />
 
-          {/*<div className="hilite_group group">*/}
-          {/*<horizontal-gallery className="horizontal_gallery" data-autoplay="true" data-wait-time="4000"*/}
-          {/*data-infinity="true" data-animation-time="1000">*/}
-          {/*<div className="gallery_imgs">*/}
-          {/*<div className="hilite_img_placeholder">*/}
-          {/*<img className="fit_img" src="media/content-images/hilite-placeholder.jpg" alt="">*/}
-          {/*</div>*/}
-          {/*<div className="horizontal_gallery_imgs">*/}
-          {/*<div className="horizontal_gallery_img" ng-repeat="image in galleryImages">*/}
-          {/*<img className="fit_img lazy" data-original="{{ image.url }}" alt="{{ image.title }}" lazy-load*/}
-          {/*lazy-height="image.height" lazy-width="image.width">*/}
-          {/*</div>*/}
-          {/*</div>*/}
-          {/*</div>*/}
-
-          {/*<!-- gallery nav -->*/}
-          {/*<div className="horizontal_gallery_nav_group">*/}
-          {/*<a className="horizontal_gallery_nav_active" ng-repeat="image in galleryImages"*/}
-          {/*ng-href="#horizontal_gallery_img_{{ $index }}" data-index="{{ $index }}" tabIndex="{{ $index }}">*/}
-          {/*<div className="horizontal_gallery_nav_text">Image {{$index +1}}</div>*/}
-          {/*</a>*/}
-          {/*</div>*/}
-          {/*<!-- end gallery nav -->*/}
-
-          {/*<!-- gallery controls -->*/}
-          {/*<div className="horizontal_gallery_control">*/}
-          {/*<div className="prev_control">*/}
-          {/*<span className="prev_slide" tabIndex="0">‹</span>*/}
-          {/*</div>*/}
-          {/*<div className="next_control">*/}
-          {/*<span className="next_slide" tabIndex="0">›</span>*/}
-          {/*</div>*/}
-          {/*</div>*/}
-          {/*<!-- end gallery controls -->*/}
-          {/*</horizontal-gallery>*/}
-          {/*</div>*/}
-
+          {/* lineage */}
           <PanelContent>
-            <div className="cs4">
-              <h3>Lineage</h3>
-              <ul className="ul_square">
-                <li>Hayashizaki Jinsuke Shigenobu</li>
-                <li>Tamiya Heibei Shigemasa</li>
-                <li>Nagano Muraku Nyudo Kinrosai</li>
-                <li>Momo Gumbei Mitsushige</li>
-                <li>Arikawa Shozaemon Munetsugu</li>
-                <li>Banno Dan'emon no Jo Nobusada</li>
-                <li>Hasegawa Chikaranosuke Eishin (Hidenobu)</li>
-                <li>Arai Seitetsu Kiyonobu</li>
-                <li>Hayashi Rokudayu Morimasa</li>
-                <li>Hayashi Yasudayu Seisho</li>
-                <li>Oguro Motoemon Kiyokatsu</li>
-              </ul>
+            <div className="group">
+              <div className="cs12">
+                <h3>Lineage</h3>
+              </div>
 
-              <h4>Tanimura-Ha</h4>
-              <ul className="ul_square">
-                <li>Hayashi Masu no Jo Masanri</li>
-                <li>Yoda Yorikatsu</li>
-                <li>Hayashi Yadayu Masayori</li>
-                <li>Tanimura Kame no Jo Yorikatsu</li>
-                <li>Goto Magobei Masasuke</li>
-                <li>Oe Masamishi</li>
-              </ul>
-
-              <h4>Yamauchi-Ha</h4>
-              <ul className="ul_square">
-                <li>Yamauchi Toyotake</li>
-                <li>Kono Kanemitsu</li>
-                <li>Onoue Masamitsu</li>
-                <li>Sekiguchi Komei</li>
-              </ul>
+              <div className="cs4">
+                <ul className="ul_square">
+                  <li>Hayashizaki Jinsuke Shigenobu</li>
+                  <li>Tamiya Heibei Shigemasa</li>
+                  <li>Nagano Muraku Nyudo Kinrosai</li>
+                  <li>Momo Gumbei Mitsushige</li>
+                  <li>Arikawa Shozaemon Munetsugu</li>
+                  <li>Banno Dan'emon no Jo Nobusada</li>
+                  <li>Hasegawa Chikaranosuke Eishin (Hidenobu)</li>
+                  <li>Arai Seitetsu Kiyonobu</li>
+                  <li>Hayashi Rokudayu Morimasa</li>
+                  <li>Hayashi Yasudayu Seisho</li>
+                  <li>Oguro Motoemon Kiyokatsu</li>
+                </ul>
+              </div>
+              <div className="cs4">
+                <h4>Tanimura-Ha</h4>
+                <ul className="ul_square">
+                  <li>Hayashi Masu no Jo Masanri</li>
+                  <li>Yoda Yorikatsu</li>
+                  <li>Hayashi Yadayu Masayori</li>
+                  <li>Tanimura Kame no Jo Yorikatsu</li>
+                  <li>Goto Magobei Masasuke</li>
+                  <li>Oe Masamishi</li>
+                </ul>
+              </div>
+              <div className="cs4">
+                <h4>Yamauchi-Ha</h4>
+                <ul className="ul_square">
+                  <li>Yamauchi Toyotake</li>
+                  <li>Kono Kanemitsu</li>
+                  <li>Onoue Masamitsu</li>
+                  <li>Sekiguchi Komei</li>
+                </ul>
+              </div>
             </div>
-
+          </PanelContent>
+          {/*</PanelSection>*/}
+          {/*<PanelSection color="cream">*/}
+          <PanelContent>
             <div className="cs4">
               <h3>Kata</h3>
               <h4>Shoden Seiza no Bu</h4>

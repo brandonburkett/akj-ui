@@ -22,7 +22,6 @@
     "*.{ts,tsx}": [
       "prettier --write",
       "tslint",
-      "stylelint",
       "git add"
     ],
     "*.css": [

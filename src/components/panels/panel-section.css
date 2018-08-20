@@ -1,8 +1,23 @@
 .info-panel-details {
-  background: #aaa88f;
-  z-index: 3;
   position: relative;
+
+  /* needs to be above full screen parallax */
+  z-index: 1;
 }
+
+/* needed for chrome z-index flicker where you can see background */
+.info-panel-details.translate-z {
+  transform: translateZ(1px);
+}
+
+.info-panel-olive {
+  background: #aaa88f;
+}
+
+.info-panel-cream {
+  background: #eae6db;
+}
+
 .info-panel-details h1,
 .info-panel-details h2,
 .info-panel-details h3,

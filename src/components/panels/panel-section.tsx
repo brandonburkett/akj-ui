@@ -3,11 +3,23 @@ import * as React from 'react';
 // styles
 import './panel-section.css';
 
+export interface IProps {
+  color?: 'olive' | 'cream';
+}
+
+const defaultProps: Partial<IProps> = {
+  color: 'olive',
+};
+
 /**
- * Info panels
+ * Info panels with color selection
  */
-const PanelSection: React.StatelessComponent<{}> = ({ children }) => (
-  <section className="info-panel-details">{children}</section>
-);
+const PanelSection: React.StatelessComponent<IProps> = ({ color, children }) => {
+  return (
+    <section className={`info-panel-details info-panel-${color} translate-z`}>{children}</section>
+  );
+};
+
+PanelSection.defaultProps = defaultProps;
 
 export default PanelSection;

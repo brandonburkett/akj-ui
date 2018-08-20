@@ -52,7 +52,7 @@ const Home: React.StatelessComponent<IProps> = props => {
       </FullScreenParallaxImage>
 
       <BelowFold role="main" ref={scrollToRef}>
-        <section className="home group">
+        <section className="home group translate-z">
           <p className="intro">
             Austin Komei Jyuku is a traditional budo and Japanese swordsmanship dojo. It is an
             official Komei Jyuku branch school which is headed by Sekiguchi Komei sensei. Brandon
@@ -90,7 +90,7 @@ const Home: React.StatelessComponent<IProps> = props => {
             />
           </div>
         </section>
-        <section className="isshin">
+        <section className="isshin translate-z">
           <div className="intro">
             <ResponsiveImage src={imgIsshin} alt="一心 - one heart" />
           </div>
