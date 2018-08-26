@@ -728,6 +728,9 @@ hr.black {
   margin: 0 0 1em 0;
   border-top: 1px solid #000;
 }
+hr.black + h3 {
+  padding-top: 10px;
+}
 
 pre,
 code,

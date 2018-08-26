@@ -140,11 +140,14 @@ const Iaijutsu: React.StatelessComponent<IProps> = props => {
               </div>
             </div>
           </PanelContent>
-          {/*</PanelSection>*/}
-          {/*<PanelSection color="cream">*/}
+        </PanelSection>
+
+        <PanelSection color="cream">
           <PanelContent>
-            <div className="cs4">
+            <div className="cs12">
               <h3>Kata</h3>
+            </div>
+            <div className="cs3">
               <h4>Shoden Seiza no Bu</h4>
               <ol className="ol_decimal">
                 <li>Mae</li>
@@ -159,11 +162,12 @@ const Iaijutsu: React.StatelessComponent<IProps> = props => {
                 <li>Oikaze</li>
                 <li>Nukiuchi</li>
               </ol>
-
+            </div>
+            <div className="cs3">
               <h4>Chuden Tatehiza no Bu</h4>
               <ol className="ol_decimal">
                 <li>Yokogumo</li>
-                <li>Toraisoku</li>
+                <li>Toranoissoku</li>
                 <li>Inazuma</li>
                 <li>Ukigumo</li>
                 <li>Oroshi</li>
@@ -173,7 +177,8 @@ const Iaijutsu: React.StatelessComponent<IProps> = props => {
                 <li>Takiotoshi</li>
                 <li>Makko</li>
               </ol>
-
+            </div>
+            <div className="cs3">
               <h4>Okuden Tachi Waza no Bu</h4>
               <ol className="ol_decimal">
                 <li>Yukizure</li>
@@ -182,13 +187,18 @@ const Iaijutsu: React.StatelessComponent<IProps> = props => {
                 <li>Sodome</li>
                 <li>Shinobu</li>
                 <li>Yukichigai</li>
-                <li>Sode Surigaeshi</li>
+                <li>Sodesurigaeshi</li>
                 <li>Moniri</li>
                 <li>Kabezoe</li>
                 <li>Ukenagashi</li>
-                <li>Ittomagoi (Ichi, Ni, San)</li>
               </ol>
-
+              <ol className="ol_decimal">
+                <li>Ittomagoi Ichi</li>
+                <li>Ittomagoi Ni</li>
+                <li>Ittomagoi San</li>
+              </ol>
+            </div>
+            <div className="cs3">
               <h4>Okuden Suwari Waza</h4>
               <ol className="ol_decimal">
                 <li>Kasumi</li>
@@ -202,8 +212,11 @@ const Iaijutsu: React.StatelessComponent<IProps> = props => {
               </ol>
             </div>
 
-            <div className="cs4">
+            <div className="cs12">
+              <hr className="black" />
               <h3>Kumitachi</h3>
+            </div>
+            <div className="cs6">
               <h4>Nanahon Me No Kata</h4>
               <ol className="ol_decimal">
                 <li>Deai</li>
@@ -214,20 +227,53 @@ const Iaijutsu: React.StatelessComponent<IProps> = props => {
                 <li>Ukenagashi</li>
                 <li>Mappo</li>
               </ol>
-
+            </div>
+            <div className="cs6">
               <h4>Tsume-Iai</h4>
               <ol className="ol_decimal">
                 <li>Hasso</li>
                 <li>Kobushidori</li>
                 <li>Iwanami</li>
                 <li>Yaegaki</li>
-                <li>Urokugaeshi</li>
+                <li>Urokogaeshi</li>
                 <li>Kuraiyurumi</li>
-                <li>Tsubame Gaeshi</li>
+                <li>Tsubamegaeshi</li>
                 <li>Gansekiotoshi</li>
                 <li>Suigetsuto</li>
                 <li>Kazumiken</li>
                 <li>Uchikomi</li>
+              </ol>
+            </div>
+            <div className="cs12">
+              <hr className="black" />
+              <h3>Toho and Bangai</h3>
+            </div>
+            <div className="cs4">
+              <h4>Toho Waza</h4>
+              <ol className="ol_decimal">
+                <li>Mae</li>
+                <li>Zengogiri</li>
+                <li>Kiriage</li>
+                <li>Shihogiri</li>
+                <li>Kissakigaeshi</li>
+              </ol>
+            </div>
+            <div className="cs4">
+              <h4>Bangai: Gohon Me No Kata</h4>
+              <ol className="ol_decimal">
+                <li>Mae</li>
+                <li>Aranami</li>
+                <li>Kesaguruma</li>
+                <li>Takiguruma</li>
+                <li>Tatsumaki</li>
+              </ol>
+            </div>
+            <div className="cs4">
+              <h4>Bangai: Sanban Me No Kata</h4>
+              <ol className="ol_decimal">
+                <li>Hayanami</li>
+                <li>Raiden</li>
+                <li>Jinrai</li>
               </ol>
             </div>
           </PanelContent>
