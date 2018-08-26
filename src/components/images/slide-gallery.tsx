@@ -12,6 +12,7 @@ class SlideGallery extends React.PureComponent<ReactImageGalleryProps> {
   readonly galleryRef: React.RefObject<ReactImageGallery>;
   protected translateZElems: NodeListOf<HTMLElement> | null;
   protected body: HTMLBodyElement | null;
+  protected galleryElem: HTMLElement | null;
   protected fullScreenMode: boolean;
 
   constructor(props: ReactImageGalleryProps) {
@@ -21,7 +22,9 @@ class SlideGallery extends React.PureComponent<ReactImageGalleryProps> {
     this.fullScreenMode = false;
 
     // dom elems
+    this.body = null;
     this.translateZElems = null;
+    this.galleryElem = null;
 
     // refs
     this.galleryRef = React.createRef();
@@ -41,6 +44,7 @@ class SlideGallery extends React.PureComponent<ReactImageGalleryProps> {
   componentDidMount() {
     this.translateZElems = document.querySelectorAll('.translate-z');
     this.body = document.querySelector('body');
+    this.galleryElem = document.querySelector('.slide-gallery-group');
   }
 
   // clean up references
@@ -125,6 +129,10 @@ class SlideGallery extends React.PureComponent<ReactImageGalleryProps> {
         if (!this.fullScreenMode) {
           // not in full screen mode, but about to be
           elem.style.transform = 'none';
+
+          if (this.galleryElem && !elem.contains(this.galleryElem)) {
+            elem.style.zIndex = '0';
+          }
         } else {
           // in full screen mode, about to be off
           elem.style.transform = '';
