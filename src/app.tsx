@@ -31,11 +31,11 @@ const App: React.StatelessComponent = () => (
       <StandardLayoutRoute exact={true} strict={true} path="/schedule" component={Schedule} />
       <StandardLayoutRoute exact={true} strict={true} path="/seminars" component={Seminars} />
 
-      {/* 404 */}
-      <StandardLayoutRoute component={NoMatch} />
-
       {/* redirects */}
       <Redirect to="/seminars" from="/tokai" />
+
+      {/* 404 */}
+      <StandardLayoutRoute component={NoMatch} />
     </Switch>
   </BrowserRouter>
 );
