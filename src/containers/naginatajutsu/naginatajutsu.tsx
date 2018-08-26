@@ -22,7 +22,7 @@ export interface IProps {
 }
 
 /**
- * Iai page component
+ * Naginata page component
  */
 const Naginatajutsu: React.StatelessComponent<IProps> = props => {
   // refs

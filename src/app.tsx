@@ -8,6 +8,7 @@ import StandardLayoutRoute from './containers/layouts/standard-layout-route';
 import Home from './containers/home/home';
 import Iaijutsu from './containers/iaijutsu/iaijutsu';
 import Naginatajutsu from './containers/naginatajutsu/naginatajutsu';
+import Schedule from './containers/schedule/schedule';
 
 // 404
 import NoMatch from './containers/no-match/no-match';
@@ -26,6 +27,8 @@ const App: React.StatelessComponent = () => (
         path="/naginatajutsu"
         component={Naginatajutsu}
       />
+      <StandardLayoutRoute exact={true} strict={true} path="/schedule" component={Schedule} />
+
       <StandardLayoutRoute component={NoMatch} />
     </Switch>
   </BrowserRouter>
