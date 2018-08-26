@@ -5,6 +5,7 @@ import Head from '../../components/head/head';
 import PanelContent from '../../components/panels/panel-content';
 import PanelSection from '../../components/panels/panel-section';
 import Quote from '../../components/quote/quote';
+import ResponsiveMap from '../../components/maps/responsive-map';
 
 // props
 export interface IProps {
@@ -252,6 +253,20 @@ const Schedule: React.StatelessComponent<IProps> = props => (
               </li>
             </ul>
           </div>
+        </PanelContent>
+      </PanelSection>
+      <PanelSection color="cream">
+        <PanelContent>
+          <ResponsiveMap>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3436.1947042911243!2d-97.77911304937157!3d30.543802601674827!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8644d336df6c8b5d%3A0x5b4caa72f18797c9!2sAustin+Sports+Center!5e0!3m2!1sen!2sus!4v1535302887560"
+              width="600"
+              height="450"
+              frameBorder="0"
+              style={{ border: 0 }}
+              allowFullScreen={true}
+            />
+          </ResponsiveMap>
         </PanelContent>
       </PanelSection>
       <Quote
