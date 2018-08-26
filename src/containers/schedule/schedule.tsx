@@ -87,7 +87,7 @@ const Schedule: React.StatelessComponent<IProps> = props => (
               <input type="hidden" name="cmd" value="_s-xclick" />
               <input
                 type="submit"
-                className="form_button"
+                className="form-button"
                 id="s002Button"
                 value="PayPal - $60.00"
               />
@@ -102,7 +102,7 @@ const Schedule: React.StatelessComponent<IProps> = props => (
               <input type="hidden" name="cmd" value="_s-xclick" />
               <input
                 type="submit"
-                className="form_button"
+                className="form-button"
                 id="s001Button"
                 value="PayPal - $40.00"
               />

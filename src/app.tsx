@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { BrowserRouter, Switch } from 'react-router-dom';
+import { BrowserRouter, Redirect, Switch } from 'react-router-dom';
 
 // layouts
 import StandardLayoutRoute from './containers/layouts/standard-layout-route';
@@ -9,6 +9,7 @@ import Home from './containers/home/home';
 import Iaijutsu from './containers/iaijutsu/iaijutsu';
 import Naginatajutsu from './containers/naginatajutsu/naginatajutsu';
 import Schedule from './containers/schedule/schedule';
+import Seminars from './containers/seminars/seminars';
 
 // 404
 import NoMatch from './containers/no-match/no-match';
@@ -28,8 +29,13 @@ const App: React.StatelessComponent = () => (
         component={Naginatajutsu}
       />
       <StandardLayoutRoute exact={true} strict={true} path="/schedule" component={Schedule} />
+      <StandardLayoutRoute exact={true} strict={true} path="/seminars" component={Seminars} />
 
+      {/* 404 */}
       <StandardLayoutRoute component={NoMatch} />
+
+      {/* redirects */}
+      <Redirect to="/seminars" from="/tokai" />
     </Switch>
   </BrowserRouter>
 );
