@@ -52,7 +52,7 @@ class Head extends PureComponent<IProps> {
     return (
       <Helmet titleTemplate={`%s, ${defaultTitle}`} defaultTitle={defaultTitle}>
         {/* base element */}
-        <base href={base} />
+        {/*<base href={base} />*/}
         {/* character set */}
         <meta charSet="utf-8" />
         {/* title attributes and value */}

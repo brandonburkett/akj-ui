@@ -17,7 +17,7 @@ export interface IProps {
  */
 const NoMatch: React.StatelessComponent<IProps> = props => (
   <React.Fragment>
-    <Head title="Not Found" desc="Page not found." path={props.location.pathname} />
+    <Head title="404 Not Found" desc="Page not found." path={props.location.pathname} />
     <div id="main" className="group" role="main">
       <PanelSection>
         <PanelContent fullViewHeight={true}>
