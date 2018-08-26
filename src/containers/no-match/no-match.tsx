@@ -20,7 +20,7 @@ const NoMatch: React.StatelessComponent<IProps> = props => (
     <Head title="Not Found" desc="Page not found." path={props.location.pathname} />
     <div id="main" className="group" role="main">
       <PanelSection>
-        <PanelContent>
+        <PanelContent fullViewHeight={true}>
           <div className="cs12">
             <h1>Oops, something went wrong...</h1>
             <p>

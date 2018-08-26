@@ -2,7 +2,6 @@
   background: rgb(067, 091, 013);
   color: #ffffff;
   position: relative;
-  min-height: 50vh;
 
   /* needs to be above full screen parallax */
   z-index: 1;
@@ -13,7 +12,7 @@
   transform: translateZ(1px);
 }
 
-.quote .content {
+.quote .quote-content {
   width: 80%;
   max-width: 700px;
   margin: 100px auto;

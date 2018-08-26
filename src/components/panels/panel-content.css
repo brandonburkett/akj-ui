@@ -8,6 +8,11 @@
   width: 960px;
 }
 
+/* full screen minus quote and padding  */
+.full-vh {
+  min-height: calc(100vh - 480px);
+}
+
 /* Responsive Style Sheet */
 @media screen and (min-width: 320px) {
   .content {
