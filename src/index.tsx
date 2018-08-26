@@ -6,7 +6,15 @@ import App from './app';
 import './styles/master.css';
 import './styles/responsive.css';
 
-import registerServiceWorker from './registerServiceWorker';
+// TODO: enable service worker
+// import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root') as HTMLElement);
-registerServiceWorker();
+const rootElement = document.getElementById('root') as HTMLElement;
+if (rootElement.hasChildNodes()) {
+  ReactDOM.hydrate(<App />, rootElement);
+} else {
+  ReactDOM.render(<App />, rootElement);
+}
+
+// TODO: enable service worker
+// registerServiceWorker();
