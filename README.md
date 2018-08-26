@@ -57,4 +57,5 @@ Uses [CircleCI](https://circleci.com/) for CI/CD.
 * [ ] a11y support with typescript
 * [x] make drop down nav accessible w/ aria attributes
 * [x] 404 page 100vh minus quote + padding
+* [ ] manifest and apple app settings updates
 

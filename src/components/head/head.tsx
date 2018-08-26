@@ -49,57 +49,8 @@ class Head extends PureComponent<IProps> {
     let canonicalUrl = `${base}${path.substring(1, path.length)}`;
     canonicalUrl = canonicalUrl.replace(/\/$/, '');
 
-    // social sharing tags
-    // @see: http://ogp.me/
-    const fb = [
-      { property: 'og:type', content: 'website' },
-      { property: 'og:image', content: canonicalImage },
-      { property: 'og:url', content: canonicalUrl },
-      { property: 'og:site_name', content: defaultTitle },
-      { property: 'og:title', content: title },
-      { property: 'og:description', content: desc },
-      { property: 'og:locale', content: 'en_US' },
-    ];
-
-    // @see: https://dev.twitter.com/cards/markup
-    const twitter = [
-      { property: 'twitter:site', content: '@akjdojo' },
-      { property: 'twitter:title', content: title.substring(0, 69) },
-      { property: 'twitter:description', content: desc.substring(0, 199) },
-      { property: 'twitter:card', content: 'summary_large_image' },
-      { property: 'twitter:image', content: canonicalImage },
-    ];
-    // end social sharing tags
-
-    // generic link tags and apple touch icons
-    const helmetLinks = [
-      { rel: 'canonical', href: canonicalUrl },
-      // favicon and apple icons handled automatically by electrode with PWA
-      // For favicon, see /config/sw-config.js
-      // { rel: 'apple-touch-icon', sizes: '180x180', href: icon },
-      // { rel: 'icon', type: 'image/png', sizes: '32x32', href: icon },
-      // { rel: 'icon', type: 'image/png', sizes: '16x16', href: icon },
-      // { rel: 'manifest', href: `${host}images/icons/manifest.json` },
-      // { rel: 'mask-icon', href: `${host}images/icons/safari-pinned-tab.svg`, color: '#00aba9' },
-      // { rel: 'shortcut icon', href: icon },
-    ];
-
-    // const faviconMeta = [
-    //   { name: 'msapplication-config', content: `${host}images/icons/browserconfig.xml` },
-    //   { name: 'theme-color', content: '#00aba9' },
-    // ];
-
     return (
-      <Helmet
-        titleTemplate={`%s, ${defaultTitle}`}
-        defaultTitle={defaultTitle}
-        meta={[
-          ...fb,
-          ...twitter,
-          // ...faviconMeta,
-        ]}
-        link={[...helmetLinks]}
-      >
+      <Helmet titleTemplate={`%s, ${defaultTitle}`} defaultTitle={defaultTitle}>
         {/* base element */}
         <base href={base} />
         {/* character set */}
@@ -113,6 +64,26 @@ class Head extends PureComponent<IProps> {
         <link rel="canonical" href={canonicalUrl} />
         {/* block robot if not on .com or explicit noIndex */}
         {noIndex ? <meta name="robots" content="noindex" /> : null}
+        {/* ogp tags - @see: http://ogp.me/ */}
+        <meta property="og:site_name" content={defaultTitle} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={desc} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:image" content={canonicalImage} />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="en_US" />
+        {/* twitter tags - @see: https://dev.twitter.com/cards/markup */}
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={desc} />
+        <meta name="twitter:url" content={canonicalUrl} />
+        <meta name="twitter:image" content={canonicalImage} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@akjdojo" />
+        {/* osx app */}
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="theme-color" content="#000000" />
+        <meta name="application-name" content="Austin Komei Jyuku" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
         {/* GTM */}
         {env !== 'development' ? (
           <script>
