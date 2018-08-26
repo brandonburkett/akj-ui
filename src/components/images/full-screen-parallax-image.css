@@ -100,11 +100,6 @@
   .cover-content {
     font-size: 2em;
   }
-
-  /* Full View Button */
-  .full_view {
-    display: none;
-  }
 }
 
 @media screen and (min-width: 1200px) {

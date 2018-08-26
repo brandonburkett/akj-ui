@@ -100,18 +100,6 @@
     margin: 0;
   }
 
-  /* Full View Button */
-  .full_view {
-    display: block;
-  }
-
-  .site_login {
-    right: 40px;
-  }
-  .login_title {
-    display: none;
-  }
-
   h1 {
     font-size: 2em;
   }
@@ -223,18 +211,6 @@
     float: left;
     width: 22%;
     margin: 0 2% 0 0;
-  }
-
-  /* Full View Button */
-  .full_view {
-    display: block;
-  }
-
-  .site_login {
-    right: 100px;
-  }
-  .login_title {
-    display: block;
   }
 
   /* End 480+ Pixel Styles */
@@ -597,11 +573,6 @@
   /* Interior */
   .intro {
     font-size: 2em;
-  }
-
-  /* Full View Button */
-  .full_view {
-    display: none;
   }
 
   /* End 1024+ Pixel Styles */
