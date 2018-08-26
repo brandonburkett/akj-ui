@@ -1,13 +1,26 @@
 .fit-map {
   position: relative;
-  padding-bottom: 75%;
+  padding-bottom: 60%;
   height: 0;
   overflow: hidden;
 }
+
 .fit-map iframe {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+@media screen and (min-width: 320px) {
+  .fit-map {
+    padding-bottom: 150%;
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .fit-map {
+    padding-bottom: 60%;
+  }
 }
