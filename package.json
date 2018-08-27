@@ -9,8 +9,7 @@
   "scripts": {
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
-    "postbuild": "react-snap",
-
+    "prerender": "react-snap",
     "test": "react-scripts-ts test --env=jsdom --watchAll=false",
     "eject": "react-scripts-ts eject",
     "lint": "npm run lint:ts && lint:style",
