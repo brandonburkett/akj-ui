@@ -54,8 +54,10 @@ Uses [CircleCI](https://circleci.com/) for CI/CD.
 * [ ] higher res homepage icons on image CTAs
 * [x] NoMatch component min viewport width
 * [ ] progressive web app icons and manifest config
+* [ ] manifest and apple app settings updates
 * [ ] a11y support with typescript
 * [x] make drop down nav accessible w/ aria attributes
 * [x] 404 page 100vh minus quote + padding
-* [ ] manifest and apple app settings updates
+* [x] prerender
+* [x] circle ci setup
 
