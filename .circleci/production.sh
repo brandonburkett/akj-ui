@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
 HTML_FILES=''
-MAX_AGE='86400'
+
+# one week in seconds
+MAX_AGE='604800'
 
 # remove extension from html files
 rename_html_files() {
