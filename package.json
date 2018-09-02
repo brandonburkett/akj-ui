@@ -39,13 +39,13 @@
     ]
   },
   "dependencies": {
-    "@types/react-image-gallery": "^0.8.3",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-helmet": "^5.2.0",
     "react-image-gallery": "^0.8.11",
     "react-router-dom": "^4.3.1",
-    "react-scripts-ts": "2.17.0"
+    "react-scripts-ts": "2.17.0",
+    "smoothscroll-polyfill": "^0.4.3"
   },
   "devDependencies": {
     "@types/jest": "^23.3.1",
@@ -53,7 +53,9 @@
     "@types/react": "^16.4.13",
     "@types/react-dom": "^16.0.7",
     "@types/react-helmet": "^5.0.7",
+    "@types/react-image-gallery": "^0.8.3",
     "@types/react-router-dom": "^4.3.0",
+    "@types/smoothscroll-polyfill": "^0.3.0",
     "husky": "^0.14.3",
     "lint-staged": "^7.2.2",
     "prettier": "^1.14.2",

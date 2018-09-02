@@ -69,6 +69,7 @@ class FullScreenParallaxImage extends React.PureComponent<IProps, {}> {
 
     if (scrollToRef && scrollToRef.current) {
       scrollToRef.current.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+      // scrollToRef.current.scrollIntoView();
     }
   }
 

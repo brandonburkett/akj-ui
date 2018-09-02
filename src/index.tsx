@@ -6,6 +6,10 @@ import App from './app';
 import './styles/master.css';
 import './styles/responsive.css';
 
+// polyfills
+import smoothscroll from 'smoothscroll-polyfill';
+smoothscroll.polyfill();
+
 // TODO: enable service worker
 // import registerServiceWorker from './registerServiceWorker';
 
