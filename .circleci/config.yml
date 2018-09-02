@@ -43,4 +43,9 @@ jobs:
             echo "No depolyment for hot fixes"
             # ./.circleci/staging.sh
           fi
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+    - build
 
