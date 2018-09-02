@@ -78,10 +78,17 @@ class FullScreenParallaxImage extends React.PureComponent<IProps, {}> {
 
     return (
       <section className="cover-parallax">
+        {/*<div*/}
+        {/*className="cover-image"*/}
+        {/*style={{*/}
+        {/*background: `#000000 url('${backgroundImgSrc}') 50% 0px / cover no-repeat fixed`,*/}
+        {/*}}*/}
+        {/*ref={this.backgroundRef}*/}
+        {/*>*/}
         <div
           className="cover-image"
           style={{
-            background: `#000000 url('${backgroundImgSrc}') 50% 0px / cover no-repeat fixed`,
+            backgroundImage: `url('${backgroundImgSrc}')`,
           }}
           ref={this.backgroundRef}
         >
