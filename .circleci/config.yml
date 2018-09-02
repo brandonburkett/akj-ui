@@ -6,7 +6,7 @@ jobs:
       only:
       - master
       #- /int\/.*/
-      #- /hot\/.*/
+      #- /hot\/.*/npm list -g --depth 0
     docker:
       - image: devourment77/circle-node-aws:10.8
     steps:
