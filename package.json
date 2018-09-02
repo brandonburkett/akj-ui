@@ -33,8 +33,7 @@
   },
   "reactSnap": {
     "saveAs": "html",
-    "puppeteerArgs": ["--no-sandbox", "--disable-setuid-sandbox"],
-    "puppeteerExecutablePath": "/usr/local/lib/node_modules/puppeteer/.local-chromium/linux-579032/chrome-linux/chrome"
+    "puppeteerArgs": ["--no-sandbox", "--disable-setuid-sandbox"]
   },
   "dependencies": {
     "@types/react-image-gallery": "^0.8.3",
