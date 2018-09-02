@@ -30,8 +30,11 @@ export interface IProps {
  */
 class Head extends PureComponent<IProps> {
   static defaultProps: Partial<IProps> = {
-    base:
-      typeof window !== 'undefined' ? `${window.location.protocol}//${window.location.host}` : '',
+    // disable dynamic base tag since pre-rendering
+    // base:
+    //   typeof window !== 'undefined' ? `${window.location.protocol}//${window.location.host}` : '',
+    base: process.env.REACT_APP_BASE || '',
+
     children: null,
     env: 'production',
     gtmId: process.env.REACT_APP_GA_ID || '',

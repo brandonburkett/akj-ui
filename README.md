@@ -42,6 +42,7 @@ REACT_APP_SECRET_CODE=abcdef
 | PUBLIC_URL | | |
 | HTTPS | | true |
 | REACT_APP_GA_ID | | UA-5370840-1 |
+| REACT_APP_BASE | http://localhost:3000/ | https://austin.komeijyuku.com/ |
 
 
 ## AWS deployment and git branches
