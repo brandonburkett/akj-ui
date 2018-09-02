@@ -30,7 +30,7 @@ jobs:
       - run:
           name: Build and Prerender
           command: npm run build && npm run prerender
-      - deploy:
+      - run:
           name: Deploy to s3 and cloudfront invalidation
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
