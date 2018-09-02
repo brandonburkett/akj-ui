@@ -32,7 +32,8 @@
     ]
   },
   "reactSnap": {
-    "saveAs": "html"
+    "saveAs": "html",
+    "puppeteerArgs": ["--no-sandbox", "--disable-setuid-sandbox"]
   },
   "dependencies": {
     "@types/react-image-gallery": "^0.8.3",
