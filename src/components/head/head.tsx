@@ -6,6 +6,7 @@ import Helmet from 'react-helmet';
 
 // image includes
 import defaultOgpImage from './images/ogp-mon-1200-630.png';
+import kamonImage from '../../styles/images/ogp-mon-375.jpg';
 
 // import icon from '../styles/icons/icon-rightgift-green-192.png';
 
@@ -79,11 +80,12 @@ class Head extends PureComponent<IProps> {
         <meta name="twitter:image" content={canonicalImage} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@akjdojo" />
-        {/* osx app */}
+        {/* iso app */}
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="theme-color" content="#000000" />
         <meta name="application-name" content="Austin Komei Jyuku" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <link rel="apple-touch-icon" href={kamonImage} />
         {/* GTM */}
         {env !== 'development' ? (
           <script>
