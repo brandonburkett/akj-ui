@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 HTML_FILES=''
+MAX_AGE='86400'
 
 # remove extension from html files
 rename_html_files() {
@@ -39,7 +40,7 @@ s3_sync() {
   echo
 
   # upload to s3, deleting any items that no longer exist, but exclude html files, which are handled separately below
-  aws s3 sync ./build s3://$AWS_S3_BUCKET --delete --exclude="*.html"  --cache-control max-age=86400,public
+  aws s3 sync ./build s3://$AWS_S3_BUCKET --delete --exclude="*.html"  --cache-control max-age=${MAX_AGE},public
 
   # upload the html files without extensions and force the content-type
   for i in ${HTML_FILES}; do
@@ -49,7 +50,10 @@ s3_sync() {
     # exclude index.html as it is needed for /
     if [ "$i" != "./build/index.html" ]; then
       echo "Syncing ${replaceHtml} to s3"
-      aws s3 cp $i s3://$AWS_S3_BUCKET${replaceHtml} --cache-control max-age=86400,public --content-type "text/html"
+      aws s3 cp $i s3://$AWS_S3_BUCKET${replaceHtml} --cache-control max-age=${MAX_AGE},public --content-type "text/html"
+    else
+      echo "Syncing ${replaceBuild} to s3"
+      aws s3 cp $i s3://$AWS_S3_BUCKET${replaceBuild} --cache-control max-age=${MAX_AGE},public --content-type "text/html"
     fi
   done
 }
