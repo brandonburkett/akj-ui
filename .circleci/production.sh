@@ -45,9 +45,12 @@ s3_sync() {
   for i in ${HTML_FILES}; do
     replaceBuild=${i/\.\/build/}
     replaceHtml=${replaceBuild/\.html/}
-    echo "Syncing ${replaceHtml} to s3"
 
-    aws s3 cp $i s3://$AWS_S3_BUCKET${replaceHtml} --cache-control max-age=86400,public --content-type "text/html"
+    # exclude index.html as it is needed for /
+    if [ "$i" != "./build/index.html" ]; then
+      echo "Syncing ${replaceHtml} to s3"
+      aws s3 cp $i s3://$AWS_S3_BUCKET${replaceHtml} --cache-control max-age=86400,public --content-type "text/html"
+    fi
   done
 }
 
