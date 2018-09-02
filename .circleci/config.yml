@@ -22,7 +22,7 @@ jobs:
           key: npm-cache-{{ checksum "package.json" }}
           paths:
           - ./node_modules
-      # running unit tests
+      # running unit tests2
       - run:
           name: Run unit tests
           command: npm run lint && npm run test
