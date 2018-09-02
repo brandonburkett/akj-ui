@@ -1,12 +1,8 @@
 # Used as base example: https://github.com/CircleCI-Public/circleci-demo-javascript-express/blob/master/.circleci/config.yml
-version: 2
+version: 2.1
+
 jobs:
   build:
-    branches:
-      only:
-        - master
-        #- /int\/.*/
-        #- /hot\/.*/
     docker:
       - image: devourment77/circle-node-aws:10.8
     steps:
@@ -43,3 +39,13 @@ jobs:
               echo "No depolyment for hot fixes"
               # ./.circleci/staging.sh
             fi
+workflows:
+  build:
+    jobs:
+    - build:
+        filters:
+          branches:
+            only:
+              - master
+              #- /int\/.*/
+              #- /hot\/.*/
