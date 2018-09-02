@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-buildHTML=`ls ../build/*/index.html`
+buildHTML=`ls build/*/index.html`
 
 for i in ${buildHTML}; do
   # move file - EX build/iaijutsu/index.html -> build/iaijutsu.html
@@ -10,5 +10,5 @@ for i in ${buildHTML}; do
   rm -rf ${i/\/index\.html//}
 
   # remove .html extension - EX build/iaijutsu.html -> build/iaijutsu
-  mv ${i/\/\index\.html/\.html} ${i/\/index\.html/}
+  #mv ${i/\/\index\.html/\.html} ${i/\/index\.html/}
 done

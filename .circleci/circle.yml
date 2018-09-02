@@ -1,0 +1,55 @@
+# Used as base example: https://github.com/CircleCI-Public/circleci-demo-javascript-express/blob/master/.circleci/config.yml
+version: 2
+jobs:
+  build:
+    branches:
+      only:
+      # currently only master deploys enabled
+      - master
+      #- /int\/.*/
+      #- /hot\/.*/
+    docker:
+    - image: circleci/node:10
+    steps:
+    - checkout
+    - setup_remote_docker
+    - run:
+        # Run local steps before AWS is required so if they
+        # fail you don't waste build time installing AWS CLI
+
+        # Install AWS CLI
+        # - include aws cli ci docker:
+        #     https://github.com/circleci/circleci-images/issues/53
+        # - use global install for aws and pip instead of --user:
+        #     https://discuss.circleci.com/t/how-to-add-a-path-to-path-in-circle-2-0/11554
+        name: Install awscli
+        command: |
+          sudo apt-get update && sudo apt-get install -qq -y python-pip libpython-dev
+          curl -O https://bootstrap.pypa.io/get-pip.py && sudo python get-pip.py
+          sudo pip install -q awscli --upgrade
+    # cache based on our lock file
+    - restore_cache:
+        key: npm-cache-{{ checksum "package-lock.json" }}
+    - run:
+        name: Install node modules
+        command: npm install
+    - save_cache:
+        key: npm-cache-{{ checksum "package-lock.json" }}
+        paths:
+        - ./node_modules
+    # running unit tests
+     - run:
+        name: test
+        command: npm test
+    - run:
+        name: Build application image
+        command: |
+          $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
+          docker build -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/akj-ui:${CIRCLE_SHA1} .
+          docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/akj-ui:${CIRCLE_SHA1}
+    - run:
+        name: Deploy to S3
+        command: aws s3 sync ./html s3://$AWS_S3_BUCKET --delete --cache-control max-age=86400,public
+    - run:
+        name: Create cloudfront invalidation
+        command: aws cloudfront create-invalidation --distribution-id $AWS_CLOUDFRONT_ID --paths "/*"
