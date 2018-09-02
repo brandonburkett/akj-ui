@@ -9,25 +9,11 @@ jobs:
       #- /int\/.*/
       #- /hot\/.*/
     docker:
-    - image: circleci/node:10
+    - image: devourment77/circle-node-aws:10.8
     steps:
     - checkout
     - setup_remote_docker
-    - run:
-        # Run local steps before AWS is required so if they
-        # fail you don't waste build time installing AWS CLI
-
-        # Install AWS CLI
-        # - include aws cli ci docker:
-        #     https://github.com/circleci/circleci-images/issues/53
-        # - use global install for aws and pip instead of --user:
-        #     https://discuss.circleci.com/t/how-to-add-a-path-to-path-in-circle-2-0/11554
-        name: Install awscli
-        command: |
-          sudo apt-get update && sudo apt-get install -qq -y python-pip libpython-dev
-          curl -O https://bootstrap.pypa.io/get-pip.py && sudo python get-pip.py
-          sudo pip install -q awscli --upgrade
-    # cache based on our lock file
+    # cache based on our package.json file
     - restore_cache:
         key: npm-cache-{{ checksum "package-lock.json" }}
     - run:
@@ -38,18 +24,23 @@ jobs:
         paths:
         - ./node_modules
     # running unit tests
-     - run:
-        name: test
-        command: npm test
     - run:
-        name: Build application image
+        name: Run Unit Tests
+        command: npm run test
+    # building
+    - run:
+        name: Build and Prerender
+        command: npm run build && npm run prerender
+    - deploy:
+        name: Deploy to s3 and cloudfront invalidation
         command: |
-          $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
-          docker build -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/akj-ui:${CIRCLE_SHA1} .
-          docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/akj-ui:${CIRCLE_SHA1}
-    - run:
-        name: Deploy to S3
-        command: aws s3 sync ./html s3://$AWS_S3_BUCKET --delete --cache-control max-age=86400,public
-    - run:
-        name: Create cloudfront invalidation
-        command: aws cloudfront create-invalidation --distribution-id $AWS_CLOUDFRONT_ID --paths "/*"
+          if [ "${CIRCLE_BRANCH}" == "master" ]; then
+            echo "Depolyment for production"
+            ./.circleci/production.sh
+          elif [[ ${CIRCLE_BRANCH} =~ int\/.* ]]; then
+            echo "No depolyment for staging"
+            # ./.circleci/staging.sh
+          elif [[ ${CIRCLE_BRANCH} =~ hot\/.* ]]; then
+            echo "No depolyment for hot fixes"
+            # ./.circleci/staging.sh
+          fi
