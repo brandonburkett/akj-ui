@@ -27,9 +27,9 @@ jobs:
           name: Run Unit Tests
           command: npm run lint && npm run test
       # building
-#      - run:
-#          name: Build and Prerender
-#          command: npm run build && npm run prerender
+      - run:
+          name: Build and Prerender
+          command: npm run build && npm run prerender
 #      - deploy:
 #          name: Deploy to s3 and cloudfront invalidation
 #          command: |
