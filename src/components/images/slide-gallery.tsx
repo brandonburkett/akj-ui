@@ -172,7 +172,6 @@ class SlideGallery extends React.PureComponent<ReactImageGalleryProps> {
             useBrowserFullscreen={false}
             autoPlay={true}
             preventDefaultTouchmoveEvent={true}
-            useTranslate3D={false}
             renderLeftNav={this.renderLeftNav}
             renderRightNav={this.renderRightNav}
             renderPlayPauseButton={this.renderPlayPauseButton}
