@@ -4,7 +4,6 @@ jobs:
   build:
     branches:
       only:
-      # currently only master deploys enabled
       - master
       #- /int\/.*/
       #- /hot\/.*/
