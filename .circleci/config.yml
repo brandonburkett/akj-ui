@@ -5,6 +5,8 @@ jobs:
     branches:
       only:
       - master
+      #- /int\/.*/
+      #- /hot\/.*/
     docker:
     - image: devourment77/circle-node-aws:10.8
     steps:
