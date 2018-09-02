@@ -58,6 +58,6 @@ Uses [CircleCI](https://circleci.com/) for CI/CD.
 * [ ] a11y support with typescript
 * [x] make drop down nav accessible w/ aria attributes
 * [x] 404 page 100vh minus quote + padding
-* [x] prerender
-* [x] circle ci setup
+* [x] prerender with react snap
+* [x] circle ci setup and testing
 
