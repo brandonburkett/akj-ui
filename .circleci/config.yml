@@ -27,19 +27,19 @@ jobs:
           name: Run Unit Tests
           command: npm run lint && npm run test
       # building
-      - run:
-          name: Build and Prerender
-          command: npm run build && npm run prerender
-      - deploy:
-          name: Deploy to s3 and cloudfront invalidation
-          command: |
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              echo "Depolyment for production"
-              ./.circleci/production.sh
-            elif [[ ${CIRCLE_BRANCH} =~ int\/.* ]]; then
-              echo "No depolyment for staging"
-              # ./.circleci/staging.sh
-            elif [[ ${CIRCLE_BRANCH} =~ hot\/.* ]]; then
-              echo "No depolyment for hot fixes"
-              # ./.circleci/staging.sh
-            fi
+#      - run:
+#          name: Build and Prerender
+#          command: npm run build && npm run prerender
+#      - deploy:
+#          name: Deploy to s3 and cloudfront invalidation
+#          command: |
+#            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+#              echo "Depolyment for production"
+#              ./.circleci/production.sh
+#            elif [[ ${CIRCLE_BRANCH} =~ int\/.* ]]; then
+#              echo "No depolyment for staging"
+#              # ./.circleci/staging.sh
+#            elif [[ ${CIRCLE_BRANCH} =~ hot\/.* ]]; then
+#              echo "No depolyment for hot fixes"
+#              # ./.circleci/staging.sh
+#            fi
