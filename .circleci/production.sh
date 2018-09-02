@@ -63,7 +63,7 @@ invalidate_cloudfront() {
   echo "Invalidate CloudFront"
   echo
   aws configure set preview.cloudfront true
-  aws cloudfront create-invalidation --distribution-id $AWS_CLOUDFRONT_ID --paths /js/check-browser/index.js
+  aws cloudfront create-invalidation --distribution-id $AWS_CLOUDFRONT_ID --paths "*"
 }
 
 
