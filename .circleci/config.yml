@@ -11,36 +11,36 @@ jobs:
     docker:
     - image: devourment77/circle-node-aws:10.8
     steps:
-    - checkout
-    - setup_remote_docker
-    # cache based on our package.json file
-    - restore_cache:
-        key: npm-cache-{{ checksum "package-lock.json" }}
-    - run:
-        name: Install node modules
-        command: npm install
-    - save_cache:
-        key: npm-cache-{{ checksum "package-lock.json" }}
-        paths:
-        - ./node_modules
-    # running unit tests
-    - run:
-        name: Run Unit Tests
-        command: npm run lint && npm run test
-    # building
-    - run:
-        name: Build and Prerender
-        command: npm run build && npm run prerender
-    - deploy:
-        name: Deploy to s3 and cloudfront invalidation
-        command: |
-          if [ "${CIRCLE_BRANCH}" == "master" ]; then
-            echo "Depolyment for production"
-            ./.circleci/production.sh
-          elif [[ ${CIRCLE_BRANCH} =~ int\/.* ]]; then
-            echo "No depolyment for staging"
-            # ./.circleci/staging.sh
-          elif [[ ${CIRCLE_BRANCH} =~ hot\/.* ]]; then
-            echo "No depolyment for hot fixes"
-            # ./.circleci/staging.sh
-          fi
+      - checkout
+      - setup_remote_docker
+      # cache based on our package.json file
+      - restore_cache:
+          key: npm-cache-{{ checksum "package-lock.json" }}
+      - run:
+          name: Install node modules
+          command: npm install
+      - save_cache:
+          key: npm-cache-{{ checksum "package-lock.json" }}
+          paths:
+          - ./node_modules
+      # running unit tests
+      - run:
+          name: Run Unit Tests
+          command: npm run lint && npm run test
+      # building
+      - run:
+          name: Build and Prerender
+          command: npm run build && npm run prerender
+      - deploy:
+          name: Deploy to s3 and cloudfront invalidation
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              echo "Depolyment for production"
+              ./.circleci/production.sh
+            elif [[ ${CIRCLE_BRANCH} =~ int\/.* ]]; then
+              echo "No depolyment for staging"
+              # ./.circleci/staging.sh
+            elif [[ ${CIRCLE_BRANCH} =~ hot\/.* ]]; then
+              echo "No depolyment for hot fixes"
+              # ./.circleci/staging.sh
+            fi
