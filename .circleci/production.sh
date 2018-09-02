@@ -39,11 +39,11 @@ s3_sync() {
   echo
 
   # upload to s3, deleting any items that no longer exist, but exclude html files, which are handled separately below
-  aws aws s3 sync ./build s3://$AWS_S3_BUCKET --delete --exclude="*.html"  --cache-control max-age=86400,public
+  aws s3 sync ./build s3://$AWS_S3_BUCKET --delete --exclude="*.html"  --cache-control max-age=86400,public
 
   # upload the html files without extensions and force the content-type
   for i in ${HTML_FILES}; do
-    replaceBuild=${i/\/\.build/}
+    replaceBuild=${i/\.\/build/}
     replaceHtml=${replaceBuild/\.html/}
     echo "Syncing ${replaceHtml} to s3"
 
