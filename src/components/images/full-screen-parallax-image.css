@@ -19,7 +19,7 @@
   background-color: '#000000';
   background-position: 50% 0;
   background-size: cover;
-  /*background-attachment: fixed;*/
+  background-attachment: fixed;
   background-repeat: no-repeat;
 }
 
@@ -69,10 +69,6 @@
 
 /* Responsive Style Sheet */
 @media screen and (min-width: 320px) {
-  /*.cover-image {*/
-  /*background-attachment: unset;*/
-  /*}*/
-
   .cover-text .cover-content {
     font-size: 1.2em;
     margin: 20px auto;
@@ -88,10 +84,6 @@
 }
 
 @media screen and (min-width: 600px) {
-  /*.cover-image {*/
-  /*background-attachment: fixed;*/
-  /*}*/
-
   /* Interior */
   .cover-title {
     font-size: 3em;

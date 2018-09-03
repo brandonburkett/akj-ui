@@ -40,6 +40,14 @@ class FullScreenParallaxImage extends React.PureComponent<IProps, {}> {
   // handle scroll parallax
   componentDidMount() {
     document.addEventListener('scroll', this.handleParallaxScroll);
+
+    if (
+      /Android|webOS|iPhone|iPad|iPod/i.test(navigator.userAgent) &&
+      this.backgroundRef &&
+      this.backgroundRef.current
+    ) {
+      this.backgroundRef.current.style.backgroundAttachment = 'scroll';
+    }
   }
 
   // end handle scroll parallax
