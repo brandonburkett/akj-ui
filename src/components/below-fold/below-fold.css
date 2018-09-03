@@ -1,5 +1,5 @@
 .below-fold {
   position: absolute;
-  top: 100%;
+  top: 100vh;
   width: 100%;
 }
