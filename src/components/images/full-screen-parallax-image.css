@@ -87,16 +87,14 @@
   }
 }
 
-@media screen and (min-width: 480px) {
-  .cover-scroll-cue {
-    bottom: 20px;
-  }
-}
-
 @media screen and (min-width: 600px) {
   /* Interior */
   .cover-title {
     font-size: 3em;
+  }
+
+  .cover-scroll-cue {
+    bottom: 50px;
   }
 
   .cover-text {
@@ -118,5 +116,9 @@
 @media screen and (min-width: 1200px) {
   .cover-content {
     font-size: 2.2em;
+  }
+
+  .cover-scroll-cue {
+    bottom: 20px;
   }
 }
