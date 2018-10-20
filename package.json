@@ -16,8 +16,12 @@
     "lint:ts": "tslint --project .",
     "lint:style": "stylelint \"**/*.css\" --fix",
     "prettier:write": "prettier --write './**/*.{ts,tsx,css}'",
-    "prettier:check": "prettier -l './**/*.{ts,tsx,css}'",
-    "precommit": "lint-staged && npm run test"
+    "prettier:check": "prettier -l './**/*.{ts,tsx,css}'"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && npm run test"
+    }
   },
   "lint-staged": {
     "*.{ts,tsx}": [
@@ -39,29 +43,29 @@
     ]
   },
   "dependencies": {
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
     "react-helmet": "^5.2.0",
-    "react-image-gallery": "^0.8.11",
+    "react-image-gallery": "^0.8.12",
     "react-router-dom": "^4.3.1",
     "react-scripts-ts": "2.17.0",
     "smoothscroll-polyfill": "^0.4.3"
   },
   "devDependencies": {
-    "@types/jest": "^23.3.1",
-    "@types/node": "^10.9.4",
-    "@types/react": "^16.4.13",
-    "@types/react-dom": "^16.0.7",
+    "@types/jest": "^23.3.5",
+    "@types/node": "^10.12.0",
+    "@types/react": "^16.4.18",
+    "@types/react-dom": "^16.0.9",
     "@types/react-helmet": "^5.0.7",
     "@types/react-image-gallery": "^0.8.3",
-    "@types/react-router-dom": "^4.3.0",
+    "@types/react-router-dom": "^4.3.1",
     "@types/smoothscroll-polyfill": "^0.3.0",
-    "husky": "^0.14.3",
-    "lint-staged": "^7.2.2",
-    "prettier": "^1.14.2",
-    "react-snap": "^1.10.1",
-    "stylelint": "^9.5.0",
+    "husky": "^1.1.2",
+    "lint-staged": "^7.3.0",
+    "prettier": "^1.14.3",
+    "react-snap": "^1.19.0",
+    "stylelint": "^9.6.0",
     "stylelint-config-recommended": "^2.1.0",
-    "typescript": "^3.0.3"
+    "typescript": "^3.1.3"
   }
 }
