@@ -21,6 +21,9 @@ See full package.json for full configuration.
 * `npm run build`
 * `node build/`
 
+#### Prerender
+* `npm run prerender`
+
 ## Environment Vars
 See [create react app env vars](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-custom-environment-variables) for more details:
 * Note: You must create custom environment variables beginning with `REACT_APP_*`
