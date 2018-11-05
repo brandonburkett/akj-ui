@@ -1,11 +1,11 @@
 // gallery
 import imgGallery1 from './images/hasso-no-kamae.jpg';
-import imgGallery2 from './images/naginata-group.jpg';
+import imgGallery2 from './images/naginata-embu-1.jpg';
 import imgGallery3 from './images/gedan-no-kamae.jpg';
 import imgGallery4 from './images/naginata-bunkai.jpg';
 import imgGallery5 from './images/kesagiri.jpg';
 import imgGallery6 from './images/taka-ne-men.jpg';
-import imgGallery7 from './images/chuden-no-kamae.jpg';
+import imgGallery7 from './images/dogiri.jpg';
 
 export const imageGalleryRaw: string[] = [
   imgGallery1,
