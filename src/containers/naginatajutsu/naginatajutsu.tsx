@@ -24,7 +24,7 @@ export interface IProps {
 /**
  * Naginata page component
  */
-const Naginatajutsu: React.StatelessComponent<IProps> = props => {
+const Naginatajutsu: React.FunctionComponent<IProps> = props => {
   // refs
   const scrollToRef = React.createRef<HTMLDivElement>();
 

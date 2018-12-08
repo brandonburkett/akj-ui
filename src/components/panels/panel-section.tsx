@@ -14,7 +14,7 @@ const defaultProps: Partial<IProps> = {
 /**
  * Info panels with color selection
  */
-const PanelSection: React.StatelessComponent<IProps> = ({ color, children }) => {
+const PanelSection: React.FunctionComponent<IProps> = ({ color, children }) => {
   return (
     <section className={`info-panel-details info-panel-${color} translate-z`}>{children}</section>
   );

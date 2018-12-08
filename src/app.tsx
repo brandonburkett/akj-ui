@@ -17,7 +17,7 @@ import NoMatch from './containers/no-match/no-match';
 /**
  * Application routes
  */
-const App: React.StatelessComponent = () => (
+const App: React.FunctionComponent = () => (
   <BrowserRouter>
     <Switch>
       <StandardLayoutRoute exact={true} path="/" component={Home} />

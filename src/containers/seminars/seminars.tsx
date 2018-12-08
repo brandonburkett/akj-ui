@@ -17,7 +17,7 @@ export interface IProps {
 /**
  * seminars page component
  */
-const Seminars: React.StatelessComponent<IProps> = props => (
+const Seminars: React.FunctionComponent<IProps> = props => (
   <React.Fragment>
     <Head
       title="Seminars"

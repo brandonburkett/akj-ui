@@ -17,7 +17,7 @@ export interface IProps {
 /**
  * seminars page component
  */
-const Schedule: React.StatelessComponent<IProps> = props => (
+const Schedule: React.FunctionComponent<IProps> = props => (
   <React.Fragment>
     <Head
       title="Schedule & Pricing"

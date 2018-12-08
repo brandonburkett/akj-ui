@@ -14,7 +14,7 @@ const defaultProps: Partial<IProps> = {
 /**
  * Info panel content (intended to go inside of panel sections)
  */
-const PanelContent: React.StatelessComponent<IProps> = ({ fullViewHeight, children }) => (
+const PanelContent: React.FunctionComponent<IProps> = ({ fullViewHeight, children }) => (
   <div className={`panel-content ${fullViewHeight ? 'full-vh' : ''}`}>
     <div className="content group">{children}</div>
   </div>

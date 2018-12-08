@@ -5,7 +5,7 @@ import StandardLayout from './standard-layout';
 /**
  * Standard Layout with drop down nav
  */
-const StandardLayoutRoute: React.StatelessComponent<RouteProps> = ({
+const StandardLayoutRoute: React.FunctionComponent<RouteProps> = ({
   component: Component,
   ...props
 }) => {

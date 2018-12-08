@@ -15,7 +15,7 @@ export interface IProps {
 /**
  * 404 page
  */
-const NoMatch: React.StatelessComponent<IProps> = props => (
+const NoMatch: React.FunctionComponent<IProps> = props => (
   <React.Fragment>
     <Head title="404 Not Found" desc="Page not found." path={props.location.pathname} />
     <div id="main" className="group" role="main">

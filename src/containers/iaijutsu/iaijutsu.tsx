@@ -24,7 +24,7 @@ export interface IProps {
 /**
  * Iai page component
  */
-const Iaijutsu: React.StatelessComponent<IProps> = props => {
+const Iaijutsu: React.FunctionComponent<IProps> = props => {
   // refs
   const scrollToRef = React.createRef<HTMLDivElement>();
 

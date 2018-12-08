@@ -26,7 +26,7 @@ export interface IProps {
 }
 
 // homepage component
-const Home: React.StatelessComponent<IProps> = props => {
+const Home: React.FunctionComponent<IProps> = props => {
   const scrollToRef = React.createRef<HTMLDivElement>();
 
   return (
