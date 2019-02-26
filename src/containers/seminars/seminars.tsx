@@ -32,11 +32,10 @@ const Seminars: React.FunctionComponent<IProps> = props => (
           </div>
           <div className="cs12">
             <p>
-              Sekiguchi sensei will be in Texas
-              <strong>June 16th - June 26th, 2019</strong>. Training will be split between Lubbock
-              and Austin. It is a rare opportunity to train with Sekiguchi sensei, the 21st
-              Headmaster of Yamauchi-ha Muso Jikiden Eishin-ryu. <strong>Everyone</strong> is
-              encourage to attend, even beginner students.
+              Sekiguchi sensei will be in Texas <strong>June 16th - June 26th, 2019</strong>.
+              Training will be split between Lubbock and Austin. It is a rare opportunity to train
+              with Sekiguchi sensei, the 21st Headmaster of Yamauchi-ha Muso Jikiden Eishin-ryu.{' '}
+              <strong>Everyone</strong> is encourage to attend, even beginner students.
             </p>
           </div>
           <div className="cs6">
