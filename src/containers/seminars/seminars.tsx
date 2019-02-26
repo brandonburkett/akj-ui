@@ -28,13 +28,13 @@ const Seminars: React.FunctionComponent<IProps> = props => (
       <PanelSection>
         <PanelContent>
           <div className="cs12">
-            <h1>2018 Texas Seminar</h1>
+            <h1>2019 Texas Seminar</h1>
           </div>
           <div className="cs12">
             <p>
-              Sekiguchi sensei will be in Texas for one week -{' '}
-              <strong>September 27 - October 3rd, 2018</strong>. This time will be split between
-              Lubbock and Austin. It is a rare opportunity to train with Sekiguchi sensei, the 21st
+              Sekiguchi sensei will be in Texas
+              <strong>June 16th - June 26th, 2019</strong>. Training will be split between Lubbock
+              and Austin. It is a rare opportunity to train with Sekiguchi sensei, the 21st
               Headmaster of Yamauchi-ha Muso Jikiden Eishin-ryu. <strong>Everyone</strong> is
               encourage to attend, even beginner students.
             </p>
@@ -50,7 +50,7 @@ const Seminars: React.FunctionComponent<IProps> = props => (
             </p>
             <strong>Schedule</strong>
             <ul className="ul_square">
-              <li>TBD</li>
+              <li>June 16th - 19th, keiko TBD</li>
             </ul>
             <br />
 
@@ -92,8 +92,7 @@ const Seminars: React.FunctionComponent<IProps> = props => (
           <div className="cs6">
             <h3>Austin, Texas</h3>
             <p>
-              The training schedule for Austin is almost set, more information will be posted soon!
-              Please contact{' '}
+              The training schedule for Austin is set with the Austin Sports Center. Please contact{' '}
               <a className="link" href="mailto:brandon@komeijyuku.com">
                 Brandon Burkett sensei
               </a>{' '}
@@ -102,28 +101,49 @@ const Seminars: React.FunctionComponent<IProps> = props => (
             <strong>Schedule</strong>
             <ul className="ul_square">
               <li>
-                Sunday, Sept 30th:
+                Thursday, June 20th:
                 <br />
-                Morning Arrival
+                Arrival
                 <br />
-                Afternoon keiko: 6pm - 8pm
+                No keiko
               </li>
               <li>
-                Monday, Oct 1st: <br />
+                Friday, June 21st: <br />
                 Morning keiko: 10am - 1pm
                 <br />
                 Afternoon keiko: 6pm - 8pm
               </li>
               <li>
-                Tuesday, Oct 2nd: <br />
+                Saturday, June 22nd: <br />
                 Morning keiko: 10am - 1pm
                 <br />
-                Afternoon keiko: 5pm - 7pm
+                Afternoon keiko: 6pm - 8pm
               </li>
               <li>
-                Wednesday, Oct 3rd:
+                Sunday, June 23rd: <br />
+                Morning keiko: 10am - 1pm
                 <br />
-                Departure, no keiko
+                Afternoon keiko: 6pm - 8pm
+              </li>
+              <li>
+                Monday, June 24th: <br />
+                Morning keiko: 10am - 1pm
+                <br />
+                Afternoon keiko: 6pm - 8pm
+              </li>
+              <li>
+                Tuesday, June 25th:
+                <br />
+                Activity with sensei, most likely shooting or visiting the capital, TBD.
+                <br />
+                No keiko
+              </li>
+              <li>
+                Wednesday, June 26th:
+                <br />
+                Depature for Narita
+                <br />
+                No keiko
               </li>
             </ul>
             <br />
@@ -157,26 +177,17 @@ const Seminars: React.FunctionComponent<IProps> = props => (
             <strong>Austin Pricing</strong>
             <p>The seminar will be shorter this year, so pricing is discounted.</p>
             <ul className="ul_square">
-              {/*<li>*/}
-              {/*Individual / Per Day Rate<br />*/}
-              {/*<form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">*/}
-              {/*<input type="hidden" name="cmd" value="_s-xclick">*/}
-              {/*<input type="hidden" name="hosted_button_id" value="9TYZRM8LJEBFN">*/}
-              {/*<input type="submit" class="form_button" id="s001Button" value="PayPal - $65.00" />*/}
-              {/*<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">*/}
-              {/*</form>*/}
-              {/*</li>*/}
               <li>
-                All days / Full Seminar
+                Individual / Per Day Rate
                 <br />
                 <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
                   <input type="hidden" name="cmd" value="_s-xclick" />
-                  <input type="hidden" name="hosted_button_id" value="X2GS3458XA6SA" />
+                  <input type="hidden" name="hosted_button_id" value="9TYZRM8LJEBFN" />
                   <input
                     type="submit"
-                    className="form-button"
+                    className="form_button"
                     id="s001Button"
-                    value="PayPal - $75.00"
+                    value="PayPal - $65.00"
                   />
                   <img
                     alt=""
@@ -186,12 +197,44 @@ const Seminars: React.FunctionComponent<IProps> = props => (
                     height="1"
                   />
                 </form>
+              </li>
+              <li>
+                All days / Full Seminar
+                <br />
                 {/*<form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">*/}
-                {/*<input type="hidden" name="cmd" value="_s-xclick">*/}
-                {/*<input type="hidden" name="hosted_button_id" value="BTG5VJ3NREKX4">*/}
-                {/*<input type="submit" class="form_button" id="s001Button" value="PayPal - $250.00" />*/}
-                {/*<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">*/}
+                {/*<input type="hidden" name="cmd" value="_s-xclick" />*/}
+                {/*<input type="hidden" name="hosted_button_id" value="X2GS3458XA6SA" />*/}
+                {/*<input*/}
+                {/*type="submit"*/}
+                {/*className="form-button"*/}
+                {/*id="s001Button"*/}
+                {/*value="PayPal - $75.00"*/}
+                {/*/>*/}
+                {/*<img*/}
+                {/*alt=""*/}
+                {/*style={{ border: 0 }}*/}
+                {/*src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif"*/}
+                {/*width="1"*/}
+                {/*height="1"*/}
+                {/*/>*/}
                 {/*</form>*/}
+                <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+                  <input type="hidden" name="cmd" value="_s-xclick" />
+                  <input type="hidden" name="hosted_button_id" value="BTG5VJ3NREKX4" />
+                  <input
+                    type="submit"
+                    className="form_button"
+                    id="s001Button"
+                    value="PayPal - $250.00"
+                  />
+                  <img
+                    alt=""
+                    style={{ border: 0 }}
+                    src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif"
+                    width="1"
+                    height="1"
+                  />
+                </form>
               </li>
               <li>PayPal Email: brandon&#64;komeijyuku.com</li>
             </ul>

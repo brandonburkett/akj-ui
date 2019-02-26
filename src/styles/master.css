@@ -332,6 +332,15 @@ input[type='submit'] {
   -webkit-appearance: button;
   *overflow: visible;
 }
+input[type='submit'] {
+  padding: 5px;
+  border: 2px solid rgb(067, 091, 013);
+  transition: background 0.25s;
+}
+input[type='submit']:hover {
+  background: #eae6db;
+}
+
 button[disabled],
 input[disabled] {
   cursor: default;
