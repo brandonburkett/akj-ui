@@ -4,7 +4,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: devourment77/circle-node-aws:10.14.2
+      - image: devourment77/circle-node-aws:10.15.1
     steps:
       - checkout
       - setup_remote_docker
