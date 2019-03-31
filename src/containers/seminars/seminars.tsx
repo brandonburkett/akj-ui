@@ -140,7 +140,7 @@ const Seminars: React.FunctionComponent<IProps> = props => (
               <li>
                 Wednesday, June 26th:
                 <br />
-                Depature for Narita
+                Departure for Narita
                 <br />
                 No keiko
               </li>
