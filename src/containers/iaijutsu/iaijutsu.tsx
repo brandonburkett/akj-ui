@@ -108,21 +108,21 @@ const Iaijutsu: React.FunctionComponent<IProps> = props => {
                   <li>Hayashizaki Jinsuke Shigenobu</li>
                   <li>Tamiya Heibei Shigemasa</li>
                   <li>Nagano Muraku Nyudo Kinrosai</li>
-                  <li>Momo Gumbei Mitsushige</li>
+                  <li>Momo Gunbei Mitsushige</li>
                   <li>Arikawa Shozaemon Munetsugu</li>
-                  <li>Banno Dan'emon no Jo Nobusada</li>
+                  <li>Banno Danemon no Jo Nobusada</li>
                   <li>Hasegawa Chikaranosuke Eishin (Hidenobu)</li>
                   <li>Arai Seitetsu Kiyonobu</li>
                   <li>Hayashi Rokudayu Morimasa</li>
-                  <li>Hayashi Yasudayu Seisho</li>
+                  <li>Hayashi Yasudayu Yasumasa</li>
                   <li>Oguro Motoemon Kiyokatsu</li>
                 </ul>
               </div>
               <div className="cs4">
                 <h4>Tanimura-Ha</h4>
                 <ul className="ul_square">
-                  <li>Hayashi Masu no Jo Masanri</li>
-                  <li>Yoda Yorikatsu</li>
+                  <li>Hayashi Masu no Jo Masanari</li>
+                  <li>Yoda Manzo Yorikatsu</li>
                   <li>Hayashi Yadayu Masayori</li>
                   <li>Tanimura Kame no Jo Yorikatsu</li>
                   <li>Goto Magobei Masasuke</li>
