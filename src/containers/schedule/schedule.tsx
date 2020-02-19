@@ -264,6 +264,7 @@ const Schedule: React.FunctionComponent<IProps> = props => (
               height="600"
               style={{ border: 0 }}
               allowFullScreen={true}
+              title="Google Map"
             />
           </ResponsiveMap>
         </PanelContent>

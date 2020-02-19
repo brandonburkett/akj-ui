@@ -65,7 +65,12 @@ const Seminars: React.FunctionComponent<IProps> = props => (
               Phone: 806-781-1354
               <br />
               Map:{' '}
-              <a className="link" href="https://goo.gl/maps/55J675wEpRG2" target="_blank">
+              <a
+                className="link"
+                href="https://goo.gl/maps/55J675wEpRG2"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Google Map
               </a>
               <br />
@@ -74,6 +79,7 @@ const Seminars: React.FunctionComponent<IProps> = props => (
                 className="link"
                 href="https://www.google.com/maps/search/hotels+near+ArtFit/@33.5787191,-101.9317938,14z/data=!3m1!4b1!4m5!2m4!5m3!5m2!1s2016-05-23!2i4"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 Nearby Hotels
               </a>
@@ -159,7 +165,12 @@ const Seminars: React.FunctionComponent<IProps> = props => (
               Phone: 512-965-3747
               <br />
               Map:{' '}
-              <a className="link" href="https://goo.gl/maps/URJUTKUUxZM2" target="_blank">
+              <a
+                className="link"
+                href="https://goo.gl/maps/URJUTKUUxZM2"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Google Map
               </a>
               <br />
@@ -168,6 +179,7 @@ const Seminars: React.FunctionComponent<IProps> = props => (
                 className="link"
                 href="https://www.google.com/maps/search/hotels+near+Austin+Sports+Center+cedar+park/@30.5437498,-97.8031795,13z/data=!4m5!2m4!5m3!5m2!1s2016-05-30!2i4"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 Nearby Hotels
               </a>
@@ -249,6 +261,7 @@ const Seminars: React.FunctionComponent<IProps> = props => (
               height="600"
               style={{ border: 0 }}
               allowFullScreen={true}
+              title="Google Map"
             />
           </ResponsiveMap>
         </PanelContent>
