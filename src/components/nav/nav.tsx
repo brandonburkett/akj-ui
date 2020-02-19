@@ -187,7 +187,7 @@ class Nav extends React.PureComponent<{}, IState> {
               </a>
               <a
                 className="instagram"
-                href="https://www.facebook.com/pg/austinkomeijyuku/photos/"
+                href="https://www.instagram.com/austinkomeijyuku/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
