@@ -76,7 +76,7 @@ const Schedule: React.FunctionComponent<IProps> = props => (
 
             <strong>Single Prices</strong>
             <ul className="ul_square">
-              <li>$60.00 - Iaijutsu / Naginatajutsu</li>
+              <li>$60.00 - Iaijutsu</li>
             </ul>
             <strong>Family Prices</strong>
             <ul className="ul_square">
