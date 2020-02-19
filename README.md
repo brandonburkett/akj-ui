@@ -1,6 +1,5 @@
 # AKJ Dojo UI
-This is an ui app using [TypeScript-React-Starter](https://github.com/Microsoft/TypeScript-React-Starter), which is based on 
-[Create-React-App](hhttps://github.com/facebook/create-react-app).  It includes the following customizations
+This is an ui app using [Create React App (Typescript)](https://github.com/facebook/create-react-app). It includes the following customizations
 * stylelint + style-lint-recommended
 * using nlf-helmet for title and meta tag management
 * prettier for css and ts / tsx files
@@ -14,6 +13,7 @@ See full package.json for full configuration.
 
 ### Linting and tests
 * `npm run lint`
+* `npm run lint:ts`
 * `npm run lint:style`
 * `npm run test`
 
