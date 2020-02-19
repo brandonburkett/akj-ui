@@ -733,11 +733,11 @@ hr {
   border-top: 1px solid #d1d1d1;
   margin: 2em 0;
 }
-hr.black {
-  margin: 0 0 1em 0;
+hr.dark {
+  /* margin: 0 0 1em 0; */
   border-top: 1px solid #000;
 }
-hr.black + h3 {
+hr.dark + h3 {
   padding-top: 10px;
 }
 
