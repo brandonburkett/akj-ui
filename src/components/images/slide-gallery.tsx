@@ -32,10 +32,6 @@ class SlideGallery extends React.PureComponent<ReactImageGalleryProps> {
     // bindings
     this.stopAutoplayClick = this.stopAutoplayClick.bind(this);
     this.touchPause = this.touchPause.bind(this);
-    this.renderLeftNav = this.renderLeftNav.bind(this);
-    this.renderRightNav = this.renderRightNav.bind(this);
-    this.renderPlayPauseButton = this.renderPlayPauseButton.bind(this);
-    this.renderFullscreenButton = this.renderFullscreenButton.bind(this);
     this.toggleTranslateZ = this.toggleTranslateZ.bind(this);
   }
 
@@ -71,55 +67,6 @@ class SlideGallery extends React.PureComponent<ReactImageGalleryProps> {
     if (this.galleryRef && this.galleryRef.current) {
       this.galleryRef.current.pause();
     }
-  }
-
-  renderLeftNav(onClick: (e: React.MouseEvent<HTMLElement>) => void, disabled: boolean) {
-    return (
-      <button
-        className="image-gallery-left-nav slide-gallery-previous-control"
-        aria-label="Previous Slide"
-        disabled={disabled}
-        onClick={e => this.stopAutoplayClick(e, onClick)}
-      />
-    );
-  }
-
-  renderRightNav(onClick: (e: React.MouseEvent<HTMLElement>) => void, disabled: boolean) {
-    return (
-      <button
-        className="image-gallery-right-nav slide-gallery-next-control"
-        aria-label="Next Slide"
-        disabled={disabled}
-        onClick={e => this.stopAutoplayClick(e, onClick)}
-      />
-    );
-  }
-
-  renderPlayPauseButton(onClick: (e: React.MouseEvent<HTMLElement>) => void, isPlaying: boolean) {
-    return (
-      <button
-        type="button"
-        aria-label="Play or Pause Slideshow"
-        className={`image-gallery-play-button${isPlaying ? ' active' : ''} slide-gallery-play`}
-        onClick={onClick}
-      />
-    );
-  }
-
-  renderFullscreenButton(
-    onClick: (e: React.MouseEvent<HTMLElement>) => void,
-    isFullscreen: boolean,
-  ) {
-    return (
-      <button
-        type="button"
-        aria-label="Open Fullscreen"
-        className={`image-gallery-fullscreen-button${
-          isFullscreen ? ' active' : ''
-        } slide-gallery-fullscreen`}
-        onClick={onClick}
-      />
-    );
   }
 
   // toggle transform as it causes a bug with position fixed
@@ -167,15 +114,12 @@ class SlideGallery extends React.PureComponent<ReactImageGalleryProps> {
             infinite={true}
             lazyLoad={true}
             showThumbnails={false}
+            showPlayButton={false}
             showBullets={true}
             showFullscreenButton={true}
             useBrowserFullscreen={false}
-            autoPlay={true}
+            autoPlay={false}
             preventDefaultTouchmoveEvent={true}
-            renderLeftNav={this.renderLeftNav}
-            renderRightNav={this.renderRightNav}
-            renderPlayPauseButton={this.renderPlayPauseButton}
-            renderFullscreenButton={this.renderFullscreenButton}
             onTouchStart={this.touchPause}
             onScreenChange={this.toggleTranslateZ}
           />

@@ -8,38 +8,46 @@
   position: relative;
 }
 
-.image-gallery-left-nav.slide-gallery-previous-control {
-  margin-left: -1em;
+.image-gallery-play-button:active,
+.image-gallery-play-button:hover {
+  color: #fff;
 }
 
-.image-gallery-right-nav.slide-gallery-next-control {
-  margin-right: -1em;
+.image-gallery-fullscreen-button:active,
+.image-gallery-fullscreen-button:hover {
+  color: #fff;
 }
 
-.image-gallery-left-nav.slide-gallery-previous-control::before,
-.image-gallery-right-nav.slide-gallery-next-control::before {
-  color: #6e180b;
-  text-shadow: 1px 1px 5px #a97e74;
+.image-gallery-left-nav:active,
+.image-gallery-left-nav:hover {
+  color: #fff;
 }
 
-.image-gallery-left-nav.slide-gallery-previous-control:hover,
-.image-gallery-right-nav.slide-gallery-next-control:hover {
-  font-size: 5.1em;
+.image-gallery-right-nav:active,
+.image-gallery-right-nav:hover {
+  color: #fff;
 }
 
-.image-gallery-bullets .image-gallery-bullet.slide-gallery-bullet {
+.image-gallery-icon:focus {
+  outline: 2px solid #eae6db;
+}
+
+.image-gallery-bullets .image-gallery-bullet {
   border-radius: 0;
   border: 1px solid #eae6db;
 }
 
-.image-gallery-bullets .image-gallery-bullet.slide-gallery-bullet.active {
+.image-gallery-bullets .image-gallery-bullet.active {
   background: #eae6db;
   padding: 6px;
 }
 
-.image-gallery-play-button.slide-gallery-play::before,
-.image-gallery-fullscreen-button.slide-gallery-fullscreen::before {
-  color: #eae6db;
+.image-gallery-bullets .image-gallery-bullet:hover {
+  background: #eae6db;
+}
+
+.image-gallery-bullets .image-gallery-bullet:focus {
+  background: #eae6db;
 }
 
 /* Responsive Style Sheet */
@@ -48,12 +56,12 @@
     width: 95%;
   }
 
-  .image-gallery-left-nav.slide-gallery-previous-control,
-  .image-gallery-right-nav.slide-gallery-next-control {
+  .image-gallery-left-nav,
+  .image-gallery-right-nav {
     display: none;
   }
 
-  .image-gallery-bullets .image-gallery-bullet.slide-gallery-bullet.active {
+  .image-gallery-bullets .image-gallery-bullet.active {
     background: #eae6db;
     padding: 4px;
   }
@@ -61,8 +69,8 @@
 
 /* iphone x landscape specifically */
 @media screen and (height: 375px) {
-  .image-gallery-play-button.slide-gallery-play,
-  .image-gallery-fullscreen-button.slide-gallery-fullscreen {
+  .image-gallery-play-button,
+  .image-gallery-fullscreen-button {
     bottom: 30px;
   }
 }
@@ -72,24 +80,24 @@
     width: 80%;
   }
 
-  .image-gallery-left-nav.slide-gallery-previous-control,
-  .image-gallery-right-nav.slide-gallery-next-control {
+  .image-gallery-left-nav,
+  .image-gallery-right-nav {
     display: block;
   }
 
-  .image-gallery-left-nav.slide-gallery-previous-control:hover,
-  .image-gallery-right-nav.slide-gallery-next-control:hover {
+  .image-gallery-left-nav:hover,
+  .image-gallery-right-nav:hover {
     font-size: 3.5em;
   }
 }
 
 @media screen and (min-width: 768px) {
-  .image-gallery-left-nav.slide-gallery-previous-control:hover,
-  .image-gallery-right-nav.slide-gallery-next-control:hover {
+  .image-gallery-left-nav:hover,
+  .image-gallery-right-nav:hover {
     font-size: 5.1em;
   }
 
-  .image-gallery-bullets .image-gallery-bullet.slide-gallery-bullet.active {
+  .image-gallery-bullets .image-gallery-bullet.active {
     background: #eae6db;
     padding: 6px;
   }

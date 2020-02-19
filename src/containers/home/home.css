@@ -20,6 +20,8 @@
   margin: 100px auto;
   font-size: 2.2em;
   line-height: 1.2em;
+  padding-top: 1em;
+  padding-bottom: 1em;
 }
 .home .intro .link:link,
 .home .intro .link:visited {

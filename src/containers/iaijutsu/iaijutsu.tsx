@@ -84,7 +84,7 @@ const Iaijutsu: React.FunctionComponent<IProps> = props => {
               </p>
             </div>
             <div className="cs12">
-              <hr className="black" />
+              <hr className="dark" />
               <p>
                 The current (21st) soke is Sekiguchi Komei sensei. He created the Komei Jyuku, an
                 international body of students, and spreads iaijutsu with the isshin / one heart (
@@ -213,7 +213,7 @@ const Iaijutsu: React.FunctionComponent<IProps> = props => {
             </div>
 
             <div className="cs12">
-              <hr className="black" />
+              <hr className="dark" />
               <h3>Kumitachi</h3>
             </div>
             <div className="cs6">
@@ -245,7 +245,7 @@ const Iaijutsu: React.FunctionComponent<IProps> = props => {
               </ol>
             </div>
             <div className="cs12">
-              <hr className="black" />
+              <hr className="dark" />
               <h3>Toho and Bangai</h3>
             </div>
             <div className="cs4">

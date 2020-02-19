@@ -126,16 +126,6 @@ class Nav extends React.PureComponent<{}, IState> {
               <li className="nav-list-item">
                 <Link
                   className="nav-parent"
-                  to="/naginatajutsu"
-                  role="menuitem"
-                  onClick={this.toggleMenu}
-                >
-                  Naginatajutsu
-                </Link>
-              </li>
-              <li className="nav-list-item">
-                <Link
-                  className="nav-parent"
                   to="/seminars"
                   role="menuitem"
                   onClick={this.toggleMenu}

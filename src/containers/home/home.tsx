@@ -9,7 +9,7 @@ import imgKobushidori from './images/kobushidori-800.jpg';
 import imgKoiLily from './images/koi-lily-1920.jpg';
 import imgMap from './images/map-800.jpg';
 import imgMjerKanji from './images/mjer-kanji.png';
-import imgNaginata from './images/naginata-800.jpg';
+import imgSeminar from './images/seminar-reiho-800.jpg';
 
 // ui components
 import BelowFold from '../../components/below-fold/below-fold';
@@ -55,10 +55,10 @@ const Home: React.FunctionComponent<IProps> = props => {
         <section className="home group translate-z">
           <p className="intro">
             Austin Komei Jyuku is a traditional budo and Japanese swordsmanship dojo. It is an
-            official Komei Jyuku branch school which is headed by Sekiguchi Komei sensei. Brandon
-            Burkett sensei opened the dojo in in 2008 and is the head instructor. At Austin Komei
-            Jyuku, we train in Yamauchi-Ha Muso Jikiden Eishin-ryu iaijutsu and Ryouen-ryu
-            naginatajutsu.
+            official Komei Jyuku branch school which is headed by Sekiguchi Komei sensei, the 21st
+            head master. Brandon Burkett sensei opened the dojo in in 2008 and is the head
+            instructor. At Austin Komei Jyuku, we train in Yamauchi-Ha Muso Jikiden Eishin-ryu
+            iaijutsu.
           </p>
 
           <div className="home-ctas group">
@@ -80,13 +80,11 @@ const Home: React.FunctionComponent<IProps> = props => {
                   8:30pm - 9:30pm at the Austin Sports Center in Cedar park."
             />
             <BlockImageCTA
-              to="/naginatajutsu"
-              imgSrc={imgNaginata}
+              to="/seminars"
+              imgSrc={imgSeminar}
               imgAlt="Tomoe sune"
-              title="Naginatajutsu"
-              content="Ryouen Ryu Naginatajutsu specializes in the use of the bladed polearm
-                  (naginata) and the long knife (kowakizashi) used together for long and short distance ancient
-                  combative techniques."
+              title="Seminars"
+              content="Train during our yearly seminar in Austin. It is a rare opportunity to train with Sekiguchi sensei, the 21st Headmaster of Yamauchi-ha Muso Jikiden Eishin-ryu."
             />
           </div>
         </section>
