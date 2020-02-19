@@ -21,7 +21,7 @@ const Schedule: React.FunctionComponent<IProps> = props => (
   <React.Fragment>
     <Head
       title="Schedule & Pricing"
-      desc="The Austin Komei Jyuku dojo teaches Yamauchi-Ha Muso Jikiden Eishin Ryu Iaijutsu and Ryouen-ryu Naginatajutsu on Tuesdays and Thursdays."
+      desc="The Austin Komei Jyuku dojo teaches Yamauchi-Ha Muso Jikiden Eishin Ryu Iaijutsu on Tuesdays and Thursdays."
       path={props.location.pathname}
     />
     <div id="main" className="group" role="main">
