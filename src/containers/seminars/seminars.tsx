@@ -32,8 +32,9 @@ const Seminars: React.FunctionComponent<IProps> = props => (
           </div>
           <div className="cs12">
             <p>
-              The 2020 Texas seminar has been canceled due to the health situation regarding the
-              COVID-19. We look forward to next year.
+              The 2020 Texas seminar with Sekiguchi sensei has been canceled due to the health
+              situation regarding the COVID-19 and international travel restrictions. We look
+              forward to next year.
             </p>
           </div>
         </PanelContent>
