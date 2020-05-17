@@ -6,7 +6,10 @@ import './below-fold.css';
 /**
  * Below fold (most likely for main components)
  */
-const BelowFold: React.FunctionComponent<React.HTMLAttributes<HTMLDivElement>> = (props, ref) => {
+const BelowFold: React.ForwardRefRenderFunction<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+> = (props, ref) => {
   const { children, ...rest } = props;
 
   return (
