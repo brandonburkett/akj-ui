@@ -17,7 +17,11 @@ export interface IProps {
  */
 const Covid19: React.FunctionComponent<IProps> = props => (
   <React.Fragment>
-    <Head title="404 Not Found" desc="Page not found." path={props.location.pathname} />
+    <Head
+      title="COVID-19 Schedule Updates"
+      desc="Updated policies and procedures for keiko after May 19th."
+      path={props.location.pathname}
+    />
     <div id="main" className="group" role="main">
       <PanelSection>
         <PanelContent fullViewHeight={true}>
