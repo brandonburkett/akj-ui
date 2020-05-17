@@ -29,6 +29,18 @@ const Schedule: React.FunctionComponent<IProps> = props => (
         <PanelContent>
           <div className="cs12">
             <h1>Schedule &amp; Pricing</h1>
+            <p>
+              <strong>Important</strong>: Please see the{' '}
+              <a className="link" href="/covid-19-schedule">
+                updated policies and procedures
+              </a>{' '}
+              related to COVID-19 and the Austin Sports Center.{' '}
+              <strong>
+                Do not attend keiko unless you have read and filled out the online waiver 24 hours
+                before keiko.
+              </strong>
+            </p>
+            <hr className="dark" />
           </div>
           <div className="cs6">
             <p>
