@@ -9,6 +9,7 @@ import Home from './containers/home/home';
 import Iaijutsu from './containers/iaijutsu/iaijutsu';
 import Schedule from './containers/schedule/schedule';
 import Seminars from './containers/seminars/seminars';
+import Covid19 from './containers/covid-19/covid-19';
 
 // 404
 import NoMatch from './containers/no-match/no-match';
@@ -23,6 +24,12 @@ const App: React.FunctionComponent = () => (
       <StandardLayoutRoute exact={true} strict={true} path="/iaijutsu" component={Iaijutsu} />
       <StandardLayoutRoute exact={true} strict={true} path="/schedule" component={Schedule} />
       <StandardLayoutRoute exact={true} strict={true} path="/seminars" component={Seminars} />
+      <StandardLayoutRoute
+        exact={true}
+        strict={true}
+        path="/covid-19-schedule"
+        component={Covid19}
+      />
 
       {/* redirects */}
       <Redirect to="/seminars" from="/tokai" />

@@ -62,9 +62,9 @@ class Head extends PureComponent<IProps> {
         {/* title attributes and value */}
         <title lang="en">{title}</title>
         <meta name="description" content={desc} />
-        (/* viewport */}
+        {/* viewport */}
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        (/* canonical */}
+        {/* canonical */}
         <link rel="canonical" href={canonicalUrl} />
         {/* block robot if not on .com or explicit noIndex */}
         {noIndex ? <meta name="robots" content="noindex" /> : null}
