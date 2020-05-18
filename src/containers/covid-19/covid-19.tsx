@@ -72,7 +72,7 @@ const Covid19: React.FunctionComponent<IProps> = props => (
               </li>
               <li>
                 We must maintain social distancing while on the property and not training (during
-                breaks, instruction periods, entering and existing
+                breaks, instruction periods, entering and exiting)
               </li>
               <li>
                 <strong>No spectators for now</strong>. This could change in the future
