@@ -28,11 +28,10 @@ const Covid19: React.FunctionComponent<IProps> = props => (
           <div className="cs12">
             <h1>COVID-19 Schedule</h1>
             <p>
-              The Austin Sports Center will be opening back up <strong>May 19th</strong> at 25%
-              capacity. In order to train, we have to follow the updated policies and procedures set
-              by the Austin Sports Center (below).{' '}
-              <strong>These must be completed each class 24 hours before keiko</strong>. Please
-              remember we are all representing Komei Jyuku as we enter and leave the building.
+              The Austin Sports Center is opening back up at limited capacity. In order to train, we
+              have to follow the updated policies and procedures set by the Austin Sports Center
+              (below). Please remember we are all representing Komei Jyuku as we enter and leave the
+              building.
             </p>
             <p>
               If you do not feel comfortable with any of the information below, please wait to
@@ -50,8 +49,8 @@ const Covid19: React.FunctionComponent<IProps> = props => (
                 days.
               </li>
               <li>
-                The Austin Sports Center will be taking contactless temperatures at the door. Anyone
-                with a fever of 100.4 and higher will be asked to leave
+                Please self-check your temperature before attending class and anyone with a fever of
+                100.4 should not attend class.
               </li>
               <li>A mask must be worn at all times</li>
               <li>Clean up trash and leftover belongings as our group exits</li>
@@ -80,7 +79,7 @@ const Covid19: React.FunctionComponent<IProps> = props => (
             </ul>
           </div>
           <div className="cs6">
-            <h3>24 Hours Before Keiko - Online Waiver Process</h3>
+            <h3>Online Waiver Process</h3>
             <ol className="ol_decimal">
               <li>
                 <strong>
@@ -93,14 +92,12 @@ const Covid19: React.FunctionComponent<IProps> = props => (
                   >
                     Austin Sports Center waiver
                   </a>{' '}
-                  24 hours before keiko
+                  before attending keiko.
                 </strong>
               </li>
               <li>
                 When complete, you will receive an email from the Austin Sports Center,{' '}
-                <strong>
-                  this MUST be forwarded to brandon&#64;komeijyuku.com 24 hours before keiko
-                </strong>
+                <strong>this MUST be forwarded to brandon&#64;komeijyuku.com</strong>
               </li>
             </ol>
 
