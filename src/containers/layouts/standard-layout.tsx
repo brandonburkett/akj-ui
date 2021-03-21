@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 import Nav from '../../components/nav/nav';
-import Footer from '../../components/footer/footer';
 
 /**
  * Standard layout, scrolls to top.
