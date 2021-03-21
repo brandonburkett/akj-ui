@@ -7,7 +7,7 @@ import './home.css';
 import imgIsshin from './images/isshin-800.png';
 import imgKobushidori from './images/kobushidori-800.jpg';
 import imgKoiLily from './images/koi-lily-1920.jpg';
-import imgMap from './images/map-800.jpg';
+import imgMap from './images/map-cpd-800.jpg';
 import imgMjerKanji from './images/mjer-kanji.png';
 import imgSeminar from './images/seminar-reiho-800.jpg';
 
@@ -55,10 +55,9 @@ const Home: React.FunctionComponent<IProps> = props => {
         <section className="home group translate-z">
           <p className="intro">
             Austin Komei Jyuku is a traditional budo and Japanese swordsmanship dojo. It is an
-            official Komei Jyuku branch school which is headed by Sekiguchi Komei sensei, the 21st
-            head master. Brandon Burkett sensei opened the dojo in in 2008 and is the head
-            instructor. At Austin Komei Jyuku, we train in Yamauchi-Ha Muso Jikiden Eishin-ryu
-            iaijutsu.
+            official Komei Jyuku branch which is headed by Sekiguchi Komei sensei, the 21st
+            headmaster. Brandon Burkett sensei opened the school in 2008 and is the head instructor
+            for Yamauchi-Ha Muso Jikiden Eishin-ryu iaijutsu.
           </p>
 
           <div className="home-ctas group">
@@ -68,16 +67,16 @@ const Home: React.FunctionComponent<IProps> = props => {
               imgAlt="Kobushidori"
               title="Iaijutsu"
               content="Muso Jikiden Eishin-ryu translates to &ldquo;peerless, direct
-                  transmission, true-faith style&rdquo;. It is the second oldest martial art from Japan with an unbroken
-                  history of 450 years and founded in 1590."
+                  transmission, true-faith style of Eishin&rdquo;. It is the second oldest martial art from Japan with an unbroken
+                  history of 450 years and founded approximately in 1590."
             />
             <BlockImageCTA
               to="/schedule"
               imgSrc={imgMap}
               imgAlt="Map to dojo"
               title="Schedule"
-              content="Class is held every Tuesdays from 8:00pm - 9:00pm and Thursday from
-                  8:30pm - 9:30pm at the Austin Sports Center in Cedar park."
+              content="Class is held Tuesday from 8:00pm - 9:00pm and Thursday from
+                  8:30pm - 9:30pm at the Austin Sports Center in Cedar park. Saturday morning training from 9:00am - 10:30am at the Cedar Park Dojo."
             />
             <BlockImageCTA
               to="/seminars"

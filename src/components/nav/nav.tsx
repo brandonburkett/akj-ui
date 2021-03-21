@@ -82,7 +82,7 @@ class Nav extends React.PureComponent<{}, IState> {
     const { isOpen } = this.state;
 
     return (
-      <header className="masthead group translate-z" role="banner">
+      <header className="masthead translate-z" role="banner">
         <div className="brand">
           <Link to="/">
             <img src={imgMon} alt="Dojo homepage" />
