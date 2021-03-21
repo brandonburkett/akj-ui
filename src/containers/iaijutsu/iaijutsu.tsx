@@ -40,7 +40,7 @@ const Iaijutsu: React.FunctionComponent<IProps> = props => {
         scrollToRef={scrollToRef}
         parallaxSpeed={5}
         title="Muso Jikiden Eishin-ryu Iaijutsu"
-        content="Traditional Japanese swordsmanship classes are held on Tuesdays from 8:00pm - 9:00pm and Thursday from 8:30pm - 9:30pm at the Austin Sports Center in Cedar Park."
+        content="Traditional Japanese swordsmanship classes are held each Tuesday from 8:00pm - 9:00pm and Thursday from 8:30pm - 9:30pm at the Austin Sports Center in Cedar Park. Saturday morning training from 9:00am - 10:30am at the Cedar Park Dojo."
       />
 
       <BelowFold role="main" ref={scrollToRef}>

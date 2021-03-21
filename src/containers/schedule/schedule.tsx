@@ -21,7 +21,7 @@ const Schedule: React.FunctionComponent<IProps> = props => (
   <React.Fragment>
     <Head
       title="Schedule & Pricing"
-      desc="The Austin Komei Jyuku dojo teaches Yamauchi-Ha Muso Jikiden Eishin Ryu Iaijutsu on Tuesdays and Thursdays."
+      desc="The Austin Komei Jyuku dojo teaches Yamauchi-Ha Muso Jikiden Eishin Ryu Iaijutsu on Tuesdays, Thursdays, and Saturday."
       path={props.location.pathname}
     />
     <div id="main" className="group" role="main">
@@ -43,25 +43,59 @@ const Schedule: React.FunctionComponent<IProps> = props => (
             <hr className="dark" />
           </div>
           <div className="cs6">
+            <strong>Schedule</strong>
             <p>
-              Class is held every Tuesdays from 8:00pm - 9:00pm and Thursday from 8:30pm - 9:30pm at
-              the{' '}
-              <a className="link" href="http://www.austinsportscenter.com/centers/cedar-park">
+              Weekday class is held at the{' '}
+              <a
+                className="link"
+                href="https://www.austinsportscenter.com/asc/facilities/cedar-park/"
+              >
                 Austin Sports Center
               </a>{' '}
               (North Austin / Cedar Park). We meet in the SAQ room, which is the first right as you
               walk in.
             </p>
+            <ul className="ul_square">
+              <li>
+                <strong>Tuesday</strong>: 8:00pm - 9:00pm{' '}
+              </li>
+              <li>
+                <strong>Thursday</strong>: 8:00pm - 9:00pm
+              </li>
+            </ul>
+            <p>
+              Weekend class is held at the{' '}
+              <a className="link" href="https://www.cedarparkdojo.com/">
+                Cedar Park Dojo
+              </a>{' '}
+              (off 183). We meet in the SAQ room, which is the first right as you walk in.
+            </p>
+            <ul className="ul_square">
+              <li>
+                <strong>Saturday</strong>: 9:00am - 10:30am
+              </li>
+            </ul>
 
             <strong>Address</strong>
             <p>
-              ASC Cedar Park
+              Weekday Class - ASC Cedar Park
               <br />
               1420 Toro Grande Blvd.
               <br />
               Cedar Park, TX 78613
               <br />
               <a className="link" href="https://goo.gl/maps/w1of4">
+                View Map
+              </a>
+            </p>
+            <p>
+              Weekend Class - Cedar Park Dojo
+              <br />
+              605 S Bell Blvd Suite 100
+              <br />
+              Cedar Park, TX, 78613
+              <br />
+              <a className="link" href="https://g.page/CedarParkDojo?share">
                 View Map
               </a>
             </p>
@@ -76,6 +110,7 @@ const Schedule: React.FunctionComponent<IProps> = props => (
             </p>
           </div>
           <div className="cs6">
+            <strong>Tuition</strong>
             <p>
               All prices are monthly. The Austin Komei Jyuku dojo <strong>does not</strong> use
               contracts, you may come as much or as little as your schedule allows. For yearly,
@@ -130,12 +165,15 @@ const Schedule: React.FunctionComponent<IProps> = props => (
             <h3>School Links</h3>
             <ul className="ul_inline">
               <li>
-                <a className="link" href="http://www.komeijuku.com/">
-                  Hawaii Komei Jyuku
+                <a className="link" href="http://komeijuku.org/">
+                  Komei Jyuku Japan
                 </a>
               </li>
               <li>
-                <a className="link" href="http://www.katsujin.org/">
+                <a
+                  className="link"
+                  href="https://artfitlubbock.com/japanese-swordsmanship-lubbock/"
+                >
                   Texas Komei Jyuku
                 </a>
               </li>
@@ -152,21 +190,6 @@ const Schedule: React.FunctionComponent<IProps> = props => (
               <li>
                 <a className="link" href="http://www.nmsk.org/">
                   New Mexico Komei Jyuku
-                </a>
-              </li>
-              <li>
-                <a className="link" href="http://www.komeijuku.org/">
-                  Portland Komei Jyuku
-                </a>
-              </li>
-              <li>
-                <a className="link" href="http://www.miami-komei-jyuku.org/">
-                  Florida Komei Jyuku
-                </a>
-              </li>
-              <li>
-                <a className="link" href="http://komeijuku.org/">
-                  Portland Komei Jyuku
                 </a>
               </li>
               <li>
@@ -195,8 +218,8 @@ const Schedule: React.FunctionComponent<IProps> = props => (
                 </a>
               </li>
               <li>
-                <a className="link" href="http://www.komei-juku.com/">
-                  Australia Komei Jyuku
+                <a className="link" href="https://www.facebook.com/KomeiJukuSydney/">
+                  Syndney Komei Jyuku
                 </a>
               </li>
               <li>
@@ -205,22 +228,12 @@ const Schedule: React.FunctionComponent<IProps> = props => (
                 </a>
               </li>
               <li>
-                <a className="link" href="http://www.guard7.cz/mjer/">
-                  Czech Republic Komei Jyuku
-                </a>
-              </li>
-              <li>
                 <a className="link" href="http://www.seishinkan.info/">
                   New Zealand Komei Jyuku
                 </a>
               </li>
               <li>
-                <a className="link" href="http://www.komei-savigny-juku.new.fr/">
-                  France Komei Jyuku
-                </a>
-              </li>
-              <li>
-                <a className="link" href="http://www.komeijuku.or.id/">
+                <a className="link" href="https://www.facebook.com/chudenhayanuki/">
                   Indonesia Komei Jyuku
                 </a>
               </li>
@@ -234,16 +247,6 @@ const Schedule: React.FunctionComponent<IProps> = props => (
             <h3>Equipment and Gear</h3>
             <ul className="ul_inline">
               <li>
-                <a className="link" href="http://www.iaijutsu.pl/podstrony-eng/bokkeny-eng.php">
-                  Poland Bokuto
-                </a>
-              </li>
-              <li>
-                <a className="link" href="http://www.bukikan.com/">
-                  Bukikan
-                </a>
-              </li>
-              <li>
                 <a className="link" href="http://www.e-bogu.com/">
                   E-bogu
                 </a>
@@ -254,13 +257,18 @@ const Schedule: React.FunctionComponent<IProps> = props => (
                 </a>
               </li>
               <li>
-                <a className="link" href="http://www.swordstore.com/">
-                  Sword Store
+                <a className="link" href="https://tozandoshop.com/">
+                  Tozando
                 </a>
               </li>
               <li>
-                <a className="link" href="http://www.tozando.com/">
-                  Tozando
+                <a className="link" href="hhttps://www.yamatobudogu.com/">
+                  Yamatou Budogu
+                </a>
+              </li>
+              <li>
+                <a className="link" href="http://www.swordstore.com/">
+                  Sword Store
                 </a>
               </li>
             </ul>
