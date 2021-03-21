@@ -105,9 +105,6 @@ const Covid19: React.FunctionComponent<IProps> = props => (
               Brandon sensei is required to compile the contract tracing list (for the Austin Sports
               Center) as well as have all the waivers electronically on file.
             </p>
-            <h4>
-              Important: <strong>A new waiver must be filled out upon each visit</strong>
-            </h4>
           </div>
         </PanelContent>
       </PanelSection>
