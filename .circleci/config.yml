@@ -4,10 +4,22 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: devourment77/circle-node-aws:10.15.1
+      - image: circleci/node:14
     steps:
       - checkout
       - setup_remote_docker
+      - run:
+          # Run local steps before AWS is required so if they
+          # fail you don't waste build time installing AWS CLI
+
+          # Install AWS CLI
+          # - include aws cli ci docker:
+          #     https://github.com/circleci/circleci-images/issues/53
+          # - use global install for aws and pip instead of --user:
+          #     https://discuss.circleci.com/t/how-to-add-a-path-to-path-in-circle-2-0/11554
+          name: Install awscli
+          command: |
+            sudo apt-get update && sudo apt-get install -qq -y awscli
       # cache based on our lock file
       - restore_cache:
           key: npm-cache-{{ checksum "package.json" }}
