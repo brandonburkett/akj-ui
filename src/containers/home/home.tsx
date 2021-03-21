@@ -13,6 +13,7 @@ import imgSeminar from './images/seminar-reiho-800.jpg';
 
 // ui components
 import BelowFold from '../../components/below-fold/below-fold';
+import Footer from '../../components/footer/footer';
 import BlockImageCTA from '../../components/ctas/block-image-cta';
 import Head from '../../components/head/head';
 import FullScreenParallaxImage from '../../components/images/full-screen-parallax-image';
@@ -92,6 +93,7 @@ const Home: React.FunctionComponent<IProps> = props => {
             <ResponsiveImage src={imgIsshin} alt="一心 - one heart" />
           </div>
         </section>
+        <Footer />
       </BelowFold>
     </React.Fragment>
   );

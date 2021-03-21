@@ -5,6 +5,7 @@ import Head from '../../components/head/head';
 import PanelContent from '../../components/panels/panel-content';
 import PanelSection from '../../components/panels/panel-section';
 import Quote from '../../components/quote/quote';
+import Footer from '../../components/footer/footer';
 
 export interface IProps {
   location: {
@@ -34,6 +35,7 @@ const NoMatch: React.FunctionComponent<IProps> = props => (
         content="The most difficult rival you will ever face is yourself."
         author="Sekiguchi Komei sensei"
       />
+      <Footer />
     </div>
   </React.Fragment>
 );

@@ -6,6 +6,7 @@ import PanelContent from '../../components/panels/panel-content';
 import PanelSection from '../../components/panels/panel-section';
 import Quote from '../../components/quote/quote';
 import ResponsiveMap from '../../components/maps/responsive-map';
+import Footer from '../../components/footer/footer';
 
 // props
 export interface IProps {
@@ -293,6 +294,7 @@ const Schedule: React.FunctionComponent<IProps> = props => (
         content="The most difficult rival you will ever face is yourself."
         author="Sekiguchi Komei sensei"
       />
+      <Footer />
     </div>
   </React.Fragment>
 );

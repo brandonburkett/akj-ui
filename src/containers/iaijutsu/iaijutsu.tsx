@@ -13,6 +13,7 @@ import PanelContent from '../../components/panels/panel-content';
 import PanelSection from '../../components/panels/panel-section';
 import Quote from '../../components/quote/quote';
 import SlideGallery from '../../components/images/slide-gallery';
+import Footer from '../../components/footer/footer';
 
 // props
 export interface IProps {
@@ -283,6 +284,8 @@ const Iaijutsu: React.FunctionComponent<IProps> = props => {
           content="Once you understand the long sword, you will know all shorter swords."
           author="Sekiguchi Komei sensei"
         />
+
+        <Footer />
       </BelowFold>
     </React.Fragment>
   );

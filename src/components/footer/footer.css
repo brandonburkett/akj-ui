@@ -1,0 +1,24 @@
+.footer {
+  background: rgb(067, 091, 013);
+  color: #ffffff;
+  position: relative;
+
+  /* needs to be above full screen parallax */
+  z-index: 1;
+
+  height: 55px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* needed for chrome z-index flicker where you can see background */
+.footer.translate-z {
+  transform: translateZ(1px);
+}
+
+.footer .attribute {
+  display: block;
+  font-size: 1rem;
+}
