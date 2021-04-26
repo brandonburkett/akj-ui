@@ -22,7 +22,7 @@ const Schedule: React.FunctionComponent<IProps> = props => (
   <React.Fragment>
     <Head
       title="Schedule & Pricing"
-      desc="The Austin Komei Jyuku dojo teaches Yamauchi-Ha Muso Jikiden Eishin Ryu Iaijutsu on Tuesdays, Thursdays, and Saturday."
+      desc="The Austin Komei Jyuku dojo teaches Yamauchi-Ha Muso Jikiden Eishin Ryu Iaido on Mondays, Thursdays, and Saturday."
       path={props.location.pathname}
     />
     <div id="main" className="group" role="main">
@@ -30,48 +30,24 @@ const Schedule: React.FunctionComponent<IProps> = props => (
         <PanelContent>
           <div className="cs12">
             <h1>Schedule &amp; Pricing</h1>
-            <p>
-              <strong>Important</strong>: Please see the{' '}
-              <a className="link" href="/covid-19-schedule">
-                updated policies and procedures
-              </a>{' '}
-              related to COVID-19 and the Austin Sports Center.{' '}
-              <strong>
-                Do not attend keiko unless you have read and filled out the online waiver 24 hours
-                before keiko.
-              </strong>
-            </p>
             <hr className="dark" />
           </div>
           <div className="cs6">
             <strong>Schedule</strong>
             <p>
-              Weekday class is held at the{' '}
-              <a
-                className="link"
-                href="https://www.austinsportscenter.com/asc/facilities/cedar-park/"
-              >
-                Austin Sports Center
-              </a>{' '}
-              (North Austin / Cedar Park). We meet in the SAQ room, which is the first right as you
-              walk in.
-            </p>
-            <ul className="ul_square">
-              <li>
-                <strong>Tuesday</strong>: 8:00pm - 9:00pm{' '}
-              </li>
-              <li>
-                <strong>Thursday</strong>: 8:00pm - 9:00pm
-              </li>
-            </ul>
-            <p>
-              Weekend class is held at the{' '}
+              Class is held at the{' '}
               <a className="link" href="https://www.cedarparkdojo.com/">
                 Cedar Park Dojo
               </a>{' '}
-              (off 183). We meet in the SAQ room, which is the first right as you walk in.
+              (off 183).
             </p>
             <ul className="ul_square">
+              <li>
+                <strong>Monday</strong>: 8:00pm - 9:30pm{' '}
+              </li>
+              <li>
+                <strong>Thursday</strong>: 8:00pm - 9:30pm
+              </li>
               <li>
                 <strong>Saturday</strong>: 9:00am - 10:30am
               </li>
@@ -79,18 +55,7 @@ const Schedule: React.FunctionComponent<IProps> = props => (
 
             <strong>Address</strong>
             <p>
-              Weekday Class - ASC Cedar Park
-              <br />
-              1420 Toro Grande Blvd.
-              <br />
-              Cedar Park, TX 78613
-              <br />
-              <a className="link" href="https://goo.gl/maps/w1of4">
-                View Map
-              </a>
-            </p>
-            <p>
-              Weekend Class - Cedar Park Dojo
+              Cedar Park Dojo
               <br />
               605 S Bell Blvd Suite 100
               <br />
@@ -166,8 +131,8 @@ const Schedule: React.FunctionComponent<IProps> = props => (
             <h3>School Links</h3>
             <ul className="ul_inline">
               <li>
-                <a className="link" href="http://komeijuku.org/">
-                  Komei Jyuku Japan
+                <a className="link" href="https://komeijuku.jp/">
+                  Komei Juku Japan
                 </a>
               </li>
               <li>

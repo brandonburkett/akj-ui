@@ -126,26 +126,6 @@ class Nav extends React.PureComponent<{}, IState> {
               <li className="nav-list-item">
                 <Link
                   className="nav-parent"
-                  to="/seminars"
-                  role="menuitem"
-                  onClick={this.toggleMenu}
-                >
-                  Seminars
-                </Link>
-              </li>
-              <li className="nav-list-item">
-                <Link
-                  className="nav-parent"
-                  to="/covid-19-schedule"
-                  role="menuitem"
-                  onClick={this.toggleMenu}
-                >
-                  COVID-19 Updates
-                </Link>
-              </li>
-              <li className="nav-list-item">
-                <Link
-                  className="nav-parent"
                   to="/schedule"
                   role="menuitem"
                   onClick={this.toggleMenu}
@@ -153,6 +133,26 @@ class Nav extends React.PureComponent<{}, IState> {
                   Schedule
                 </Link>
               </li>
+              <li className="nav-list-item">
+                <Link
+                  className="nav-parent"
+                  to="/seminars"
+                  role="menuitem"
+                  onClick={this.toggleMenu}
+                >
+                  Seminars
+                </Link>
+              </li>
+              {/*<li className="nav-list-item">*/}
+              {/*  <Link*/}
+              {/*    className="nav-parent"*/}
+              {/*    to="/covid-19-schedule"*/}
+              {/*    role="menuitem"*/}
+              {/*    onClick={this.toggleMenu}*/}
+              {/*  >*/}
+              {/*    COVID-19 Updates*/}
+              {/*  </Link>*/}
+              {/*</li>*/}
               <li className="nav-list-item">
                 <a className="nav-parent" href="mailto:brandon@komeijyuku.com" role="menuitem">
                   Contact
