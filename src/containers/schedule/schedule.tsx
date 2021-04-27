@@ -79,12 +79,7 @@ const Schedule: React.FunctionComponent<IProps> = props => (
             <strong>Tuition</strong>
             <p>
               All prices are monthly. The Austin Komei Jyuku dojo <strong>does not</strong> use
-              contracts, you may come as much or as little as your schedule allows. For yearly,
-              lifetime, and private lessons, please{' '}
-              <a className="link" href="mailto:brandon@komeijyuku.com">
-                contact Burkett sensei
-              </a>{' '}
-              directly.
+              contracts, you may come as much or as little as your schedule allows.
             </p>
 
             <strong>Single Prices</strong>
