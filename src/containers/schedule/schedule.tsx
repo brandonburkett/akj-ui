@@ -22,7 +22,7 @@ const Schedule: React.FunctionComponent<IProps> = props => (
   <React.Fragment>
     <Head
       title="Schedule & Pricing"
-      desc="The Austin Komei Jyuku dojo teaches Yamauchi-Ha Muso Jikiden Eishin Ryu Iaido on Mondays, Thursdays, and Saturday."
+      desc="The Austin Komei Jyuku dojo teaches Yamauchi-Ha Muso Jikiden Eishin Ryu Iaido on Monday, Wednesday, and Saturday."
       path={props.location.pathname}
     />
     <div id="main" className="group" role="main">
@@ -46,7 +46,7 @@ const Schedule: React.FunctionComponent<IProps> = props => (
                 <strong>Monday</strong>: 8:00pm - 9:30pm{' '}
               </li>
               <li>
-                <strong>Thursday</strong>: 8:00pm - 9:30pm
+                <strong>Wednesday</strong>: 8:00pm - 9:30pm
               </li>
               <li>
                 <strong>Saturday</strong>: 9:00am - 10:30am
