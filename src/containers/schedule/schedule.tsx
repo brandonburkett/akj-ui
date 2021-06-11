@@ -82,42 +82,18 @@ const Schedule: React.FunctionComponent<IProps> = props => (
               contracts, you may come as much or as little as your schedule allows.
             </p>
 
-            <strong>Single Prices</strong>
+            <strong>Three Class / Week Pricing</strong>
             <ul className="ul_square">
-              <li>$60.00 - Iaijutsu</li>
+              <li>$90.00 - Iaijutsu</li>
             </ul>
-            <strong>Family Prices</strong>
-            <ul className="ul_square">
-              <li>$60.00 - First family member</li>
-              <li>$40.00 - Each additional member</li>
-            </ul>
-            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+            <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
               <input type="hidden" name="cmd" value="_s-xclick" />
+              <input type="hidden" name="hosted_button_id" value="V3SLFRUB4LF3S" />
               <input
                 type="submit"
                 className="form-button"
-                id="s002Button"
-                value="PayPal - $60.00"
-              />
-              <input
-                type="hidden"
-                name="encrypted"
-                value="-----BEGIN PKCS7-----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-----END PKCS7-----"
-              />
-            </form>
-
-            <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-              <input type="hidden" name="cmd" value="_s-xclick" />
-              <input
-                type="submit"
-                className="form-button"
-                id="s001Button"
-                value="PayPal - $40.00"
-              />
-              <input
-                type="hidden"
-                name="encrypted"
-                value="-----BEGIN PKCS7-----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-----END PKCS7-----"
+                id="k2021Button"
+                value="PayPal - $90.00"
               />
             </form>
             <br />
