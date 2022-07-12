@@ -49,7 +49,7 @@ const Schedule: React.FunctionComponent<IProps> = props => (
                 <strong>Wednesday</strong>: 8:00pm - 9:30pm
               </li>
               <li>
-                <strong>Saturday</strong>: 9:00am - 10:30am
+                <strong>Saturday</strong>: 9:00am - 11:00am
               </li>
             </ul>
 
@@ -82,7 +82,7 @@ const Schedule: React.FunctionComponent<IProps> = props => (
               contracts, you may come as much or as little as your schedule allows.
             </p>
 
-            <strong>Three Class / Week Pricing</strong>
+            <strong>Monthly Pricing</strong>
             <ul className="ul_square">
               <li>$90.00 - Iaijutsu</li>
             </ul>
