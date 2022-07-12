@@ -41,7 +41,7 @@ const Iaijutsu: React.FunctionComponent<IProps> = props => {
         scrollToRef={scrollToRef}
         parallaxSpeed={5}
         title="Muso Jikiden Eishin-ryu Iaijutsu"
-        content="Traditional Japanese swordsmanship classes are held each Monday and Wednesday from 8:00pm - 9:30pm at the Cedar Park Dojo. Saturday morning training from 9:00am - 10:30am."
+        content="Traditional Japanese swordsmanship classes are held each Monday and Wednesday from 8:00pm - 9:30pm at the Cedar Park Dojo. Saturday morning training from 9:00am - 11:00am."
       />
 
       <BelowFold role="main" ref={scrollToRef}>
@@ -87,7 +87,7 @@ const Iaijutsu: React.FunctionComponent<IProps> = props => {
             <div className="cs12">
               <hr className="dark" />
               <p>
-                The current (21st) soke is Sekiguchi Komei sensei. He created the Komei Jyuku, an
+                The current (21st) generation is lead by Sekiguchi Komei sensei. He created the Komei Jyuku, an
                 international body of students, and spreads iaijutsu with the isshin / one heart (
                 <span lang="ja">一心</span>) philosophy.
               </p>
