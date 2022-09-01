@@ -1,14 +1,14 @@
 // gallery
-import imgGallery1 from './images/sekiguchi-sensei-tatehiza.jpg';
-import imgGallery2 from './images/seminar-2018.jpg';
-import imgGallery3 from './images/burkett-sensei.jpg';
+import imgGallery1 from './images/yasukuni-2020.jpg';
+import imgGallery2 from './images/burkett-sensei-2022.jpg';
+import imgGallery3 from './images/seminar-2018.jpg';
 import imgGallery4 from './images/sekiguchi-sensei-zengogiri.jpg';
-import imgGallery5 from './images/tameshigiri.jpg';
-import imgGallery6 from './images/nage-waza.jpg';
-import imgGallery7 from './images/daei-uchitachi.jpg';
+import imgGallery5 from './images/tameshigiri-2022.jpg';
+import imgGallery6 from './images/kumitachi-2022.jpg';
+import imgGallery7 from './images/gansekiotoshi-2020.jpg';
 import imgGallery8 from './images/muto-dori.jpg';
-import imgGallery9 from './images/sword-cleaning.jpg';
-import imgGallery10 from './images/daei-shitachi.jpg';
+import imgGallery9 from './images/inazuma-2022.jpg';
+import imgGallery10 from './images/suigetsuto-2022.jpg';
 import imgGallery11 from './images/sekiguchi-sensei-chuden.jpg';
 import imgGallery12 from './images/reiho.jpg';
 
