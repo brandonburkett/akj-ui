@@ -102,7 +102,7 @@ const Schedule: React.FunctionComponent<IProps> = props => (
             <h3>School Links</h3>
             <ul className="ul_inline">
               <li>
-                <a className="link" href="https://komeijuku.jp/">
+                <a className="link" href="https://www.komeijuku.jp/">
                   Komei Juku Japan
                 </a>
               </li>
