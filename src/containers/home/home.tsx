@@ -5,9 +5,9 @@ import './home.css';
 
 // images
 import imgIsshin from './images/isshin-800.png';
-import imgKobushidori from './images/kobushidori-800.jpg';
+import imgEnbu from './images/akj-enbu-2020.jpg';
 import imgKoiLily from './images/koi-lily-1920.jpg';
-import imgMap from './images/map-cpd-800.jpg';
+import imgMap from './images/map-cpd-800-2022.png';
 import imgMjerKanji from './images/mjer-kanji.png';
 import imgSeminar from './images/seminar-reiho-800.jpg';
 
@@ -55,28 +55,25 @@ const Home: React.FunctionComponent<IProps> = props => {
       <BelowFold role="main" ref={scrollToRef}>
         <section className="home group translate-z">
           <p className="intro">
-            Austin Komei Jyuku is a traditional budo and Japanese swordsmanship dojo. It is an
-            official Komei Jyuku branch which is headed by Sekiguchi Komei sensei, the 21st
-            headmaster. Brandon Burkett sensei opened the school in 2008 and is the head instructor
-            for Yamauchi-Ha Muso Jikiden Eishin-ryu iaijutsu.
+            Austin Komei Jyuku teaches the koryu Japanese sword art of Yamauchi-ha Muso Jikiden Eishin-ryu Iaijutsu as taught by the 21st generation, Sekiguchi Komei sensei. The Komei Juku, also known as the Nihon Koden Bujutsu Iaido Renmei, is a member of the Nihon Kobudo Kyokai, one of the premiere martial arts organizations in Japan, dedicated to the preservation of classical martial traditions. The Austin shibucho is Brandon Burkett who is a direct student to Sekiguchi sensei.
           </p>
 
           <div className="home-ctas group">
             <BlockImageCTA
               to="/iaijutsu"
-              imgSrc={imgKobushidori}
+              imgSrc={imgEnbu}
               imgAlt="Kobushidori"
               title="Iaijutsu"
               content="Muso Jikiden Eishin-ryu translates to &ldquo;peerless, direct
-                  transmission, true-faith style of Eishin&rdquo;. It is the second oldest martial art from Japan with an unbroken
-                  history of 450 years and founded approximately in 1590."
+                  transmission, true-faith style of Eishin&rdquo;. It is one of the oldest martial art from Japan with an unbroken
+                  history dating back to the late 16th century when it was founded by Hayashizaki Jinsuke Shigenobu."
             />
             <BlockImageCTA
               to="/schedule"
               imgSrc={imgMap}
               imgAlt="Map to dojo"
               title="Schedule"
-              content="Class is held Monday and Wednesday from 8:00pm - 9:30pm at the Cedar Park Dojo. Saturday morning training from 9:00am - 10:30am."
+              content="Class is held Monday and Wednesday from 8:00pm - 9:30pm at the Cedar Park Dojo. Saturday morning training from 9:00am - 11:00am."
             />
             <BlockImageCTA
               to="/seminars"

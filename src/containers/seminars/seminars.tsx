@@ -29,11 +29,11 @@ const Seminars: React.FunctionComponent<IProps> = props => (
       <PanelSection>
         <PanelContent>
           <div className="cs12">
-            <h1>2020 Texas Seminar</h1>
+            <h1>2021 Texas Seminar</h1>
           </div>
           <div className="cs12">
             <p>
-              The 2020 Texas seminar with Sekiguchi sensei has been canceled due to the health
+              The 2021 Texas seminar with Sekiguchi sensei has been canceled due to the health
               situation regarding the COVID-19 and international travel restrictions. We look
               forward to next year.
             </p>
