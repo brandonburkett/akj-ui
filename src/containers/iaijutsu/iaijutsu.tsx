@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 // images
-import imgKobushidori from './images/kobushidori-1500.jpg';
+import imgKobushidori from './images/reiho-enbu-2022.jpg';
 import imageGallery from './iaijutsu-image-gallery';
 
 // ui components
