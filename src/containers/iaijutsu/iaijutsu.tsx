@@ -33,7 +33,7 @@ const Iaijutsu: React.FunctionComponent<IProps> = props => {
     <React.Fragment>
       <Head
         title="Muso Jikiden Eishin-ryu Iaijutsu"
-        desc="The Austin Komei Jyuku dojo teaches Yamauchi-Ha Muso Jikidien Eishin-ryu Iaijutsu under Sekiguchi Komei sensei."
+        desc="The Austin Komei Jyuku dojo teaches Yamauchi-Ha Muso Jikidien Eishin-ryu Iaido under Sekiguchi Komei sensei."
         path={props.location.pathname}
       />
       <FullScreenParallaxImage
@@ -41,7 +41,7 @@ const Iaijutsu: React.FunctionComponent<IProps> = props => {
         scrollToRef={scrollToRef}
         parallaxSpeed={5}
         title="Muso Jikiden Eishin-ryu Iaijutsu"
-        content="Traditional Japanese swordsmanship classes are held each Monday and Wednesday from 8:00pm - 9:30pm at the Cedar Park Dojo. Saturday morning training from 9:00am - 11:00am."
+        content="Iaijutsu classes are held each Monday and Wednesday from 8:00pm - 9:30pm at the Cedar Park Dojo. Saturday morning training from 9:00am - 11:00am."
       />
 
       <BelowFold role="main" ref={scrollToRef}>
@@ -53,43 +53,45 @@ const Iaijutsu: React.FunctionComponent<IProps> = props => {
             <div className="cs6">
               <p>
                 Muso Jikiden Eishin-ryu (<span lang="ja">無雙直傳英信流居合術</span>) translates to
-                &ldquo;peerless, direct transmission, true-faith style&rdquo;. It is the second
-                oldest martial art from Japan with an unbroken history of 450 years that was founded
-                in 1590. The founder of Muso Jikiden Eishin-ryu was Hayashizaki Jinsuke Shigenobu,
-                who also founded Hayashizaki Shimmei Muso-ryu, Muso-ryu, Hayashizaki-ryu,
-                Hayashizaki Jinsuke-ryu, Muso Shinden-ryu, and Jushin-ryu. It is said he confined
+                &ldquo;peerless, direct transmission, true-faith style&rdquo;. It one of the
+                oldest martial art from Japan with a history of 450 years that was founded
+                in the late Muromachi period (late 16th century). The founder of Muso Jikiden Eishin-ryu was Hayashizaki Jinsuke Shigenobu. It is said he confined
                 himself for approximately a hundred days in the Hayashizaki Myojin Shrine, where he
-                received divine inspiration for a new body of sword techniques using a long sword.
+                received divine inspiration for a new body of sword techniques using a long sword. Since then, multiple lines have evolved.
               </p>
               <p>
                 The term &lsquo;Eishin&rsquo; came from 7th generation headmaster, Hasegawa
-                Chikaranosuke Eishin, who officially called the art Muso Jikiden Eishin-ryu. He also
-                served the Tokugawa family in Nagoya and excelled in Kyudo. The title
-                &lsquo;Muso&rsquo; (unparalleled / peerless) refers to the fact that Hasegawa Eishin
-                was praised by Toyotomi Hideyoshi as &ldquo;a swordsman without equal&rdquo; when he
-                saw a demonstration of his iaijutsu.
+                Chikaranosuke (Mondonosuke) Eishin. His technique, was so miraculous that it was called Hasegawa Eishin Ryu, and later became recognized as Muso Jikiden Eishin-ryu. He also
+                served the Tokugawa family in Nagoya and excelled in Kyudo.
+              </p>
+              <p>
+                The 9th generation headmaster, Hayashi Rokudayu Morimasa, served the Tosa domain and
+                established Eishin-ryu there. Since then, the Tosa Domain kept his techniques as house secrets and passed the knowledge on to succeeding generations.
               </p>
             </div>
             <div className="cs6">
-              <p>
-                The 9th generation headmaster, Hayashi Rokudayu Morimasa, served the Tosa domain and
-                established Eishin-ryu there. The 17th generation headmaster, Oe Masamichi
+              <p>The 17th generation headmaster, Oe Masamichi Shikei
                 formalized many of the waza in Muso Jikiden Eishin Ryu. He changed the names of the
                 Omori-ryu and Hasegawa-ryu, (both styles were integrated into Eishin-ryu at the
                 time) into Seiza no Bu and Tatehiza no Bu. Masamichi also organized the waza into
-                logical order within each set. Yamauchi Toyotake, the 18th generation headmaster is
+                logical order within each set.  He was was concerned that budo would decline and decided to open the gate and disseminate the techniques widely.
+              </p>
+              <p>Yamauchi Toyotake, the 18th generation headmaster is
                 the grandson of Yamauchi Yodo, the daimyo of Tosa. Yamauchi Toyotake taught many
                 students in Tokyo and Kyoto and even served when called to do military service in
-                1941. The 20th generation, Onoe Masamitsu, inherited it and passed it to the current
+                1941.
+              </p>
+              <p>The 19th generation, Kono Kanemitsu, founded the Meibukan in Toshima-ku, Tokyo. The 20th generation, Onoe Masamitsu, inherited it and passed it to the current
                 21st generation, Sekiguchi Komei.
               </p>
             </div>
             <div className="cs12">
               <hr className="dark" />
               <p>
-                The current (21st) generation is lead by Sekiguchi Komei sensei. He created the Komei Jyuku, an
-                international body of students, and spreads iaijutsu with the isshin / one heart (
-                <span lang="ja">一心</span>) philosophy.
+                The current (21st) generation is lead by Sekiguchi Komei sensei. He created the Komei Jyuku, also known as the Nihon Koden Bujutsu Iaido Renmei, which is a member of the Nihon Kobudo Kyokai.
+
+                Sekiguchi sensei teaches and spreads Iaijutsu with isshin / one heart (
+                <span lang="ja">一心</span>) philosophy. When we use the sword, our school methodology is to handle a long sword like a short one, and a heavy sword like a light one.
               </p>
             </div>
           </PanelContent>
@@ -230,7 +232,7 @@ const Iaijutsu: React.FunctionComponent<IProps> = props => {
               </ol>
             </div>
             <div className="cs6">
-              <h4>Tsume-Iai</h4>
+              <h4>Tsumeai</h4>
               <ol className="ol_decimal">
                 <li>Hasso</li>
                 <li>Kobushidori</li>
