@@ -55,7 +55,7 @@ const Home: React.FunctionComponent<IProps> = props => {
       <BelowFold role="main" ref={scrollToRef}>
         <section className="home group translate-z">
           <p className="intro">
-            Austin Komei Jyuku teaches the koryu Japanese sword art of Yamauchi-ha Muso Jikiden Eishin-ryu Iaijutsu as taught by the 21st generation, Sekiguchi Komei sensei. The Komei Jyuku, also known as the Nihon Koden Bujutsu Iaido Renmei, is a member of the Nihon Kobudo Kyokai, one of the premiere martial arts organizations in Japan, dedicated to the preservation of classical martial traditions. The Austin shibucho is Brandon Burkett who is a direct student to Sekiguchi sensei.
+            Austin Komei Jyuku teaches the koryu Japanese sword art of Yamauchi-ha Muso Jikiden Eishin-ryu Iaijutsu as taught by the 21st generation, Sekiguchi Komei sensei. The Komei Jyuku, also known as the Nihon Koden Bujutsu Iaido Renmei, is a member of the Nihon Kobudo Kyokai, one of the premiere martial arts organizations in Japan dedicated to preserving classical martial traditions. The Austin shibucho is Brandon Burkett who is a direct student to Sekiguchi sensei.
           </p>
 
           <div className="home-ctas group">
