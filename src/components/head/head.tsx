@@ -43,7 +43,7 @@ class Head extends PureComponent<IProps> {
   };
 
   render() {
-    const { base, env, gtmId, title, desc, path, image, noIndex, children } = this.props;
+    const { base, env, title, desc, path, image, noIndex, children } = this.props;
 
     // default title if one is not provided
     const defaultTitle = 'Austin Komei Jyuku';
