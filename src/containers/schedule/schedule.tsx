@@ -57,7 +57,7 @@ const Schedule: React.FunctionComponent<IProps> = props => (
             <p>
               Cedar Park Dojo
               <br />
-              605 S Bell Blvd Suite 100
+              300 Brushy Creek Rd Ste 405
               <br />
               Cedar Park, TX, 78613
               <br />
