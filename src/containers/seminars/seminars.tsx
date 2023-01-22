@@ -39,18 +39,18 @@ const Seminars: React.FunctionComponent<IProps> = props => (
         {/*</PanelContent>*/}
         <PanelContent>
           <div className="cs12">
-            <h1>2023 Austin Iaijutsu Seminar</h1>
+            <h1>2023 Austin Seminar</h1>
           </div>
           <div className="cs12">
             <p>
-              Sekiguchi sensei will be in Austin <strong>June 21th - June 27th, 2023</strong> leading our
-              Muso Jikiden Eishin-ryu Iaijutsu seminar. It is a rare opportunity to train with the Sekiguchi sensei and
+              Sekiguchi sensei will be in Austin, TX, teaching a
+              Muso Jikiden Eishin-ryu Iaijutsu seminar on <strong>June 21th - June 27th, 2023</strong>. It is a rare opportunity to train with the Sekiguchi sensei and
               everyone is encourage to attend, even beginner students.
             </p>
             <p>Please note that <strong>masks are required</strong> for training during the seminar.</p>
 
             <p>
-              The Austin seminar training schedule is below. Please contact{' '}
+              The seminar training schedule is below. Please contact{' '}
               <a className="link" href="mailto:brandon@komeijyuku.com">
                 Brandon
               </a> before paying to confirm attendance or if you have any questions.
