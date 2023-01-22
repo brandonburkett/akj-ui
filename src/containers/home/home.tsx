@@ -80,7 +80,7 @@ const Home: React.FunctionComponent<IProps> = props => {
               imgSrc={imgSeminar}
               imgAlt="Tomoe sune"
               title="Seminars"
-              content="Train during our yearly seminar in Austin. It is a rare opportunity to train with Sekiguchi sensei, the 21st Headmaster of Yamauchi-ha Muso Jikiden Eishin-ryu."
+              content="Train during our yearly Muso Jikiden Eishin-ryu seminar in Austin. It is a rare opportunity to train with the 21st generation, Sekiguchi Komei sensei."
             />
           </div>
         </section>
