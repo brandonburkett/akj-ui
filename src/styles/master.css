@@ -693,14 +693,20 @@ h3 {
 }
 h4 {
   font-size: 1.2em;
+  color: #394352;
+  font-weight: bold;
   margin: 0 0 10px 0;
 }
 h5 {
   font-size: 1.1em;
+  color: #394352;
+  font-weight: bold;
   margin: 0 0 10px 0;
 }
 h6 {
   font-size: 1em;
+  color: #394352;
+  font-weight: bold;
   margin: 0 0 10px 0;
 }
 address {

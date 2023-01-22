@@ -33,7 +33,7 @@ const Schedule: React.FunctionComponent<IProps> = props => (
             <hr className="dark" />
           </div>
           <div className="cs6">
-            <strong>Schedule</strong>
+            <h3>Schedule</h3>
             <p>
               Class is held at the{' '}
               <a className="link" href="https://www.cedarparkdojo.com/">
@@ -53,7 +53,7 @@ const Schedule: React.FunctionComponent<IProps> = props => (
               </li>
             </ul>
 
-            <strong>Address</strong>
+            <h4>Address</h4>
             <p>
               Cedar Park Dojo
               <br />
@@ -66,7 +66,7 @@ const Schedule: React.FunctionComponent<IProps> = props => (
               </a>
             </p>
 
-            <strong>Contact</strong>
+            <h4>Contact</h4>
             <p>
               <a className="link" href="mailto:brandon@komeijyuku.com">
                 brandon@komeijyuku.com
@@ -76,29 +76,22 @@ const Schedule: React.FunctionComponent<IProps> = props => (
             </p>
           </div>
           <div className="cs6">
-            <strong>Tuition</strong>
+            <h3>Tuition</h3>
             <p>
               All prices are monthly. The Austin Komei Jyuku dojo <strong>does not</strong> use
               contracts, you may come as much or as little as your schedule allows.
             </p>
 
-            <strong>Monthly Pricing</strong>
+            <h4>Monthly Pricing</h4>
             <ul className="ul_square">
               <li>$90.00 - Iaijutsu</li>
+              <li>PayPal: brandon&#64;komeijyuku.com</li>
+              <li>Venmo: @brandon-burkett-mjer</li>
+              <li>Zelle: Austin Komei Jyuku</li>
             </ul>
-            <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
-              <input type="hidden" name="cmd" value="_s-xclick" />
-              <input type="hidden" name="hosted_button_id" value="V3SLFRUB4LF3S" />
-              <input
-                type="submit"
-                className="form-button"
-                id="k2021Button"
-                value="PayPal - $90.00"
-              />
-            </form>
-            <br />
           </div>
           <div className="cs12">
+            <hr className="dark" />
             <h3>School Links</h3>
             <ul className="ul_inline">
               <li>
@@ -115,16 +108,6 @@ const Schedule: React.FunctionComponent<IProps> = props => (
                 </a>
               </li>
               <li>
-                <a className="link" href="http://www.shobukan.org/">
-                  Shobukan
-                </a>
-              </li>
-              <li>
-                <a className="link" href="http://www.mizukan.org">
-                  Colorado Komei Jyuku
-                </a>
-              </li>
-              <li>
                 <a className="link" href="http://www.nmsk.org/">
                   New Mexico Komei Jyuku
                 </a>
@@ -135,23 +118,8 @@ const Schedule: React.FunctionComponent<IProps> = props => (
                 </a>
               </li>
               <li>
-                <a className="link" href="http://www.komeijyuku.com.ar/">
-                  Argentina Komei Jyuku
-                </a>
-              </li>
-              <li>
-                <a className="link" href="http://www.seishukai.at/">
-                  Austria Komei Jyuku
-                </a>
-              </li>
-              <li>
                 <a className="link" href="http://imau.ictta.ru/">
                   Russia Komei Jyuku
-                </a>
-              </li>
-              <li>
-                <a className="link" href="http://www.komei-jyuku-polska.pl/">
-                  Poland Komei Jyuku
                 </a>
               </li>
               <li>
@@ -180,7 +148,9 @@ const Schedule: React.FunctionComponent<IProps> = props => (
                 </a>
               </li>
             </ul>
-
+          </div>
+          <div className="cs12">
+            <hr className="dark" />
             <h3>Equipment and Gear</h3>
             <ul className="ul_inline">
               <li>
