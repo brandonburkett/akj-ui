@@ -55,6 +55,8 @@ const Seminars: React.FunctionComponent<IProps> = props => (
                 Brandon
               </a> before paying to confirm attendance or if you have any questions.
             </p>
+
+            <hr className="dark" />
           </div>
 
           {/*<div className="cs6">*/}
