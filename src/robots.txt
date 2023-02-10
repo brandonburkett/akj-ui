@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /_*
+
+Sitemap: https://austin.komeijyuku.com/sitemap.xml

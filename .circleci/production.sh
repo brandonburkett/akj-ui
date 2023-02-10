@@ -61,6 +61,7 @@ s3_sync() {
 
   # upload sitemap to s3
   aws s3 cp ./src/sitemap.xml s3://$AWS_S3_BUCKET --cache-control max-age=${MAX_AGE},public
+  aws s3 cp ./src/robots.txt s3://$AWS_S3_BUCKET --cache-control max-age=${MAX_AGE},public
 }
 
 # clean up cloud front
