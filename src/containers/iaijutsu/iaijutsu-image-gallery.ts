@@ -30,4 +30,5 @@ export const imageGalleryRaw: string[] = [
 export default imageGalleryRaw.map(image => ({
   bulletClass: 'slide-gallery-bullet',
   original: image,
+  originalAlt: 'Iaido training at Austin Komei Jyuku',
 }));
