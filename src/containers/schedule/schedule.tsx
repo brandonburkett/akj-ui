@@ -100,6 +100,16 @@ const Schedule: React.FunctionComponent<IProps> = props => (
                 </a>
               </li>
               <li>
+                <a className="link" href="https://www.nihonkobudokyoukai.org/">
+                  Nihon Kobudo Kyoukai
+                </a>
+              </li>
+              <li>
+                <a className="link" href="https://www.nihonkobudokyoukai.org/martialarts/041/">
+                  NKK - Komei Juku Page
+                </a>
+              </li>
+              <li>
                 <a
                   className="link"
                   href="https://artfitlubbock.com/japanese-swordsmanship-lubbock/"
