@@ -49,7 +49,6 @@
 
 .cover-scroll-cue {
   position: absolute;
-  bottom: 30px;
   width: 100%;
   text-align: center;
   /*z-index: 1;*/
@@ -82,7 +81,7 @@
   }
 
   .cover-scroll-cue {
-    bottom: 100px;
+    bottom: 120px;
   }
 
   .cover-text {
@@ -101,7 +100,7 @@
   }
 
   .cover-scroll-cue {
-    bottom: 50px;
+    bottom: 75px;
   }
 
   .cover-text {
