@@ -4,7 +4,7 @@ import * as React from 'react';
 import './full-screen-parallax-image.css';
 
 // images
-import imgChevron from './images/chevron-lt.png';
+import imgChevron from './images/chevron-down-icon.svg';
 
 export interface IProps {
   title?: string;
@@ -112,8 +112,8 @@ class FullScreenParallaxImage extends React.PureComponent<IProps, {}> {
 
           {scrollToRef ? (
             <div className="cover-scroll-cue" onClick={this.handleScroll}>
-              <button>
-                <img src={imgChevron} alt="Scroll down" />
+              <button className="cover-scroll-btn" aria-label="Scroll Down">
+                <img src={imgChevron} alt="Scroll Down" aria-hidden={true} />
               </button>
             </div>
           ) : null}

@@ -49,22 +49,29 @@
 
 .cover-scroll-cue {
   position: absolute;
-  bottom: 20px;
+  bottom: 30px;
   width: 100%;
   text-align: center;
   /*z-index: 1;*/
 }
 
-.cover-scroll-cue button {
+.cover-scroll-btn {
   /* remove default button styles */
-  background: none;
   color: inherit;
   border: none;
   font: inherit;
   cursor: pointer;
   outline: inherit;
+  padding: 10px 25px;
+  background-color: #fff;
+  border-radius: 50px;
+}
 
-  padding: 25px 25px;
+.cover-scroll-btn img {
+  width: 30px;
+  height: 30px;
+  margin: 0 auto;
+  display: block;
 }
 
 /* Responsive Style Sheet */
@@ -116,9 +123,5 @@
 @media screen and (min-width: 1200px) {
   .cover-content {
     font-size: 2.2em;
-  }
-
-  .cover-scroll-cue {
-    bottom: 20px;
   }
 }
