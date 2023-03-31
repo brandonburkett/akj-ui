@@ -8,6 +8,9 @@ import './nav.css';
 import imgMon from './images/komei-jyuku-mon-64.png';
 import imgMenuClose from './images/menu-close.png';
 import imgMenu from './images/menu.png';
+import imgFacebook from './images/facebook.svg';
+import imgYoutube from './images/youtube.svg';
+import imgInstagram from './images/instagram.svg';
 
 /**
  * Component state
@@ -143,16 +146,6 @@ class Nav extends React.PureComponent<{}, IState> {
                   Seminars
                 </Link>
               </li>
-              {/*<li className="nav-list-item">*/}
-              {/*  <Link*/}
-              {/*    className="nav-parent"*/}
-              {/*    to="/covid-19-schedule"*/}
-              {/*    role="menuitem"*/}
-              {/*    onClick={this.toggleMenu}*/}
-              {/*  >*/}
-              {/*    COVID-19 Updates*/}
-              {/*  </Link>*/}
-              {/*</li>*/}
               <li className="nav-list-item">
                 <a className="nav-parent" href="mailto:brandon@komeijyuku.com" role="menuitem">
                   Contact
@@ -161,36 +154,28 @@ class Nav extends React.PureComponent<{}, IState> {
             </ul>
             <div className="social">
               <a
-                className="facebook"
+                className="social-link"
                 href="https://www.facebook.com/austinkomeijyuku"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <div className="social-link">Facebook</div>
+                <img className="social-icon" src={imgFacebook} alt="Facebook" />
               </a>
               <a
-                className="youtube"
-                href="http://www.youtube.com/user/austinkomeijyuku"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <div className="social-link">YouTube</div>
-              </a>
-              <a
-                className="twitter"
-                href="https://twitter.com/akjdojo"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <div className="social-link">Twitter</div>
-              </a>
-              <a
-                className="instagram"
+                className="social-link"
                 href="https://www.instagram.com/austinkomeijyuku/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <div className="social-link">Facebook Photos</div>
+                <img className="social-icon" src={imgInstagram} alt="Instagram" />
+              </a>
+              <a
+                className="social-link"
+                href="http://www.youtube.com/user/austinkomeijyuku"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img className="social-icon" src={imgYoutube} alt="YouTube" />
               </a>
             </div>
           </div>
