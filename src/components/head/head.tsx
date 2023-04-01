@@ -16,7 +16,6 @@ import kamonImage from '../../styles/images/ogp-mon-375.jpg';
 export interface IProps {
   base?: string;
   env?: string;
-  gtmId?: string;
   title: string;
   desc: string;
   path: string;
@@ -37,7 +36,6 @@ class Head extends PureComponent<IProps> {
 
     children: null,
     env: 'production',
-    gtmId: process.env.REACT_APP_GA_ID || '',
     image: defaultOgpImage,
     noIndex: false,
   };

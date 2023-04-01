@@ -30,6 +30,7 @@ export default function register() {
 
     window.addEventListener('load', () => {
       const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
+      console.log('SW: load', swUrl);
 
       if (isLocalhost) {
         // This is running on localhost. Lets check if a service worker still exists or not.
@@ -39,7 +40,7 @@ export default function register() {
         // service worker/PWA documentation.
         navigator.serviceWorker.ready.then(() => {
           console.log(
-            'This web app is being served cache-first by a service ' +
+            'SW: This web app is being served cache-first by a service ' +
               'worker. To learn more, visit https://goo.gl/SC7cgQ',
           );
         });
@@ -65,12 +66,12 @@ function registerValidSW(swUrl: string) {
                 // the fresh content will have been added to the cache.
                 // It's the perfect time to display a 'New content is
                 // available; please refresh.' message in your web app.
-                console.log('New content is available; please refresh.');
+                console.log('SW: New content is available; please refresh.');
               } else {
                 // At this point, everything has been precached.
                 // It's the perfect time to display a
                 // 'Content is cached for offline use.' message.
-                console.log('Content is cached for offline use.');
+                console.log('SW: Content is cached for offline use.');
               }
             }
           };
@@ -78,7 +79,7 @@ function registerValidSW(swUrl: string) {
       };
     })
     .catch(error => {
-      console.error('Error during service worker registration:', error);
+      console.error('SW: Error during service worker registration:', error);
     });
 }
 
@@ -103,7 +104,7 @@ function checkValidServiceWorker(swUrl: string) {
       }
     })
     .catch(() => {
-      console.log('No internet connection found. App is running in offline mode.');
+      console.log('SW: No internet connection found. App is running in offline mode.');
     });
 }
 

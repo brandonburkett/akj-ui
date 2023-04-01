@@ -8,10 +8,10 @@ import './styles/responsive.css';
 
 // polyfills
 import smoothscroll from 'smoothscroll-polyfill';
-smoothscroll.polyfill();
 
-// TODO: enable service worker
-// import registerServiceWorker from './registerServiceWorker';
+import register from './registerServiceWorker';
+
+smoothscroll.polyfill();
 
 const rootElement = document.getElementById('root') as HTMLElement;
 if (rootElement.hasChildNodes()) {
@@ -20,5 +20,4 @@ if (rootElement.hasChildNodes()) {
   ReactDOM.render(<App />, rootElement);
 }
 
-// TODO: enable service worker
-// registerServiceWorker();
+register();
