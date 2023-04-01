@@ -1,14 +1,20 @@
 {
+  "id": "/?source=pwa-2023",
   "short_name": "AKJ Dojo",
   "name": "Austin Komei Jyuku",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src": "pwa-gold-512.webp",
+      "sizes": "512x512",
+      "type": "image/webp"
+    },
+    {
+      "src": "pwa-gold-192.webp",
+      "sizes": "192x192",
+      "type": "image/webp"
     }
   ],
-  "start_url": "/?webapp=true",
+  "start_url": "/?source=pwa-2023",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#000000"
