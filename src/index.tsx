@@ -9,7 +9,7 @@ import './styles/responsive.css';
 // polyfills
 import smoothscroll from 'smoothscroll-polyfill';
 
-import register from './registerServiceWorker';
+// import register from './registerServiceWorker';
 
 smoothscroll.polyfill();
 
@@ -20,4 +20,4 @@ if (rootElement.hasChildNodes()) {
   ReactDOM.render(<App />, rootElement);
 }
 
-register();
+// register();
