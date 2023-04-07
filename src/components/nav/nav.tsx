@@ -104,7 +104,7 @@ class Nav extends React.PureComponent<{}, IState> {
             aria-expanded={isOpen}
             aria-controls="aria-menu-list"
           >
-            <div className="menu-title">Menu</div>
+            <span className="menu-title">Menu</span>
 
             <img className="menu-open-img" src={imgMenu} alt="Open menu" />
             <img className="menu-close-img" src={imgMenuClose} alt="Close menu" />
