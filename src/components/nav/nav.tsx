@@ -85,7 +85,7 @@ class Nav extends React.PureComponent<{}, IState> {
     const { isOpen } = this.state;
 
     return (
-      <header className="masthead translate-z" role="banner">
+      <header className="masthead translate-z">
         <div className="brand">
           <Link to="/">
             <img src={imgMon} alt="Dojo homepage" />
@@ -95,7 +95,6 @@ class Nav extends React.PureComponent<{}, IState> {
         <nav
           className={`site-menu ${isOpen ? 'open' : ''}`}
           ref={this.menuRef}
-          role="navigation"
           aria-label="Site Navigation"
         >
           <button
