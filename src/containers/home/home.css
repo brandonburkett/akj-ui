@@ -37,7 +37,8 @@
   border: none;
 }
 
-.home .intro h1 {
+.home .intro h1,
+.home .intro h2 {
   color: #ffffff;
   font-size: 1.25em;
 }

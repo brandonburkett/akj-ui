@@ -55,7 +55,7 @@ const Home: React.FunctionComponent<IProps> = props => {
       <BelowFold role="main" ref={scrollToRef}>
         <section className="home group translate-z">
           <div className="intro">
-            <h1>About Us</h1>
+            <h2>About Us</h2>
             <p>
               Austin Komei Jyuku teaches the koryu Japanese sword art of Yamauchi-ha Muso Jikiden
               Eishin-ryu Iaijutsu as taught by the 21st generation, Sekiguchi Komei sensei. The
