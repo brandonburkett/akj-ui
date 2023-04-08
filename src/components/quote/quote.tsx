@@ -17,7 +17,7 @@ const defaultProps: Partial<IProps> = {
  * Block quote component
  */
 const Quote: StatelessComponent<IProps> = ({ content, quotes, author }) => (
-  <section id="testimonial" className="group quote translate-z">
+  <aside id="testimonial" className="group quote translate-z">
     <div className="quote-content">
       <p>
         {quotes ? (
@@ -32,7 +32,7 @@ const Quote: StatelessComponent<IProps> = ({ content, quotes, author }) => (
         {author ? <span className="attribute"> - {author}</span> : null}
       </p>
     </div>
-  </section>
+  </aside>
 );
 
 Quote.defaultProps = defaultProps;

@@ -53,45 +53,55 @@ const Iaijutsu: React.FunctionComponent<IProps> = props => {
             <div className="cs6">
               <p>
                 Muso Jikiden Eishin-ryu (<span lang="ja">無雙直傳英信流居合術</span>) translates to
-                &ldquo;peerless, direct transmission, true-faith style&rdquo;. It one of the
-                oldest martial art from Japan with a history of 450 years that was founded
-                in the late Muromachi period (late 16th century). The founder of Muso Jikiden Eishin-ryu was Hayashizaki Jinsuke Shigenobu. It is said he confined
-                himself for approximately a hundred days in the Hayashizaki Myojin Shrine, where he
-                received divine inspiration for a new body of sword techniques using a long sword. Since then, multiple lines have evolved.
+                &ldquo;peerless, direct transmission, school of Eishin&rdquo;. It one of the oldest
+                martial art from Japan with a history of 450 years that was founded in the late
+                Muromachi period (late 16th century). The founder of Muso Jikiden Eishin-ryu was
+                Hayashizaki Jinsuke Shigenobu. It is said he confined himself for approximately a
+                hundred days in the Hayashizaki Myojin Shrine, where he received divine inspiration
+                for a new body of sword techniques using a long sword. Since then, multiple lines
+                have evolved.
               </p>
               <p>
                 The term &lsquo;Eishin&rsquo; came from 7th generation headmaster, Hasegawa
-                Chikaranosuke (Mondonosuke) Eishin. His technique, was so miraculous that it was called Hasegawa Eishin Ryu, and later became recognized as Muso Jikiden Eishin-ryu. He also
-                served the Tokugawa family in Nagoya and excelled in Kyudo.
+                Chikaranosuke (Mondonosuke) Eishin. His technique, was so miraculous that it was
+                called Hasegawa Eishin Ryu, and later became recognized as Muso Jikiden Eishin-ryu.
+                He also served the Tokugawa family in Nagoya and excelled in Kyudo.
               </p>
               <p>
                 The 9th generation headmaster, Hayashi Rokudayu Morimasa, served the Tosa domain and
-                established Eishin-ryu there. Since then, the Tosa Domain kept his techniques as house secrets and passed the knowledge on to succeeding generations.
+                established Eishin-ryu there. Since then, the Tosa Domain kept his techniques as
+                house secrets and passed the knowledge on to succeeding generations.
               </p>
             </div>
             <div className="cs6">
-              <p>The 17th generation headmaster, Oe Masamichi Shikei
-                formalized many of the waza in Muso Jikiden Eishin Ryu. He changed the names of the
-                Omori-ryu and Hasegawa-ryu, (both styles were integrated into Eishin-ryu at the
-                time) into Seiza no Bu and Tatehiza no Bu. Masamichi also organized the waza into
-                logical order within each set.  He was was concerned that budo would decline and decided to open the gate and disseminate the techniques widely.
+              <p>
+                The 17th generation headmaster, Oe Masamichi Shikei formalized many of the waza in
+                Muso Jikiden Eishin Ryu. He changed the names of the Omori-ryu and Hasegawa-ryu,
+                (both styles were integrated into Eishin-ryu at the time) into Seiza no Bu and
+                Tatehiza no Bu. Masamichi also organized the waza into logical order within each
+                set. He was was concerned that budo would decline and decided to open the gate and
+                disseminate the techniques widely.
               </p>
-              <p>Yamauchi Toyotake, the 18th generation headmaster is
-                the grandson of Yamauchi Yodo, the daimyo of Tosa. Yamauchi Toyotake taught many
-                students in Tokyo and Kyoto and even served when called to do military service in
-                1941.
+              <p>
+                Yamauchi Toyotake, the 18th generation headmaster is the grandson of Yamauchi Yodo,
+                the daimyo of Tosa. Yamauchi Toyotake taught many students in Tokyo and Kyoto and
+                even served when called to do military service in 1941.
               </p>
-              <p>The 19th generation, Kono Kanemitsu, founded the Meibukan in Toshima-ku, Tokyo. The 20th generation, Onoe Masamitsu, inherited it and passed it to the current
-                21st generation, Sekiguchi Komei.
+              <p>
+                The 19th generation, Kono Kanemitsu, founded the Meibukan in Toshima-ku, Tokyo. The
+                20th generation, Onoe Masamitsu, inherited it and passed it to the current 21st
+                generation, Sekiguchi Komei.
               </p>
             </div>
             <div className="cs12">
               <hr className="dark" />
               <p>
-                The current (21st) generation is lead by Sekiguchi Komei sensei. He created the Komei Jyuku, also known as the Nihon Koden Bujutsu Iaido Renmei, which is a member of the Nihon Kobudo Kyokai.
-
-                Sekiguchi sensei teaches and spreads Iaijutsu with isshin / one heart (
-                <span lang="ja">一心</span>) philosophy. When we use the sword, our school methodology is to handle a long sword like a short one, and a heavy sword like a light one.
+                The current (21st) generation is lead by Sekiguchi Komei sensei. He created the
+                Komei Jyuku, also known as the Nihon Koden Bujutsu Iaido Renmei, which is a member
+                of the Nihon Kobudo Kyokai. Sekiguchi sensei teaches and spreads Iaijutsu with
+                isshin / one heart (<span lang="ja">一心</span>) philosophy. When we use the sword,
+                our school methodology is to handle a long sword like a short one, and a heavy sword
+                like a light one.
               </p>
             </div>
           </PanelContent>
@@ -148,7 +158,7 @@ const Iaijutsu: React.FunctionComponent<IProps> = props => {
         <PanelSection color="cream">
           <PanelContent>
             <div className="cs12">
-              <h3>Kata</h3>
+              <h3>Waza</h3>
             </div>
             <div className="cs3">
               <h4>Shoden Seiza no Bu</h4>
