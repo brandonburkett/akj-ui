@@ -37,6 +37,11 @@
   border: none;
 }
 
+.home .intro h1 {
+  color: #ffffff;
+  font-size: 1.25em;
+}
+
 /* homepage specific parallax styling */
 .big-brand {
   width: 90%;
@@ -91,6 +96,7 @@
 @media screen and (min-width: 320px) {
   .home .intro {
     font-size: 1.2em;
+    margin: 75px auto;
   }
 
   .logo {
@@ -100,7 +106,7 @@
 
 @media screen and (min-width: 600px) {
   .home .intro {
-    font-size: 1.4em;
+    font-size: 1.2em;
     float: left;
     width: 40%;
     margin: 50px 0 0 5%;
@@ -118,7 +124,7 @@
 
 @media screen and (min-width: 768px) {
   .home .intro {
-    font-size: 1.8em;
+    font-size: 1.4em;
   }
 
   .logo {
@@ -128,7 +134,7 @@
 
 @media screen and (min-width: 1024px) {
   .home .intro {
-    font-size: 2em;
+    font-size: 1.7em;
   }
 
   .logo {

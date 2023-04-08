@@ -46,7 +46,7 @@ const Home: React.FunctionComponent<IProps> = props => {
           <div className="logo">
             <ResponsiveImage src={imgMjerKanji} alt="Muso Jikidien Eishin-ryu Iaijutsu" />
           </div>
-          <h1 className="hidden" aria-hidden={false}>
+          <h1 className="invisible" aria-hidden={false}>
             Austin Komei Jyuku
           </h1>
         </div>
@@ -54,9 +54,17 @@ const Home: React.FunctionComponent<IProps> = props => {
 
       <BelowFold role="main" ref={scrollToRef}>
         <section className="home group translate-z">
-          <p className="intro">
-            Austin Komei Jyuku teaches the koryu Japanese sword art of Yamauchi-ha Muso Jikiden Eishin-ryu Iaijutsu as taught by the 21st generation, Sekiguchi Komei sensei. The Komei Jyuku, also known as the Nihon Koden Bujutsu Iaido Renmei, is a member of the Nihon Kobudo Kyokai, one of the premiere martial arts organizations in Japan dedicated to preserving classical martial traditions. The Austin shibucho is Brandon Burkett who is a direct student to Sekiguchi sensei.
-          </p>
+          <div className="intro">
+            <h1>About Us</h1>
+            <p>
+              Austin Komei Jyuku teaches the koryu Japanese sword art of Yamauchi-ha Muso Jikiden
+              Eishin-ryu Iaijutsu as taught by the 21st generation, Sekiguchi Komei sensei. The
+              Komei Jyuku, also known as the Nihon Koden Bujutsu Iaido Renmei, is a member of the
+              Nihon Kobudo Kyokai, one of the premiere martial arts organizations in Japan dedicated
+              to preserving classical martial traditions. The Austin shibucho is Brandon Burkett who
+              is a direct student to Sekiguchi sensei.
+            </p>
+          </div>
 
           <div className="home-ctas group">
             <BlockImageCTA
@@ -84,11 +92,11 @@ const Home: React.FunctionComponent<IProps> = props => {
             />
           </div>
         </section>
-        <section className="isshin translate-z">
+        <div className="isshin translate-z">
           <div className="intro">
             <ResponsiveImage src={imgIsshin} alt="一心 - one heart" />
           </div>
-        </section>
+        </div>
         <Footer />
       </BelowFold>
     </React.Fragment>
