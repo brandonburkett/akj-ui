@@ -43,17 +43,21 @@ const Seminars: React.FunctionComponent<IProps> = props => (
           </div>
           <div className="cs12">
             <p>
-              Sekiguchi sensei will be in Austin, TX, teaching a
-              Muso Jikiden Eishin-ryu Iaijutsu seminar on <strong>June 21th - June 27th, 2023</strong>. It is a rare opportunity to train with the 21st generation, Sekiguchi Komei sensei.
-              Everyone is encourage to attend, even beginner students.
+              Sekiguchi sensei will be in Austin, TX, teaching a Muso Jikiden Eishin-ryu Iaijutsu
+              seminar on <strong>June 21th - June 27th, 2023</strong>. It is a rare opportunity to
+              train with the 21st generation, Sekiguchi Komei sensei. Everyone is encourage to
+              attend, even beginner students.
             </p>
-            <p>Please note that <strong>masks are required</strong> for training during the seminar.</p>
+            <p>
+              Please note that <strong>masks are required</strong> for training during the seminar.
+            </p>
 
             <p>
               The seminar training schedule is below. Please contact{' '}
               <a className="link" href="mailto:brandon@komeijyuku.com">
                 Brandon
-              </a> before paying to confirm attendance or if you have any questions.
+              </a>{' '}
+              before paying to confirm attendance or if you have any questions.
             </p>
 
             <hr className="dark" />
@@ -194,7 +198,10 @@ const Seminars: React.FunctionComponent<IProps> = props => (
               </a>
             </p>
             <p>
-              Email: <a className="link" href="mailto:brandon@komeijyuku.com">brandon&#64;komeijyuku.com</a>
+              Email:{' '}
+              <a className="link" href="mailto:brandon@komeijyuku.com">
+                brandon&#64;komeijyuku.com
+              </a>
               <br />
               Phone: 512-965-3747
             </p>
@@ -219,6 +226,9 @@ const Seminars: React.FunctionComponent<IProps> = props => (
       </PanelSection>
       <PanelSection color="cream">
         <PanelContent>
+          <div className="cs12">
+            <h3 className="visuallyhidden">Map</h3>
+          </div>
           <ResponsiveMap>
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d110004.52931644666!2d-97.88896123812094!3d30.502893503723556!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x865b2da1155f378f%3A0x6bd60833d4e95385!2sCedar%20Park%20Dojo!5e0!3m2!1sen!2sus!4v1616347003684!5m2!1sen!2sus"

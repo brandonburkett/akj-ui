@@ -195,6 +195,9 @@ const Schedule: React.FunctionComponent<IProps> = props => (
       <PanelSection color="cream">
         <PanelContent>
           <ResponsiveMap>
+            <div className="cs12">
+              <h3 className="visuallyhidden">Map</h3>
+            </div>
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d110004.52931644666!2d-97.88896123812094!3d30.502893503723556!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x865b2da1155f378f%3A0x6bd60833d4e95385!2sCedar%20Park%20Dojo!5e0!3m2!1sen!2sus!4v1616347003684!5m2!1sen!2sus"
               width="800"
