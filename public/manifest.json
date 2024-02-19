@@ -1,5 +1,5 @@
 {
-  "id": "/?source=pwa-2023",
+  "id": "/?source=pwa-2024",
   "short_name": "AKJ Dojo",
   "name": "Austin Komei Jyuku",
   "icons": [
@@ -14,7 +14,7 @@
       "type": "image/webp"
     }
   ],
-  "start_url": "/?source=pwa-2023",
+  "start_url": "/?source=pwa-2024",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#000000"
