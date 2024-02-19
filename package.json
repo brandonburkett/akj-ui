@@ -48,7 +48,7 @@
     "react-helmet": "^5.2.1",
     "react-image-gallery": "^1.0.9",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^3.4.4",
+    "react-scripts": "^5.0.1",
     "smoothscroll-polyfill": "^0.4.4"
   },
   "devDependencies": {
