@@ -34,7 +34,7 @@ const Home: React.FunctionComponent<IProps> = props => {
     <React.Fragment>
       <Head
         title="Traditional Japanese Swordsmanship"
-        desc="The Austin Komei Jyuku dojo is teaches Yamauchi-Ha Muso Jikiden Eishin-ryu Iaijutsu under Sekiguchi Komei Sensei in Austin, Texas."
+        desc="The Austin Komei Jyuku dojo teaches Yamauchi-Ha Muso Jikiden Eishin-ryu Iaijutsu under Sekiguchi Komei Sensei in Austin, Texas."
         path={props.location.pathname}
       />
       <FullScreenParallaxImage
