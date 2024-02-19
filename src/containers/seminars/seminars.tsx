@@ -39,12 +39,12 @@ const Seminars: React.FunctionComponent<IProps> = props => (
         {/*</PanelContent>*/}
         <PanelContent>
           <div className="cs12">
-            <h1>2023 Austin Seminar</h1>
+            <h1>2024 Austin Seminar</h1>
           </div>
           <div className="cs12">
             <p>
               Sekiguchi sensei will be in Austin, TX, teaching a Muso Jikiden Eishin-ryu Iaijutsu
-              seminar on <strong>June 21th - June 27th, 2023</strong>. It is a rare opportunity to
+              seminar on <strong>June 6th - June 11th, 2023</strong>. It is a rare opportunity to
               train with the 21st generation, Sekiguchi Komei sensei. Everyone is encourage to
               attend, even beginner students.
             </p>
@@ -124,49 +124,56 @@ const Seminars: React.FunctionComponent<IProps> = props => (
             <h3>Schedule</h3>
             <ul className="ul_square">
               <li>
-                <strong>Wednesday, June 21st:</strong>
+                <strong>Wednesday, June 5th:</strong>
                 <br />
                 Arrival
                 <br />
                 No keiko
               </li>
               <li>
-                <strong>Thursday, June 22nd:</strong>
+                <strong>Thursday, June 6th:</strong>
                 <br />
                 Morning keiko: 10am - 1pm
                 <br />
                 Afternoon keiko: 6pm - 8pm
               </li>
               <li>
-                <strong>Friday, June 23rd:</strong>
+                <strong>Friday, June 7th:</strong>
                 <br />
                 Morning keiko: 10am - 1pm
                 <br />
                 Afternoon keiko: 6pm - 8pm
               </li>
               <li>
-                <strong>Saturday, June 24th:</strong>
+                <strong>Saturday, June 8th:</strong>
                 <br />
                 Morning keiko: 10am - 1pm
                 <br />
                 Afternoon keiko: 6pm - 8pm
               </li>
               <li>
-                <strong>Sunday, June 25th: </strong>
+                <strong>Sunday, June 9th: </strong>
                 <br />
                 Morning keiko: 10am - 1pm
                 <br />
                 Afternoon keiko: 6pm - 8pm
               </li>
               <li>
-                <strong>Monday, June 26th:</strong>
+                <strong>Monday, June 10th:</strong>
                 <br />
                 Morning keiko: 10am - 1pm
                 <br />
-                Afternoon activity TBD
+                Afternoon keiko: 6pm - 8pm
               </li>
               <li>
-                <strong>Tuesday, June 27th:</strong>
+                <strong>Tuesday, June 11th:</strong>
+                <br />
+                TBD Activity
+                <br />
+                No keiko
+              </li>
+              <li>
+                <strong>Wednesday, June 12th:</strong>
                 <br />
                 Departure for Haneda
                 <br />
