@@ -79,7 +79,7 @@ const Iaijutsu: React.FunctionComponent<IProps> = props => {
                 Muso Jikiden Eishin Ryu. He changed the names of the Omori-ryu and Hasegawa-ryu,
                 (both styles were integrated into Eishin-ryu at the time) into Seiza no Bu and
                 Tatehiza no Bu. Masamichi also organized the waza into logical order within each
-                set. He was was concerned that budo would decline and decided to open the gate and
+                set. He was concerned that budo would decline and decided to open the gate and
                 disseminate the techniques widely.
               </p>
               <p>
