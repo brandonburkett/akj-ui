@@ -230,7 +230,7 @@ const Iaijutsu: React.FunctionComponent<IProps> = props => {
               <h3>Kumitachi</h3>
             </div>
             <div className="cs6">
-              <h4>Nanahon Me No Kata</h4>
+              <h4>Nanahon no kata</h4>
               <ol className="ol_decimal">
                 <li>Deai</li>
                 <li>Kobushidori</li>
