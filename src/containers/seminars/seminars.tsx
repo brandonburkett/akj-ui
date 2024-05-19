@@ -44,7 +44,7 @@ const Seminars: React.FunctionComponent<IProps> = props => (
           <div className="cs12">
             <p>
               Sekiguchi sensei will be in Austin, TX, teaching a Muso Jikiden Eishin-ryu Iaijutsu
-              seminar on <strong>June 6th - June 11th, 2023</strong>. It is a rare opportunity to
+              seminar on <strong>June 6th - June 11th, 2024</strong>. It is a rare opportunity to
               train with the 21st generation, Sekiguchi Komei sensei. Everyone is encourage to
               attend, even beginner students.
             </p>
