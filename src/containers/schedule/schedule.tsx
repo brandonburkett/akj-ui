@@ -88,6 +88,7 @@ const Schedule: React.FunctionComponent<IProps> = props => (
               <li>PayPal: brandon&#64;komeijyuku.com</li>
               <li>Venmo: @brandon-burkett-mjer</li>
               <li>Zelle: Austin Komei Jyuku</li>
+              <li>Apple Cash: 512-965-3747</li>
             </ul>
           </div>
           <div className="cs12">
