@@ -272,7 +272,7 @@ const Iaijutsu: React.FunctionComponent<IProps> = props => {
               </ol>
             </div>
             <div className="cs4">
-              <h4>Bangai: Gohon Me No Kata</h4>
+              <h4>Toryu Bangai</h4>
               <ol className="ol_decimal">
                 <li>Mae</li>
                 <li>Aranami</li>
@@ -282,7 +282,7 @@ const Iaijutsu: React.FunctionComponent<IProps> = props => {
               </ol>
             </div>
             <div className="cs4">
-              <h4>Bangai: Sanban Me No Kata</h4>
+              <h4>Bangai</h4>
               <ol className="ol_decimal">
                 <li>Hayanami</li>
                 <li>Raiden</li>
