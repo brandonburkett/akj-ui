@@ -37,6 +37,8 @@
   },
   "reactSnap": {
     "saveAs": "html",
+    "skipThirdPartyRequests": true,
+    "preconnectThirdParty": false,
     "puppeteerArgs": [
       "--no-sandbox",
       "--disable-setuid-sandbox"
@@ -82,9 +84,5 @@
       "last 3 firefox version",
       "last 3 safari version"
     ]
-  },
-  "reactSnap": {
-    "skipThirdPartyRequests": true,
-    "preconnectThirdParty": false
   }
 }
