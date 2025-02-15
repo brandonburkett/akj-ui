@@ -22,7 +22,7 @@ const Seminars: React.FunctionComponent<IProps> = props => (
   <React.Fragment>
     <Head
       title="Seminars"
-      desc="Iaijutsu seminar information and schedule with Sekiguchi sensei at the Austin Komei Jyuku."
+      desc="MJER Iaijutsu seminar information and schedule with Sekiguchi sensei at the Austin Komei Jyuku."
       path={props.location.pathname}
     />
     <div id="main" className="group" role="main">
@@ -39,25 +39,26 @@ const Seminars: React.FunctionComponent<IProps> = props => (
         {/*</PanelContent>*/}
         <PanelContent>
           <div className="cs12">
-            <h1>2024 Austin Seminar</h1>
+            <h1>2025 Austin Seminar</h1>
           </div>
           <div className="cs12">
             <p>
               Sekiguchi sensei will be in Austin, TX, teaching a Muso Jikiden Eishin-ryu Iaijutsu
-              seminar on <strong>June 6th - June 11th, 2024</strong>. It is a rare opportunity to
-              train with the 21st generation, Sekiguchi Komei sensei. Everyone is encourage to
-              attend, even beginner students.
-            </p>
-            <p>
-              Please note that <strong>masks are required</strong> for training during the seminar.
+              seminar on <strong>June 5th - June 10th, 2025</strong>. It is a rare opportunity to
+              train with the 21st generation, Sekiguchi sensei, assisted by Sonoko sensei. Everyone
+              is encourage to attend, even beginner students.
             </p>
 
             <p>
-              The seminar training schedule is below. Please contact{' '}
-              <a className="link" href="mailto:brandon@komeijyuku.com">
-                Brandon
-              </a>{' '}
-              before paying to confirm attendance or if you have any questions.
+              The seminar training schedule is below.{' '}
+              <b>
+                Please contact{' '}
+                <a className="link" href="mailto:brandon@komeijyuku.com">
+                  Brandon
+                </a>{' '}
+                before paying to confirm attendance
+              </b>{' '}
+              or if you have any questions.
             </p>
 
             <hr className="dark" />
@@ -124,56 +125,49 @@ const Seminars: React.FunctionComponent<IProps> = props => (
             <h3>Schedule</h3>
             <ul className="ul_square">
               <li>
-                <strong>Wednesday, June 5th:</strong>
+                <strong>Wednesday, June 4th:</strong>
                 <br />
                 Arrival
                 <br />
                 No keiko
               </li>
               <li>
-                <strong>Thursday, June 6th:</strong>
+                <strong>Thursday, June 5th:</strong>
                 <br />
                 Morning keiko: 10am - 1pm
                 <br />
                 Afternoon keiko: 6pm - 8pm
               </li>
               <li>
-                <strong>Friday, June 7th:</strong>
+                <strong>Friday, June 6th:</strong>
                 <br />
                 Morning keiko: 10am - 1pm
                 <br />
                 Afternoon keiko: 6pm - 8pm
               </li>
               <li>
-                <strong>Saturday, June 8th:</strong>
+                <strong>Saturday, June 7th:</strong>
                 <br />
                 Morning keiko: 10am - 1pm
                 <br />
                 Afternoon keiko: 6pm - 8pm
               </li>
               <li>
-                <strong>Sunday, June 9th: </strong>
+                <strong>Sunday, June 8th: </strong>
                 <br />
                 Morning keiko: 10am - 1pm
                 <br />
                 Afternoon keiko: 6pm - 8pm
               </li>
               <li>
-                <strong>Monday, June 10th:</strong>
-                <br />
-                Morning keiko: 10am - 1pm
-                <br />
-                Afternoon keiko: 6pm - 8pm
-              </li>
-              <li>
-                <strong>Tuesday, June 11th:</strong>
+                <strong>Monday, June 9th:</strong>
                 <br />
                 TBD Activity
                 <br />
                 No keiko
               </li>
               <li>
-                <strong>Wednesday, June 12th:</strong>
+                <strong>Tuesday, June 10th:</strong>
                 <br />
                 Departure for Haneda
                 <br />
