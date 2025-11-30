@@ -36,32 +36,31 @@ const Schedule: React.FunctionComponent<IProps> = props => (
             <h3>Schedule</h3>
             <p>
               Class is held at the{' '}
-              <a className="link" href="https://www.cedarparkdojo.com/">
-                Cedar Park Dojo
-              </a>{' '}
-              (off 183).
+              <a className="link" href="https://www.immortalmartialarts.org/">
+                Immortal Martial Arts Academy
+              </a>
             </p>
             <ul className="ul_square">
               <li>
-                <strong>Monday</strong>: 8:00pm - 9:30pm{' '}
+                <strong>Monday</strong>: 7:30pm - 9:30pm
               </li>
               <li>
-                <strong>Wednesday</strong>: 8:00pm - 9:30pm
+                <strong>Wednesday</strong>: 7:30pm - 9:30pm
               </li>
               <li>
-                <strong>Saturday</strong>: 9:00am - 11:00am
+                <strong>Saturday</strong>: 9:00am - 10:00am
               </li>
             </ul>
 
             <h4>Address</h4>
             <p>
-              Cedar Park Dojo
+              Immortal Martial Arts Academy
               <br />
-              300 Brushy Creek Rd Ste 405
+              8650 Spicewood Springs Rd, Suites 112 & 114-B
               <br />
-              Cedar Park, TX, 78613
+              Austin TX 78759
               <br />
-              <a className="link" href="https://g.page/CedarParkDojo?share">
+              <a className="link" href="https://maps.app.goo.gl/XJeyXaddShsuNRn4A">
                 View Map
               </a>
             </p>
@@ -200,7 +199,7 @@ const Schedule: React.FunctionComponent<IProps> = props => (
               <h3 className="visuallyhidden">Map</h3>
             </div>
             <iframe
-              src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d110004.52931644666!2d-97.88896123812094!3d30.502893503723556!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x865b2da1155f378f%3A0x6bd60833d4e95385!2sCedar%20Park%20Dojo!5e0!3m2!1sen!2sus!4v1616347003684!5m2!1sen!2sus`}
+              src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d55041.95493702415!2d-97.81258549383188!3d30.432638074625036!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8644cbe11418534f%3A0x9b4922673e583942!2sImmortal%20Martial%20Arts%20Academy!5e0!3m2!1sen!2sus!4v1764517445221!5m2!1sen!2sus`}
               width="800"
               height="600"
               style={{ border: 0 }}

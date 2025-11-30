@@ -81,7 +81,7 @@ const Home: React.FunctionComponent<IProps> = props => {
               imgSrc={imgMap}
               imgAlt="Map to dojo"
               title="Schedule"
-              content="Class is held Monday and Wednesday from 8:00pm - 9:30pm at the Cedar Park Dojo. Saturday morning training from 9:00am - 11:00am."
+              content="Class is held Monday and Wednesday from 7:30pm - 9:30pm at Immortal Martial Arts Academy. Saturday morning training from 9:00am - 10:00am."
             />
             <BlockImageCTA
               to="/seminars"
