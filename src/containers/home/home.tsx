@@ -73,7 +73,7 @@ const Home: React.FunctionComponent<IProps> = props => {
               imgAlt="Kobushidori"
               title="Iaijutsu"
               content="Muso Jikiden Eishin-ryu translates to &ldquo;peerless, direct
-                  transmission, true-faith style of Eishin&rdquo;. It is one of the oldest martial art from Japan with an unbroken
+                  transmission, school of Eishin&rdquo;. It is one of the oldest martial art from Japan with an unbroken
                   history dating back to the late 16th century when it was founded by Hayashizaki Jinsuke Shigenobu."
             />
             <BlockImageCTA
