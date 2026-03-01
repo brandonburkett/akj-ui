@@ -107,6 +107,99 @@
   /* End 320+ Pixel Styles */
 } /*********************************/
 
+/********************** 400+ Pixel Styles **********************/
+@media screen and (min-width: 400px) {
+  /***************************************************************/
+
+  /* Responsive Grid */
+  .cs1,
+  .cs2,
+  .cs3,
+  .cs4,
+  .cs5,
+  .cs6,
+  .cs7,
+  .cs8,
+  .cs9,
+  .cs10,
+  .cs11,
+  .cs12 {
+    width: 380px;
+  }
+  .cs2 .cs1,
+  .cs3 .cs1,
+  .cs3 .cs2,
+  .cs4 .cs1,
+  .cs4 .cs2,
+  .cs4 .cs3,
+  .cs5 .cs1,
+  .cs5 .cs2,
+  .cs5 .cs3,
+  .cs5 .cs4,
+  .cs6 .cs1,
+  .cs6 .cs2,
+  .cs6 .cs3,
+  .cs6 .cs4,
+  .cs6 .cs5,
+  .cs7 .cs1,
+  .cs7 .cs2,
+  .cs7 .cs3,
+  .cs7 .cs4,
+  .cs7 .cs5,
+  .cs7 .cs6,
+  .cs8 .cs1,
+  .cs8 .cs2,
+  .cs8 .cs3,
+  .cs8 .cs4,
+  .cs8 .cs5,
+  .cs8 .cs6,
+  .cs8 .cs7,
+  .cs9 .cs1,
+  .cs9 .cs2,
+  .cs9 .cs3,
+  .cs9 .cs4,
+  .cs9 .cs5,
+  .cs9 .cs6,
+  .cs9 .cs7,
+  .cs9 .cs8,
+  .cs10 .cs1,
+  .cs10 .cs2,
+  .cs10 .cs3,
+  .cs10 .cs4,
+  .cs10 .cs5,
+  .cs10 .cs6,
+  .cs10 .cs7,
+  .cs10 .cs8,
+  .cs10 .cs9,
+  .cs11 .cs1,
+  .cs11 .cs2,
+  .cs11 .cs3,
+  .cs11 .cs4,
+  .cs11 .cs5,
+  .cs11 .cs6,
+  .cs11 .cs7,
+  .cs11 .cs8,
+  .cs11 .cs9,
+  .cs11 .cs10,
+  .cs12 .cs1,
+  .cs12 .cs2,
+  .cs12 .cs3,
+  .cs12 .cs4,
+  .cs12 .cs5,
+  .cs12 .cs6,
+  .cs12 .cs7,
+  .cs12 .cs8,
+  .cs12 .cs9,
+  .cs12 .cs10,
+  .cs12 .cs11 {
+    width: 380px;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  /* End 400+ Pixel Styles */
+} /*********************************/
+
 /********************** 480+ Pixel Styles **********************/
 @media screen and (min-width: 480px) {
   /***************************************************************/

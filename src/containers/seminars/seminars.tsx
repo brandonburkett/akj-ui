@@ -39,14 +39,14 @@ const Seminars: React.FunctionComponent<IProps> = props => (
         {/*</PanelContent>*/}
         <PanelContent>
           <div className="cs12">
-            <h1>2025 Austin Seminar</h1>
+            <h1>2026 Austin Seminar</h1>
           </div>
           <div className="cs12">
             <p>
               Sekiguchi sensei will be in Austin, TX, teaching a Muso Jikiden Eishin-ryu Iaijutsu
-              seminar on <strong>June 4th - June 10th, 2025</strong>. It is a rare opportunity to
+              seminar on <strong>June 4th - June 8th, 2026</strong>. It is a rare opportunity to
               train with the 21st generation, Sekiguchi sensei, assisted by Sonoko sensei. Everyone
-              is encourage to attend, even beginner students.
+              is encouraged to attend, even beginner students.
             </p>
 
             <p>
@@ -125,49 +125,49 @@ const Seminars: React.FunctionComponent<IProps> = props => (
             <h3>Schedule</h3>
             <ul className="ul_square">
               <li>
-                <strong>Wednesday, June 4th:</strong>
+                <strong>Wednesday, June 3rd:</strong>
                 <br />
                 Arrival
                 <br />
                 No keiko
               </li>
               <li>
-                <strong>Thursday, June 5th:</strong>
+                <strong>Thursday, June 4th:</strong>
+                <br />
+                Morning keiko: 9am - 12pm
+                <br />
+                Afternoon keiko: 4pm - 6pm
+              </li>
+              <li>
+                <strong>Friday, June 5th:</strong>
                 <br />
                 Morning keiko: 10am - 1pm
                 <br />
                 Afternoon keiko: 6pm - 8pm
               </li>
               <li>
-                <strong>Friday, June 6th:</strong>
+                <strong>Saturday, June 6th:</strong>
                 <br />
                 Morning keiko: 10am - 1pm
                 <br />
                 Afternoon keiko: 6pm - 8pm
               </li>
               <li>
-                <strong>Saturday, June 7th:</strong>
+                <strong>Sunday, June 7th:</strong>
                 <br />
                 Morning keiko: 10am - 1pm
                 <br />
                 Afternoon keiko: 6pm - 8pm
               </li>
               <li>
-                <strong>Sunday, June 8th: </strong>
+                <strong>Monday, June 8th:</strong>
                 <br />
                 Morning keiko: 10am - 1pm
                 <br />
-                Afternoon keiko: 6pm - 8pm
+                No afternoon keiko
               </li>
               <li>
-                <strong>Monday, June 9th:</strong>
-                <br />
-                TBD Activity
-                <br />
-                No keiko
-              </li>
-              <li>
-                <strong>Tuesday, June 10th:</strong>
+                <strong>Tuesday, June 9th:</strong>
                 <br />
                 Departure for Haneda
                 <br />
@@ -179,19 +179,24 @@ const Seminars: React.FunctionComponent<IProps> = props => (
           <div className="cs4">
             <h3>Address &amp; Contact</h3>
             <p>
-              Cedar Park Dojo
+              Immortal Martial Arts Academy
               <br />
-              300 Brushy Creek Rd Ste 405
+              8650 Spicewood Springs Rd Suites 112 &amp; 114-B
               <br />
-              Cedar Park, TX, 78613
+              Austin, TX 78759
               <br />
-              <a className="link" href="https://g.page/CedarParkDojo?share">
+              <a
+                className="link"
+                href="https://maps.app.goo.gl/Z8TuAxPv2LwVN1mg9"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 View Map
               </a>
               <br />
               <a
                 className="link"
-                href="https://www.google.com/maps/search/Hotels/@30.5046957,-97.8345475,14z/data=!3m1!4b1!4m7!2m6!3m5!2sCedar+Park+Dojo!3s0x865b2da1155f378f:0x6bd60833d4e95385!4m2!1d-97.8170379!2d30.5046992"
+                href="https://www.google.com/maps/search/Hotels/@30.5046957,-97.8345475,14z/data=!3m1!4b1!4m7!2m6!3m5!2sImmortal+Martial+Arts+Academy!3s0x865b2da1155f378f:0x6bd60833d4e95385!4m2!1d-97.8170379!2d30.5046992"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -233,7 +238,7 @@ const Seminars: React.FunctionComponent<IProps> = props => (
           </div>
           <ResponsiveMap>
             <iframe
-              src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d110004.52931644666!2d-97.88896123812094!3d30.502893503723556!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x865b2da1155f378f%3A0x6bd60833d4e95385!2sCedar%20Park%20Dojo!5e0!3m2!1sen!2sus!4v1616347003684!5m2!1sen!2sus`}
+              src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d55041.95493702415!2d-97.81258549383188!3d30.432638074625036!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8644cbe11418534f%3A0x9b4922673e583942!2sImmortal%20Martial%20Arts%20Academy!5e0!3m2!1sen!2sus!4v1764517445221!5m2!1sen!2sus`}
               width="800"
               height="600"
               style={{ border: 0 }}
