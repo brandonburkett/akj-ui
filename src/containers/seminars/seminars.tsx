@@ -143,7 +143,7 @@ const Seminars: React.FunctionComponent<IProps> = props => (
                 <br />
                 Morning keiko: 10am - 1pm
                 <br />
-                Afternoon keiko: 6pm - 8pm
+                Afternoon keiko: 7pm - 9pm
               </li>
               <li>
                 <strong>Saturday, June 6th:</strong>
