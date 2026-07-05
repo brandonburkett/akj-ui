@@ -1,0 +1,43 @@
+{
+  "@context": "https://schema.org",
+  "@type": "SportsActivityLocation",
+  "name": "Austin Komei Jyuku",
+  "description": "Traditional Japanese swordsmanship dojo teaching Yamauchi-ha Muso Jikiden Eishin-ryu Iaijutsu (iaido) under Sekiguchi Komei sensei in Austin, Texas.",
+  "url": "https://austin.komeijyuku.com/",
+  "logo": "https://austin.komeijyuku.com/pwa-gold-512.webp",
+  "image": "https://austin.komeijyuku.com/pwa-gold-512.webp",
+  "telephone": "+1-512-965-3747",
+  "email": "brandon@komeijyuku.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "8650 Spicewood Springs Rd, Suites 112 & 114-B",
+    "addressLocality": "Austin",
+    "addressRegion": "TX",
+    "postalCode": "78759",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 30.432638,
+    "longitude": -97.812585
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Wednesday"],
+      "opens": "19:30",
+      "closes": "21:30"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "09:00",
+      "closes": "10:00"
+    }
+  ],
+  "sameAs": [
+    "https://www.facebook.com/austinkomeijyuku",
+    "https://www.instagram.com/austinkomeijyuku/",
+    "https://www.youtube.com/user/austinkomeijyuku"
+  ]
+}

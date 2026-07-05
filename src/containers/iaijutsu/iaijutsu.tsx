@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 // images
-import imgKobushidori from './images/reiho-enbu-2022.jpg';
+import imgUkenagashi from './images/1920-ukenagashi.webp';
 import imageGallery from './iaijutsu-image-gallery';
 
 // ui components
@@ -33,11 +33,11 @@ const Iaijutsu: React.FunctionComponent<IProps> = props => {
     <React.Fragment>
       <Head
         title="Muso Jikiden Eishin-ryu Iaijutsu"
-        desc="The Austin Komei Jyuku dojo teaches Yamauchi-Ha Muso Jikidien Eishin-ryu Iaido under Sekiguchi Komei sensei."
+        desc="The Austin Komei Jyuku dojo teaches Yamauchi-Ha Muso Jikiden Eishin-ryu Iaido under Sekiguchi Komei sensei."
         path={props.location.pathname}
       />
       <FullScreenParallaxImage
-        backgroundImgSrc={imgKobushidori}
+        backgroundImgSrc={imgUkenagashi}
         scrollToRef={scrollToRef}
         parallaxSpeed={5}
         title="Muso Jikiden Eishin-ryu Iaijutsu"
@@ -98,9 +98,9 @@ const Iaijutsu: React.FunctionComponent<IProps> = props => {
               <p>
                 The current (21st) generation is lead by Sekiguchi Komei sensei. He created the
                 Komei Jyuku, also known as the Nihon Koden Bujutsu Iaido Renmei, which is a member
-                of the Nihon Kobudo Kyokai. Sekiguchi sensei teaches and spreads Iaijutsu with
-                isshin / one heart (<span lang="ja">一心</span>) philosophy. When we use the sword,
-                our school methodology is to handle a long sword like a short one, and a heavy sword
+                of the Nihon Kobudo Kyokai. Sekiguchi sensei teaches and spreads Iaido with isshin /
+                one heart (<span lang="ja">一心</span>) philosophy. When we use the sword, our
+                school methodology is to handle a long sword like a short one, and a heavy sword
                 like a light one.
               </p>
             </div>
