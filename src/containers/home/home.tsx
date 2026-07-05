@@ -5,11 +5,12 @@ import './home.css';
 
 // images
 import imgIsshin from './images/isshin-800.png';
-import imgEnbu from './images/akj-enbu-2020.jpg';
-import imgKoiLily from './images/koi-lily-1920.jpg';
-import imgMap from './images/map-cpd-800-2022.png';
+import imgOitaFest from './images/800-oita-fest.webp';
+// import imgKoiLily from './images/koi-lily-1920.jpg';
+import imgEnbu from './images/1920-mjer-enbu-2025.webp';
+import imgMap from './images/800-map-itk.webp';
 import imgMjerKanji from './images/mjer-kanji.png';
-import imgSeminar from './images/seminar-reiho-800.jpg';
+import imgSeminar from './images/800-seminar-2025.webp';
 
 // ui components
 import BelowFold from '../../components/below-fold/below-fold';
@@ -38,13 +39,13 @@ const Home: React.FunctionComponent<IProps> = props => {
         path={props.location.pathname}
       />
       <FullScreenParallaxImage
-        backgroundImgSrc={imgKoiLily}
+        backgroundImgSrc={imgEnbu}
         scrollToRef={scrollToRef}
         parallaxSpeed={5}
       >
         <div className="big-brand">
           <div className="logo">
-            <ResponsiveImage src={imgMjerKanji} alt="Muso Jikidien Eishin-ryu Iaijutsu" />
+            <ResponsiveImage src={imgMjerKanji} alt="Muso Jikiden Eishin-ryu Iaijutsu" />
           </div>
           <h1 className="invisible" aria-hidden={false}>
             Austin Komei Jyuku
@@ -69,7 +70,7 @@ const Home: React.FunctionComponent<IProps> = props => {
           <div className="home-ctas group">
             <BlockImageCTA
               to="/iaijutsu"
-              imgSrc={imgEnbu}
+              imgSrc={imgOitaFest}
               imgAlt="Kobushidori"
               title="Iaijutsu"
               content="Muso Jikiden Eishin-ryu translates to &ldquo;peerless, direct

@@ -86,12 +86,14 @@ class Nav extends React.PureComponent<{}, IState> {
 
     return (
       <header className="masthead translate-z">
-        <div className="brand">
-          <Link to="/">
+        <div className="masthead-left">
+          <Link className="brand-logo" to="/">
             <img src={imgMon} alt="Dojo homepage" />
-            Austin Komei Jyuku
           </Link>
         </div>
+        <Link className="brand-title" to="/">
+          Austin Komei Jyuku
+        </Link>
         <nav
           className={`site-menu ${isOpen ? 'open' : ''}`}
           ref={this.menuRef}

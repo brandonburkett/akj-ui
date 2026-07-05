@@ -118,43 +118,23 @@ const Schedule: React.FunctionComponent<IProps> = props => (
                 </a>
               </li>
               <li>
-                <a className="link" href="http://www.nmsk.org/">
+                <a className="link" href="https://nmsk.org/">
                   New Mexico Komei Jyuku
                 </a>
               </li>
               <li>
-                <a className="link" href="http://www.maribu-boebingen.com">
-                  Germany Komei Jyuku
-                </a>
-              </li>
-              <li>
-                <a className="link" href="http://imau.ictta.ru/">
-                  Russia Komei Jyuku
+                <a className="link" href="https://www.nckj.org/">
+                  North Carolina Komei Jyuku
                 </a>
               </li>
               <li>
                 <a className="link" href="https://www.facebook.com/KomeiJukuSydney/">
-                  Syndney Komei Jyuku
-                </a>
-              </li>
-              <li>
-                <a className="link" href="http://komei-jyuku.asn.pl/">
-                  Zory Komei Jyuku (Poland)
-                </a>
-              </li>
-              <li>
-                <a className="link" href="http://www.seishinkan.info/">
-                  New Zealand Komei Jyuku
-                </a>
-              </li>
-              <li>
-                <a className="link" href="https://www.facebook.com/chudenhayanuki/">
-                  Indonesia Komei Jyuku
+                  Syndney Komei Juku
                 </a>
               </li>
               <li>
                 <a className="link" href="http://kumizaza.ch/">
-                  Switzerland Komei Jyuku
+                  Switzerland Komei Juku
                 </a>
               </li>
             </ul>
@@ -179,8 +159,8 @@ const Schedule: React.FunctionComponent<IProps> = props => (
                 </a>
               </li>
               <li>
-                <a className="link" href="hhttps://www.yamatobudogu.com/">
-                  Yamatou Budogu
+                <a className="link" href="https://budo-shop-sakuraya.stores.jp/">
+                  Budo Shop Sakuraya
                 </a>
               </li>
               <li>

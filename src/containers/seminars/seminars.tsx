@@ -44,9 +44,9 @@ const Seminars: React.FunctionComponent<IProps> = props => (
           <div className="cs12">
             <p>
               Sekiguchi sensei will be in Austin, TX, teaching a Muso Jikiden Eishin-ryu Iaijutsu
-              seminar on <strong>June 4th - June 8th, 2026</strong>. It is a rare opportunity to
-              train with the 21st generation, Sekiguchi sensei, assisted by Sonoko sensei. Everyone
-              is encouraged to attend, even beginner students.
+              seminar on <strong>September 13th - September 17th, 2026</strong>. It is a rare
+              opportunity to train with the 21st generation, Sekiguchi sensei, assisted by Sonoko
+              sensei. Everyone is encouraged to attend, even beginner students.
             </p>
 
             <p>
@@ -125,49 +125,47 @@ const Seminars: React.FunctionComponent<IProps> = props => (
             <h3>Schedule</h3>
             <ul className="ul_square">
               <li>
-                <strong>Wednesday, June 3rd:</strong>
+                <strong>Saturday, September 12th:</strong>
                 <br />
                 Arrival
                 <br />
                 No keiko
               </li>
               <li>
-                <strong>Thursday, June 4th:</strong>
+                <strong>Sunday, September 13th:</strong>
                 <br />
                 Morning keiko: 9am - 12pm
                 <br />
                 Afternoon keiko: 4pm - 6pm
               </li>
               <li>
-                <strong>Friday, June 5th:</strong>
+                <strong>Monday, September 14th:</strong>
                 <br />
                 Morning keiko: 10am - 1pm
                 <br />
                 Afternoon keiko: 7pm - 9pm
               </li>
               <li>
-                <strong>Saturday, June 6th:</strong>
+                <strong>Tuesday, September 15th:</strong>
+                <br />
+                Morning keiko: 9am - 12pm
+                <br />
+                Afternoon keiko: 2pm - 4pm
+              </li>
+              <li>
+                <strong>Wednesday, September 16th:</strong>
                 <br />
                 Morning keiko: 10am - 1pm
                 <br />
-                Afternoon keiko: 6pm - 8pm
+                Afternoon keiko: 7pm - 9pm
               </li>
               <li>
-                <strong>Sunday, June 7th:</strong>
+                <strong>Thursday, September 17th:</strong>
                 <br />
-                Morning keiko: 10am - 1pm
-                <br />
-                Afternoon keiko: 6pm - 8pm
+                Activity or morning keiko (if bad weather)
               </li>
               <li>
-                <strong>Monday, June 8th:</strong>
-                <br />
-                Morning keiko: 10am - 1pm
-                <br />
-                No afternoon keiko
-              </li>
-              <li>
-                <strong>Tuesday, June 9th:</strong>
+                <strong>Friday, September 18th:</strong>
                 <br />
                 Departure for Haneda
                 <br />

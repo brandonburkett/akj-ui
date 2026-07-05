@@ -6,6 +6,12 @@
   top: 0;
   left: 0;
   background: rgba(000, 000, 000, 0.9);
+  box-sizing: border-box;
+
+  /* three-zone flex row: logo | title | menu */
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
 
   /* should stay on top of everything */
   z-index: 99;
@@ -16,29 +22,42 @@
   transform: translateZ(2px);
 }
 
-.brand {
-  position: relative;
-  margin: 10px 6px;
-  transition: all 1s ease;
+/* left zone — equal flex weight to the menu zone keeps the title centered */
+.masthead-left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
 }
 
-.brand img {
+.brand-logo {
+  display: flex;
+  align-items: center;
+}
+
+.brand-logo img {
+  display: block;
   width: 35px;
   height: 35px;
-  margin-right: 5px;
 }
 
-.brand a {
+/* center zone — natural width, sits dead-center between the equal flanks */
+.brand-title {
+  flex: 0 1 auto;
   font-size: 1.2rem;
   color: #ffffff;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .site-menu {
-  position: absolute;
-  top: 5px;
-  right: 10px;
-  display: inline-block;
+  /* right zone — equal flex weight to the left zone */
+  flex: 1;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
   background: rgba(000, 000, 000, 0);
   cursor: pointer;
 
@@ -66,6 +85,7 @@
   width: 250px;
   padding: 5px 0 0 0;
   position: absolute;
+  top: 100%;
   right: 0;
   display: none;
 }
