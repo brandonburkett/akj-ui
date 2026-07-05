@@ -3,6 +3,9 @@ import * as React from 'react';
 // styles
 import './home.css';
 
+// structured data (schema.org) for local SEO + LLM/agent consumption
+import localBusinessSchema from './local-business-schema.json';
+
 // images
 import imgIsshin from './images/isshin-800.png';
 import imgOitaFest from './images/800-oita-fest.webp';
@@ -100,6 +103,10 @@ const Home: React.FunctionComponent<IProps> = props => {
         </div>
         <Footer />
       </BelowFold>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+      />
     </React.Fragment>
   );
 };
