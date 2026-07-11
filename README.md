@@ -36,10 +36,12 @@ ported as-is.
 - **Extensionless URLs.** `build.format: 'file'` emits `iaijutsu.html` (not `iaijutsu/index.html`)
   so S3/CloudFront serve extensionless paths (see Deploy).
 - **Layout + SEO.** `src/layouts/StandardLayout.astro` wraps every page and renders
-  `src/components/SeoHead.astro` (canonical, Open Graph, Twitter, icons); SEO URL/image helpers
-  live in `src/lib/seo.ts`.
-- **Islands.** Three vanilla-TS modules in `src/scripts/` — `nav.ts` (accessible dropdown),
-  `parallax.ts` (hero parallax), `gallery.ts` (image gallery). No framework runtime is shipped.
+  `src/components/SeoHead/SeoHead.astro` (canonical, Open Graph, Twitter, icons); SEO URL/image
+  helpers live in `src/components/SeoHead/seo.ts`.
+- **Islands.** Three vanilla-TS modules colocated with their components —
+  `src/components/Nav/nav.ts` (accessible dropdown),
+  `src/components/FullScreenParallaxImage/parallax.ts` (hero parallax),
+  `src/components/SlideGallery/gallery.ts` (image gallery). No framework runtime is shipped.
 - **Styles/assets.** CSS ported from the original app; global styles in `src/styles/`,
   per-component CSS alongside the `.astro` components. Static files in `public/` (favicon,
   manifest, PWA icons, `robots.txt`, `sitemap.xml`) are copied verbatim into `dist/`.
