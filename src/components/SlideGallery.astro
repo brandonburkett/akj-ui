@@ -1,0 +1,130 @@
+---
+import './slide-gallery.css';
+
+interface Props {
+  items: Array<{ src: string; alt: string }>;
+  label?: string;
+}
+const { items, label = 'Iaido training photos' } = Astro.props;
+const count = items.length;
+---
+
+<section class="slide-gallery-group group" aria-roledescription="carousel" aria-label={label}>
+  <div class="slide-gallery-images">
+    <ul class="sg-track" tabindex="0">
+      {
+        items.map((item, i) => (
+          <li
+            class="sg-slide"
+            role="group"
+            aria-roledescription="slide"
+            aria-label={`${i + 1} of ${count}`}
+          >
+            <img
+              src={item.src}
+              alt={item.alt}
+              loading={i === 0 ? 'eager' : 'lazy'}
+              decoding="async"
+            />
+          </li>
+        ))
+      }
+    </ul>
+
+    {/* text-content live region: slide content itself never mutates on nav, so
+        aria-live must live on a dedicated node whose text we update in script */}
+    <p class="sg-status visuallyhidden" aria-live="polite" aria-atomic="true">{`Slide 1 of ${count}`}</p>
+
+    <button class="sg-nav sg-prev" type="button" aria-label="Previous slide">&#8249;</button>
+    <button class="sg-nav sg-next" type="button" aria-label="Next slide">&#8250;</button>
+
+    <div class="sg-bullets" role="group" aria-label="Choose slide to display">
+      {
+        items.map((_, i) => (
+          <button
+            class="sg-bullet"
+            type="button"
+            data-index={i}
+            aria-current={i === 0 ? 'true' : 'false'}
+            aria-label={`Go to slide ${i + 1}`}
+          />
+        ))
+      }
+    </div>
+
+    <button class="sg-fullscreen" type="button" aria-label="View gallery fullscreen">&#9974;</button>
+  </div>
+</section>
+
+<script>
+  const root = document.querySelector<HTMLElement>('.slide-gallery-images');
+  const track = root?.querySelector<HTMLElement>('.sg-track');
+  if (root && track) {
+    const slides = Array.from(track.querySelectorAll<HTMLElement>('.sg-slide'));
+    const bullets = Array.from(root.querySelectorAll<HTMLButtonElement>('.sg-bullet'));
+    const prev = root.querySelector<HTMLButtonElement>('.sg-prev');
+    const next = root.querySelector<HTMLButtonElement>('.sg-next');
+    const fs = root.querySelector<HTMLButtonElement>('.sg-fullscreen');
+    const status = root.querySelector<HTMLElement>('.sg-status');
+    let active = 0;
+
+    const setActive = (i: number) => {
+      active = Math.max(0, Math.min(slides.length - 1, i));
+      bullets.forEach((b, bi) => b.setAttribute('aria-current', String(bi === active)));
+      if (status) status.textContent = `Slide ${active + 1} of ${slides.length}`;
+    };
+
+    const goTo = (i: number) => {
+      const clamped = Math.max(0, Math.min(slides.length - 1, i));
+      slides[clamped].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      setActive(clamped);
+    };
+
+    // track active slide as the user swipes/scrolls
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) setActive(slides.indexOf(e.target as HTMLElement));
+        });
+      },
+      { root: track, threshold: 0.6 },
+    );
+    slides.forEach((s) => io.observe(s));
+
+    prev?.addEventListener('click', () => goTo(active - 1));
+    next?.addEventListener('click', () => goTo(active + 1));
+    bullets.forEach((b) => b.addEventListener('click', () => goTo(Number(b.dataset.index))));
+
+    // keyboard support on the focusable track
+    track.addEventListener('keydown', (e) => {
+      switch (e.key) {
+        case 'ArrowRight':
+          e.preventDefault();
+          goTo(active + 1);
+          break;
+        case 'ArrowLeft':
+          e.preventDefault();
+          goTo(active - 1);
+          break;
+        case 'Home':
+          e.preventDefault();
+          goTo(0);
+          break;
+        case 'End':
+          e.preventDefault();
+          goTo(slides.length - 1);
+          break;
+      }
+    });
+
+    // native fullscreen (Escape exits automatically); no translateZ hack needed
+    fs?.addEventListener('click', async () => {
+      if (document.fullscreenElement) await document.exitFullscreen();
+      else await root.requestFullscreen().catch(() => {});
+    });
+    document.addEventListener('fullscreenchange', () => {
+      const on = document.fullscreenElement === root;
+      fs?.setAttribute('aria-label', on ? 'Exit fullscreen' : 'View gallery fullscreen');
+    });
+  }
+</script>
