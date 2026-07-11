@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(npm run:*)",
+      "Bash(npm test:*)",
+      "Bash(npm install)",
+      "Bash(npm ci)",
+      "Bash(npx astro:*)",
+      "Bash(npx playwright:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git status)",
+      "Bash(git diff:*)",
+      "Bash(git mv:*)",
+      "Bash(git log:*)"
+    ]
+  },
+  "worktree": { "baseRef": "head" }
+}

@@ -18,7 +18,8 @@
     "coverage": "vitest run --coverage",
     "lint:style": "stylelint \"src/**/*.css\" --fix",
     "prettier:write": "prettier --write \"./src/**/*.{ts,astro,css}\"",
-    "prettier:check": "prettier -l \"./src/**/*.{ts,astro,css}\""
+    "prettier:check": "prettier -l \"./src/**/*.{ts,astro,css}\"",
+    "prepare": "husky"
   },
   "dependencies": {
     "astro": "^6.3.1"
@@ -44,5 +45,9 @@
       "not dead",
       "not op_mini all"
     ]
+  },
+  "lint-staged": {
+    "*.{ts,astro}": ["prettier --write"],
+    "*.css": ["stylelint --fix", "prettier --write"]
   }
 }
