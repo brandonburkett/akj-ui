@@ -1,6 +1,88 @@
 ---
-// Placeholder masthead. Fully implemented in Task 5 (accessible dropdown nav).
+import './nav.css';
+import { NAV_ITEMS, SOCIAL_LINKS } from '../consts';
+import imgMon from './nav-images/komei-jyuku-mon-64.png';
+import imgMenu from './nav-images/menu.png';
+import imgMenuClose from './nav-images/menu-close.png';
+import imgFacebook from './nav-images/facebook.svg';
+import imgInstagram from './nav-images/instagram.svg';
+import imgYoutube from './nav-images/youtube.svg';
+
+const socialImg: Record<string, string> = {
+  Facebook: imgFacebook.src,
+  Instagram: imgInstagram.src,
+  YouTube: imgYoutube.src,
+};
 ---
 <header class="masthead translate-z">
+  <div class="masthead-left">
+    <a class="brand-logo" href="/"><img src={imgMon.src} alt="Dojo homepage" /></a>
+  </div>
   <a class="brand-title" href="/">Austin Komei Jyuku</a>
+
+  <nav class="site-menu" aria-label="Site Navigation">
+    <button class="menu-icon" aria-expanded="false" aria-controls="aria-menu-list" aria-label="Menu">
+      <span class="menu-title">Menu</span>
+      <img class="menu-open-img" src={imgMenu.src} alt="" aria-hidden="true" />
+      <img class="menu-close-img" src={imgMenuClose.src} alt="" aria-hidden="true" />
+    </button>
+
+    <div id="aria-menu-list" class="menu-bar group">
+      <ul id="nav-list" class="nav-list">
+        {NAV_ITEMS.map((item) => (
+          <li class="nav-list-item">
+            <a class="nav-parent" href={item.href}>{item.label}</a>
+          </li>
+        ))}
+      </ul>
+      <div class="social">
+        {SOCIAL_LINKS.map((s) => (
+          <a class="social-link" href={s.href} target="_blank" rel="noopener noreferrer">
+            <img class="social-icon" src={socialImg[s.label]} alt={s.label} />
+          </a>
+        ))}
+      </div>
+    </div>
+  </nav>
 </header>
+
+<script>
+  // Accessible disclosure nav: `open` class on `.site-menu` is the single
+  // source of visual truth (see nav.css `.site-menu.open > .menu-bar`).
+  // `aria-expanded` on the toggle button is the a11y state indicator.
+  // No `hidden`/`aria-hidden` on the region — display:none (from CSS when
+  // closed) already removes it from the accessibility tree, and on open it
+  // is genuinely visible so aria-hidden would be incorrect.
+  const nav = document.querySelector<HTMLElement>('.site-menu');
+  const btn = nav?.querySelector<HTMLButtonElement>('.menu-icon');
+  const region = document.getElementById('aria-menu-list');
+
+  if (nav && btn && region) {
+    const isOpen = () => nav.classList.contains('open');
+
+    const setOpen = (open: boolean) => {
+      nav.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', String(open));
+    };
+
+    btn.addEventListener('click', () => setOpen(!isOpen()));
+
+    // close after following a nav link
+    region.querySelectorAll('a.nav-parent').forEach((a) =>
+      a.addEventListener('click', () => setOpen(false)),
+    );
+
+    // Escape closes and returns focus to the toggle button
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && isOpen()) {
+        setOpen(false);
+        btn.focus();
+      }
+    });
+
+    // click/tap outside the nav closes it
+    document.addEventListener('mousedown', (e) => {
+      if (isOpen() && e.target instanceof Node && !nav.contains(e.target)) setOpen(false);
+    });
+  }
+</script>
