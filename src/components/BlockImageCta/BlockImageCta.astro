@@ -13,6 +13,7 @@ interface Props {
 
 const { to, imgSrc, imgAlt, title = '', content = '' } = Astro.props;
 ---
+
 <a class="block-image-cta" href={to}>
   <ResponsiveImage src={imgSrc} alt={imgAlt} />
   <div class="block-image-info">

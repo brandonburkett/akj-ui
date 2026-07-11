@@ -7,6 +7,7 @@ interface Props {
 
 const { fullViewHeight = false } = Astro.props;
 ---
+
 <div class={`panel-content ${fullViewHeight ? 'full-vh' : ''}`}>
   <div class="content group">
     <slot />

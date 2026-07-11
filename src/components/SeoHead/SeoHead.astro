@@ -18,6 +18,7 @@ const canonicalUrl = buildCanonical(path, SITE_URL);
 const ogImage = buildOgImage(image, defaultOgp.src, SITE_URL);
 const fullTitle = title === SITE_NAME ? SITE_NAME : `${title}, ${SITE_NAME}`;
 ---
+
 <meta charset="utf-8" />
 <title lang="en">{fullTitle}</title>
 <meta name="description" content={desc} />

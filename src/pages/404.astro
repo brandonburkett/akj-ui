@@ -8,6 +8,7 @@ import PanelContent from '../components/PanelContent/PanelContent.astro';
 const title = '404 Not Found';
 const desc = 'Page not found.';
 ---
+
 <StandardLayout title={title} desc={desc} path={Astro.url.pathname} noIndex={true}>
   <div id="main" class="group" role="main">
     <PanelSection>
@@ -15,8 +16,8 @@ const desc = 'Page not found.';
         <div class="cs12">
           <h1>Oops, something went wrong...</h1>
           <p>
-            The page you're looking for either doesn't exist or there was an internal error for
-            your request.
+            The page you're looking for either doesn't exist or there was an internal error for your
+            request.
           </p>
         </div>
       </PanelContent>

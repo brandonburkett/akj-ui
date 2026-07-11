@@ -11,8 +11,10 @@ const count = items.length;
 
 <section class="slide-gallery-group group" aria-roledescription="carousel" aria-label={label}>
   <div class="slide-gallery-images">
-    {/* div/div not ul/li: role="group" on each slide (APG carousel) strips the
-        implicit listitem role, leaving the ul an empty list (axe list/only-listitems) */}
+    {
+      /* div/div not ul/li: role="group" on each slide (APG carousel) strips the
+        implicit listitem role, leaving the ul an empty list (axe list/only-listitems) */
+    }
     <div class="sg-track" tabindex="0">
       {
         items.map((item, i) => (
@@ -33,9 +35,13 @@ const count = items.length;
       }
     </div>
 
-    {/* text-content live region: slide content itself never mutates on nav, so
-        aria-live must live on a dedicated node whose text we update in script */}
-    <p class="sg-status visuallyhidden" aria-live="polite" aria-atomic="true">{`Slide 1 of ${count}`}</p>
+    {
+      /* text-content live region: slide content itself never mutates on nav, so
+        aria-live must live on a dedicated node whose text we update in script */
+    }
+    <p class="sg-status visuallyhidden" aria-live="polite" aria-atomic="true">
+      {`Slide 1 of ${count}`}
+    </p>
 
     <button class="sg-nav sg-prev" type="button" aria-label="Previous slide">&#8249;</button>
     <button class="sg-nav sg-next" type="button" aria-label="Next slide">&#8250;</button>
@@ -54,7 +60,8 @@ const count = items.length;
       }
     </div>
 
-    <button class="sg-fullscreen" type="button" aria-label="View gallery fullscreen">&#9974;</button>
+    <button class="sg-fullscreen" type="button" aria-label="View gallery fullscreen">&#9974;</button
+    >
   </div>
 </section>
 

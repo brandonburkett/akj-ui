@@ -9,4 +9,5 @@ interface Props {
 
 const { src, alt = '', class: className, ...rest } = Astro.props;
 ---
+
 <img src={src} alt={alt} class:list={['fit-img', className]} {...rest} />

@@ -9,6 +9,7 @@ interface Props {
 
 const { class: className, ...rest } = Astro.props;
 ---
-<div class:list={['below-fold', 'group', className]} {...(rest as Record<string, any>)}>
+
+<div class:list={['below-fold', 'group', className]} {...rest as Record<string, any>}>
   <slot />
 </div>
