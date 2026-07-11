@@ -1388,15 +1388,30 @@ git commit -m "feat: port all pages to Astro"
 
 ---
 
-## Task 9: Test harness (Playwright + axe)
+## Task 9: Test harness — Vitest unit + coverage, Playwright e2e + axe
+
+Two layers of tests plus the small refactor that makes the island logic unit-testable:
+- **Unit (Vitest + jsdom, with coverage)** over pure/interaction logic extracted into importable TS modules.
+- **E2E (Playwright + axe)** over the real pages: full-page behavior + accessibility on every route.
+
+The e2e suite is set up and green FIRST so it is the safety net while the island `<script>`s are refactored into modules. Behavior must stay identical through the extraction (re-run e2e after each).
+
+Split of responsibility: jsdom-testable logic (nav toggle/Escape/outside-click, gallery index/keyboard/bullet/status, parallax math, SeoHead canonical) is unit-tested; browser-only APIs (IntersectionObserver, Fullscreen) are exercised by the e2e layer (stub or skip them in unit).
 
 **Files:**
-- Create: `playwright.config.ts`, `tests/a11y.spec.ts` (+ the spec files written in Tasks 3/5/7)
+- Create: `playwright.config.ts`, `vitest.config.ts`, `tests/a11y.spec.ts`, unit tests as `src/**/*.test.ts`
+- Create (extraction): `src/lib/seo.ts`, `src/scripts/nav.ts`, `src/scripts/parallax.ts`, `src/scripts/gallery.ts`
+- Modify: `SeoHead.astro`, `Nav.astro`, `FullScreenParallaxImage.astro`, `SlideGallery.astro` (import the modules); `package.json` (scripts + devDeps)
 
-**Interfaces:**
-- Produces: `npm test` runs Playwright against `astro dev` on `http://localhost:4321`.
+**Interfaces (Produces):**
+- `src/lib/seo.ts` — `buildCanonical(path: string, siteUrl: string): string` (root keeps its slash; strips `.html`/`/index.html` and other trailing slashes) and `buildOgImage(image: string | undefined, defaultSrc: string, siteUrl: string): string`.
+- `src/scripts/nav.ts` — `initNav(doc?: Document): void`.
+- `src/scripts/parallax.ts` — pure `parallaxOffset(scrollY: number, speed: number): number` + `initParallax(doc?: Document): void`.
+- `src/scripts/gallery.ts` — pure `clampIndex(i: number, len: number): number` + `initGallery(doc?: Document): void`.
 
-- [ ] **Step 1: Create `playwright.config.ts`**
+### E2E first
+
+- [ ] **Step 1: `playwright.config.ts`**
 
 ```ts
 import { defineConfig } from '@playwright/test';
@@ -1413,13 +1428,9 @@ export default defineConfig({
 });
 ```
 
-- [ ] **Step 2: Install browsers**
+- [ ] **Step 2: Install browsers** — `npx playwright install --with-deps chromium`
 
-```bash
-npx playwright install --with-deps chromium
-```
-
-- [ ] **Step 3: Create `tests/a11y.spec.ts`**
+- [ ] **Step 3: `tests/a11y.spec.ts`** (axe sweep)
 
 ```ts
 import { test, expect } from '@playwright/test';
@@ -1428,27 +1439,61 @@ import AxeBuilder from '@axe-core/playwright';
 for (const path of ['/', '/iaijutsu', '/schedule', '/seminars', '/404']) {
   test(`no serious/critical a11y violations on ${path}`, async ({ page }) => {
     await page.goto(path);
-    const results = await new AxeBuilder({ page })
-      .withTags(['wcag2a', 'wcag2aa'])
-      .analyze();
-    const serious = results.violations.filter((v) =>
-      ['serious', 'critical'].includes(v.impact ?? ''));
+    const results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa']).analyze();
+    const serious = results.violations.filter((v) => ['serious', 'critical'].includes(v.impact ?? ''));
     expect(serious, JSON.stringify(serious, null, 2)).toEqual([]);
   });
 }
 ```
 
-- [ ] **Step 4: Run the full suite**
+- [ ] **Step 4: Run e2e** — `npx playwright test`. All of `routing`/`nav`/`gallery`/`a11y` green (island behavior verified end-to-end). Fix any a11y violations (likely: `:focus-visible` on controls, contrast on `.cover-content`).
 
-Run: `npm test`
-Expected: all specs from Tasks 3/5/7 + a11y pass. Fix any violations (likely candidates: missing `alt`, low-contrast on `.cover-content` overlay, focus-visible on controls) before proceeding.
+- [ ] **Step 5: Commit** — `git commit -m "test: playwright e2e + axe"`
 
-- [ ] **Step 5: Commit**
+### Unit + extraction
 
-```bash
-git add -A
-git commit -m "test: playwright + axe a11y suite for all pages and islands"
+- [ ] **Step 6: Add deps + scripts** — `npm i -D vitest @vitest/coverage-v8 jsdom`. Set `package.json` scripts:
+```json
+"test": "npm run test:unit && npm run test:e2e",
+"test:unit": "vitest run",
+"test:e2e": "playwright test",
+"coverage": "vitest run --coverage"
 ```
+
+- [ ] **Step 7: `vitest.config.ts`** (jsdom; coverage on the extracted modules; do not collide with Playwright's `./tests`)
+
+```ts
+import { defineConfig } from 'vitest/config';
+
+export default defineConfig({
+  test: {
+    environment: 'jsdom',
+    include: ['src/**/*.test.ts'],
+    coverage: { provider: 'v8', include: ['src/lib/**', 'src/scripts/**'], reporter: ['text', 'html'] },
+  },
+});
+```
+
+- [ ] **Step 8: Extract SeoHead canonical → `src/lib/seo.ts`** and have `SeoHead.astro` import `buildCanonical`/`buildOgImage`. Behavior identical (root keeps slash, `.html` stripped). Re-run `npm run build` + `npx playwright test`.
+
+- [ ] **Step 9: Extract island scripts → `src/scripts/{nav,parallax,gallery}.ts`**, each exporting `init*` (+ the pure helper). Each `.astro` replaces its inline logic with:
+```astro
+<script>
+  import { initNav } from '../scripts/nav';
+  initNav();
+</script>
+```
+Do them one at a time and re-run `npx playwright test` after EACH so any behavior drift is caught immediately.
+
+- [ ] **Step 10: Unit tests (`src/**/*.test.ts`, jsdom)**
+  - `src/lib/seo.test.ts`: `buildCanonical` for `/`, `/index.html`, `/iaijutsu`, `/iaijutsu.html`, `/a/index.html`; `buildOgImage` returns an absolute URL.
+  - `src/scripts/parallax.test.ts`: `parallaxOffset(1000, 5) === -200`, `parallaxOffset(0, 5) === 0`.
+  - `src/scripts/nav.test.ts`: mount minimal nav DOM, `initNav(document)`; click toggle → `.open` + `aria-expanded="true"`; Escape → closed + button focused; mousedown outside → closed.
+  - `src/scripts/gallery.test.ts`: `clampIndex` bounds; mount minimal gallery DOM, `initGallery(document)`; ArrowRight → active bullet index 1; Home → 0; bullet click moves `aria-current`; `.sg-status` text updates. Stub `IntersectionObserver` (a no-op class) in the test setup; leave fullscreen to e2e.
+
+- [ ] **Step 11: Coverage + full run** — `npm run coverage` (confirm `src/lib` + `src/scripts` are well covered; aim high, not necessarily 100%), then `npm test` (unit + e2e) green.
+
+- [ ] **Step 12: Commit** — `git commit -m "test: vitest unit tests + coverage"`
 
 ---
 
