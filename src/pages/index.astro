@@ -1,6 +1,89 @@
 ---
 import StandardLayout from '../layouts/StandardLayout.astro';
+import BelowFold from '../components/BelowFold.astro';
+import Footer from '../components/Footer.astro';
+import BlockImageCta from '../components/BlockImageCta.astro';
+import FullScreenParallaxImage from '../components/FullScreenParallaxImage.astro';
+import ResponsiveImage from '../components/ResponsiveImage.astro';
+
+// structured data (schema.org) for local SEO + LLM/agent consumption
+import schema from '../data/local-business-schema.json';
+
+// images
+import imgIsshin from './home-images/isshin-800.png';
+import imgOitaFest from './home-images/800-oita-fest.webp';
+import imgEnbu from './home-images/1920-mjer-enbu-2025.webp';
+import imgMap from './home-images/800-map-itk.webp';
+import imgMjerKanji from './home-images/mjer-kanji.png';
+import imgSeminar from './home-images/800-seminar-2025.webp';
+
+const title = 'Traditional Japanese Swordsmanship';
+const desc =
+  'The Austin Komei Jyuku dojo teaches Yamauchi-Ha Muso Jikiden Eishin-ryu Iaijutsu under Sekiguchi Komei Sensei in Austin, Texas.';
 ---
-<StandardLayout title="Traditional Japanese Swordsmanship" desc="test" path={Astro.url.pathname}>
-  <main><h1>layout smoke</h1></main>
+<StandardLayout title={title} desc={desc} path={Astro.url.pathname}>
+  <FullScreenParallaxImage
+    backgroundImgSrc={imgEnbu.src}
+    scrollTargetId="below-fold-main"
+    parallaxSpeed={5}
+  >
+    <div class="big-brand">
+      <div class="logo">
+        <ResponsiveImage src={imgMjerKanji.src} alt="Muso Jikiden Eishin-ryu Iaijutsu" />
+      </div>
+      <h1 class="invisible" aria-hidden="false">
+        Austin Komei Jyuku
+      </h1>
+    </div>
+  </FullScreenParallaxImage>
+
+  <BelowFold role="main" id="below-fold-main">
+    <section class="home group translate-z">
+      <div class="intro">
+        <h2>About Us</h2>
+        <p>
+          Austin Komei Jyuku teaches the koryu Japanese sword art of Yamauchi-ha Muso Jikiden
+          Eishin-ryu Iaijutsu as taught by the 21st generation, Sekiguchi Komei sensei. The
+          Komei Jyuku, also known as the Nihon Koden Bujutsu Iaido Renmei, is a member of the
+          Nihon Kobudo Kyokai, one of the premiere martial arts organizations in Japan dedicated
+          to preserving classical martial traditions. The Austin shibucho is Brandon Burkett who
+          is a direct student to Sekiguchi sensei.
+        </p>
+      </div>
+
+      <div class="home-ctas group">
+        <BlockImageCta
+          to="/iaijutsu"
+          imgSrc={imgOitaFest.src}
+          imgAlt="Kobushidori"
+          title="Iaijutsu"
+          content="Muso Jikiden Eishin-ryu translates to &ldquo;peerless, direct
+              transmission, school of Eishin&rdquo;. It is one of the oldest martial art from Japan with an unbroken
+              history dating back to the late 16th century when it was founded by Hayashizaki Jinsuke Shigenobu."
+        />
+        <BlockImageCta
+          to="/schedule"
+          imgSrc={imgMap.src}
+          imgAlt="Map to dojo"
+          title="Schedule"
+          content="Class is held Monday and Wednesday from 7:30pm - 9:30pm at Immortal Martial Arts Academy. Saturday morning training from 9:00am - 10:00am."
+        />
+        <BlockImageCta
+          to="/seminars"
+          imgSrc={imgSeminar.src}
+          imgAlt="Tomoe sune"
+          title="Seminars"
+          content="Train during our yearly Muso Jikiden Eishin-ryu seminar in Austin. It is a rare opportunity to train with the 21st generation, Sekiguchi Komei sensei."
+        />
+      </div>
+    </section>
+    <div class="isshin translate-z">
+      <div class="intro">
+        <ResponsiveImage src={imgIsshin.src} alt="一心 - one heart" />
+      </div>
+    </div>
+    <Footer />
+  </BelowFold>
+
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
 </StandardLayout>

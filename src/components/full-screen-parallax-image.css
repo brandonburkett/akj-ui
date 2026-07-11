@@ -71,6 +71,8 @@
   padding: 10px 25px;
   background-color: #fff;
   border-radius: 50px;
+  /* now an <a>, not a <button>: keep the pill-button box */
+  display: inline-block;
 }
 
 .cover-scroll-btn img {
