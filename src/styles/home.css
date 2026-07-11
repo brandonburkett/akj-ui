@@ -1,7 +1,7 @@
 /* Homepage Quote Panel */
 .home {
-  background: rgb(110, 024, 011);
-  color: #ffffff;
+  background: rgb(110 024 011);
+  color: #fff;
   top: 100%;
   position: relative;
 
@@ -23,23 +23,25 @@
   padding-top: 1em;
   padding-bottom: 1em;
 }
+
 .home .intro .link:link,
 .home .intro .link:visited {
-  color: rgb(255, 255, 255);
-  color: rgba(255, 255, 255, 0.6);
+  color: rgb(255 255 255);
+  color: rgb(255 255 255 / 60%);
   border: none;
   transition: all 0.3s ease;
 }
+
 .home .intro .link:hover,
 .home .intro .link:focus {
-  color: rgb(255, 255, 255);
-  color: rgba(255, 255, 255, 1);
+  color: rgb(255 255 255);
+  color: rgb(255 255 255 / 100%);
   border: none;
 }
 
 .home .intro h1,
 .home .intro h2 {
-  color: #ffffff;
+  color: #fff;
   font-size: 1.25em;
 }
 
@@ -50,14 +52,12 @@
   min-height: 400px;
   margin: auto;
   position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
+  inset: 0;
   font-size: 1em;
   line-height: 1.2em;
   text-align: center;
 }
+
 .logo {
   margin: 75px auto;
   width: 233px;
@@ -73,7 +73,7 @@
 /* homepage Footer */
 .isshin {
   background: #eae6db;
-  padding: 1px 0 10px 0;
+  padding: 1px 0 10px;
   position: relative;
 
   /* needs to be above full screen parallax */

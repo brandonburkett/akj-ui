@@ -1,19 +1,20 @@
 .block-image-cta {
   position: relative;
-  width: 33.3333333%;
+  width: calc(100% / 3);
   float: left;
   text-decoration: none;
   display: block;
-  color: #ffffff;
+  color: #fff;
   overflow: hidden;
 }
+
 .block-image-info {
   display: inline-block;
   width: auto;
   min-width: 50%;
   height: 2.6em;
-  background: rgb(0, 0, 0);
-  background: rgba(0, 0, 0, 0.8);
+  background: rgb(0 0 0);
+  background: rgb(0 0 0 / 80%);
   position: absolute;
   bottom: 0;
   left: 0;
@@ -22,6 +23,7 @@
   -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
+
 .black-image-title {
   position: absolute;
   left: 0;
@@ -35,6 +37,7 @@
   -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
+
 .block-image-details {
   opacity: 0;
   padding: 40px 20px;
@@ -44,6 +47,7 @@
   -o-transition: all 1s ease;
   transition: all 1s ease;
 }
+
 .block-image-icon {
   opacity: 1;
   padding: 1px 15px;
@@ -56,22 +60,26 @@
   -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
+
 .block-image-cta:hover .block-image-info,
 .block-image-cta:focus .block-image-info {
   width: 100%;
   height: 100%;
 }
+
 .block-image-cta:hover .black-image-title,
 .block-image-cta:focus .black-image-title {
   font-size: 3em;
   font-family: 'amblelight_condensed', sans-serif;
 }
+
 .block-image-cta:hover .block-image-details,
 .block-image-cta:focus .block-image-details {
   opacity: 1;
   font-family: 'amblelight_condensed', sans-serif;
   padding: 20px;
 }
+
 .block-image-cta:hover .block-image-icon,
 .block-image-cta:focus .block-image-icon {
   opacity: 0;
@@ -81,11 +89,13 @@
 @media screen and (min-width: 320px) {
   .block-image-cta {
     width: 100%;
-    border-bottom: 1px solid #ffffff;
+    border-bottom: 1px solid #fff;
   }
+
   .block-image-info {
     width: 100%;
   }
+
   .block-image-details {
     display: none;
   }
@@ -94,8 +104,9 @@
 @media screen and (min-width: 600px) {
   .block-image-cta {
     width: 100%;
-    border-bottom: 1px solid #ffffff;
+    border-bottom: 1px solid #fff;
   }
+
   .block-image-details {
     display: none;
   }
@@ -105,6 +116,7 @@
   .block-image-info {
     width: 80%;
   }
+
   .block-image-details {
     display: block;
   }
@@ -112,7 +124,7 @@
 
 @media screen and (min-width: 1200px) {
   .block-image-cta {
-    width: 33.3333333%;
+    width: calc(100% / 3);
     border-bottom: none;
   }
 }

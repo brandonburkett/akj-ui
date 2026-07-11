@@ -2,7 +2,7 @@
 
 /********************** 320+ Pixel Styles **********************/
 @media screen and (min-width: 320px) {
-  /***************************************************************/
+  /**************************************************************  */
 
   /* Responsive Grid */
   .cs1,
@@ -19,6 +19,7 @@
   .cs12 {
     width: 300px;
   }
+
   .cs2 .cs1,
   .cs3 .cs1,
   .cs3 .cs2,
@@ -86,8 +87,8 @@
   .cs12 .cs10,
   .cs12 .cs11 {
     width: 300px;
-    margin-left: 0px;
-    margin-right: 0px;
+    margin-left: 0;
+    margin-right: 0;
   }
 
   /* Non Grid Columns */
@@ -95,6 +96,7 @@
     width: 100%;
     margin: 0;
   }
+
   .quarter {
     width: 100%;
     margin: 0;
@@ -105,11 +107,11 @@
   }
 
   /* End 320+ Pixel Styles */
-} /*********************************/
+} /********************************  */
 
 /********************** 400+ Pixel Styles **********************/
 @media screen and (min-width: 400px) {
-  /***************************************************************/
+  /**************************************************************  */
 
   /* Responsive Grid */
   .cs1,
@@ -126,6 +128,7 @@
   .cs12 {
     width: 380px;
   }
+
   .cs2 .cs1,
   .cs3 .cs1,
   .cs3 .cs2,
@@ -193,16 +196,16 @@
   .cs12 .cs10,
   .cs12 .cs11 {
     width: 380px;
-    margin-left: 0px;
-    margin-right: 0px;
+    margin-left: 0;
+    margin-right: 0;
   }
 
   /* End 400+ Pixel Styles */
-} /*********************************/
+} /********************************  */
 
 /********************** 480+ Pixel Styles **********************/
 @media screen and (min-width: 480px) {
-  /***************************************************************/
+  /**************************************************************  */
 
   /* Responsive Grid */
   .cs1,
@@ -219,6 +222,7 @@
   .cs12 {
     width: 460px;
   }
+
   .cs2 .cs1,
   .cs3 .cs1,
   .cs3 .cs2,
@@ -286,8 +290,8 @@
   .cs12 .cs10,
   .cs12 .cs11 {
     width: 460px;
-    margin-left: 0px;
-    margin-right: 0px;
+    margin-left: 0;
+    margin-right: 0;
   }
 
   /* Non Grid Columns */
@@ -295,11 +299,13 @@
     width: 47%;
     margin: 0 2% 0 0;
   }
+
   .third {
     float: left;
     width: 30%;
     margin: 0 2% 0 0;
   }
+
   .quarter {
     float: left;
     width: 22%;
@@ -307,11 +313,11 @@
   }
 
   /* End 480+ Pixel Styles */
-} /*********************************/
+} /********************************  */
 
 /********************** 600+ Pixel Styles **********************/
 @media screen and (min-width: 600px) {
-  /***************************************************************/
+  /**************************************************************  */
 
   /* Responsive Grid */
   .cs1,
@@ -328,6 +334,7 @@
   .cs12 {
     width: 544px;
   }
+
   .cs2 .cs1,
   .cs3 .cs1,
   .cs3 .cs2,
@@ -395,14 +402,15 @@
   .cs12 .cs10,
   .cs12 .cs11 {
     width: 564px;
-    margin-left: 0px;
-    margin-right: 0px;
+    margin-left: 0;
+    margin-right: 0;
   }
 
   /* Interior */
   .service p {
     font-size: 1.2em;
   }
+
   .service_logo {
     margin: 0 auto 40px;
   }
@@ -412,11 +420,11 @@
   }
 
   /* End 600+ Pixel Styles */
-} /*********************************/
+} /********************************  */
 
 /********************** 768+ Pixel Styles **********************/
 @media screen and (min-width: 768px) {
-  /***************************************************************/
+  /**************************************************************  */
 
   /* Responsive Grid */
   .cs1,
@@ -433,6 +441,7 @@
   .cs12 {
     width: 700px;
   }
+
   .cs2 .cs1,
   .cs3 .cs1,
   .cs3 .cs2,
@@ -500,54 +509,66 @@
   .cs12 .cs10,
   .cs12 .cs11 {
     width: 700px;
-    margin-left: 0px;
-    margin-right: 0px;
+    margin-left: 0;
+    margin-right: 0;
   }
 
   /* End 768+ Pixel Styles */
-} /*********************************/
+} /********************************  */
 
 /********************** 1024+ Pixel Styles **********************/
 @media screen and (min-width: 1024px) {
-  /***************************************************************/
+  /**************************************************************  */
 
   /* Responsive Grid */
   .cs1 {
     width: 40px;
   }
+
   .cs2 {
     width: 120px;
   }
+
   .cs3 {
     width: 200px;
   }
+
   .cs4 {
     width: 280px;
   }
+
   .cs5 {
     width: 360px;
   }
+
   .cs6 {
     width: 440px;
   }
+
   .cs7 {
     width: 520px;
   }
+
   .cs8 {
     width: 600px;
   }
+
   .cs9 {
     width: 680px;
   }
+
   .cs10 {
     width: 760px;
   }
+
   .cs11 {
     width: 840px;
   }
+
   .cs12 {
     width: 920px;
   }
+
   .cs2 .cs1,
   .cs3 .cs1,
   .cs4 .cs1,
@@ -563,6 +584,7 @@
     margin-left: 20px;
     margin-right: 20px;
   }
+
   .cs3 .cs2,
   .cs4 .cs2,
   .cs5 .cs2,
@@ -577,6 +599,7 @@
     margin-left: 20px;
     margin-right: 20px;
   }
+
   .cs4 .cs3,
   .cs5 .cs3,
   .cs6 .cs3,
@@ -590,6 +613,7 @@
     margin-left: 20px;
     margin-right: 20px;
   }
+
   .cs5 .cs4,
   .cs6 .cs4,
   .cs7 .cs4,
@@ -602,6 +626,7 @@
     margin-left: 20px;
     margin-right: 20px;
   }
+
   .cs6 .cs5,
   .cs7 .cs5,
   .cs8 .cs5,
@@ -613,6 +638,7 @@
     margin-left: 20px;
     margin-right: 20px;
   }
+
   .cs7 .cs6,
   .cs8 .cs6,
   .cs9 .cs6,
@@ -623,6 +649,7 @@
     margin-left: 20px;
     margin-right: 20px;
   }
+
   .cs8 .cs7,
   .cs9 .cs7,
   .cs10 .cs7,
@@ -632,6 +659,7 @@
     margin-left: 20px;
     margin-right: 20px;
   }
+
   .cs9 .cs8,
   .cs10 .cs8,
   .cs11 .cs8,
@@ -640,6 +668,7 @@
     margin-left: 20px;
     margin-right: 20px;
   }
+
   .cs10 .cs9,
   .cs11 .cs9,
   .cs12 .cs9 {
@@ -647,12 +676,14 @@
     margin-left: 20px;
     margin-right: 20px;
   }
+
   .cs11 .cs10,
   .cs12 .cs10 {
     width: 760px;
     margin-left: 20px;
     margin-right: 20px;
   }
+
   .cs12 .cs11 {
     width: 840px;
     margin-left: 20px;
@@ -669,49 +700,61 @@
   }
 
   /* End 1024+ Pixel Styles */
-} /*********************************/
+} /********************************  */
 
 /********************** 1200+ Pixel Styles **********************/
 @media screen and (min-width: 1200px) {
-  /***************************************************************/
+  /**************************************************************  */
 
   /* Responsive Grid */
   .cs1 {
     width: 52px;
   }
+
   .cs2 {
     width: 144px;
   }
+
   .cs3 {
     width: 236px;
   }
+
   .cs4 {
     width: 328px;
   }
+
   .cs5 {
     width: 420px;
   }
+
   .cs6 {
     width: 512px;
   }
+
   .cs7 {
     width: 604px;
   }
+
   .cs8 {
     width: 696px;
   }
+
   .cs9 {
     width: 788px;
   }
+
   .cs10 {
     width: 880px;
   }
+
   .cs11 {
     width: 972px;
   }
+
   .cs12 {
     width: 1064px;
   }
+
   .cs2 .cs1,
   .cs3 .cs1,
   .cs4 .cs1,
@@ -727,6 +770,7 @@
     margin-left: 20px;
     margin-right: 20px;
   }
+
   .cs3 .cs2,
   .cs4 .cs2,
   .cs5 .cs2,
@@ -741,6 +785,7 @@
     margin-left: 20px;
     margin-right: 20px;
   }
+
   .cs4 .cs3,
   .cs5 .cs3,
   .cs6 .cs3,
@@ -754,6 +799,7 @@
     margin-left: 20px;
     margin-right: 20px;
   }
+
   .cs5 .cs4,
   .cs6 .cs4,
   .cs7 .cs4,
@@ -766,6 +812,7 @@
     margin-left: 20px;
     margin-right: 20px;
   }
+
   .cs6 .cs5,
   .cs7 .cs5,
   .cs8 .cs5,
@@ -777,6 +824,7 @@
     margin-left: 20px;
     margin-right: 20px;
   }
+
   .cs7 .cs6,
   .cs8 .cs6,
   .cs9 .cs6,
@@ -787,6 +835,7 @@
     margin-left: 20px;
     margin-right: 20px;
   }
+
   .cs8 .cs7,
   .cs9 .cs7,
   .cs10 .cs7,
@@ -796,6 +845,7 @@
     margin-left: 20px;
     margin-right: 20px;
   }
+
   .cs9 .cs8,
   .cs10 .cs8,
   .cs11 .cs8,
@@ -804,6 +854,7 @@
     margin-left: 20px;
     margin-right: 20px;
   }
+
   .cs10 .cs9,
   .cs11 .cs9,
   .cs12 .cs9 {
@@ -811,12 +862,14 @@
     margin-left: 20px;
     margin-right: 20px;
   }
+
   .cs11 .cs10,
   .cs12 .cs10 {
     width: 880px;
     margin-left: 20px;
     margin-right: 20px;
   }
+
   .cs12 .cs11 {
     width: 972px;
     margin-left: 20px;
@@ -829,49 +882,61 @@
   }
 
   /* End 1200+ Pixel Styles */
-} /*********************************/
+} /********************************  */
 
 /********************** 1500+ Pixel Styles **********************/
 @media screen and (min-width: 1500px) {
-  /***************************************************************/
+  /**************************************************************  */
 
   /* Responsive Grid */
   .cs1 {
     width: 80px;
   }
+
   .cs2 {
     width: 200px;
   }
+
   .cs3 {
     width: 320px;
   }
+
   .cs4 {
     width: 440px;
   }
+
   .cs5 {
     width: 560px;
   }
+
   .cs6 {
     width: 680px;
   }
+
   .cs7 {
     width: 800px;
   }
+
   .cs8 {
     width: 920px;
   }
+
   .cs9 {
     width: 1040px;
   }
+
   .cs10 {
     width: 1160px;
   }
+
   .cs11 {
     width: 1280px;
   }
+
   .cs12 {
     width: 1400px;
   }
+
   .cs2 .cs1,
   .cs3 .cs1,
   .cs4 .cs1,
@@ -887,6 +952,7 @@
     margin-left: 20px;
     margin-right: 20px;
   }
+
   .cs3 .cs2,
   .cs4 .cs2,
   .cs5 .cs2,
@@ -901,6 +967,7 @@
     margin-left: 20px;
     margin-right: 20px;
   }
+
   .cs4 .cs3,
   .cs5 .cs3,
   .cs6 .cs3,
@@ -914,6 +981,7 @@
     margin-left: 20px;
     margin-right: 20px;
   }
+
   .cs5 .cs4,
   .cs6 .cs4,
   .cs7 .cs4,
@@ -926,6 +994,7 @@
     margin-left: 20px;
     margin-right: 20px;
   }
+
   .cs6 .cs5,
   .cs7 .cs5,
   .cs8 .cs5,
@@ -937,6 +1006,7 @@
     margin-left: 20px;
     margin-right: 20px;
   }
+
   .cs7 .cs6,
   .cs8 .cs6,
   .cs9 .cs6,
@@ -947,6 +1017,7 @@
     margin-left: 20px;
     margin-right: 20px;
   }
+
   .cs8 .cs7,
   .cs9 .cs7,
   .cs10 .cs7,
@@ -956,6 +1027,7 @@
     margin-left: 20px;
     margin-right: 20px;
   }
+
   .cs9 .cs8,
   .cs10 .cs8,
   .cs11 .cs8,
@@ -964,6 +1036,7 @@
     margin-left: 20px;
     margin-right: 20px;
   }
+
   .cs10 .cs9,
   .cs11 .cs9,
   .cs12 .cs9 {
@@ -971,12 +1044,14 @@
     margin-left: 20px;
     margin-right: 20px;
   }
+
   .cs11 .cs10,
   .cs12 .cs10 {
     width: 1160px;
     margin-left: 20px;
     margin-right: 20px;
   }
+
   .cs12 .cs11 {
     width: 1280px;
     margin-left: 20px;
@@ -984,4 +1059,4 @@
   }
 
   /* End 1500+ Pixel Styles */
-} /*********************************/
+} /********************************  */

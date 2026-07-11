@@ -1,13 +1,11 @@
 .footer {
-  background: rgb(067, 091, 013);
-  color: #ffffff;
+  background: rgb(067 091 013);
+  color: #fff;
   position: relative;
 
   /* needs to be above full screen parallax */
   z-index: 1;
-
   height: 55px;
-
   display: flex;
   align-items: center;
   justify-content: center;

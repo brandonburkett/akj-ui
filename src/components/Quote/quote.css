@@ -1,6 +1,6 @@
 .quote {
-  background: rgb(067, 091, 013);
-  color: #ffffff;
+  background: rgb(067 091 013);
+  color: #fff;
   position: relative;
 
   /* needs to be above full screen parallax */
@@ -19,6 +19,7 @@
   font-size: 1.7em;
   line-height: 1.3em;
 }
+
 .quote .attribute {
   display: block;
   font-family: 'amblelight_condensed_italic', sans-serif;
