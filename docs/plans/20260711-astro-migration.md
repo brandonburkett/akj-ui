@@ -34,6 +34,7 @@ astro.config.mjs                 # static + build.format 'file' + site
 tsconfig.json                    # extends astro/tsconfigs/strict (replaces CRA tsconfig)
 playwright.config.ts             # e2e/a11y runner (astro dev on :4321)
 .nvmrc                           # 24.18.0
+.husky/pre-commit                # git pre-commit hook (lint-staged) — re-added in Task 12
 CLAUDE.md                        # Claude Code project guide (Task 12)
 .claude/settings.json            # shared Claude settings — TRACKED (worktrees + settings.local.json are gitignored)
 src/
@@ -138,6 +139,8 @@ node -v                          # expect v24.18.0
     "@astrojs/check": "^0.9.4",
     "@axe-core/playwright": "^4.10.0",
     "@playwright/test": "^1.48.0",
+    "husky": "^9.1.0",
+    "lint-staged": "^15.2.0",
     "prettier": "^3.3.0",
     "prettier-plugin-astro": "^0.14.0",
     "stylelint": "^16.0.0",
@@ -150,13 +153,16 @@ node -v                          # expect v24.18.0
 }
 ```
 
-- [ ] **Step 3: Install**
+- [ ] **Step 3: Install (and neutralize the stale husky v4 hook)**
+
+The old CRA setup installed a husky v4 `pre-commit` hook (runs `react-scripts test`). Once the new deps replace `node_modules`, that shim breaks every commit. Remove it now; a fresh husky v9 hook is re-added in Task 12. (`.git/hooks` is the shared common dir — this also stops the old hook on the `master` checkout, which is fine mid-migration.)
 
 ```bash
+rm -f .git/hooks/pre-commit         # stale husky v4 shim
 rm -rf node_modules package-lock.json
 npm install
 ```
-Expected: installs cleanly, no React packages present (`npm ls react` → empty).
+Expected: installs cleanly; no React packages (`npm ls react` → empty); `git commit` no longer runs the CRA test. `husky` + `lint-staged` are installed but **inactive** (no `prepare` script / `.husky/` dir yet — added in Task 12).
 
 - [ ] **Step 4: Create `astro.config.mjs`**
 
@@ -1539,14 +1545,34 @@ gh pr create --title "Migrate to Astro (static, extensionless, a11y islands)" \
 
 ---
 
-## Task 12: Project docs — CLAUDE.md + .claude/settings.json
+## Task 12: Project tooling — husky hook + CLAUDE.md + .claude/settings.json
 
-Adds a Claude Code project guide and shared settings so future sessions have context and fewer permission prompts. Run near the end so `CLAUDE.md` documents the final architecture. `.claude/settings.json` is tracked (only `.claude/worktrees/` + `.claude/settings.local.json` are gitignored).
+Re-adds a git pre-commit hook (Astro ships none), plus a Claude Code project guide and shared settings. Runs last so the hook and docs reflect the final Astro setup. `.claude/settings.json` is tracked (only `.claude/worktrees/` + `.claude/settings.local.json` are gitignored).
 
 **Files:**
-- Create: `CLAUDE.md` (repo root), `.claude/settings.json`
+- Create: `.husky/pre-commit`, `CLAUDE.md` (repo root), `.claude/settings.json`; Modify: `package.json` (add `prepare` script + `lint-staged` config)
 
-- [ ] **Step 1: Create `CLAUDE.md`**
+- [ ] **Step 1: Re-add husky v9 + lint-staged pre-commit hook**
+
+`husky` + `lint-staged` were installed in Task 1 but left inactive. Activate them now:
+
+```bash
+npx husky init          # creates .husky/pre-commit + adds "prepare": "husky" to package.json
+```
+Set `.husky/pre-commit` contents to:
+```sh
+npx lint-staged
+```
+Add a `lint-staged` block to `package.json` (mirrors the old CRA intent — format + lint staged files only; Playwright and `astro check` stay in CI, not on every commit, since running them per-commit is too slow):
+```json
+"lint-staged": {
+  "*.{ts,astro}": ["prettier --write"],
+  "*.css": ["stylelint --fix", "prettier --write"]
+}
+```
+Verify: stage a trivial change and `git commit` — the hook runs prettier/stylelint on staged files and passes.
+
+- [ ] **Step 2: Create `CLAUDE.md`**
 
 ````markdown
 # CLAUDE.md
@@ -1577,7 +1603,7 @@ Austin Komei Jyuku dojo site — an **Astro** static site (migrated from CRA).
 - CircleCI on push to `master` → build → `.circleci/production.sh` syncs `dist/` to S3 (extensionless keys) + CloudFront invalidation.
 ````
 
-- [ ] **Step 2: Create `.claude/settings.json`** — shared permission allowlist for this project's workflow, plus branch-from-HEAD for future worktrees
+- [ ] **Step 3: Create `.claude/settings.json`** — shared permission allowlist for this project's workflow, plus branch-from-HEAD for future worktrees
 
 ```json
 {
@@ -1603,11 +1629,11 @@ Austin Komei Jyuku dojo site — an **Astro** static site (migrated from CRA).
 ```
 Note: `worktree.baseRef: "head"` makes future `EnterWorktree` branches start from local HEAD — avoids the origin/master-vs-local rebase we hit during setup. Refine the allowlist later with the `fewer-permission-prompts` skill. Keep anything sensitive out of `settings.json` and in the gitignored `settings.local.json`.
 
-- [ ] **Step 3: Commit**
+- [ ] **Step 4: Commit**
 
 ```bash
-git add CLAUDE.md .claude/settings.json
-git commit -m "docs: add CLAUDE.md and shared .claude/settings.json"
+git add .husky package.json CLAUDE.md .claude/settings.json
+git commit -m "chore: re-add husky pre-commit hook; add CLAUDE.md + shared settings"
 ```
 
 ---
@@ -1617,7 +1643,7 @@ git commit -m "docs: add CLAUDE.md and shared .claude/settings.json"
 **1. Spec coverage:**
 - Move off CRA → Astro ✅ (Tasks 1, 11). Static generation (was react-snap) ✅ (`output:'static'` + `build.format:'file'`, Task 1; deploy Task 11). TypeScript ✅ (Task 1 tsconfig strict). CSS/breakpoints as-is ✅ (Task 2 global imports + Task 4/5/6/7 keep `.css`). Nav dropdown decision (vanilla TS, a11y/keyboard) ✅ (Task 5). Image gallery decision (Option B scroll-snap + tiny TS, responsive + a11y/keyboard) ✅ (Task 7). Parallax hero ✅ (Task 6). SEO/react-helmet ✅ (Task 3). JSON-LD ✅ (Task 8). CircleCI kept + updated ✅ (Task 11). Extensionless URL preservation ✅ (Global Constraints + Tasks 1/10/11). `/tokai` redirect ✅ (Task 8). 404 ✅ (Task 8).
 - Gap check: `robots.txt`/`sitemap.xml`/`manifest`/favicon/PWA icons → covered (Task 2 moves to `public/`; Task 3 links manifest/favicon).
-- User additions: Node 24.18.0 pin ✅ (Global Constraints + Tasks 1/11). Isolated worktree + scoped `.claude` gitignore ✅ (Execution Environment; committed on `master`). CLAUDE.md + tracked `.claude/settings.json` ✅ (Task 12). Parallax degrades without JS — static CSS-bg image + real anchor cue ✅ (Task 6). `astro check` stays green with legacy `.tsx` in-tree via tsconfig exclude ✅ (Task 1).
+- User additions: Node 24.18.0 pin ✅ (Global Constraints + Tasks 1/11). Isolated worktree + scoped `.claude` gitignore ✅ (Execution Environment; committed on `master`). CLAUDE.md + tracked `.claude/settings.json` ✅ (Task 12). Parallax degrades without JS — static CSS-bg image + real anchor cue ✅ (Task 6). `astro check` stays green with legacy `.tsx` in-tree via tsconfig exclude ✅ (Task 1). Husky pre-commit hook re-added since Astro ships none ✅ (Task 12; stale v4 hook neutralized in Task 1).
 
 **2. Placeholder scan:** The large page bodies (home/iaijutsu/schedule/seminars) are intentionally described as "port verbatim from lines X–Y" rather than re-transcribed, because they are mechanical 1:1 markup ports of existing files and re-typing ~600 lines invites transcription drift; the exact conversion rules + all non-obvious wiring (SEO props, image `.src`, JSON-LD `set:html`, gallery array, parallax `scrollTargetId`) are given in full. All logic-bearing files (config, layout, SeoHead, Nav, gallery, parallax, small components) contain complete runnable code.
 
