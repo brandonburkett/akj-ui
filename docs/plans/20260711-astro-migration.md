@@ -1699,3 +1699,14 @@ git commit -m "style: lint cleanup and modernization of ported CSS (no visual/br
 ## Open Questions (revisit after the migration)
 
 - **Service worker / full PWA.** Installability (desktop Chrome "open in app", mobile add-to-home-screen) is driven by `manifest.json` + the PWA icons, which this migration preserves and links in every page head, so that capability carries over unchanged. A service worker is NOT required for install in modern Chrome; it only adds offline caching / a "full" PWA. Decision to make AFTER the migration lands: add a real service worker (e.g. `@vite-pwa/astro`) for offline support, or keep manifest-only installability. The old CRA site shipped `registerServiceWorker.ts` but it was commented out, so it never ran one. User confirmed they want desktop install + mobile add-to-home-screen (both met by the manifest alone) and asked to revisit the service worker separately at the end.
+
+---
+
+## Improvement candidates (revisit at the end, with the user)
+
+The migration ports the site AS-IS first so nothing breaks. Best-practice / modernization ideas noticed during porting are collected here, NOT applied yet, to review with the user at the end. Each must preserve appearance, breakpoints, and behavior unless the user opts in. Add to this list as tasks surface ideas.
+
+- **Nav dropdown → native Popover API.** [from Task 5] The nav is a JS island (toggle `open` class + document listeners for outside-click and Escape). The native Popover API (`<button popovertarget="…">` + `<div popover>`) provides toggle, light-dismiss (outside-click close), and Escape-close natively, and auto-manages the invoker's `aria-expanded`, cutting most of the custom JS. Broadly supported since 2024. Would need to confirm it composes with `nav.css` (`.site-menu.open > .menu-bar` reveal) and preserves focus-return to the button on close.
+- **SeoHead modernization.** [from Task 3] Use `rel="icon"` instead of legacy `rel="shortcut icon"`; drop the non-standard `lang` attribute on `<title>`.
+- **ResponsiveImage / ResponsiveMap.** [from Task 4] Currently narrowed to `{src, alt, class}`. Consider widening to generic native-attribute passthrough, or adopting Astro `<Image>` (`astro:assets`) for automatic responsive/optimized images.
+- **CSS modernization / lint cleanup** is already scheduled as Task 13 (preserve all breakpoints).
