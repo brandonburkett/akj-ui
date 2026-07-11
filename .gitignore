@@ -15,6 +15,10 @@
 .idea/
 .vscode/
 
+# Claude Code — ignore worktrees + local settings, but keep shared .claude/settings.json tracked
+.claude/worktrees/
+.claude/settings.local.json
+
 # OSX
 .DS_Store
 .AppleDouble
