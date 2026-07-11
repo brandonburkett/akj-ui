@@ -1,0 +1,27 @@
+---
+import SeoHead from '../components/SeoHead.astro';
+import Nav from '../components/Nav.astro';
+import '../styles/master.css';
+import '../styles/responsive.css';
+
+interface Props {
+  title: string;
+  desc: string;
+  path: string;
+  image?: string;
+  noIndex?: boolean;
+}
+
+const { title, desc, path, image, noIndex } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <SeoHead title={title} desc={desc} path={path} image={image} noIndex={noIndex} />
+    <slot name="head" />
+  </head>
+  <body>
+    <Nav />
+    <slot />
+  </body>
+</html>

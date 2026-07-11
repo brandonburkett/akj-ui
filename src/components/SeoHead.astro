@@ -1,0 +1,54 @@
+---
+import { SITE_URL, SITE_NAME } from '../consts';
+import defaultOgp from '../components/head/images/ogp-mon-1200-630.png';
+import appleIcon from '../styles/images/ogp-mon-375.jpg';
+
+interface Props {
+  title: string;
+  desc: string;
+  path: string;
+  image?: string;
+  noIndex?: boolean;
+}
+
+const { title, desc, path, image, noIndex = false } = Astro.props;
+
+// build.format:'file' makes Astro.url.pathname include '.html' at build time
+// (e.g. '/iaijutsu.html', '/index.html'); dev gives '/iaijutsu'. Normalize both.
+const cleanPath = path.replace(/\/index\.html$/, '/').replace(/\.html$/, '') || '/';
+const url = new URL(cleanPath, SITE_URL);
+// canonical: keep the root's single slash, strip trailing slash everywhere else
+const canonicalUrl = url.pathname === '/' ? url.href : url.href.replace(/\/$/, '');
+const ogImage = new URL(image ?? defaultOgp.src, SITE_URL).href;
+const fullTitle = title === SITE_NAME ? SITE_NAME : `${title}, ${SITE_NAME}`;
+---
+<meta charset="utf-8" />
+<title lang="en">{fullTitle}</title>
+<meta name="description" content={desc} />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link rel="canonical" href={canonicalUrl} />
+{noIndex && <meta name="robots" content="noindex" />}
+
+<meta property="og:site_name" content={SITE_NAME} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={desc} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="en_US" />
+
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={desc} />
+<meta name="twitter:url" content={canonicalUrl} />
+<meta name="twitter:image" content={ogImage} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@akjdojo" />
+
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="theme-color" content="#000000" />
+<meta name="application-name" content="Austin Komei Jyuku" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<link rel="apple-touch-icon" href={appleIcon.src} />
+
+<link rel="manifest" href="/manifest.json?v=20240219" />
+<link rel="shortcut icon" href="/favicon.ico" />

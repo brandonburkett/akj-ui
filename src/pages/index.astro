@@ -1,8 +1,6 @@
 ---
-import '../styles/master.css';
-import '../styles/responsive.css';
+import StandardLayout from '../layouts/StandardLayout.astro';
 ---
-<html lang="en">
-  <head><meta charset="utf-8" /><title>styles smoke</title></head>
-  <body><h1 class="cover-title">Font + base CSS smoke test</h1></body>
-</html>
+<StandardLayout title="Traditional Japanese Swordsmanship" desc="test" path={Astro.url.pathname}>
+  <main><h1>layout smoke</h1></main>
+</StandardLayout>
