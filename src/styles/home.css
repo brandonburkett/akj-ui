@@ -1,0 +1,170 @@
+/* Homepage Quote Panel */
+.home {
+  background: rgb(110, 024, 011);
+  color: #ffffff;
+  top: 100%;
+  position: relative;
+
+  /* needs to be above full screen parallax */
+  z-index: 1;
+}
+
+/* needed for chrome z-index flicker where you can see background */
+.home.translate-z {
+  transform: translateZ(1px);
+}
+
+.home .intro {
+  width: 90%;
+  max-width: 700px;
+  margin: 100px auto;
+  font-size: 2.2em;
+  line-height: 1.2em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+.home .intro .link:link,
+.home .intro .link:visited {
+  color: rgb(255, 255, 255);
+  color: rgba(255, 255, 255, 0.6);
+  border: none;
+  transition: all 0.3s ease;
+}
+.home .intro .link:hover,
+.home .intro .link:focus {
+  color: rgb(255, 255, 255);
+  color: rgba(255, 255, 255, 1);
+  border: none;
+}
+
+.home .intro h1,
+.home .intro h2 {
+  color: #ffffff;
+  font-size: 1.25em;
+}
+
+/* homepage specific parallax styling */
+.big-brand {
+  width: 90%;
+  max-width: 700px;
+  min-height: 400px;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  font-size: 1em;
+  line-height: 1.2em;
+  text-align: center;
+}
+.logo {
+  margin: 75px auto;
+  width: 233px;
+  max-width: 50%;
+  position: relative;
+}
+
+/* block quote container */
+.home-ctas {
+  width: 100%;
+}
+
+/* homepage Footer */
+.isshin {
+  background: #eae6db;
+  padding: 1px 0 10px 0;
+  position: relative;
+
+  /* needs to be above full screen parallax */
+  z-index: 1;
+}
+
+/* needed for chrome z-index flicker where you can see background */
+.isshin.translate-z {
+  transform: translateZ(1px);
+}
+
+.isshin .intro {
+  width: 90%;
+  max-width: 700px;
+  margin: 125px auto;
+  font-size: 2.2em;
+  line-height: 1.2em;
+}
+
+/* Responsive Style Sheet */
+@media screen and (min-width: 320px) {
+  .home .intro {
+    font-size: 1.2em;
+    margin: 75px auto;
+  }
+
+  .logo {
+    width: 125px;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .home .intro {
+    font-size: 1.2em;
+    float: left;
+    width: 40%;
+    margin: 50px 0 0 5%;
+  }
+
+  .logo {
+    width: 150px;
+  }
+
+  .home-ctas {
+    width: 45%;
+    float: right;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .home .intro {
+    font-size: 1.4em;
+  }
+
+  .logo {
+    width: 175px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .home .intro {
+    font-size: 1.7em;
+  }
+
+  .logo {
+    width: 180px;
+  }
+
+  .isshin .intro {
+    font-size: 2em;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .home .intro {
+    font-size: 2.2em;
+    float: none;
+    width: 80%;
+    margin: 100px auto;
+  }
+
+  .logo {
+    width: 233px;
+  }
+
+  .home-ctas {
+    width: 100%;
+    float: none;
+  }
+
+  .isshin .intro {
+    font-size: 2.2em;
+  }
+}
