@@ -25,11 +25,15 @@ Legend: `[x]` done + reviewed, `[~]` in progress, `[ ]` not started. Commit SHAs
 - [x] Task 7: Accessible scroll-snap gallery island — `c8dbbb9`
 - [x] Task 8: Port pages — `d06afad`
 - [x] Task 9: Test harness. 9A Playwright e2e + axe `f061c60`; 9B Vitest unit + coverage + island extraction `c239630` (24 unit + 14 e2e green)
-- [~] Task 10: Verify parity — automated gate GREEN (check 0/0/0, build 6 pages, 24 unit + 14 e2e pass, dist extensionless). Visual parity at 8 breakpoints: user reviewing async on preview.
+- [x] Task 10: Verify parity — automated gate green + user-confirmed visual parity ("spot on"). Visual fixes: home.css `486ae13`; gallery chevrons/fullscreen/bullets/shadows `01fb4b6`,`8c6e101`,`c42e6bc`,`f8980d6`,`bc0393b`; scroll-cue height `fbbd77f`.
 - [x] Task 11: Remove CRA remnants + update CI/docs — `97d9cfd`
 - Post-Task-8 fix `486ae13`: homepage was missing `home.css` (About red / isshin / logo sizing) — recovered to `src/styles/home.css`, imported in `index.astro`. Found by user visual review.
-- [ ] Task 12: husky + CLAUDE.md + .claude/settings.json
-- [ ] Task 13: CSS lint cleanup and modernization
+- [x] EXTRA (user request): reorganized `src/components/` into per-component folders (colocated .astro + css + images) — `c496e6a` (check/build/test green). Component-imported OG images moved to `SeoHead/images/`.
+- [ ] Task 12: husky + CLAUDE.md + .claude/settings.json. **PREP FIRST:** the prettier-plugin-astro (added in Task 11) trips on the HTML comment inside the `{scrollTargetId && (…)}` expression in `src/components/FullScreenParallaxImage/FullScreenParallaxImage.astro` (~line 32) — convert `<!-- … -->` to `{/* … */}` (or move it out), then `prettier --write` the `.astro`/`.ts` files (NOT the legacy CSS). Then husky v9 + lint-staged per the Task 12 steps below.
+- [ ] Task 13: CSS lint cleanup + modernization (~797 stylelint errors; KEEP all 8 breakpoints). Minor extras: vestigial `.sg-track` `list-style`; a `line-height:0` IE star-hack build warning.
+- [ ] CLEANUP: delete orphaned/unreferenced CRA images in `src/styles/images/` (only `lilly.jpg` — CSS `url()` — and the fonts are used; verify with grep before deleting).
+- [ ] FINAL: whole-branch review (superpowers:requesting-code-review) → superpowers:finishing-a-development-branch (PR/merge). Note: `.circleci/production.sh` uploads `dist/*.html` as extensionless S3 keys.
+- [ ] WITH USER at the very end: walk the plan's `## Improvement candidates` (nav Popover API, `@astrojs/sitemap`, SeoHead modernization, ResponsiveImage widening), `## Accessibility-driven changes to review` (the `.link` contrast shade), and `## Open Questions` (service worker / PWA).
 
 ---
 
