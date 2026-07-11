@@ -106,7 +106,7 @@
   background: none;
   border: 0;
   color: #eae6db;
-  font-size: 2em;
+  font-size: 1.5em; /* smaller on mobile so it doesn't crowd the image edge */
   line-height: 1;
   cursor: pointer;
   transition: transform 0.2s ease-out, color 0.2s ease-out;
@@ -154,6 +154,9 @@
   }
   .sg-nav {
     display: block;
+  }
+  .sg-fullscreen {
+    font-size: 2em;
   }
 }
 @media screen and (min-width: 768px) {
