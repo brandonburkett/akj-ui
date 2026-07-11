@@ -1757,4 +1757,13 @@ The migration ports the site AS-IS first so nothing breaks. Best-practice / mode
 - **CSS modernization / lint cleanup** is already scheduled as Task 13 (preserve all breakpoints).
 - **SEO header — is there an Astro first-class way?** [from Task 3, user] No official `<SEO>` component exists in Astro core; the idiomatic Astro pattern IS a custom head component, which is exactly what `SeoHead.astro` is, so we are already doing it the Astro way. Options: (a) keep the custom component (lightest, zero deps); (b) adopt the community `astro-seo` `<SEO>` component for a maintained abstraction. Strongly worth adopting regardless: **`@astrojs/sitemap`** (official integration) to auto-generate `sitemap.xml` from routes instead of hand-maintaining it.
 - **SEO audit (end).** [from Task 3, user] Run a Lighthouse SEO pass on the built site; validate the home JSON-LD with Google's Rich Results test; consider structured data on more than just the home page; consider per-page OG images; confirm canonical / robots.txt / sitemap consistency.
+
+---
+
+## Accessibility-driven changes to review (at the end)
+
+Changes made to the ported site specifically to pass the axe a11y sweep or the keyboard requirements are logged here for the user to review at the end. They deviate slightly from a strict as-is port but satisfy the "full a11y + axe passing" hard requirement. Add to this list as tasks make such changes.
+
+- **`.link` color darkened for contrast.** [Task 9A] `#435b0d` → `#2d3d09` on the olive panels (schedule/seminars). Green links were 3.18:1 on the olive background (fails WCAG AA); now 4.88:1. Visible effect: links are one shade darker green on those panels. Revisit the exact shade in Task 13 if desired.
+- **Gallery slide markup `<ul>/<li>` → `<div>/<div>`.** [Task 9A] The `role="group"` slides stripped the list's `listitem` role (axe `list` violation); switched to the standard APG carousel `<div>` pattern. No visual change; classes, ARIA, and behavior unchanged.
 - **Scroll-snap gallery.** [from Task 7] `scroll-behavior: smooth` (CSS) and the script's `scrollIntoView({behavior: 'smooth'})` ignore `prefers-reduced-motion`; gate both on the media query so motion-sensitive users get instant jumps. Longer-term, emerging CSS Carousel primitives (`::scroll-marker`/`::scroll-marker-group`, `scroll-target-group`, `animation-timeline: scroll()`) could let the browser drive active-bullet sync (and maybe bullet rendering) natively, shrinking or removing the IntersectionObserver/bullet-click JS — not yet broadly supported, revisit when baseline improves.
