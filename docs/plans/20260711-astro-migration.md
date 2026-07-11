@@ -12,6 +12,26 @@
 
 This migration runs in an **isolated git worktree** at `.claude/worktrees/astro-migration` (branch `worktree-astro-migration`), created with the native worktree tool. The main checkout at `/Users/brandonburkett/git/akj-ui` stays on `master` as an **untouched reference to the current site** — read the original `.tsx`/CSS there while porting. The CRA source is deleted only in Task 11 (after everything is built + verified), so the originals stay available the whole way through; git history is the final backstop. `.claude/worktrees/` and `.claude/settings.local.json` are gitignored (committed on `master`, `7a98fe6`) while `.claude/settings.json` stays tracked.
 
+## Progress (source of truth for resume)
+
+Legend: `[x]` done + reviewed, `[~]` in progress, `[ ]` not started. Commit SHAs are on branch `worktree-astro-migration`; `git log --oneline` is the ultimate record.
+
+- [x] Task 1: Scaffold Astro + tooling — `27be8d4`
+- [x] Task 2: Global styles / fonts / robots / sitemap / schema — `980693c`
+- [x] Task 3: SeoHead + StandardLayout — `f603772`
+- [x] Task 4: Static presentational components — `30ea39d`
+- [x] Task 5: Accessible nav dropdown island — `b554446`, `ed75510`
+- [x] Task 6: Parallax hero island — `04b252d`
+- [x] Task 7: Accessible scroll-snap gallery island — `c8dbbb9`
+- [x] Task 8: Port pages — `d06afad`
+- [~] Task 9: Test harness. 9A Playwright e2e + axe `f061c60` (reviewed); 9B Vitest unit + coverage + island extraction `c239630` (review pending)
+- [ ] Task 10: Verify parity + accessibility end-to-end
+- [ ] Task 11: Remove CRA remnants + update CI/docs
+- [ ] Task 12: husky + CLAUDE.md + .claude/settings.json
+- [ ] Task 13: CSS lint cleanup and modernization
+
+---
+
 ## Global Constraints
 
 - **Output must be static & extensionless.** `output: 'static'`, `build.format: 'file'`, `trailingSlash: 'never'`. Build emits `dist/index.html`, `dist/iaijutsu.html`, `dist/schedule.html`, `dist/seminars.html`, `dist/404.html`. The deploy uploads these as extensionless S3 keys (`/iaijutsu`), preserving today's URLs exactly. **Do not introduce trailing-slash or `/page/` directory URLs.**
