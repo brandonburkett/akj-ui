@@ -1,5 +1,6 @@
 ---
 import { SITE_URL, SITE_NAME } from '../consts';
+import { buildCanonical, buildOgImage } from '../lib/seo';
 import defaultOgp from '../components/head/images/ogp-mon-1200-630.png';
 import appleIcon from '../styles/images/ogp-mon-375.jpg';
 
@@ -13,13 +14,8 @@ interface Props {
 
 const { title, desc, path, image, noIndex = false } = Astro.props;
 
-// build.format:'file' makes Astro.url.pathname include '.html' at build time
-// (e.g. '/iaijutsu.html', '/index.html'); dev gives '/iaijutsu'. Normalize both.
-const cleanPath = path.replace(/\/index\.html$/, '/').replace(/\.html$/, '') || '/';
-const url = new URL(cleanPath, SITE_URL);
-// canonical: keep the root's single slash, strip trailing slash everywhere else
-const canonicalUrl = url.pathname === '/' ? url.href : url.href.replace(/\/$/, '');
-const ogImage = new URL(image ?? defaultOgp.src, SITE_URL).href;
+const canonicalUrl = buildCanonical(path, SITE_URL);
+const ogImage = buildOgImage(image, defaultOgp.src, SITE_URL);
 const fullTitle = title === SITE_NAME ? SITE_NAME : `${title}, ${SITE_NAME}`;
 ---
 <meta charset="utf-8" />

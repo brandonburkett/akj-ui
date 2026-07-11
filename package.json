@@ -3,14 +3,19 @@
   "version": "3.0.0",
   "private": true,
   "type": "module",
-  "engines": { "node": ">= 24" },
+  "engines": {
+    "node": ">= 24"
+  },
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "test": "playwright test",
+    "test": "npm run test:unit && npm run test:e2e",
+    "test:unit": "vitest run",
+    "test:e2e": "playwright test",
+    "coverage": "vitest run --coverage",
     "lint:style": "stylelint \"src/**/*.css\" --fix",
     "prettier:write": "prettier --write \"./src/**/*.{ts,astro,css}\"",
     "prettier:check": "prettier -l \"./src/**/*.{ts,astro,css}\""
@@ -22,15 +27,22 @@
     "@astrojs/check": "^0.9.4",
     "@axe-core/playwright": "^4.10.0",
     "@playwright/test": "^1.48.0",
+    "@vitest/coverage-v8": "^4.1.10",
     "husky": "^9.1.0",
+    "jsdom": "^29.1.1",
     "lint-staged": "^15.2.0",
     "prettier": "^3.3.0",
     "prettier-plugin-astro": "^0.14.0",
     "stylelint": "^16.0.0",
     "stylelint-config-standard": "^36.0.0",
-    "typescript": "^5.6.0"
+    "typescript": "^5.6.0",
+    "vitest": "^4.1.10"
   },
   "browserslist": {
-    "production": [">0.2%", "not dead", "not op_mini all"]
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ]
   }
 }

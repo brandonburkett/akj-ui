@@ -39,32 +39,6 @@ const hasSlot = Astro.slots.has('default');
 </section>
 
 <script>
-  const cover = document.querySelector<HTMLElement>('.cover-parallax .cover-image');
-  if (cover) {
-    const speed = Number(cover.dataset.parallaxSpeed) || 5;
-
-    // disable fixed attachment on touch devices (matches original UA sniff intent)
-    if (/Android|webOS|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-      cover.style.backgroundAttachment = 'scroll';
-    }
-
-    const onScroll = () => {
-      const y = window.pageYOffset || window.scrollY;
-      cover.style.backgroundPosition = `50% ${-(y / speed)}px`;
-    };
-    document.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-
-    const cue = document.querySelector<HTMLElement>('.cover-scroll-cue');
-    const targetId = cue?.dataset.scrollTarget;
-    if (cue && targetId) {
-      cue.addEventListener('click', (e) => {
-        // upgrade the native anchor jump to a smooth scroll (no-JS still gets the jump)
-        e.preventDefault();
-        document
-          .getElementById(targetId)
-          ?.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
-      });
-    }
-  }
+  import { initParallax } from '../scripts/parallax';
+  initParallax();
 </script>
