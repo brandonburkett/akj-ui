@@ -1,9 +1,14 @@
-// Accessible scroll-snap slide gallery island. clampIndex is pure so index
-// bounds are unit-testable; initGallery wires keyboard/bullets/IO/fullscreen.
+// Accessible scroll-snap slide gallery island. clampIndex/wrapIndex are pure so
+// bounds + loop wrap are unit-testable; initGallery wires keyboard/bullets/IO/fullscreen.
 
 /** Clamp a slide index into [0, len - 1]. */
 export function clampIndex(i: number, len: number): number {
   return Math.max(0, Math.min(len - 1, i));
+}
+
+/** Wrap a slide index into [0, len - 1] (modulo, handles negatives). */
+export function wrapIndex(i: number, len: number): number {
+  return ((i % len) + len) % len;
 }
 
 // `doc` param defaults to the ambient document so the island calls initGallery()
@@ -27,10 +32,12 @@ export function initGallery(doc: Document = document): void {
     if (status) status.textContent = `Slide ${active + 1} of ${slides.length}`;
   };
 
-  const goTo = (i: number) => {
-    const clamped = clampIndex(i, slides.length);
-    slides[clamped].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-    setActive(clamped);
+  // 'instant' (not 'auto') so an edge-wrap snaps instead of sweeping every slide;
+  // 'auto' would inherit the track's CSS scroll-behavior:smooth and animate.
+  const goTo = (i: number, behavior: ScrollBehavior = 'smooth') => {
+    const target = wrapIndex(i, slides.length);
+    slides[target].scrollIntoView({ behavior, block: 'nearest', inline: 'center' });
+    setActive(target);
   };
 
   // track active slide as the user swipes/scrolls
@@ -44,8 +51,10 @@ export function initGallery(doc: Document = document): void {
   );
   slides.forEach((s) => io.observe(s));
 
-  prev?.addEventListener('click', () => goTo(active - 1));
-  next?.addEventListener('click', () => goTo(active + 1));
+  prev?.addEventListener('click', () => goTo(active - 1, active === 0 ? 'instant' : 'smooth'));
+  next?.addEventListener('click', () =>
+    goTo(active + 1, active === slides.length - 1 ? 'instant' : 'smooth'),
+  );
   bullets.forEach((b) => b.addEventListener('click', () => goTo(Number(b.dataset.index))));
 
   // keyboard support on the focusable track
@@ -53,11 +62,11 @@ export function initGallery(doc: Document = document): void {
     switch (e.key) {
       case 'ArrowRight':
         e.preventDefault();
-        goTo(active + 1);
+        goTo(active + 1, active === slides.length - 1 ? 'instant' : 'smooth');
         break;
       case 'ArrowLeft':
         e.preventDefault();
-        goTo(active - 1);
+        goTo(active - 1, active === 0 ? 'instant' : 'smooth');
         break;
       case 'Home':
         e.preventDefault();

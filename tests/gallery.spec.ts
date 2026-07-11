@@ -38,6 +38,19 @@ test.describe('image gallery', () => {
     );
   });
 
+  test('prev from the first slide wraps to the last', async ({ page }) => {
+    await expect(page.locator('.sg-bullet[aria-current="true"]')).toHaveAttribute(
+      'data-index',
+      '0',
+    );
+    const lastIndex = String((await page.locator('.sg-bullet').count()) - 1);
+    await page.locator('.sg-prev').click();
+    await expect(page.locator('.sg-bullet[aria-current="true"]')).toHaveAttribute(
+      'data-index',
+      lastIndex,
+    );
+  });
+
   test('fullscreen button is present and labelled', async ({ page }) => {
     await expect(page.locator('.sg-fullscreen')).toHaveAttribute('aria-label', /fullscreen/i);
   });

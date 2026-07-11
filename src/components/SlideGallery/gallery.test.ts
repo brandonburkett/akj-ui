@@ -1,5 +1,5 @@
 import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
-import { clampIndex, initGallery } from './gallery';
+import { clampIndex, initGallery, wrapIndex } from './gallery';
 
 const GALLERY_HTML = `
   <section class="slide-gallery-group">
@@ -58,6 +58,18 @@ describe('clampIndex', () => {
   });
 });
 
+describe('wrapIndex', () => {
+  it('wraps below zero to the last index', () => {
+    expect(wrapIndex(-1, 3)).toBe(2);
+  });
+  it('wraps past the last index back to zero', () => {
+    expect(wrapIndex(3, 3)).toBe(0);
+  });
+  it('passes an in-range index through', () => {
+    expect(wrapIndex(1, 3)).toBe(1);
+  });
+});
+
 describe('initGallery', () => {
   it('ArrowRight advances the active bullet and updates the status', () => {
     track().dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight' }));
@@ -79,22 +91,35 @@ describe('initGallery', () => {
     expect(status()).toBe('Slide 3 of 3');
   });
 
-  it('next/prev buttons step the active slide and clamp at the edges', () => {
+  it('next/prev buttons wrap around at the edges', () => {
     const next = document.querySelector<HTMLButtonElement>('.sg-next')!;
     const prev = document.querySelector<HTMLButtonElement>('.sg-prev')!;
     next.click();
-    expect(activeIndex()).toBe('1');
     next.click();
-    next.click(); // clamped at the last slide
     expect(activeIndex()).toBe('2');
-    prev.click();
-    expect(activeIndex()).toBe('1');
+    next.click(); // wrap last -> first
+    expect(activeIndex()).toBe('0');
+    prev.click(); // wrap first -> last
+    expect(activeIndex()).toBe('2');
   });
 
-  it('ArrowLeft and End keys navigate and clamp', () => {
+  it('edge-wrap hops scroll instant, adjacent hops scroll smooth', () => {
+    const scrollSpy = vi.mocked(Element.prototype.scrollIntoView);
+    const next = document.querySelector<HTMLButtonElement>('.sg-next')!;
+    next.click(); // 0 -> 1 adjacent
+    expect(scrollSpy).toHaveBeenLastCalledWith(expect.objectContaining({ behavior: 'smooth' }));
+    next.click(); // 1 -> 2 adjacent
+    next.click(); // 2 -> 0 wrap
+    expect(scrollSpy).toHaveBeenLastCalledWith(expect.objectContaining({ behavior: 'instant' }));
+    expect(activeIndex()).toBe('0');
+  });
+
+  it('ArrowLeft/ArrowRight wrap at the edges; End jumps to the last', () => {
+    track().dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowLeft' })); // 0 -> 2 wrap
+    expect(activeIndex()).toBe('2');
+    track().dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight' })); // 2 -> 0 wrap
+    expect(activeIndex()).toBe('0');
     track().dispatchEvent(new KeyboardEvent('keydown', { key: 'End' }));
     expect(activeIndex()).toBe('2');
-    track().dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowLeft' }));
-    expect(activeIndex()).toBe('1');
   });
 });
