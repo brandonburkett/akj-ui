@@ -972,15 +972,16 @@ video {
 .link:link,
 .link:visited {
   text-decoration: none;
-  color: rgb(067, 091, 013);
-  border-bottom: 1px solid rgb(067, 091, 013);
+  /* darkened from #435b0d: fails WCAG AA (3.17:1) on the olive info panel (#aaa88f) */
+  color: #2d3d09;
+  border-bottom: 1px solid #2d3d09;
   padding-left: 0.1em;
   padding-right: 0.1em;
 }
 .link:hover,
 .link:visited:hover .link:focus {
   color: #ffffff;
-  background: rgb(067, 091, 013);
+  background: #2d3d09;
   padding: 0.1em;
   text-decoration: none;
   border-bottom: none;

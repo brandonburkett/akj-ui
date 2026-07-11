@@ -11,10 +11,12 @@ const count = items.length;
 
 <section class="slide-gallery-group group" aria-roledescription="carousel" aria-label={label}>
   <div class="slide-gallery-images">
-    <ul class="sg-track" tabindex="0">
+    {/* div/div not ul/li: role="group" on each slide (APG carousel) strips the
+        implicit listitem role, leaving the ul an empty list (axe list/only-listitems) */}
+    <div class="sg-track" tabindex="0">
       {
         items.map((item, i) => (
-          <li
+          <div
             class="sg-slide"
             role="group"
             aria-roledescription="slide"
@@ -26,10 +28,10 @@ const count = items.length;
               loading={i === 0 ? 'eager' : 'lazy'}
               decoding="async"
             />
-          </li>
+          </div>
         ))
       }
-    </ul>
+    </div>
 
     {/* text-content live region: slide content itself never mutates on nav, so
         aria-live must live on a dedicated node whose text we update in script */}
