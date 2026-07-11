@@ -25,5 +25,13 @@ Austin Komei Jyuku dojo site — an **Astro** static site (migrated from CRA).
 - Accessibility is a hard requirement: real `<button>`/`<a>`, keyboard support, correct ARIA; pages must pass axe (no serious/critical).
 - Node 24.18.0 (`.nvmrc`).
 
+## Commits
+- Single-line [Conventional Commits](https://www.conventionalcommits.org/) subject, e.g. `feat: loop gallery chevrons at edges`. No body unless essential.
+- Keep the `Co-Authored-By:` footer on every commit.
+
+## Comments
+- Explain why, not what. One short line, and only for non-obvious rationale.
+- No narration or restating the code. No references to old/removed files or paths (e.g. the former CRA `.tsx`).
+
 ## Deploy
 - CircleCI on push to `master` → build → `.circleci/production.sh` syncs `dist/` to S3 (extensionless keys) + CloudFront invalidation.
