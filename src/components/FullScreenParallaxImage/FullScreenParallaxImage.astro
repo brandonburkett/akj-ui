@@ -29,7 +29,7 @@ const hasSlot = Astro.slots.has('default');
 
     {scrollTargetId && (
       <div class="cover-scroll-cue" data-scroll-target={scrollTargetId}>
-        <!-- real anchor: works with JS disabled (native #jump); script upgrades to smooth-scroll -->
+        {/* real anchor works with JS disabled; script upgrades it to smooth-scroll */}
         <a class="cover-scroll-btn" href={`#${scrollTargetId}`} aria-label="Scroll Down">
           <img src={imgChevron.src} alt="" aria-hidden="true" />
         </a>
