@@ -47,10 +47,11 @@
   background: none;
   border: 0;
   color: #eae6db;
-  font-size: 4em;
+  font-size: 5em;
   line-height: 1;
   cursor: pointer;
   padding: 0 10px;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.75); /* stand out on light images */
   transition: transform 0.2s ease-out, color 0.2s ease-out;
   display: none; /* hidden on mobile, shown >=480px below */
 }
@@ -89,6 +90,7 @@
   border: 1px solid #eae6db;
   border-radius: 0;
   background: transparent;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.6); /* stand out on light images */
   cursor: pointer;
   transition: background 0.2s ease-out;
 }
@@ -117,6 +119,7 @@
   font-size: 1.5em; /* smaller on mobile so it doesn't crowd the image edge */
   line-height: 1;
   cursor: pointer;
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.75); /* stand out on light images */
   transition: transform 0.2s ease-out, color 0.2s ease-out;
 }
 @media (hover: hover) {
@@ -177,6 +180,6 @@
     padding: 0;
   }
   .sg-nav {
-    font-size: 5em;
+    font-size: 7.5em;
   }
 }
