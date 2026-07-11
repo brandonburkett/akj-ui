@@ -5,26 +5,10 @@ HTML_FILES=''
 # one week in seconds
 MAX_AGE='604800'
 
-# remove extension from html files
-rename_html_files() {
-  echo "Renaming react-snap files"
-  echo
-
-  buildHTML=`ls ./build/*/index.html`
-
-  for i in ${buildHTML}; do
-    # move file - EX build/iaijutsu/index.html -> build/iaijutsu.html
-    echo ${i} | sed 'p;s/\/index\.html/.html/' | xargs -n2 mv
-
-    # delete folders that contained files - EX /build/iaijutsu
-    rm -rf ${i/\/index\.html//}
-
-    # remove .html extension - EX build/iaijutsu.html -> build/iaijutsu
-    #mv ${i/\/\index\.html/\.html} ${i/\/index\.html/}
-  done
-
-  # setup HTML_FILES, which we will be moving manually
-  HTML_FILES=`ls ./build/*.html`
+# Astro build.format:'file' already emits dist/*.html (extensionless URLs handled
+# on upload below), so no react-snap directory rename is needed.
+collect_html_files() {
+  HTML_FILES=`ls ./dist/*.html`
 }
 
 # Set AWS defaults
@@ -42,15 +26,16 @@ s3_sync() {
   echo
 
   # upload to s3, deleting any items that no longer exist, but exclude html files, which are handled separately below
-  aws s3 sync ./build s3://$AWS_S3_BUCKET --delete --exclude="*.html"  --cache-control max-age=${MAX_AGE},public
+  # (sitemap.xml + robots.txt ship in dist via public/ and are covered by this sync)
+  aws s3 sync ./dist s3://$AWS_S3_BUCKET --delete --exclude="*.html"  --cache-control max-age=${MAX_AGE},public
 
   # upload the html files without extensions and force the content-type
   for i in ${HTML_FILES}; do
-    replaceBuild=${i/\.\/build/}
+    replaceBuild=${i/\.\/dist/}
     replaceHtml=${replaceBuild/\.html/}
 
     # exclude index.html as it is needed for /
-    if [ "$i" != "./build/index.html" ]; then
+    if [ "$i" != "./dist/index.html" ]; then
       echo "Syncing ${replaceHtml} to s3"
       aws s3 cp $i s3://$AWS_S3_BUCKET${replaceHtml} --cache-control max-age=${MAX_AGE},public --content-type "text/html"
     else
@@ -58,10 +43,6 @@ s3_sync() {
       aws s3 cp $i s3://$AWS_S3_BUCKET${replaceBuild} --cache-control max-age=${MAX_AGE},public --content-type "text/html"
     fi
   done
-
-  # upload sitemap to s3
-  aws s3 cp ./src/sitemap.xml s3://$AWS_S3_BUCKET --cache-control max-age=${MAX_AGE},public
-  aws s3 cp ./src/robots.txt s3://$AWS_S3_BUCKET --cache-control max-age=${MAX_AGE},public
 }
 
 # clean up cloud front
@@ -75,7 +56,7 @@ invalidate_cloudfront() {
 
 main(){
   configure_aws_cli
-  rename_html_files
+  collect_html_files
   s3_sync
   invalidate_cloudfront
 }

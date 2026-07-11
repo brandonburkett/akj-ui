@@ -1,12 +1,5 @@
 {
   "extends": "astro/tsconfigs/strict",
   "include": [".astro/types.d.ts", "**/*"],
-  "exclude": [
-    "dist",
-    "coverage",
-    "src/**/*.tsx",
-    "src/registerServiceWorker.ts",
-    "src/react-app-env.d.ts",
-    "src/containers/iaijutsu/iaijutsu-image-gallery.ts"
-  ]
+  "exclude": ["dist", "coverage"]
 }
