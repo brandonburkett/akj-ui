@@ -1586,7 +1586,13 @@ Add a Playwright browser install step before tests (`npx playwright install --wi
 
 Replace `rename_html_files()` usage: set `HTML_FILES=$(ls ./dist/*.html)` directly (no `*/index.html` rename loop). Change every `./build` → `./dist`. Remove the two `aws s3 cp ./src/sitemap.xml`/`robots.txt` lines (they ship in `dist` via `public/` and are covered by `aws s3 sync ./dist … --exclude="*.html"`). Keep the extensionless `aws s3 cp $i s3://$BUCKET/<name>` loop and the `index.html` special-case exactly as-is.
 
-- [ ] **Step 6: Update `README.md`** — replace CRA instructions with Astro (`npm run dev/build/preview/check/test`), note static+extensionless output and the S3/CloudFront deploy.
+- [ ] **Step 6: Rewrite `README.md`** for Astro (remove ALL CRA / react-scripts / react-snap references). Cover:
+  - Overview: Astro static site (migrated from CRA), zero framework runtime.
+  - Prerequisites: Node 24.18.0 via nvm (`nvm use`).
+  - Commands: `npm run dev` / `build` / `preview` / `check`; `npm run test:unit` (Vitest), `npm run test:e2e` (Playwright), `npm test` (both), `npm run coverage`; `npm run lint:style`, `npm run prettier:write`.
+  - Architecture: static MPA, `build.format:'file'` extensionless URLs, `StandardLayout` + `SeoHead`, three vanilla-TS islands (nav / parallax / gallery), CSS ported as-is.
+  - Testing: Vitest unit + coverage, Playwright e2e + axe (a11y).
+  - Deploy: CircleCI on push to `master` → build → S3 (extensionless keys via `production.sh`) + CloudFront invalidation.
 
 - [ ] **Step 7: Final green build**
 
