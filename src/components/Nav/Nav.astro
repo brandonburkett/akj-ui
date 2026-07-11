@@ -1,12 +1,12 @@
 ---
 import './nav.css';
-import { NAV_ITEMS, SOCIAL_LINKS } from '../consts';
-import imgMon from './nav-images/komei-jyuku-mon-64.png';
-import imgMenu from './nav-images/menu.png';
-import imgMenuClose from './nav-images/menu-close.png';
-import imgFacebook from './nav-images/facebook.svg';
-import imgInstagram from './nav-images/instagram.svg';
-import imgYoutube from './nav-images/youtube.svg';
+import { NAV_ITEMS, SOCIAL_LINKS } from '../../consts';
+import imgMon from './images/komei-jyuku-mon-64.png';
+import imgMenu from './images/menu.png';
+import imgMenuClose from './images/menu-close.png';
+import imgFacebook from './images/facebook.svg';
+import imgInstagram from './images/instagram.svg';
+import imgYoutube from './images/youtube.svg';
 
 const socialImg: Record<string, string> = {
   Facebook: imgFacebook.src,
@@ -59,6 +59,6 @@ const socialImg: Record<string, string> = {
 </header>
 
 <script>
-  import { initNav } from '../scripts/nav';
+  import { initNav } from '../../scripts/nav';
   initNav();
 </script>

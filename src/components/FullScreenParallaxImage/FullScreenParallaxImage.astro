@@ -1,6 +1,6 @@
 ---
 import './full-screen-parallax-image.css';
-import imgChevron from './images-icons/chevron-down-icon.svg';
+import imgChevron from './images/chevron-down-icon.svg';
 
 interface Props {
   backgroundImgSrc: string;
@@ -39,6 +39,6 @@ const hasSlot = Astro.slots.has('default');
 </section>
 
 <script>
-  import { initParallax } from '../scripts/parallax';
+  import { initParallax } from '../../scripts/parallax';
   initParallax();
 </script>
