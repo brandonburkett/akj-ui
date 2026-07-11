@@ -1,0 +1,14 @@
+---
+import './panel-content.css';
+
+interface Props {
+  fullViewHeight?: boolean;
+}
+
+const { fullViewHeight = false } = Astro.props;
+---
+<div class={`panel-content ${fullViewHeight ? 'full-vh' : ''}`}>
+  <div class="content group">
+    <slot />
+  </div>
+</div>

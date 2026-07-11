@@ -1,0 +1,26 @@
+---
+import './block-image-cta.css';
+import ResponsiveImage from './ResponsiveImage.astro';
+import imgMore from './ctas-images/more.png';
+
+interface Props {
+  to: string;
+  title?: string;
+  content?: string;
+  imgSrc: string;
+  imgAlt: string;
+}
+
+const { to, imgSrc, imgAlt, title = '', content = '' } = Astro.props;
+---
+<a class="block-image-cta" href={to}>
+  <ResponsiveImage src={imgSrc} alt={imgAlt} />
+  <div class="block-image-info">
+    <div class="black-image-title">{title}</div>
+    <div class="block-image-details" set:html={content} />
+    <div class="block-image-icon">
+      <img src={imgMore.src} alt="Read More" />
+    </div>
+  </div>
+  <slot />
+</a>

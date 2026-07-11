@@ -1,0 +1,12 @@
+---
+import './panel-section.css';
+
+interface Props {
+  color?: 'olive' | 'cream';
+}
+
+const { color = 'olive' } = Astro.props;
+---
+<section class={`info-panel-details info-panel-${color} translate-z`}>
+  <slot />
+</section>
