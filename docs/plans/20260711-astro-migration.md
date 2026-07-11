@@ -24,7 +24,7 @@ Legend: `[x]` done + reviewed, `[~]` in progress, `[ ]` not started. Commit SHAs
 - [x] Task 6: Parallax hero island — `04b252d`
 - [x] Task 7: Accessible scroll-snap gallery island — `c8dbbb9`
 - [x] Task 8: Port pages — `d06afad`
-- [~] Task 9: Test harness. 9A Playwright e2e + axe `f061c60` (reviewed); 9B Vitest unit + coverage + island extraction `c239630` (review pending)
+- [x] Task 9: Test harness. 9A Playwright e2e + axe `f061c60`; 9B Vitest unit + coverage + island extraction `c239630` (24 unit + 14 e2e green)
 - [ ] Task 10: Verify parity + accessibility end-to-end
 - [ ] Task 11: Remove CRA remnants + update CI/docs
 - [ ] Task 12: husky + CLAUDE.md + .claude/settings.json
