@@ -14,6 +14,7 @@ const socialImg: Record<string, string> = {
   YouTube: imgYoutube.src,
 };
 ---
+
 <header class="masthead translate-z">
   <div class="masthead-left">
     <a class="brand-logo" href="/"><img src={imgMon.src} alt="Dojo homepage" /></a>
@@ -21,7 +22,12 @@ const socialImg: Record<string, string> = {
   <a class="brand-title" href="/">Austin Komei Jyuku</a>
 
   <nav class="site-menu" aria-label="Site Navigation">
-    <button class="menu-icon" aria-expanded="false" aria-controls="aria-menu-list" aria-label="Menu">
+    <button
+      class="menu-icon"
+      aria-expanded="false"
+      aria-controls="aria-menu-list"
+      aria-label="Menu"
+    >
       <span class="menu-title">Menu</span>
       <img class="menu-open-img" src={imgMenu.src} alt="" aria-hidden="true" />
       <img class="menu-close-img" src={imgMenuClose.src} alt="" aria-hidden="true" />
@@ -29,18 +35,24 @@ const socialImg: Record<string, string> = {
 
     <div id="aria-menu-list" class="menu-bar group">
       <ul id="nav-list" class="nav-list">
-        {NAV_ITEMS.map((item) => (
-          <li class="nav-list-item">
-            <a class="nav-parent" href={item.href}>{item.label}</a>
-          </li>
-        ))}
+        {
+          NAV_ITEMS.map((item) => (
+            <li class="nav-list-item">
+              <a class="nav-parent" href={item.href}>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
       </ul>
       <div class="social">
-        {SOCIAL_LINKS.map((s) => (
-          <a class="social-link" href={s.href} target="_blank" rel="noopener noreferrer">
-            <img class="social-icon" src={socialImg[s.label]} alt={s.label} />
-          </a>
-        ))}
+        {
+          SOCIAL_LINKS.map((s) => (
+            <a class="social-link" href={s.href} target="_blank" rel="noopener noreferrer">
+              <img class="social-icon" src={socialImg[s.label]} alt={s.label} />
+            </a>
+          ))
+        }
       </div>
     </div>
   </nav>
@@ -68,9 +80,9 @@ const socialImg: Record<string, string> = {
     btn.addEventListener('click', () => setOpen(!isOpen()));
 
     // close after following a nav link
-    region.querySelectorAll('a.nav-parent').forEach((a) =>
-      a.addEventListener('click', () => setOpen(false)),
-    );
+    region
+      .querySelectorAll('a.nav-parent')
+      .forEach((a) => a.addEventListener('click', () => setOpen(false)));
 
     // Escape closes and returns focus to the toggle button
     document.addEventListener('keydown', (e) => {
