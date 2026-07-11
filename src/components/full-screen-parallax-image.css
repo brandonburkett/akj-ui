@@ -58,6 +58,8 @@
   position: absolute;
   width: 100%;
   text-align: center;
+  /* collapse the line-box strut so the cue height equals the button (no descender gap) */
+  line-height: 0;
   /*z-index: 1;*/
 }
 
