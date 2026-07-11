@@ -47,10 +47,11 @@
   background: none;
   border: 0;
   color: #eae6db;
-  font-size: 3em;
+  font-size: 4em;
   line-height: 1;
   cursor: pointer;
   padding: 0 10px;
+  transition: transform 0.2s ease-out, color 0.2s ease-out;
   display: none; /* hidden on mobile, shown >=480px below */
 }
 .sg-prev {
@@ -59,9 +60,11 @@
 .sg-next {
   right: 0;
 }
+/* keep the vertical centering while scaling up on hover */
 .sg-nav:hover,
 .sg-nav:focus {
   color: #fff;
+  transform: translateY(-50%) scale(1.2);
 }
 
 /* bullets */
@@ -81,14 +84,18 @@
   border: 1px solid #eae6db;
   border-radius: 0;
   background: transparent;
+  opacity: 0.7;
   cursor: pointer;
+  transition: opacity 0.2s ease-out, background 0.2s ease-out;
 }
 .sg-bullet[aria-current='true'] {
   background: #eae6db;
+  opacity: 1;
 }
 .sg-bullet:hover,
 .sg-bullet:focus {
   background: #eae6db;
+  opacity: 1;
 }
 
 /* fullscreen toggle */
@@ -99,12 +106,15 @@
   background: none;
   border: 0;
   color: #eae6db;
-  font-size: 1.5em;
+  font-size: 2em;
+  line-height: 1;
   cursor: pointer;
+  transition: transform 0.2s ease-out, color 0.2s ease-out;
 }
 .sg-fullscreen:hover,
 .sg-fullscreen:focus {
   color: #fff;
+  transform: scale(1.2);
 }
 
 /* fullscreen presentation via native Fullscreen API */
@@ -149,5 +159,8 @@
 @media screen and (min-width: 768px) {
   .sg-bullet[aria-current='true'] {
     padding: 0;
+  }
+  .sg-nav {
+    font-size: 5em;
   }
 }
