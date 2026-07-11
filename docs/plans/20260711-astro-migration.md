@@ -25,7 +25,7 @@ Legend: `[x]` done + reviewed, `[~]` in progress, `[ ]` not started. Commit SHAs
 - [x] Task 7: Accessible scroll-snap gallery island — `c8dbbb9`
 - [x] Task 8: Port pages — `d06afad`
 - [x] Task 9: Test harness. 9A Playwright e2e + axe `f061c60`; 9B Vitest unit + coverage + island extraction `c239630` (24 unit + 14 e2e green)
-- [ ] Task 10: Verify parity + accessibility end-to-end
+- [~] Task 10: Verify parity — automated gate GREEN (check 0/0/0, build 6 pages, 24 unit + 14 e2e pass, dist extensionless). Visual parity at 8 breakpoints: user reviewing async on preview.
 - [ ] Task 11: Remove CRA remnants + update CI/docs
 - [ ] Task 12: husky + CLAUDE.md + .claude/settings.json
 - [ ] Task 13: CSS lint cleanup and modernization
