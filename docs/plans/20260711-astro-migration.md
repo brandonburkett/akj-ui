@@ -1638,12 +1638,57 @@ git commit -m "chore: re-add husky pre-commit hook; add CLAUDE.md + shared setti
 
 ---
 
+## Task 13: CSS lint cleanup and modernization (final task)
+
+Fixes the ~797 `stylelint-config-standard` errors on the ported legacy CSS WITHOUT changing rendered appearance or breakpoints. Runs last, after the whole site is built and verified (Task 10) and after tooling is in place, so verified visual parity is the baseline to preserve. User directive: "clean up / resolve / modernize while still maintaining the breakpoints; do not break the site."
+
+**Files:** `src/**/*.css` as needed. No `.astro`/`.ts` logic changes.
+
+**Hard constraints:**
+- Do NOT change rendered output or any of the 8 breakpoints (320/400/480/600/768/1024/1200/1500).
+- Prefer safe mechanical fixes. Modernize deprecated syntax (legacy IE `*`/underscore hacks, deprecated color/number notation) only when rendering is provably unchanged.
+- Gate: `npm run lint:style` reports 0 errors, `npm run build` passes, `npm test` (Playwright + axe) passes, and the Task 10 visual parity pass is re-run at all 8 breakpoints with no visible diff.
+
+- [ ] **Step 1: Baseline** — capture the current error list and confirm the site is green before touching anything.
+
+```bash
+nvm use 24.18.0
+npx stylelint "src/**/*.css" > .superpowers/sdd/stylelint-before.txt 2>&1 || true
+npm run build && npm test
+```
+
+- [ ] **Step 2: Auto-fix the safe subset**
+
+```bash
+npm run lint:style        # stylelint --fix: formatting, quotes, spacing, color/number notation
+npm run build
+```
+Confirm the build still passes, then commit. If the husky hook (Task 12) is active, the commit re-runs `stylelint --fix` on staged CSS; that is expected. Reach a clean pass before the final commit; for intermediate WIP commits mid-cleanup you may use `git commit --no-verify`, but the LAST commit must pass the hook (0 errors).
+
+- [ ] **Step 3: Resolve remaining non-auto-fixable errors, file by file**
+
+Preserve selectors, cascade order, and every `@media` breakpoint. For a rule that would force a rendering-risky change, disable that specific rule in `.stylelintrc` with a one-line comment explaining why (or a scoped `/* stylelint-disable-next-line <rule> */`), rather than altering the CSS in a way that could shift layout. Commit in small batches.
+
+- [ ] **Step 4: Re-verify after each batch**
+
+Run `npm run build`, then `npm test`, then spot-check the affected pages at the relevant breakpoints in the browser (use the `verify` skill / browser tools). If any fix changes appearance, revert it and disable the offending rule instead.
+
+- [ ] **Step 5: Final verification + commit**
+
+`npm run lint:style` → 0 errors; full `npm test` green; visual parity confirmed at all 8 breakpoints.
+```bash
+git add -A
+git commit -m "style: lint cleanup and modernization of ported CSS (no visual/breakpoint change)"
+```
+
+---
+
 ## Self-Review
 
 **1. Spec coverage:**
 - Move off CRA → Astro ✅ (Tasks 1, 11). Static generation (was react-snap) ✅ (`output:'static'` + `build.format:'file'`, Task 1; deploy Task 11). TypeScript ✅ (Task 1 tsconfig strict). CSS/breakpoints as-is ✅ (Task 2 global imports + Task 4/5/6/7 keep `.css`). Nav dropdown decision (vanilla TS, a11y/keyboard) ✅ (Task 5). Image gallery decision (Option B scroll-snap + tiny TS, responsive + a11y/keyboard) ✅ (Task 7). Parallax hero ✅ (Task 6). SEO/react-helmet ✅ (Task 3). JSON-LD ✅ (Task 8). CircleCI kept + updated ✅ (Task 11). Extensionless URL preservation ✅ (Global Constraints + Tasks 1/10/11). `/tokai` redirect ✅ (Task 8). 404 ✅ (Task 8).
 - Gap check: `robots.txt`/`sitemap.xml`/`manifest`/favicon/PWA icons → covered (Task 2 moves to `public/`; Task 3 links manifest/favicon).
-- User additions: Node 24.18.0 pin ✅ (Global Constraints + Tasks 1/11). Isolated worktree + scoped `.claude` gitignore ✅ (Execution Environment; committed on `master`). CLAUDE.md + tracked `.claude/settings.json` ✅ (Task 12). Parallax degrades without JS — static CSS-bg image + real anchor cue ✅ (Task 6). `astro check` stays green with legacy `.tsx` in-tree via tsconfig exclude ✅ (Task 1). Husky pre-commit hook re-added since Astro ships none ✅ (Task 12; stale v4 hook neutralized in Task 1).
+- User additions: Node 24.18.0 pin ✅ (Global Constraints + Tasks 1/11). Isolated worktree + scoped `.claude` gitignore ✅ (Execution Environment; committed on `master`). CLAUDE.md + tracked `.claude/settings.json` ✅ (Task 12). Parallax degrades without JS — static CSS-bg image + real anchor cue ✅ (Task 6). `astro check` stays green with legacy `.tsx` in-tree via tsconfig exclude ✅ (Task 1). Husky pre-commit hook re-added since Astro ships none ✅ (Task 12; stale v4 hook neutralized in Task 1). CSS lint cleanup/modernization deferred to the end, preserving all breakpoints ✅ (Task 13).
 
 **2. Placeholder scan:** The large page bodies (home/iaijutsu/schedule/seminars) are intentionally described as "port verbatim from lines X–Y" rather than re-transcribed, because they are mechanical 1:1 markup ports of existing files and re-typing ~600 lines invites transcription drift; the exact conversion rules + all non-obvious wiring (SEO props, image `.src`, JSON-LD `set:html`, gallery array, parallax `scrollTargetId`) are given in full. All logic-bearing files (config, layout, SeoHead, Nav, gallery, parallax, small components) contain complete runnable code.
 
