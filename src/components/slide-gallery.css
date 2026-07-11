@@ -61,8 +61,13 @@
   right: 0;
 }
 /* keep the vertical centering while scaling up on hover */
-.sg-nav:hover,
-.sg-nav:focus {
+@media (hover: hover) {
+  .sg-nav:hover {
+    color: #fff;
+    transform: translateY(-50%) scale(1.2);
+  }
+}
+.sg-nav:focus-visible {
   color: #fff;
   transform: translateY(-50%) scale(1.2);
 }
@@ -90,8 +95,14 @@
 .sg-bullet[aria-current='true'] {
   background: #eae6db;
 }
-.sg-bullet:hover,
-.sg-bullet:focus {
+/* hover only on hover-capable devices + focus-visible (keyboard) so a touch tap
+   doesn't leave a bullet stuck "active" when the next swipe moves aria-current */
+@media (hover: hover) {
+  .sg-bullet:hover {
+    background: #eae6db;
+  }
+}
+.sg-bullet:focus-visible {
   background: #eae6db;
 }
 
@@ -108,8 +119,13 @@
   cursor: pointer;
   transition: transform 0.2s ease-out, color 0.2s ease-out;
 }
-.sg-fullscreen:hover,
-.sg-fullscreen:focus {
+@media (hover: hover) {
+  .sg-fullscreen:hover {
+    color: #fff;
+    transform: scale(1.2);
+  }
+}
+.sg-fullscreen:focus-visible {
   color: #fff;
   transform: scale(1.2);
 }
