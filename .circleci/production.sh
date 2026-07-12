@@ -3,11 +3,13 @@ set -euo pipefail
 
 HTML_FILES=''
 
-# _astro/ is content-hashed → immutable 1yr. Other assets (favicon, manifest, icons,
-# robots, sitemap) rarely change → 30d browser + edge. HTML must refresh on deploy →
-# short browser max-age + 30d edge; every deploy invalidates the edge.
+# _astro/ is content-hashed → immutable 1yr
 IMMUTABLE_CC='public, max-age=31536000, immutable'
+
+# Other assets (favicon, manifest, icons, robots, sitemap) rarely change → 30d browser + edge.
 ASSET_CC='public, max-age=2592000'
+
+# HTML must refresh on deploy, short browser max-age + 30d CF edge
 HTML_CC='public, max-age=300, s-maxage=2592000, must-revalidate'
 
 # build.format:'file' emits dist/*.html; they are uploaded to extensionless keys below.
