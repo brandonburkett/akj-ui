@@ -17,6 +17,7 @@
     "pretest:e2e": "playwright install chromium",
     "test:e2e": "playwright test",
     "coverage": "vitest run --coverage",
+    "screenshots": "node scripts/pr-screenshots.mjs",
     "lint:style": "stylelint \"src/**/*.css\" --fix",
     "prettier:write": "prettier --write \"./src/**/*.{ts,astro,css}\"",
     "prettier:check": "prettier -l \"./src/**/*.{ts,astro,css}\"",
