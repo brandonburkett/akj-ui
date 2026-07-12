@@ -12,6 +12,9 @@ vanilla-TypeScript scripts.
   nvm use
   ```
 - `npm install`
+- For e2e tests, Playwright needs the Chromium binary. `npm run test:e2e` installs it
+  automatically on first run via the `pretest:e2e` hook, or install it yourself with
+  `npx playwright install chromium`.
 
 ## Commands
 
@@ -50,10 +53,11 @@ vanilla-TypeScript scripts.
 
 ## Testing
 
-- **Unit** — Vitest (jsdom) over the island logic and SEO helpers; `npm run coverage` for V8
+- **Unit.** Vitest (jsdom) over the island logic and SEO helpers. Run `npm run coverage` for V8
   coverage.
-- **E2E / a11y** — Playwright drives the built site and runs `@axe-core/playwright` accessibility
-  checks against the pages.
+- **E2E and a11y.** Playwright drives the site in real headless Chromium and runs
+  `@axe-core/playwright` accessibility checks against the pages. The `pretest:e2e` hook installs
+  Chromium automatically on first run, so a fresh clone needs no manual browser setup.
 
 ## Deploy
 
