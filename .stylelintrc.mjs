@@ -4,8 +4,8 @@
 export default {
   extends: ['stylelint-config-standard'],
   rules: {
+    // 6 real descending-specificity cases in the legacy CSS; fixing means reordering selectors (cascade risk)
     'no-descending-specificity': null,
-    'font-family-no-missing-generic-family-keyword': null,
     // keep the non-standard webkit idioms autoprefixer can't generate:
     // appearance reset (button/textfield), iOS momentum scroll
     'property-no-vendor-prefix': [true, { ignoreProperties: ['appearance', 'overflow-scrolling'] }],
