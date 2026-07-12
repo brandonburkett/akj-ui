@@ -78,8 +78,10 @@ Post-migration candidates deliberately deferred:
   `{src, alt, class}`) for responsive/optimized images.
 - **`@astrojs/sitemap`** — auto-generate `sitemap.xml` from routes instead of the hand-maintained
   file.
-- **Lightning CSS** — evaluate replacing PostCSS/autoprefixer with Lightning CSS (faster; also
-  minifies).
+- **Lightning CSS.** v7 ships lightningcss as the default CSS minifier, but `astro.config.mjs`
+  pins `cssMinify: 'esbuild'` so autoprefixer's vendor prefixes survive. Follow-up is to adopt
+  lightningcss as the full transformer with `browserslist` targets, drop PostCSS/autoprefixer,
+  then re-verify prefixes cross-browser.
 - **SEO audit** — run Lighthouse + Google Rich Results on the deployed site; validate the home
   JSON-LD; consider per-page OG images and structured data beyond the home page.
 - **Broader dead-CSS sweep** — grep-audit every `master.css` selector and delete unreferenced

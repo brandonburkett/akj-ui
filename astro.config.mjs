@@ -11,4 +11,8 @@ export default defineConfig({
     format: 'file',
     inlineStylesheets: 'never',
   },
+  vite: {
+    // esbuild keeps autoprefixer's vendor prefixes that the lightningcss minifier strips
+    build: { cssMinify: 'esbuild' },
+  },
 });
