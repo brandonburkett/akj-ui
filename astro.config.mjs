@@ -6,8 +6,8 @@ export default defineConfig({
   output: 'static',
   trailingSlash: 'never',
   build: {
-    // Emit `iaijutsu.html` (not `iaijutsu/index.html`) so S3 can serve
-    // extensionless URLs exactly like the old react-snap + production.sh flow.
+    // Emit `iaijutsu.html` (not `iaijutsu/index.html`) so S3 serves
+    // extensionless URLs — the deploy uploads each as an extensionless key.
     format: 'file',
     inlineStylesheets: 'never',
   },
