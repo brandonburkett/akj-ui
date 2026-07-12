@@ -66,3 +66,27 @@ CI/CD via [CircleCI](https://circleci.com/) (`.circleci/config.yml`, image
 - Tiered `Cache-Control`: `_astro/*` immutable (1yr); other assets 30d; HTML short browser
   `max-age` + long CloudFront `s-maxage`
 - CloudFront invalidation on every deploy (flushes the long edge TTL)
+
+## Follow-ups / TODO
+
+Post-migration candidates deliberately deferred:
+
+- **Nav → native Popover API** — replace the JS toggle / outside-click / Escape island with
+  `<button popovertarget>` + `popover`; must preserve the `.site-menu.open` reveal and
+  focus-return-to-button on close.
+- **Images → `astro:assets`** — adopt `<Image>` (or widen `ResponsiveImage` beyond
+  `{src, alt, class}`) for responsive/optimized images.
+- **`@astrojs/sitemap`** — auto-generate `sitemap.xml` from routes instead of the hand-maintained
+  file.
+- **Lightning CSS** — evaluate replacing PostCSS/autoprefixer with Lightning CSS (faster; also
+  minifies).
+- **SEO audit** — run Lighthouse + Google Rich Results on the deployed site; validate the home
+  JSON-LD; consider per-page OG images and structured data beyond the home page.
+- **Broader dead-CSS sweep** — grep-audit every `master.css` selector and delete unreferenced
+  rules (bigger/riskier than the naming-rule cleanup already done).
+- **Service worker (offline)** — the manifest already provides installability (desktop install +
+  mobile add-to-home); add `@vite-pwa/astro` only if offline caching is later wanted.
+- **Verify deploy on first master push** — the CircleCI `config.yml` + `production.sh`
+  cache-header changes were untested in the migration env (no AWS creds); confirm on the first
+  real `master` deploy that the tiered `Cache-Control` headers apply and that CloudFront honors
+  origin `Cache-Control`.
