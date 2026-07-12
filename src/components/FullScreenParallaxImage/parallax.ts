@@ -10,7 +10,9 @@ export function parallaxOffset(scrollY: number, speed: number): number {
 // while allowing injection. window/navigator stay global (browser-only island).
 export function initParallax(doc: Document = document): void {
   const cover = doc.querySelector<HTMLElement>('.cover-parallax .cover-image');
-  if (!cover) return;
+  if (!cover) {
+    return;
+  }
 
   const speed = Number(cover.dataset.parallaxSpeed) || 5;
 
@@ -20,8 +22,8 @@ export function initParallax(doc: Document = document): void {
   }
 
   const onScroll = () => {
-    const y = window.pageYOffset || window.scrollY;
-    cover.style.backgroundPosition = `50% ${parallaxOffset(y, speed)}px`;
+    const scrollY = window.pageYOffset || window.scrollY;
+    cover.style.backgroundPosition = `50% ${parallaxOffset(scrollY, speed)}px`;
   };
   doc.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
@@ -29,9 +31,9 @@ export function initParallax(doc: Document = document): void {
   const cue = doc.querySelector<HTMLElement>('.cover-scroll-cue');
   const targetId = cue?.dataset.scrollTarget;
   if (cue && targetId) {
-    cue.addEventListener('click', (e) => {
+    cue.addEventListener('click', (event) => {
       // upgrade the native anchor jump to a smooth scroll (no-JS still gets the jump)
-      e.preventDefault();
+      event.preventDefault();
       doc
         .getElementById(targetId)
         ?.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });

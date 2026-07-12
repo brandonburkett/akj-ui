@@ -1,15 +1,12 @@
 ---
 import './below-fold.css';
+import type { HTMLAttributes } from 'astro/types';
 
-interface Props {
-  class?: string;
-  role?: string;
-  id?: string;
-}
+type Props = HTMLAttributes<'div'>;
 
 const { class: className, ...rest } = Astro.props;
 ---
 
-<div class:list={['below-fold', 'group', className]} {...rest as Record<string, any>}>
+<div class:list={['below-fold', 'group', className]} {...rest}>
   <slot />
 </div>
