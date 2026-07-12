@@ -32,6 +32,14 @@ Austin Komei Jyuku dojo site, an **Astro** static site.
 - Single-line [Conventional Commits](https://www.conventionalcommits.org/) subject, e.g. `feat: loop gallery chevrons at edges`. No body unless essential.
 - Keep the `Co-Authored-By:` footer on every commit.
 
+## Pull requests
+- PRs use `.github/pull_request_template.md`: Description, Screenshots, Special considerations / tech debt / regressions. No Problem section. No Verification section, CI always runs the checks.
+- Screenshots, for visible changes:
+  - `npm run build && npm run preview`, use preview not dev (the dev server injects the Astro toolbar into shots).
+  - Edit `TARGETS` in `scripts/pr-screenshots.mjs` for the pages you changed, run `npm run screenshots`, then reset `TARGETS` back to `[]` so the file stays unchanged between PRs.
+  - PNGs land in `.pr-screenshots/` (gitignored). Drag them into the PR's Screenshots table (Mobile | Desktop, like the README), then delete them.
+  - Never commit screenshot images. GitHub hosts the ones dragged into the PR, uploading to that image host needs the browser and is not scriptable from the CLI.
+
 ## Comments
 - If code is self-documenting, do not leave a comment.
 - If leaving a comment, explain why, not what. One short line, and only for non-obvious rationale. Be concise.
