@@ -1,0 +1,64 @@
+---
+import './nav.css';
+import { NAV_ITEMS, SOCIAL_LINKS } from '@/consts';
+import imgMon from './images/komei-jyuku-mon-64.png';
+import imgMenu from './images/menu.png';
+import imgMenuClose from './images/menu-close.png';
+import imgFacebook from './images/facebook.svg';
+import imgInstagram from './images/instagram.svg';
+import imgYoutube from './images/youtube.svg';
+
+const socialImg: Record<string, string> = {
+  Facebook: imgFacebook.src,
+  Instagram: imgInstagram.src,
+  YouTube: imgYoutube.src,
+};
+---
+
+<header class="masthead translate-z">
+  <div class="masthead-left">
+    <a class="brand-logo" href="/"><img src={imgMon.src} alt="Dojo homepage" /></a>
+  </div>
+  <a class="brand-title" href="/">Austin Komei Jyuku</a>
+
+  <nav class="site-menu" aria-label="Site Navigation">
+    <button
+      class="menu-icon"
+      aria-expanded="false"
+      aria-controls="aria-menu-list"
+      aria-label="Menu"
+    >
+      <span class="menu-title">Menu</span>
+      <img class="menu-open-img" src={imgMenu.src} alt="" aria-hidden="true" />
+      <img class="menu-close-img" src={imgMenuClose.src} alt="" aria-hidden="true" />
+    </button>
+
+    <div id="aria-menu-list" class="menu-bar group">
+      <ul id="nav-list" class="nav-list">
+        {
+          NAV_ITEMS.map((item) => (
+            <li class="nav-list-item">
+              <a class="nav-parent" href={item.href}>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <div class="social">
+        {
+          SOCIAL_LINKS.map((s) => (
+            <a class="social-link" href={s.href} target="_blank" rel="noopener noreferrer">
+              <img class="social-icon" src={socialImg[s.label]} alt={s.label} />
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script>
+  import { initNav } from './nav';
+  initNav();
+</script>

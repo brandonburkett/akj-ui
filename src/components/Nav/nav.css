@@ -1,0 +1,197 @@
+/* Masthead */
+.masthead {
+  position: fixed;
+  width: 100%;
+  height: 55px;
+  top: 0;
+  left: 0;
+  background: rgb(000 000 000 / 90%);
+  box-sizing: border-box;
+
+  /* three-zone flex row: logo | title | menu */
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+
+  /* should stay on top of everything */
+  z-index: 99;
+}
+
+/* needed for chrome z-index flicker where you can see background */
+.masthead.translate-z {
+  transform: translateZ(2px);
+}
+
+/* left zone — equal flex weight to the menu zone keeps the title centered */
+.masthead-left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+}
+
+.brand-logo img {
+  display: block;
+  width: 35px;
+  height: 35px;
+}
+
+/* center zone — natural width, sits dead-center between the equal flanks */
+.brand-title {
+  flex: 0 1 auto;
+  font-size: 1.2rem;
+  color: #fff;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.site-menu {
+  /* right zone — equal flex weight to the left zone */
+  flex: 1;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+  background: rgb(000 000 000 / 0%);
+
+  /* should stay on top of everything */
+  z-index: 100;
+}
+
+.site-menu.open {
+  background: rgb(000 000 000 / 0%);
+}
+
+.menu-title {
+  position: absolute;
+  font-size: 1.2rem;
+
+  /* top: 12px; */
+  right: 40px;
+  white-space: nowrap;
+  opacity: 1;
+  transition: all 0.2s ease;
+}
+
+/* Main Navigation Menubar */
+.menu-bar {
+  background: rgb(000 000 000 / 90%);
+  box-shadow: 0 0 10px 2px rgb(000 000 000);
+  color: #fff;
+  width: 250px;
+  padding: 5px 0 0;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  display: none;
+}
+
+.menu-icon {
+  /* remove default button styles */
+  background: none;
+  color: inherit;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  padding: 10px;
+  position: relative;
+}
+
+.menu-icon img {
+  height: 20px;
+  width: 20px;
+  transition: all 0.2s ease;
+}
+
+.menu-open-img {
+  opacity: 1;
+}
+
+.menu-close-img {
+  position: absolute;
+  top: 11px;
+  left: 10px;
+  opacity: 0;
+}
+
+.site-menu.open .menu-open-img {
+  opacity: 0;
+}
+
+.site-menu.open .menu-close-img {
+  opacity: 1;
+}
+
+.site-menu.open > .menu-bar {
+  display: block;
+}
+
+.menu-bar .nav-list {
+  list-style: none;
+  border: none;
+}
+
+.menu-bar .nav-list-item {
+  position: relative;
+}
+
+.menu-bar .nav-parent:link,
+.menu-bar .nav-parent:visited {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 15px;
+  display: block;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.menu-bar .nav-parent:hover,
+.menu-bar .nav-parent:focus {
+  background: rgb(067 091 013);
+}
+
+/* Social Links */
+.social {
+  display: flex;
+  justify-content: space-around;
+  border-top: 1px solid #000;
+  height: 60px;
+  text-align: center;
+  background: rgb(067 091 013);
+}
+
+.social-link {
+  height: 50px;
+  width: 50px;
+  margin: 5px;
+  transition: all 0.2s ease;
+}
+
+.social-link:hover,
+.social-link:focus {
+  background: #fff;
+}
+
+.social-icon {
+  width: 100%;
+  height: 100%;
+}
+
+@media screen and (min-width: 320px) {
+  .menu-title {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .menu-title {
+    display: block;
+  }
+}

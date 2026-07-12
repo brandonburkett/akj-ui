@@ -1,0 +1,31 @@
+---
+import StandardLayout from '@/layouts/StandardLayout.astro';
+import Footer from '@/components/Footer/Footer.astro';
+import Quote from '@/components/Quote/Quote.astro';
+import PanelSection from '@/components/PanelSection/PanelSection.astro';
+import PanelContent from '@/components/PanelContent/PanelContent.astro';
+
+const title = '404 Not Found';
+const desc = 'Page not found.';
+---
+
+<StandardLayout title={title} desc={desc} path={Astro.url.pathname} noIndex={true}>
+  <div id="main" class="group" role="main">
+    <PanelSection>
+      <PanelContent fullViewHeight={true}>
+        <div class="cs12">
+          <h1>Oops, something went wrong...</h1>
+          <p>
+            The page you're looking for either doesn't exist or there was an internal error for your
+            request.
+          </p>
+        </div>
+      </PanelContent>
+    </PanelSection>
+    <Quote
+      content="The most difficult rival you will ever face is yourself."
+      author="Sekiguchi Komei sensei"
+    />
+    <Footer />
+  </div>
+</StandardLayout>

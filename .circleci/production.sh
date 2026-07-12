@@ -1,81 +1,66 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 HTML_FILES=''
 
-# one week in seconds
-MAX_AGE='604800'
+# _astro/ is content-hashed → immutable 1yr
+IMMUTABLE_CC='public, max-age=31536000, immutable'
 
-# remove extension from html files
-rename_html_files() {
-  echo "Renaming react-snap files"
-  echo
+# Other assets (favicon, manifest, icons, robots, sitemap) rarely change → 30d browser + edge.
+ASSET_CC='public, max-age=2592000'
 
-  buildHTML=`ls ./build/*/index.html`
+# HTML must refresh on deploy, short browser max-age + 30d CF edge
+HTML_CC='public, max-age=300, s-maxage=2592000, must-revalidate'
 
-  for i in ${buildHTML}; do
-    # move file - EX build/iaijutsu/index.html -> build/iaijutsu.html
-    echo ${i} | sed 'p;s/\/index\.html/.html/' | xargs -n2 mv
-
-    # delete folders that contained files - EX /build/iaijutsu
-    rm -rf ${i/\/index\.html//}
-
-    # remove .html extension - EX build/iaijutsu.html -> build/iaijutsu
-    #mv ${i/\/\index\.html/\.html} ${i/\/index\.html/}
-  done
-
-  # setup HTML_FILES, which we will be moving manually
-  HTML_FILES=`ls ./build/*.html`
+# build.format:'file' emits dist/*.html; they are uploaded to extensionless keys below.
+collect_html_files() {
+  HTML_FILES=$(ls ./dist/*.html)
 }
 
-# Set AWS defaults
 configure_aws_cli() {
   echo "Configure awscli"
-  echo
-
-	aws --version
-	aws configure set default.region $AWS_DEFAULT_REGION
-	aws configure set default.output json
+  aws --version
+  aws configure set default.region "$AWS_DEFAULT_REGION"
+  aws configure set default.output json
 }
 
 s3_sync() {
-  echo "Syncing none html files to s3"
-  echo
+  echo "Syncing fingerprinted _astro assets (immutable) to s3"
+  aws s3 sync ./dist/_astro "s3://$AWS_S3_BUCKET/_astro" --delete \
+    --cache-control "$IMMUTABLE_CC"
 
-  # upload to s3, deleting any items that no longer exist, but exclude html files, which are handled separately below
-  aws s3 sync ./build s3://$AWS_S3_BUCKET --delete --exclude="*.html"  --cache-control max-age=${MAX_AGE},public
+  echo "Syncing other static assets to s3"
+  # everything else except html (handled below) and _astro (handled above)
+  aws s3 sync ./dist "s3://$AWS_S3_BUCKET" --delete \
+    --exclude "*.html" --exclude "_astro/*" \
+    --cache-control "$ASSET_CC"
 
-  # upload the html files without extensions and force the content-type
+  echo "Uploading html to extensionless keys"
   for i in ${HTML_FILES}; do
-    replaceBuild=${i/\.\/build/}
+    replaceBuild=${i/\.\/dist/}
     replaceHtml=${replaceBuild/\.html/}
 
-    # exclude index.html as it is needed for /
-    if [ "$i" != "./build/index.html" ]; then
-      echo "Syncing ${replaceHtml} to s3"
-      aws s3 cp $i s3://$AWS_S3_BUCKET${replaceHtml} --cache-control max-age=${MAX_AGE},public --content-type "text/html"
+    # index.html stays at /index.html (root default object); others become extensionless keys
+    if [ "$i" != "./dist/index.html" ]; then
+      echo "  ${replaceHtml}"
+      aws s3 cp "$i" "s3://$AWS_S3_BUCKET${replaceHtml}" \
+        --cache-control "$HTML_CC" --content-type "text/html"
     else
-      echo "Syncing ${replaceBuild} to s3"
-      aws s3 cp $i s3://$AWS_S3_BUCKET${replaceBuild} --cache-control max-age=${MAX_AGE},public --content-type "text/html"
+      echo "  ${replaceBuild}"
+      aws s3 cp "$i" "s3://$AWS_S3_BUCKET${replaceBuild}" \
+        --cache-control "$HTML_CC" --content-type "text/html"
     fi
   done
-
-  # upload sitemap to s3
-  aws s3 cp ./src/sitemap.xml s3://$AWS_S3_BUCKET --cache-control max-age=${MAX_AGE},public
-  aws s3 cp ./src/robots.txt s3://$AWS_S3_BUCKET --cache-control max-age=${MAX_AGE},public
 }
 
-# clean up cloud front
 invalidate_cloudfront() {
   echo "Invalidate CloudFront"
-  echo
-  aws configure set preview.cloudfront true
-  aws cloudfront create-invalidation --distribution-id $AWS_CLOUDFRONT_ID --paths "/*"
+  aws cloudfront create-invalidation --distribution-id "$AWS_CLOUDFRONT_ID" --paths "/*"
 }
 
-
-main(){
+main() {
   configure_aws_cli
-  rename_html_files
+  collect_html_files
   s3_sync
   invalidate_cloudfront
 }

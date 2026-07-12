@@ -1,0 +1,51 @@
+---
+import { SITE_URL, SITE_NAME } from '@/consts';
+import { buildCanonical, buildOgImage } from './seo';
+import defaultOgp from './images/ogp-mon-1200-630.png';
+import appleIcon from './images/ogp-mon-375.jpg';
+
+interface Props {
+  title: string;
+  desc: string;
+  path: string;
+  image?: string;
+  noIndex?: boolean;
+}
+
+const { title, desc, path, image, noIndex = false } = Astro.props;
+
+const canonicalUrl = buildCanonical(path, SITE_URL);
+const ogImage = buildOgImage(image, defaultOgp.src, SITE_URL);
+const fullTitle = title === SITE_NAME ? SITE_NAME : `${title}, ${SITE_NAME}`;
+---
+
+<meta charset="utf-8" />
+<title>{fullTitle}</title>
+<meta name="description" content={desc} />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link rel="canonical" href={canonicalUrl} />
+{noIndex && <meta name="robots" content="noindex" />}
+
+<meta property="og:site_name" content={SITE_NAME} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={desc} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="en_US" />
+
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={desc} />
+<meta name="twitter:url" content={canonicalUrl} />
+<meta name="twitter:image" content={ogImage} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@akjdojo" />
+
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="theme-color" content="#000000" />
+<meta name="application-name" content="Austin Komei Jyuku" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<link rel="apple-touch-icon" href={appleIcon.src} />
+
+<link rel="manifest" href="/manifest.json?v=20260711" />
+<link rel="icon" href="/favicon.ico" />

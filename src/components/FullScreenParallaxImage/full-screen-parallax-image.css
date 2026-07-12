@@ -1,0 +1,136 @@
+.cover-parallax {
+  /* background: #ffffff url("images/lilly.jpg") no-repeat right top;
+  background-size: cover; */
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 0;
+}
+
+.cover-image {
+  position: relative;
+
+  /* z-index: 1; */
+  height: 100%;
+  width: 100%;
+  background-color: #000;
+  background-position: 50% 0;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+.cover-text {
+  /* center the title/content in the band between the header and the chevron */
+  position: absolute;
+  inset: 55px 0 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cover-title {
+  color: #fff;
+  text-shadow:
+    0 0 4px rgb(0 0 0 / 90%),
+    0 0 12px rgb(0 0 0 / 70%);
+  width: 80%;
+  max-width: 700px;
+  margin: 40px auto 0;
+}
+
+.cover-content {
+  color: #fff;
+  text-shadow:
+    0 0 4px rgb(0 0 0 / 90%),
+    0 0 12px rgb(0 0 0 / 70%);
+  width: 80%;
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 1.7em;
+  line-height: 1.3em;
+}
+
+.cover-scroll-cue {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+
+  /* collapse the line-box strut so the cue height equals the button (no descender gap) */
+  line-height: 0;
+
+  /* z-index: 1; */
+}
+
+.cover-scroll-btn {
+  /* remove default button styles */
+  color: inherit;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  padding: 10px 25px;
+  background-color: #fff;
+  border-radius: 50px;
+
+  /* now an <a>, not a <button>: keep the pill-button box */
+  display: inline-block;
+}
+
+.cover-scroll-btn img {
+  width: 30px;
+  height: 30px;
+  margin: 0 auto;
+  display: block;
+}
+
+/* Responsive Style Sheet */
+@media screen and (min-width: 320px) {
+  .cover-text .cover-content {
+    font-size: 1.2em;
+    margin: 20px auto;
+  }
+
+  .cover-scroll-cue {
+    bottom: 120px;
+  }
+
+  .cover-title {
+    font-size: 2em;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  /* Interior */
+  .cover-title {
+    font-size: 3em;
+  }
+
+  .cover-scroll-cue {
+    bottom: 75px;
+  }
+
+  .cover-text {
+    /* chevron sits higher on desktop, so tighten the bottom clearance */
+    bottom: 135px;
+  }
+
+  .cover-text .cover-content {
+    font-size: 1.8em;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  /* Interior */
+  .cover-content {
+    font-size: 2em;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .cover-content {
+    font-size: 2.2em;
+  }
+}

@@ -5,15 +5,26 @@
 
 # testing
 /coverage
+/test-results
+/playwright-report
+/playwright/.cache
 
 # production
 /build
+/dist
+
+# astro
+.astro/
 
 # IDE
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and Webstorm
 *.iml
 .idea/
 .vscode/
+
+# Claude Code — ignore worktrees + local settings, but keep shared .claude/settings.json tracked
+.claude/worktrees/
+.claude/settings.local.json
 
 # OSX
 .DS_Store

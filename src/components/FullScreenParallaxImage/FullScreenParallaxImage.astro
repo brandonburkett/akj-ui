@@ -1,0 +1,55 @@
+---
+import './full-screen-parallax-image.css';
+import imgChevron from './images/chevron-down-icon.svg';
+
+interface Props {
+  backgroundImgSrc: string;
+  title?: string;
+  content?: string;
+  parallaxSpeed?: number;
+  scrollTargetId?: string;
+}
+const {
+  backgroundImgSrc,
+  title = '',
+  content = '',
+  parallaxSpeed = 5,
+  scrollTargetId,
+} = Astro.props;
+const hasSlot = Astro.slots.has('default');
+---
+
+<section class="cover-parallax">
+  <div
+    class="cover-image"
+    style={`background-image: url('${backgroundImgSrc}')`}
+    data-parallax-speed={parallaxSpeed}
+  >
+    {
+      hasSlot ? (
+        <slot />
+      ) : (
+        <div class="cover-text">
+          <h1 class="cover-title">{title}</h1>
+          <p class="cover-content">{content}</p>
+        </div>
+      )
+    }
+
+    {
+      scrollTargetId && (
+        <div class="cover-scroll-cue" data-scroll-target={scrollTargetId}>
+          {/* real anchor works with JS disabled; script upgrades it to smooth-scroll */}
+          <a class="cover-scroll-btn" href={`#${scrollTargetId}`} aria-label="Scroll Down">
+            <img src={imgChevron.src} alt="" aria-hidden="true" />
+          </a>
+        </div>
+      )
+    }
+  </div>
+</section>
+
+<script>
+  import { initParallax } from './parallax';
+  initParallax();
+</script>

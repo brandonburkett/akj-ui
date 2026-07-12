@@ -1,0 +1,20 @@
+---
+import './quote.css';
+
+interface Props {
+  content: string;
+  quotes?: boolean;
+  author: string;
+}
+
+const { content, quotes = true, author } = Astro.props;
+---
+
+<aside id="testimonial" class="group quote translate-z">
+  <div class="quote-content">
+    <p>
+      {quotes ? <Fragment>&ldquo;{content}&rdquo;</Fragment> : <Fragment>{content}</Fragment>}
+      {author ? <span class="attribute"> - {author}</span> : null}
+    </p>
+  </div>
+</aside>

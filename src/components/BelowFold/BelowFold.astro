@@ -1,0 +1,15 @@
+---
+import './below-fold.css';
+
+interface Props {
+  class?: string;
+  role?: string;
+  id?: string;
+}
+
+const { class: className, ...rest } = Astro.props;
+---
+
+<div class:list={['below-fold', 'group', className]} {...rest as Record<string, any>}>
+  <slot />
+</div>

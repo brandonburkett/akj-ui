@@ -1,0 +1,15 @@
+---
+// Static redirect (S3/CloudFront has no server rewrites); meta-refresh + canonical.
+const target = '/seminars';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+    <link rel="canonical" href={`https://austin.komeijyuku.com${target}`} />
+    <title>Redirecting…</title>
+  </head>
+  <body><p>Redirecting to <a href={target}>Seminars</a>.</p></body>
+</html>

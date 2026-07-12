@@ -1,0 +1,158 @@
+---
+import StandardLayout from '@/layouts/StandardLayout.astro';
+import Footer from '@/components/Footer/Footer.astro';
+import Quote from '@/components/Quote/Quote.astro';
+import PanelSection from '@/components/PanelSection/PanelSection.astro';
+import PanelContent from '@/components/PanelContent/PanelContent.astro';
+import ResponsiveMap from '@/components/ResponsiveMap/ResponsiveMap.astro';
+
+const title = 'Schedule & Pricing';
+const desc =
+  'Yamauchi-Ha Muso Jikiden Eishin Ryu Iaido classes on Monday, Wednesday, and Saturday.';
+---
+
+<StandardLayout title={title} desc={desc} path={Astro.url.pathname}>
+  <div id="main" class="group" role="main">
+    <PanelSection>
+      <PanelContent>
+        <div class="cs12">
+          <h1>Schedule &amp; Pricing</h1>
+          <hr class="dark" />
+        </div>
+        <div class="cs6">
+          <h3>Schedule</h3>
+          <p>
+            Class is held at the{' '}
+            <a class="link" href="https://www.immortalmartialarts.org/">
+              Immortal Martial Arts Academy
+            </a>
+          </p>
+          <ul class="ul-square">
+            <li>
+              <strong>Monday</strong>: 7:30pm - 9:30pm
+            </li>
+            <li>
+              <strong>Wednesday</strong>: 7:30pm - 9:30pm
+            </li>
+            <li>
+              <strong>Saturday</strong>: 9:00am - 10:00am
+            </li>
+          </ul>
+
+          <h4>Address</h4>
+          <p>
+            Immortal Martial Arts Academy
+            <br />
+            8650 Spicewood Springs Rd, Suites 112 & 114-B
+            <br />
+            Austin TX 78759
+            <br />
+            <a class="link" href="https://maps.app.goo.gl/XJeyXaddShsuNRn4A"> View Map </a>
+          </p>
+
+          <h4>Contact</h4>
+          <p>
+            <a class="link" href="mailto:brandon@komeijyuku.com"> brandon@komeijyuku.com </a>
+            <br />
+            512-965-3747
+          </p>
+        </div>
+        <div class="cs6">
+          <h3>Tuition</h3>
+          <p>
+            All prices are monthly. The Austin Komei Jyuku dojo <strong>does not</strong> use contracts,
+            you may come as much or as little as your schedule allows.
+          </p>
+
+          <h4>Monthly Pricing</h4>
+          <ul class="ul-square">
+            <li>$90.00 - Iaijutsu</li>
+            <li>PayPal: brandon&#64;komeijyuku.com</li>
+            <li>Venmo: @brandon-burkett-mjer</li>
+            <li>Zelle: Austin Komei Jyuku</li>
+            <li>Apple Cash: 512-965-3747</li>
+          </ul>
+        </div>
+        <div class="cs12">
+          <hr class="dark" />
+          <h3>School Links</h3>
+          <ul class="ul-inline">
+            <li>
+              <a class="link" href="https://www.komeijuku.jp/"> Komei Juku Japan </a>
+            </li>
+            <li>
+              <a class="link" href="https://www.nihonkobudokyoukai.org/"> Nihon Kobudo Kyoukai </a>
+            </li>
+            <li>
+              <a class="link" href="https://www.nihonkobudokyoukai.org/martialarts/041/">
+                NKK - Komei Juku Page
+              </a>
+            </li>
+            <li>
+              <a class="link" href="https://artfitlubbock.com/japanese-swordsmanship-lubbock/">
+                Texas Komei Jyuku
+              </a>
+            </li>
+            <li>
+              <a class="link" href="https://nmsk.org/"> New Mexico Komei Jyuku </a>
+            </li>
+            <li>
+              <a class="link" href="https://www.nckj.org/"> North Carolina Komei Jyuku </a>
+            </li>
+            <li>
+              <a class="link" href="https://www.facebook.com/KomeiJukuSydney/">
+                Syndney Komei Juku
+              </a>
+            </li>
+            <li>
+              <a class="link" href="http://kumizaza.ch/"> Switzerland Komei Juku </a>
+            </li>
+          </ul>
+        </div>
+        <div class="cs12">
+          <hr class="dark" />
+          <h3>Equipment and Gear</h3>
+          <ul class="ul-inline">
+            <li>
+              <a class="link" href="http://www.e-bogu.com/"> E-bogu </a>
+            </li>
+            <li>
+              <a class="link" href="http://www.nihonzashi.com/"> Nihonzashi </a>
+            </li>
+            <li>
+              <a class="link" href="https://tozandoshop.com/"> Tozando </a>
+            </li>
+            <li>
+              <a class="link" href="https://budo-shop-sakuraya.stores.jp/"> Budo Shop Sakuraya </a>
+            </li>
+            <li>
+              <a class="link" href="http://www.swordstore.com/"> Sword Store </a>
+            </li>
+          </ul>
+        </div>
+      </PanelContent>
+    </PanelSection>
+    <PanelSection color="cream">
+      <PanelContent>
+        <ResponsiveMap>
+          <div class="cs12">
+            <h3 class="visuallyhidden">Map</h3>
+          </div>
+          <iframe
+            src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d55041.95493702415!2d-97.81258549383188!3d30.432638074625036!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8644cbe11418534f%3A0x9b4922673e583942!2sImmortal%20Martial%20Arts%20Academy!5e0!3m2!1sen!2sus!4v1764517445221!5m2!1sen!2sus`}
+            width="800"
+            height="600"
+            style="border: 0"
+            loading="lazy"
+            allowfullscreen
+            title="Google Map"></iframe>
+        </ResponsiveMap>
+      </PanelContent>
+    </PanelSection>
+    <Quote
+      content="The most difficult rival you will ever face is yourself."
+      author="Sekiguchi Komei sensei"
+    />
+    <Footer />
+  </div>
+</StandardLayout>

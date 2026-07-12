@@ -1,0 +1,219 @@
+/* wrapper — ported verbatim from the old slide-gallery.css */
+.slide-gallery-group {
+  background: #eae6db;
+}
+
+.slide-gallery-images {
+  width: 80%;
+  max-width: 1200px;
+  margin: 80px auto 100px;
+  position: relative;
+}
+
+/* track: native swipe + scroll-snap, fully responsive */
+.sg-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  scrollbar-width: none;
+}
+
+/* stylelint-disable-next-line selector-no-vendor-prefix */
+.sg-track::-webkit-scrollbar {
+  display: none;
+}
+
+.sg-track:focus-visible {
+  outline: 2px solid #eae6db;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sg-track {
+    scroll-behavior: auto;
+  }
+}
+
+.sg-slide {
+  flex: 0 0 100%;
+  scroll-snap-align: center;
+}
+
+.sg-slide img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* prev/next arrows */
+.sg-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: 0;
+  color: #eae6db;
+  font-size: 5em;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 10px;
+  text-shadow: 0 0 8px rgb(0 0 0 / 75%); /* stand out on light images */
+  transition:
+    transform 0.2s ease-out,
+    color 0.2s ease-out;
+  display: none; /* hidden on mobile, shown >=480px below */
+}
+
+.sg-prev {
+  left: 0;
+}
+
+.sg-next {
+  right: 0;
+}
+
+/* keep the vertical centering while scaling up on hover */
+@media (hover: hover) {
+  .sg-nav:hover {
+    color: #fff;
+    transform: translateY(-50%) scale(1.2);
+  }
+}
+
+.sg-nav:focus-visible {
+  color: #fff;
+  transform: translateY(-50%) scale(1.2);
+}
+
+/* bullets */
+.sg-bullets {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.sg-bullet {
+  width: 12px;
+  height: 12px;
+  padding: 0;
+  border: 1px solid #eae6db;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: 0 0 4px rgb(0 0 0 / 60%); /* stand out on light images */
+  cursor: pointer;
+  transition: background 0.2s ease-out;
+}
+
+.sg-bullet[aria-current='true'] {
+  background: #eae6db;
+}
+
+/* hover only on hover-capable devices + focus-visible (keyboard) so a touch tap
+   doesn't leave a bullet stuck "active" when the next swipe moves aria-current */
+@media (hover: hover) {
+  .sg-bullet:hover {
+    background: #eae6db;
+  }
+}
+
+.sg-bullet:focus-visible {
+  background: #eae6db;
+}
+
+/* fullscreen toggle */
+.sg-fullscreen {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: none;
+  border: 0;
+  color: #eae6db;
+  font-size: 1.5em; /* smaller on mobile so it doesn't crowd the image edge */
+  line-height: 1;
+  cursor: pointer;
+  text-shadow: 0 0 6px rgb(0 0 0 / 75%); /* stand out on light images */
+  transition:
+    transform 0.2s ease-out,
+    color 0.2s ease-out;
+}
+
+@media (hover: hover) {
+  .sg-fullscreen:hover {
+    color: #fff;
+    transform: scale(1.2);
+  }
+}
+
+.sg-fullscreen:focus-visible {
+  color: #fff;
+  transform: scale(1.2);
+}
+
+/* fullscreen presentation via native Fullscreen API */
+.slide-gallery-images:fullscreen {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  background: #000;
+}
+
+.slide-gallery-images:fullscreen .sg-track {
+  height: 100vh;
+  align-items: center;
+}
+
+.slide-gallery-images:fullscreen .sg-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide-gallery-images:fullscreen .sg-slide img {
+  max-height: 100vh;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Responsive — mirrors original breakpoints */
+@media screen and (min-width: 320px) {
+  .slide-gallery-images {
+    width: 95%;
+  }
+
+  .sg-nav {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .slide-gallery-images {
+    width: 80%;
+  }
+
+  .sg-nav {
+    display: block;
+  }
+
+  .sg-fullscreen {
+    font-size: 2em;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .sg-bullet[aria-current='true'] {
+    padding: 0;
+  }
+
+  .sg-nav {
+    font-size: 7.5em;
+  }
+}
