@@ -86,11 +86,3 @@ Post-migration candidates deliberately deferred:
   rules (bigger/riskier than the naming-rule cleanup already done).
 - **Service worker (offline)** — the manifest already provides installability (desktop install +
   mobile add-to-home); add `@vite-pwa/astro` only if offline caching is later wanted.
-- **Verify deploy on first master push** — the CircleCI `config.yml` + `production.sh`
-  cache-header changes were untested in the migration env (no AWS creds); confirm on the first
-  real `master` deploy that the tiered `Cache-Control` headers apply and that CloudFront honors
-  origin `Cache-Control`. Two `production.sh` robustness notes to fold in while verifying: the
-  extensionless keys are delete-then-recreated each deploy (the phase-2 `--delete` sync runs
-  before the phase-3 HTML upload — net-correct, with a brief origin-miss window buffered by
-  CloudFront `s-maxage`; reorder if it matters), and the HTML loop parses `ls` output (safe for
-  route-derived filenames, but iterating the `./dist/*.html` glob directly is sturdier).
