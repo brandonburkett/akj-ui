@@ -29,6 +29,7 @@
     "@axe-core/playwright": "^4.10.0",
     "@playwright/test": "^1.48.0",
     "@vitest/coverage-v8": "^4.1.10",
+    "autoprefixer": "^10.5.2",
     "husky": "^9.1.0",
     "jsdom": "^29.1.1",
     "lint-staged": "^15.2.0",
@@ -47,7 +48,12 @@
     ]
   },
   "lint-staged": {
-    "*.{ts,astro}": ["prettier --write"],
-    "*.css": ["stylelint --fix", "prettier --write"]
+    "*.{ts,astro}": [
+      "prettier --write"
+    ],
+    "*.css": [
+      "stylelint --fix",
+      "prettier --write"
+    ]
   }
 }
