@@ -122,4 +122,19 @@ describe('initGallery', () => {
     track().dispatchEvent(new KeyboardEvent('keydown', { key: 'End' }));
     expect(activeIndex()).toBe('2');
   });
+
+  it('forces instant scroll for reduced-motion users, even on an adjacent hop', () => {
+    const originalMatchMedia = window.matchMedia;
+    try {
+      window.matchMedia = vi
+        .fn()
+        .mockReturnValue({ matches: true }) as unknown as typeof window.matchMedia;
+      const scrollSpy = vi.mocked(Element.prototype.scrollIntoView);
+      const next = document.querySelector<HTMLButtonElement>('.sg-next')!;
+      next.click(); // 0 -> 1 adjacent; would normally be 'smooth'
+      expect(scrollSpy).toHaveBeenLastCalledWith(expect.objectContaining({ behavior: 'instant' }));
+    } finally {
+      window.matchMedia = originalMatchMedia;
+    }
+  });
 });

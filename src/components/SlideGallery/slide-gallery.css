@@ -33,6 +33,12 @@
   outline-offset: 2px;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .sg-track {
+    scroll-behavior: auto;
+  }
+}
+
 .sg-slide {
   flex: 0 0 100%;
   scroll-snap-align: center;

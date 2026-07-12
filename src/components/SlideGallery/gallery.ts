@@ -11,6 +11,10 @@ export function wrapIndex(i: number, len: number): number {
   return ((i % len) + len) % len;
 }
 
+// matchMedia is absent in jsdom (unit tests), so optional-chain to `false` there.
+const prefersReducedMotion = (): boolean =>
+  window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
+
 // `doc` param defaults to the ambient document so the island calls initGallery()
 // while tests inject a jsdom document (with IntersectionObserver stubbed).
 export function initGallery(doc: Document = document): void {
@@ -36,7 +40,8 @@ export function initGallery(doc: Document = document): void {
   // 'auto' would inherit the track's CSS scroll-behavior:smooth and animate.
   const goTo = (i: number, behavior: ScrollBehavior = 'smooth') => {
     const target = wrapIndex(i, slides.length);
-    slides[target].scrollIntoView({ behavior, block: 'nearest', inline: 'center' });
+    const effective = prefersReducedMotion() ? 'instant' : behavior;
+    slides[target].scrollIntoView({ behavior: effective, block: 'nearest', inline: 'center' });
     setActive(target);
   };
 
