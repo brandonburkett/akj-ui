@@ -84,7 +84,11 @@ export function initGallery(doc: Document = document): void {
     }
   });
 
-  // native fullscreen (Escape exits automatically); no translateZ hack needed
+  // Fullscreen API is unavailable for elements on iPhone Safari, so hide the dead control there.
+  if (fs && typeof root.requestFullscreen !== 'function') {
+    fs.hidden = true;
+    return;
+  }
   fs?.addEventListener('click', async () => {
     if (doc.fullscreenElement) await doc.exitFullscreen();
     else await root.requestFullscreen().catch(() => {});

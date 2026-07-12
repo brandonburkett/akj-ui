@@ -137,4 +137,17 @@ describe('initGallery', () => {
       window.matchMedia = originalMatchMedia;
     }
   });
+
+  it('hides the fullscreen button when the Fullscreen API is unavailable', () => {
+    // jsdom has no Element.requestFullscreen, matching iPhone Safari
+    expect(document.querySelector<HTMLButtonElement>('.sg-fullscreen')!.hidden).toBe(true);
+  });
+
+  it('keeps the fullscreen button when the Fullscreen API is available', () => {
+    document.body.innerHTML = GALLERY_HTML;
+    const root = document.querySelector<HTMLElement>('.slide-gallery-images')!;
+    root.requestFullscreen = () => Promise.resolve();
+    initGallery(document);
+    expect(document.querySelector<HTMLButtonElement>('.sg-fullscreen')!.hidden).toBe(false);
+  });
 });
