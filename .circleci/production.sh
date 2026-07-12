@@ -26,7 +26,10 @@ configure_aws_cli() {
 
 s3_sync() {
   echo "Syncing fingerprinted _astro assets (immutable) to s3"
-  aws s3 sync ./dist/_astro "s3://$AWS_S3_BUCKET/_astro" --delete \
+  # No --delete: keep previous content-hashed assets so clients still holding the
+  # old HTML do not 404 on them. sync re-uploads (re-dates) the current set each
+  # deploy, so the _astro/ bucket lifecycle rule expires only orphaned hashes.
+  aws s3 sync ./dist/_astro "s3://$AWS_S3_BUCKET/_astro" \
     --cache-control "$IMMUTABLE_CC"
 
   echo "Syncing other static assets to s3"
@@ -54,6 +57,8 @@ s3_sync() {
 }
 
 invalidate_cloudfront() {
+  # /* invalidates _astro too, which is fine: those hashed assets stay in S3 (the sync
+  # does not delete them), so a cache miss re-fetches from the origin instead of 404ing.
   echo "Invalidate CloudFront"
   aws cloudfront create-invalidation --distribution-id "$AWS_CLOUDFRONT_ID" --paths "/*"
 }
