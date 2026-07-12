@@ -1023,38 +1023,38 @@ video {
 }
 
 /* Lists */
-.ol_decimal {
+.ol-decimal {
   list-style: decimal;
   margin: 0 0 1.2em 2em;
 }
 
-.ol_decimal li {
+.ol-decimal li {
   margin: 0.5em 0;
   line-height: 1.2em;
 }
 
-.ul_square {
+.ul-square {
   list-style: square;
   margin: 0 0 1.2em;
 }
 
-.ul_square li {
+.ul-square li {
   margin: 0.5em 0 0.5em 1.5em;
   line-height: 1.2em;
 }
 
-.ul_inline {
+.ul-inline {
   margin: 0 0 1.2em;
 }
 
-.ul_inline li {
+.ul-inline li {
   display: inline;
   border-left: 1px dotted #595959;
   padding: 0 0.5em;
   line-height: 1.7em;
 }
 
-.ul_inline > li:first-child {
+.ul-inline > li:first-child {
   border: none;
   padding-left: 0;
 }
