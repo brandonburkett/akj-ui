@@ -1,10 +1,9 @@
 # AKJ Dojo UI
 
 Static marketing site for the Austin Komei Jyuku dojo, built with [Astro](https://astro.build/).
-Migrated from Create React App to a zero-runtime static MPA: pages ship as plain HTML/CSS with
-no client framework. The three pieces of interactivity (nav dropdown, parallax hero, image
-gallery) are dependency-free vanilla-TypeScript islands. The original CSS and breakpoints were
-ported as-is.
+A zero-runtime static MPA: pages ship as plain HTML/CSS with no client framework. The three
+interactive pieces (nav dropdown, parallax hero, image gallery) are dependency-free
+vanilla-TypeScript scripts.
 
 ## Prerequisites
 
@@ -42,9 +41,12 @@ ported as-is.
   `src/components/Nav/nav.ts` (accessible dropdown),
   `src/components/FullScreenParallaxImage/parallax.ts` (hero parallax),
   `src/components/SlideGallery/gallery.ts` (image gallery). No framework runtime is shipped.
-- **Styles/assets.** CSS ported from the original app; global styles in `src/styles/`,
-  per-component CSS alongside the `.astro` components. Static files in `public/` (favicon,
-  manifest, PWA icons, `robots.txt`, `sitemap.xml`) are copied verbatim into `dist/`.
+- **Imports.** `@/*` aliases `src/*` (configured in `tsconfig.json`) for cross-folder imports;
+  same-folder imports stay relative (`./`).
+- **Styles/assets.** Global styles in `src/styles/`, per-component CSS alongside the `.astro`
+  components. Autoprefixer (PostCSS, `postcss.config.cjs`) adds vendor prefixes at build from the
+  `browserslist`. Static files in `public/` (favicon, manifest, PWA icons, `robots.txt`,
+  `sitemap.xml`) are copied verbatim into `dist/`.
 
 ## Testing
 
@@ -56,9 +58,11 @@ ported as-is.
 ## Deploy
 
 CI/CD via [CircleCI](https://circleci.com/) (`.circleci/config.yml`, image
-`cimg/node:24.18.0-browsers`). On push to `master`: install → `npm run check` →
-`npx playwright install --with-deps chromium` → `npm test` → `npm run build` → deploy.
+`cimg/node:24.18.0-browsers`, AWS CLI v2). On push to `master`:
 
-`.circleci/production.sh` uploads `dist/` to S3: a `s3 sync` for all non-HTML assets, then each
-`*.html` uploaded to an extensionless key (`iaijutsu.html` → `/iaijutsu`) with `text/html`,
-except `index.html` which stays at `/` for the root. Finally it issues a CloudFront invalidation.
+- `npm ci` → `npm run check` → `npx playwright install --with-deps chromium` → `npm test` → `npm run build`
+- `.circleci/production.sh` syncs `dist/` to S3; `*.html` upload to extensionless keys
+  (`iaijutsu.html` → `/iaijutsu`; `index.html` stays at `/`)
+- Tiered `Cache-Control`: `_astro/*` immutable (1yr); other assets 30d; HTML short browser
+  `max-age` + long CloudFront `s-maxage`
+- CloudFront invalidation on every deploy (flushes the long edge TTL)
