@@ -59,7 +59,6 @@
   justify-content: flex-end;
   position: relative;
   background: rgb(000 000 000 / 0%);
-  cursor: pointer;
 
   /* should stay on top of everything */
   z-index: 100;
