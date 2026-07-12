@@ -9,6 +9,7 @@
       "Bash(npx astro:*)",
       "Bash(npx playwright:*)",
       "Bash(npx vitest:*)",
+      "Bash(npx prettier:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
       "Bash(git status)",
