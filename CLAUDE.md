@@ -27,6 +27,7 @@ Austin Komei Jyuku dojo site — an **Astro** static site.
 - Node 24.18.0 (`.nvmrc`).
 
 ## Commits
+- Before committing, run `npm run check` (types) and `npm run lint:style` (CSS) and make sure both pass. The pre-commit hook only formats + `stylelint --fix`es staged files — it does not typecheck; CI runs both on push to `master`.
 - Single-line [Conventional Commits](https://www.conventionalcommits.org/) subject, e.g. `feat: loop gallery chevrons at edges`. No body unless essential.
 - Keep the `Co-Authored-By:` footer on every commit.
 
