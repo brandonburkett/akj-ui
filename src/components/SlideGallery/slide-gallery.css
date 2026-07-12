@@ -23,6 +23,7 @@
   scrollbar-width: none;
 }
 
+/* stylelint-disable-next-line selector-no-vendor-prefix */
 .sg-track::-webkit-scrollbar {
   display: none;
 }

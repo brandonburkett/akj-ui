@@ -6,10 +6,11 @@ export default {
   rules: {
     'no-descending-specificity': null,
     'font-family-no-missing-generic-family-keyword': null,
-    // keep vendor prefixes: the build has no autoprefixer, so they still serve target browsers
-    'property-no-vendor-prefix': null,
-    'value-no-vendor-prefix': null,
-    'selector-no-vendor-prefix': null,
+    // keep the non-standard webkit idioms autoprefixer can't generate:
+    // appearance reset (button/textfield), iOS momentum scroll
+    'property-no-vendor-prefix': [true, { ignoreProperties: ['appearance', 'overflow-scrolling'] }],
+    'value-no-vendor-prefix': true,
+    'selector-no-vendor-prefix': true,
     // legacy class/id names are tied to the HTML; renaming would break markup
     'selector-class-pattern': null,
     'selector-id-pattern': null,
