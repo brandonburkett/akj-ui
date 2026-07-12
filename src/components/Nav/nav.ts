@@ -10,7 +10,9 @@ export function initNav(doc: Document = document): void {
   const nav = doc.querySelector<HTMLElement>('.site-menu');
   const btn = nav?.querySelector<HTMLButtonElement>('.menu-icon');
   const region = doc.getElementById('aria-menu-list');
-  if (!nav || !btn || !region) return;
+  if (!nav || !btn || !region) {
+    return;
+  }
 
   const isOpen = () => nav.classList.contains('open');
 
@@ -24,18 +26,20 @@ export function initNav(doc: Document = document): void {
   // close after following a nav link
   region
     .querySelectorAll('a.nav-parent')
-    .forEach((a) => a.addEventListener('click', () => setOpen(false)));
+    .forEach((link) => link.addEventListener('click', () => setOpen(false)));
 
   // Escape closes and returns focus to the toggle button
-  doc.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && isOpen()) {
+  doc.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && isOpen()) {
       setOpen(false);
       btn.focus();
     }
   });
 
   // click/tap outside the nav closes it
-  doc.addEventListener('mousedown', (e) => {
-    if (isOpen() && e.target instanceof Node && !nav.contains(e.target)) setOpen(false);
+  doc.addEventListener('mousedown', (event) => {
+    if (isOpen() && event.target instanceof Node && !nav.contains(event.target)) {
+      setOpen(false);
+    }
   });
 }
