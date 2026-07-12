@@ -1,16 +1,16 @@
 ---
-import StandardLayout from '../layouts/StandardLayout.astro';
-import BelowFold from '../components/BelowFold/BelowFold.astro';
-import Footer from '../components/Footer/Footer.astro';
-import BlockImageCta from '../components/BlockImageCta/BlockImageCta.astro';
-import FullScreenParallaxImage from '../components/FullScreenParallaxImage/FullScreenParallaxImage.astro';
-import ResponsiveImage from '../components/ResponsiveImage/ResponsiveImage.astro';
+import StandardLayout from '@/layouts/StandardLayout.astro';
+import BelowFold from '@/components/BelowFold/BelowFold.astro';
+import Footer from '@/components/Footer/Footer.astro';
+import BlockImageCta from '@/components/BlockImageCta/BlockImageCta.astro';
+import FullScreenParallaxImage from '@/components/FullScreenParallaxImage/FullScreenParallaxImage.astro';
+import ResponsiveImage from '@/components/ResponsiveImage/ResponsiveImage.astro';
 
 // home-only styles: About/isshin section backgrounds + logo sizing
-import '../styles/home.css';
+import '@/styles/home.css';
 
 // structured data (schema.org) for local SEO + LLM/agent consumption
-import schema from '../data/local-business-schema.json';
+import schema from '@/data/local-business-schema.json';
 
 // images
 import imgIsshin from './home-images/isshin-800.png';
