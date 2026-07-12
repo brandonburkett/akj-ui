@@ -43,3 +43,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# PR screenshots (generated, never committed)
+.pr-screenshots/
