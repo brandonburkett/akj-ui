@@ -33,8 +33,17 @@ Legend: `[x]` done + reviewed, `[~]` in progress, `[ ]` not started. Commit SHAs
 - [x] Task 12: husky + CLAUDE.md + .claude/settings.json — DONE `c72c535`..`e695bf2` (+README double-check; review Approved). **PREP FIRST:** the prettier-plugin-astro (added in Task 11) trips on the HTML comment inside the `{scrollTargetId && (…)}` expression in `src/components/FullScreenParallaxImage/FullScreenParallaxImage.astro` (~line 32) — convert `<!-- … -->` to `{/* … */}` (or move it out), then `prettier --write` the `.astro`/`.ts` files (NOT the legacy CSS). Then husky v9 + lint-staged per the Task 12 steps below.
 - [x] Task 13: CSS lint cleanup + modernization — DONE `8e62d25`+`482b6db` (824 errors: 598 auto-fixed, 224 via 6 pinned rules, 2 → `calc(100% / 3)`; cross-browser confirmed). (~797 stylelint errors; KEEP all 8 breakpoints). Minor extras: vestigial `.sg-track` `list-style`; a `line-height:0` IE star-hack build warning.
 - [x] CLEANUP: deleted 17 orphaned CRA images in `src/styles/images/` — `ff25f0c`. NOTE: `lilly.jpg`'s only reference turned out to be a COMMENTED-OUT bg in `full-screen-parallax-image.css` (not an active `url()` as the plan assumed), so it's technically dead too — user chose to KEEP it (+ the comment) as a future-background option. Fonts live in `src/styles/fonts/` (separate dir, untouched).
-- [ ] FINAL: whole-branch review (superpowers:requesting-code-review) → superpowers:finishing-a-development-branch (PR/merge). Note: `.circleci/production.sh` uploads `dist/*.html` as extensionless S3 keys.
-- [ ] WITH USER at the very end: walk the plan's `## Improvement candidates` (nav Popover API, `@astrojs/sitemap`, SeoHead modernization, ResponsiveImage widening), `## Accessibility-driven changes to review` (the `.link` contrast shade), and `## Open Questions` (service worker / PWA).
+- [x] INJECTED (user requests, post-Task-13; specs in `docs/superpowers/specs/2026-07-11-*.md`; all check + build (6 pages) + 28 unit + 15 e2e green, cross-browser confirmed where visual):
+  - Gallery loop (wrap-around chevrons/arrows, instant edge-snap) — `9462396`
+  - Autoprefixer (PostCSS) + de-prefix source + re-enable 3 vendor-prefix rules — `0dc0c56`,`3d78b9c`
+  - Stylelint config cleanup (drop redundant overrides; re-enable font-family rule) — `95bd320`,`077196d`
+  - Dead-CSS cleanup: delete 32 dead selectors (`master.css` −323 lines) + kebab-case 3 live + re-enable selector-class/id-pattern — `d6e4950`,`7774104`
+  - CI/deploy modernization (aws v2, `npm ci`, tiered cache headers, `set -euo pipefail`) — `20a0853`,`b2ca27d`. **UNTESTED here (no AWS creds) — verify on next `master` deploy + confirm CloudFront honors origin Cache-Control.**
+  - Manifest cache-buster bump `?v=20260711` — `cc94336`
+  - `@/*` import alias for cross-folder imports (`tsconfig.json` paths) — `3055913`
+  - README + CLAUDE.md refresh (clean wording, aliases/autoprefixer/deploy) — `d3a25dd`
+- [ ] FINAL REVIEW: focused whole-branch review (Tasks 1–13 were each task-reviewed+Approved during SDD; deep-review the INJECTED work above + coherence/security sweep) → then create a **PR for squash + merge into `master`**. `.circleci/production.sh` uploads `dist/*.html` as extensionless S3 keys.
+- [ ] WITH USER at the very end: walk `## Improvement candidates` (nav Popover API, `@astrojs/sitemap`, SeoHead modernization, ResponsiveImage widening, **broader dead-CSS sweep**; autoprefixer candidate is DONE), `## Accessibility-driven changes to review` (the `.link` contrast shade), and `## Open Questions` (service worker / PWA).
 
 ---
 
