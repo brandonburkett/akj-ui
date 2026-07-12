@@ -7,29 +7,24 @@ jobs:
       - image: cimg/node:24.18.0-browsers
     steps:
       - checkout
-      - setup_remote_docker
+      # Install AWS CLI v2 (official installer; the node image doesn't ship aws)
       - run:
-          # Run local steps before AWS is required so if they
-          # fail you don't waste build time installing AWS CLI
-
-          # Install AWS CLI
-          # - include aws cli ci docker:
-          #     https://github.com/circleci/circleci-images/issues/53
-          # - use global install for aws and pip instead of --user:
-          #     https://discuss.circleci.com/t/how-to-add-a-path-to-path-in-circle-2-0/11554
-          name: Install awscli
+          name: Install AWS CLI v2
           command: |
-            sudo apt-get update && sudo apt-get install -qq -y awscli
-      # cache based on our lock file
+            curl -fsSL "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+            unzip -q awscliv2.zip
+            sudo ./aws/install --update
+            aws --version
+      # cache node_modules keyed on the lock file
       - restore_cache:
-          key: npm-cache-{{ checksum "package.json" }}
+          key: npm-cache-{{ checksum "package-lock.json" }}
       - run:
           name: Install node modules
-          command: npm install
+          command: npm ci
       - save_cache:
-          key: npm-cache-{{ checksum "package.json" }}
+          key: npm-cache-{{ checksum "package-lock.json" }}
           paths:
-          - ./node_modules
+            - ./node_modules
       # type check (astro check)
       - run:
           name: Type check
@@ -46,26 +41,24 @@ jobs:
       - run:
           name: Build
           command: npm run build
-      - deploy:
-          name: Deploy to s3 and cloudfront invalidation
+      - run:
+          name: Deploy to S3 + CloudFront invalidation
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              echo "Depolyment for production"
+              echo "Deploying to production"
               ./.circleci/production.sh
             elif [[ ${CIRCLE_BRANCH} =~ int\/.* ]]; then
-              echo "No depolyment for staging"
+              echo "No deployment for staging"
               # ./.circleci/staging.sh
             elif [[ ${CIRCLE_BRANCH} =~ hot\/.* ]]; then
-              echo "No depolyment for hot fixes"
+              echo "No deployment for hot fixes"
               # ./.circleci/staging.sh
             fi
 workflows:
   build:
     jobs:
-    - build:
-        filters:
-          branches:
-            only:
-              - master
-              #- /int\/.*/
-              #- /hot\/.*/
+      - build:
+          filters:
+            branches:
+              only:
+                - master

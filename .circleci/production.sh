@@ -1,60 +1,62 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 HTML_FILES=''
 
-# one week in seconds
-MAX_AGE='604800'
+# _astro/ is content-hashed → immutable 1yr. Other assets (favicon, manifest, icons,
+# robots, sitemap) rarely change → 30d browser + edge. HTML must refresh on deploy →
+# short browser max-age + 30d edge; every deploy invalidates the edge.
+IMMUTABLE_CC='public, max-age=31536000, immutable'
+ASSET_CC='public, max-age=2592000'
+HTML_CC='public, max-age=300, s-maxage=2592000, must-revalidate'
 
-# Astro build.format:'file' already emits dist/*.html (extensionless URLs handled
-# on upload below), so no react-snap directory rename is needed.
+# build.format:'file' emits dist/*.html; they are uploaded to extensionless keys below.
 collect_html_files() {
-  HTML_FILES=`ls ./dist/*.html`
+  HTML_FILES=$(ls ./dist/*.html)
 }
 
-# Set AWS defaults
 configure_aws_cli() {
   echo "Configure awscli"
-  echo
-
-	aws --version
-	aws configure set default.region $AWS_DEFAULT_REGION
-	aws configure set default.output json
+  aws --version
+  aws configure set default.region "$AWS_DEFAULT_REGION"
+  aws configure set default.output json
 }
 
 s3_sync() {
-  echo "Syncing none html files to s3"
-  echo
+  echo "Syncing fingerprinted _astro assets (immutable) to s3"
+  aws s3 sync ./dist/_astro "s3://$AWS_S3_BUCKET/_astro" --delete \
+    --cache-control "$IMMUTABLE_CC"
 
-  # upload to s3, deleting any items that no longer exist, but exclude html files, which are handled separately below
-  # (sitemap.xml + robots.txt ship in dist via public/ and are covered by this sync)
-  aws s3 sync ./dist s3://$AWS_S3_BUCKET --delete --exclude="*.html"  --cache-control max-age=${MAX_AGE},public
+  echo "Syncing other static assets to s3"
+  # everything else except html (handled below) and _astro (handled above)
+  aws s3 sync ./dist "s3://$AWS_S3_BUCKET" --delete \
+    --exclude "*.html" --exclude "_astro/*" \
+    --cache-control "$ASSET_CC"
 
-  # upload the html files without extensions and force the content-type
+  echo "Uploading html to extensionless keys"
   for i in ${HTML_FILES}; do
     replaceBuild=${i/\.\/dist/}
     replaceHtml=${replaceBuild/\.html/}
 
-    # exclude index.html as it is needed for /
+    # index.html stays at /index.html (root default object); others become extensionless keys
     if [ "$i" != "./dist/index.html" ]; then
-      echo "Syncing ${replaceHtml} to s3"
-      aws s3 cp $i s3://$AWS_S3_BUCKET${replaceHtml} --cache-control max-age=${MAX_AGE},public --content-type "text/html"
+      echo "  ${replaceHtml}"
+      aws s3 cp "$i" "s3://$AWS_S3_BUCKET${replaceHtml}" \
+        --cache-control "$HTML_CC" --content-type "text/html"
     else
-      echo "Syncing ${replaceBuild} to s3"
-      aws s3 cp $i s3://$AWS_S3_BUCKET${replaceBuild} --cache-control max-age=${MAX_AGE},public --content-type "text/html"
+      echo "  ${replaceBuild}"
+      aws s3 cp "$i" "s3://$AWS_S3_BUCKET${replaceBuild}" \
+        --cache-control "$HTML_CC" --content-type "text/html"
     fi
   done
 }
 
-# clean up cloud front
 invalidate_cloudfront() {
   echo "Invalidate CloudFront"
-  echo
-  aws configure set preview.cloudfront true
-  aws cloudfront create-invalidation --distribution-id $AWS_CLOUDFRONT_ID --paths "/*"
+  aws cloudfront create-invalidation --distribution-id "$AWS_CLOUDFRONT_ID" --paths "/*"
 }
 
-
-main(){
+main() {
   configure_aws_cli
   collect_html_files
   s3_sync
