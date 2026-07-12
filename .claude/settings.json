@@ -15,7 +15,11 @@
       "Bash(git status)",
       "Bash(git diff:*)",
       "Bash(git mv:*)",
-      "Bash(git log:*)"
+      "Bash(git log:*)",
+      "Bash(aws s3 ls:*)",
+      "Bash(aws sts get-caller-identity)",
+      "Bash(aws s3api get-bucket-lifecycle-configuration:*)",
+      "Bash(aws cloudfront list-distributions:*)"
     ]
   },
   "worktree": { "baseRef": "head" }

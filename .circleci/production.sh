@@ -33,9 +33,10 @@ s3_sync() {
     --cache-control "$IMMUTABLE_CC"
 
   echo "Syncing other static assets to s3"
-  # everything else except html (handled below) and _astro (handled above)
+  # everything else except html (below), _astro (above), and _pr-screenshots (not
+  # built, uploaded out of band for PRs and expired by a bucket lifecycle rule).
   aws s3 sync ./dist "s3://$AWS_S3_BUCKET" --delete \
-    --exclude "*.html" --exclude "_astro/*" \
+    --exclude "*.html" --exclude "_astro/*" --exclude "_pr-screenshots/*" \
     --cache-control "$ASSET_CC"
 
   echo "Uploading html to extensionless keys"
