@@ -312,7 +312,6 @@ abbr[title] {
 nav ul,
 nav ol {
   list-style: none;
-  list-style-image: none;
   margin: 0;
   padding: 0;
 }
@@ -786,7 +785,7 @@ samp {
 pre {
   white-space: pre;
   white-space: pre-wrap;
-  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 blockquote {
@@ -1294,7 +1293,7 @@ tr {
   pre,
   blockquote {
     border: 1px solid #999;
-    page-break-inside: avoid;
+    break-inside: avoid;
   }
 
   thead {
@@ -1303,7 +1302,7 @@ tr {
 
   tr,
   img {
-    page-break-inside: avoid;
+    break-inside: avoid;
   }
 
   img {
@@ -1323,6 +1322,6 @@ tr {
 
   h2,
   h3 {
-    page-break-after: avoid;
+    break-after: avoid;
   }
 }
