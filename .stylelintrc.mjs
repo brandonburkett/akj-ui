@@ -9,8 +9,7 @@ export default {
     // keep the non-standard webkit idioms autoprefixer can't generate:
     // appearance reset (button/textfield), iOS momentum scroll
     'property-no-vendor-prefix': [true, { ignoreProperties: ['appearance', 'overflow-scrolling'] }],
-    'value-no-vendor-prefix': true,
-    'selector-no-vendor-prefix': true,
+    // value-no-vendor-prefix + selector-no-vendor-prefix are inherited from config-standard (no override needed)
     // legacy class/id names are tied to the HTML; renaming would break markup
     'selector-class-pattern': null,
     'selector-id-pattern': null,
