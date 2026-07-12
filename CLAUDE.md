@@ -37,8 +37,11 @@ Austin Komei Jyuku dojo site, an **Astro** static site.
 - Screenshots, for visible changes:
   - `npm run build && npm run preview`, use preview not dev (the dev server injects the Astro toolbar into shots).
   - Edit `TARGETS` in `scripts/pr-screenshots.mjs` for the pages you changed, run `npm run screenshots`, then reset `TARGETS` back to `[]` so the file stays unchanged between PRs.
-  - PNGs land in `.pr-screenshots/` (gitignored). Drag them into the PR's Screenshots table (Mobile | Desktop, like the README), then delete them.
-  - Never commit screenshot images. GitHub hosts the ones dragged into the PR, uploading to that image host needs the browser and is not scriptable from the CLI.
+  - PNGs land in `.pr-screenshots/` (gitignored, never committed).
+  - Host them: create the PR first to get its number, then upload each to the site bucket under a `<PR#>-` prefix, CloudFront serves them. The cp is not allow-listed so it prompts, prod-bucket writes stay deliberate:
+    `AWS_PROFILE=akj aws s3 cp .pr-screenshots/<name>.png s3://austin.komeijyuku.com/_pr-screenshots/<PR#>-<name>.png --content-type image/png --cache-control "public, max-age=31536000, immutable"`
+  - Put `https://austin.komeijyuku.com/_pr-screenshots/<PR#>-<name>.png` in the Screenshots table (Mobile | Desktop, like the README), then `gh pr edit`.
+  - A bucket lifecycle rule expires `_pr-screenshots/` after 2 years (like `_astro/`), and `production.sh` excludes the prefix from the `--delete` sync so deploys keep them.
 
 ## Comments
 - If code is self-documenting, do not leave a comment.
