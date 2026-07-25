@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { storage } from './storage';
 
 // A Storage whose every member throws, standing in for a browser that hands one
@@ -23,25 +23,6 @@ const throwingStore: Storage = {
     throw new Error('blocked');
   },
 };
-
-// stubGlobal assigns a value, so the throws-on-property-access case needs a real
-// accessor instead. jsdom lets us redefine it, as long as we put it back.
-function withBlockedAccess(assertions: () => void): void {
-  const original = Object.getOwnPropertyDescriptor(window, 'localStorage');
-  Object.defineProperty(window, 'localStorage', {
-    get(): Storage {
-      throw new Error('blocked');
-    },
-    configurable: true,
-  });
-  try {
-    assertions();
-  } finally {
-    if (original) {
-      Object.defineProperty(window, 'localStorage', original);
-    }
-  }
-}
 
 afterEach(() => {
   vi.unstubAllGlobals();
@@ -89,45 +70,59 @@ describe('isAvailable', () => {
 });
 
 describe('when the store throws on every call', () => {
-  it('reads null rather than throwing', () => {
+  beforeEach(() => {
     vi.stubGlobal('localStorage', throwingStore);
+  });
+
+  it('reads null rather than throwing', () => {
     expect(storage.read('dojo-notice')).toBeNull();
   });
 
   it('reports a failed write', () => {
-    vi.stubGlobal('localStorage', throwingStore);
     expect(storage.write('dojo-notice', 'x')).toBe(false);
   });
 
   it('reports a failed remove', () => {
-    vi.stubGlobal('localStorage', throwingStore);
     expect(storage.remove('dojo-notice')).toBe(false);
   });
 
   it('is not available', () => {
-    vi.stubGlobal('localStorage', throwingStore);
     expect(storage.isAvailable()).toBe(false);
   });
 });
 
-// The case that motivates resolving inside a try: with cookies blocked, touching
-// window.localStorage throws before any method runs.
+// The case that motivates wrapping the access itself: with cookies blocked, touching
+// window.localStorage throws before any method runs. stubGlobal assigns a value, so
+// this one needs a real accessor.
 describe('when window.localStorage throws on property access', () => {
-  it('reads null rather than throwing', () => {
-    withBlockedAccess(() => {
-      expect(storage.read('dojo-notice')).toBeNull();
+  let original: PropertyDescriptor | undefined;
+
+  beforeEach(() => {
+    original = Object.getOwnPropertyDescriptor(window, 'localStorage');
+    Object.defineProperty(window, 'localStorage', {
+      get(): Storage {
+        throw new Error('blocked');
+      },
+      configurable: true,
     });
+  });
+
+  // Runs before the outer afterEach, which would otherwise throw on clear()
+  afterEach(() => {
+    if (original) {
+      Object.defineProperty(window, 'localStorage', original);
+    }
+  });
+
+  it('reads null rather than throwing', () => {
+    expect(storage.read('dojo-notice')).toBeNull();
   });
 
   it('reports a failed write', () => {
-    withBlockedAccess(() => {
-      expect(storage.write('dojo-notice', 'x')).toBe(false);
-    });
+    expect(storage.write('dojo-notice', 'x')).toBe(false);
   });
 
   it('is not available', () => {
-    withBlockedAccess(() => {
-      expect(storage.isAvailable()).toBe(false);
-    });
+    expect(storage.isAvailable()).toBe(false);
   });
 });
