@@ -1,6 +1,8 @@
 export const SITE_URL = 'https://austin.komeijyuku.com';
 export const SITE_NAME = 'Austin Komei Jyuku';
 export const CONTACT_EMAIL = 'brandon@komeijyuku.com';
+/* entity-encoded so the address is not plain text in the rendered source */
+export const CONTACT_EMAIL_HTML = CONTACT_EMAIL.replace('@', '&#64;');
 
 export interface NavItem {
   label: string;
@@ -13,7 +15,7 @@ export const NAV_ITEMS: NavItem[] = [
   { label: 'Iaijutsu', href: '/iaijutsu' },
   { label: 'Schedule', href: '/schedule' },
   { label: 'Seminars', href: '/seminars' },
-  { label: 'Contact', href: 'mailto:brandon@komeijyuku.com', external: true },
+  { label: 'Contact', href: `mailto:${CONTACT_EMAIL}`, external: true },
 ];
 
 export interface SocialLink {

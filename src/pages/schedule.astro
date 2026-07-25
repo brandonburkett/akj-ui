@@ -5,6 +5,7 @@ import Quote from '@/components/Quote/Quote.astro';
 import PanelSection from '@/components/PanelSection/PanelSection.astro';
 import PanelContent from '@/components/PanelContent/PanelContent.astro';
 import ResponsiveMap from '@/components/ResponsiveMap/ResponsiveMap.astro';
+import { CONTACT_EMAIL, CONTACT_EMAIL_HTML } from '@/consts';
 
 const title = 'Schedule & Pricing';
 const desc =
@@ -52,7 +53,9 @@ const desc =
 
           <h4>Contact</h4>
           <p>
-            <a class="link" href="mailto:brandon@komeijyuku.com">brandon@komeijyuku.com</a>
+            <a class="link" href={`mailto:${CONTACT_EMAIL}`}
+              ><Fragment set:html={CONTACT_EMAIL_HTML} /></a
+            >
             <br />
             <a class="link" href="tel:+15129653747">512-965-3747</a>
           </p>
@@ -67,7 +70,7 @@ const desc =
           <h4>Monthly Pricing</h4>
           <ul class="ul-square">
             <li>$90.00 - Iaijutsu</li>
-            <li>PayPal: brandon&#64;komeijyuku.com</li>
+            <li>PayPal: <Fragment set:html={CONTACT_EMAIL_HTML} /></li>
             <li>Venmo: @brandon-burkett-mjer</li>
             <li>Zelle: Austin Komei Jyuku</li>
             <li>Apple Cash: <a class="link" href="tel:+15129653747">512-965-3747</a></li>
