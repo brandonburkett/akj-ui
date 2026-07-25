@@ -5,9 +5,10 @@
 //      (use preview, not dev: the dev server injects the Astro toolbar into shots)
 //   2. Edit TARGETS below for the pages your change touches.
 //   3. Run:  npm run screenshots   (writes PNGs to .pr-screenshots/, gitignored)
-//   4. Drag the PNGs into the PR's Screenshots section on GitHub, then delete them.
+//   4. Upload to the site bucket under a <PR#>- prefix, see the Pull requests
+//      section of CLAUDE.md, then link them in the PR's Screenshots table.
 //
-// Screenshots are never committed. GitHub hosts the images you drag into the PR.
+// Screenshots are never committed. CloudFront serves them from the site bucket.
 
 import { chromium, devices } from 'playwright';
 import { mkdir, rm } from 'node:fs/promises';
@@ -28,16 +29,38 @@ const VIEWPORTS = {
 //   viewport  'mobile' or 'desktop' (see VIEWPORTS)
 //   selector  optional. with clip:true it tight-crops that element, without clip
 //             it scrolls the element into view then shoots the viewport, omit for full page.
+//   focus     optional selector to tab to first, for capturing :focus-visible states.
+//             Tabbing rather than calling focus() is what makes the ring appear.
 //
 // Example, mobile + desktop of the schedule contact block:
 //   { name: 'contact-mobile', path: '/schedule', viewport: 'mobile', selector: 'p:has(a[href^="tel:"])' },
 //   { name: 'contact-desktop', path: '/schedule', viewport: 'desktop', selector: 'p:has(a[href^="tel:"])' },
 const TARGETS = [];
 
+// :focus-visible only matches for keyboard interaction, so walk Tab to the target
+async function tabTo(page, selector, maxPresses = 40) {
+  for (let i = 0; i < maxPresses; i++) {
+    await page.keyboard.press('Tab');
+    const onTarget = await page.evaluate(
+      (sel) => document.activeElement?.matches(sel) ?? false,
+      selector,
+    );
+    if (onTarget) {
+      return;
+    }
+  }
+  throw new Error(`never reached ${selector} after ${maxPresses} tabs`);
+}
+
 async function shoot(browser, target) {
   const context = await browser.newContext(VIEWPORTS[target.viewport]);
   const page = await context.newPage();
   await page.goto(`${BASE_URL}${target.path}`, { waitUntil: 'networkidle' });
+
+  if (target.focus) {
+    await tabTo(page, target.focus);
+    await page.waitForTimeout(400); // let focus transitions settle before shooting
+  }
 
   const file = path.join(OUT_DIR, `${target.name}.png`);
   if (target.selector && target.clip) {
