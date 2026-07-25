@@ -11,6 +11,7 @@ src/
 ├─ pages/            one .astro per route, `<page>-images/` holds page-only images
 ├─ layouts/          StandardLayout.astro wraps every page, owns <head> and the nav
 ├─ components/       one folder per component (see below)
+├─ lib/              shared modules used by more than one component
 ├─ styles/           global CSS (master, responsive, home), fonts/, shared images/
 ├─ data/             JSON data (schema.org, etc.)
 ├─ consts.ts         site-wide constants (nav items, social links, site meta)
