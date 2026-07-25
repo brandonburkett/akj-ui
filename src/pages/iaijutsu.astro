@@ -38,13 +38,13 @@ const desc =
 <StandardLayout title={title} desc={desc} path={Astro.url.pathname}>
   <FullScreenParallaxImage
     backgroundImgSrc={imgUkenagashi.src}
-    scrollTargetId="below-fold-main"
+    scrollTargetId="main"
     parallaxSpeed={5}
     title="Muso Jikiden Eishin-ryu Iaijutsu"
     content="Iaijutsu classes are held each Monday and Wednesday from 7:30pm - 9:30pm at Immortal Martial Arts Academy. Saturday morning training from 9:00am - 10:00am."
   />
 
-  <BelowFold role="main" id="below-fold-main">
+  <BelowFold role="main" id="main" tabindex="-1">
     <PanelSection>
       <PanelContent>
         <div class="cs12">

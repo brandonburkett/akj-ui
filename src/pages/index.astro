@@ -26,11 +26,7 @@ const desc =
 ---
 
 <StandardLayout title={title} desc={desc} path={Astro.url.pathname}>
-  <FullScreenParallaxImage
-    backgroundImgSrc={imgEnbu.src}
-    scrollTargetId="below-fold-main"
-    parallaxSpeed={5}
-  >
+  <FullScreenParallaxImage backgroundImgSrc={imgEnbu.src} scrollTargetId="main" parallaxSpeed={5}>
     <div class="big-brand">
       <div class="logo">
         <ResponsiveImage src={imgMjerKanji.src} alt="Muso Jikiden Eishin-ryu Iaijutsu" />
@@ -39,7 +35,7 @@ const desc =
     </div>
   </FullScreenParallaxImage>
 
-  <BelowFold role="main" id="below-fold-main">
+  <BelowFold role="main" id="main" tabindex="-1">
     <section class="home group translate-z">
       <div class="intro">
         <h2>About Us</h2>

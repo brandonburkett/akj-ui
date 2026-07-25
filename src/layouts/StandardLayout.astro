@@ -22,6 +22,7 @@ const { title, desc, path, image, noIndex } = Astro.props;
     <slot name="head" />
   </head>
   <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
     <Nav />
     <slot />
   </body>
