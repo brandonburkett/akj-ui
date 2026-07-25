@@ -49,6 +49,15 @@
   display: none;
 }
 
+/* The button is flush with the viewport top and right, so the global outset ring
+   draws off-screen on two sides. Inset it instead. currentcolor resolves to the
+   band's text colour, cream on olive and dark olive on cream, so both keep 6:1+. */
+.dojo-notice-close:focus-visible {
+  outline: 3px solid currentcolor;
+  outline-offset: -5px;
+  box-shadow: none;
+}
+
 .dojo-notice-close svg {
   width: 12px;
   height: 12px;
