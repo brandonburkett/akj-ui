@@ -5,6 +5,7 @@
       "Bash(npm run:*)",
       "Bash(npm test:*)",
       "Bash(npm install)",
+      "Bash(npm outdated)",
       "Bash(npm ci)",
       "Bash(npx astro:*)",
       "Bash(npx playwright:*)",
