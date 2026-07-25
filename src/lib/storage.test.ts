@@ -24,6 +24,7 @@ const throwingStore: Storage = {
   },
 };
 
+// Top level, so it runs after every it in the file, including inside each describe
 afterEach(() => {
   vi.unstubAllGlobals();
   window.localStorage.clear();
