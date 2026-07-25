@@ -1,5 +1,7 @@
-import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { clampIndex, initGallery, wrapIndex } from './gallery';
+
+const SLIDE_W = 300;
 
 const GALLERY_HTML = `
   <section class="slide-gallery-group">
@@ -26,24 +28,64 @@ const activeIndex = () =>
   document.querySelector('.sg-bullet[aria-current="true"]')?.getAttribute('data-index');
 const status = () => document.querySelector('.sg-status')!.textContent;
 const track = () => document.querySelector<HTMLElement>('.sg-track')!;
+const slides = () => Array.from(document.querySelectorAll<HTMLElement>('.sg-slide'));
+const next = () => document.querySelector<HTMLButtonElement>('.sg-next')!;
+const prev = () => document.querySelector<HTMLButtonElement>('.sg-prev')!;
 
-beforeAll(() => {
-  // jsdom implements neither; stub so goTo() can call scrollIntoView and init can
-  // construct an IntersectionObserver (kept a no-op — IO tracking is e2e's job).
-  Element.prototype.scrollIntoView = vi.fn();
-  vi.stubGlobal(
-    'IntersectionObserver',
-    class {
-      observe() {}
-      unobserve() {}
-      disconnect() {}
+// jsdom does no layout, so give the track a real width and a settable scrollLeft.
+function stubTrackGeometry(el: HTMLElement) {
+  let scrollLeft = 0;
+  Object.defineProperty(el, 'clientWidth', { configurable: true, value: SLIDE_W });
+  Object.defineProperty(el, 'scrollLeft', {
+    configurable: true,
+    get: () => scrollLeft,
+    set: (v: number) => {
+      scrollLeft = v;
     },
-  );
-});
+  });
+}
+
+/** Move the track and fire the scroll event the browser would, without settling. */
+function scrollToOffset(offset: number) {
+  track().scrollLeft = offset;
+  track().dispatchEvent(new Event('scroll'));
+}
+
+const scrollToSlide = (i: number) => scrollToOffset(i * SLIDE_W);
+
+/** Let the settle debounce elapse, committing the resting position. */
+const settle = () => vi.advanceTimersByTime(200);
+
+function setup({ scrollend = false } = {}) {
+  document.body.innerHTML = GALLERY_HTML;
+  const el = document.querySelector<HTMLElement>('.sg-track')!;
+  stubTrackGeometry(el);
+  if (scrollend) {
+    // opt the feature-detect in; jsdom has no scrollend
+    Object.defineProperty(window, 'onscrollend', {
+      configurable: true,
+      value: null,
+      writable: true,
+    });
+  }
+  initGallery(document);
+}
 
 beforeEach(() => {
-  document.body.innerHTML = GALLERY_HTML;
-  initGallery(document);
+  vi.useFakeTimers();
+  // a real scroll moves the track, so mirror that or nothing would ever settle
+  Element.prototype.scrollIntoView = vi.fn(function (this: Element) {
+    const i = slides().indexOf(this as HTMLElement);
+    if (i >= 0) {
+      scrollToSlide(i);
+    }
+  });
+  setup();
+});
+
+afterEach(() => {
+  vi.useRealTimers();
+  delete (window as { onscrollend?: unknown }).onscrollend;
 });
 
 describe('clampIndex', () => {
@@ -92,24 +134,21 @@ describe('initGallery', () => {
   });
 
   it('next/prev buttons wrap around at the edges', () => {
-    const next = document.querySelector<HTMLButtonElement>('.sg-next')!;
-    const prev = document.querySelector<HTMLButtonElement>('.sg-prev')!;
-    next.click();
-    next.click();
+    next().click();
+    next().click();
     expect(activeIndex()).toBe('2');
-    next.click(); // wrap last -> first
+    next().click(); // wrap last -> first
     expect(activeIndex()).toBe('0');
-    prev.click(); // wrap first -> last
+    prev().click(); // wrap first -> last
     expect(activeIndex()).toBe('2');
   });
 
   it('edge-wrap hops scroll instant, adjacent hops scroll smooth', () => {
     const scrollSpy = vi.mocked(Element.prototype.scrollIntoView);
-    const next = document.querySelector<HTMLButtonElement>('.sg-next')!;
-    next.click(); // 0 -> 1 adjacent
+    next().click(); // 0 -> 1 adjacent
     expect(scrollSpy).toHaveBeenLastCalledWith(expect.objectContaining({ behavior: 'smooth' }));
-    next.click(); // 1 -> 2 adjacent
-    next.click(); // 2 -> 0 wrap
+    next().click(); // 1 -> 2 adjacent
+    next().click(); // 2 -> 0 wrap
     expect(scrollSpy).toHaveBeenLastCalledWith(expect.objectContaining({ behavior: 'instant' }));
     expect(activeIndex()).toBe('0');
   });
@@ -130,8 +169,7 @@ describe('initGallery', () => {
         .fn()
         .mockReturnValue({ matches: true }) as unknown as typeof window.matchMedia;
       const scrollSpy = vi.mocked(Element.prototype.scrollIntoView);
-      const next = document.querySelector<HTMLButtonElement>('.sg-next')!;
-      next.click(); // 0 -> 1 adjacent; would normally be 'smooth'
+      next().click(); // 0 -> 1 adjacent; would normally be 'smooth'
       expect(scrollSpy).toHaveBeenLastCalledWith(expect.objectContaining({ behavior: 'instant' }));
     } finally {
       window.matchMedia = originalMatchMedia;
@@ -149,5 +187,76 @@ describe('initGallery', () => {
     root.requestFullscreen = () => Promise.resolve();
     initGallery(document);
     expect(document.querySelector<HTMLButtonElement>('.sg-fullscreen')!.hidden).toBe(false);
+  });
+});
+
+// Regression: `active` used to be written by an IntersectionObserver whose
+// `isIntersecting` is true for ANY overlap, so a slide leaving the viewport could
+// claim the active index and the next arrow click would skip a slide.
+describe('slide tracking follows the resting scroll position', () => {
+  it('a swipe commits the slide it lands on', () => {
+    scrollToSlide(1);
+    settle();
+    expect(activeIndex()).toBe('1');
+    expect(status()).toBe('Slide 2 of 3');
+  });
+
+  it('ignores positions the scroll only passes over', () => {
+    scrollToSlide(2);
+    scrollToOffset(SLIDE_W * 1.4); // mid-flight, never at rest here
+    scrollToSlide(1);
+    settle();
+    expect(activeIndex()).toBe('1');
+  });
+
+  it('a backward swipe leaves active on the slide it lands on', () => {
+    scrollToSlide(2);
+    settle();
+    scrollToSlide(1);
+    settle();
+    expect(activeIndex()).toBe('1');
+  });
+
+  it('next after a backward swipe advances exactly one slide', () => {
+    scrollToSlide(2);
+    settle();
+    scrollToSlide(1);
+    settle();
+    next().click();
+    expect(activeIndex()).toBe('2');
+  });
+
+  it('momentum overshoot that snaps back commits the resting slide', () => {
+    scrollToOffset(SLIDE_W * 1.8); // flung past slide 1 toward 2
+    scrollToSlide(1); // snapped back
+    settle();
+    expect(activeIndex()).toBe('1');
+  });
+
+  it('rapid next clicks advance one slide each', () => {
+    const scrollSpy = vi.mocked(Element.prototype.scrollIntoView);
+    scrollSpy.mockImplementation(() => {}); // freeze the track mid-flight
+    next().click();
+    next().click();
+    expect(activeIndex()).toBe('2');
+  });
+
+  it('a click during an unsettled swipe steps from the swiped-to slide', () => {
+    scrollToSlide(1); // snapped, but the settle debounce has not fired yet
+    next().click();
+    expect(activeIndex()).toBe('2');
+  });
+
+  it('rubber-banding past the last slide does not wrap the next step', () => {
+    scrollToOffset(SLIDE_W * 2.4); // iOS overscroll past the end
+    settle();
+    expect(activeIndex()).toBe('2');
+  });
+
+  it('commits immediately on scrollend where it is supported', () => {
+    setup({ scrollend: true });
+    scrollToSlide(1);
+    track().dispatchEvent(new Event('scrollend'));
+    expect(activeIndex()).toBe('1'); // no timer advance
   });
 });
