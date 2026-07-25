@@ -6,20 +6,20 @@ Deferred post-migration follow-ups. Not blocking, tackled as time allows.
 
 | Priority | Item |
 |----------|------|
-| 🔴 High | [Visible keyboard focus outline](#visible-keyboard-focus-outline) |
 | 🔴 High | [Broader dead-CSS sweep](#broader-dead-css-sweep) |
+| 🟡 Medium | [Dojo notice banner](#dojo-notice-banner) |
 | 🟡 Medium | [Images to `astro:assets`](#images-to-astroassets) |
 | 🟢 Low | [Nav to native Popover API](#nav-to-native-popover-api) |
 | 🟢 Low | [`@astrojs/sitemap`](#astrojssitemap) |
 | 🟢 Low | [Lightning CSS](#lightning-css) |
 
-## Visible keyboard focus outline
+## Dojo notice banner
 
-- Bug: tabbing through the site gives no consistent focus indicator, so you cannot tell what is focused.
-- `master.css` only styles `a:focus` with `outline: thin dotted` and then clears it on `:hover`/`:active`, buttons get nothing. `SlideGallery` is the one component with real `:focus-visible` rings.
-- Add a global `:focus-visible` ring covering links, buttons, and the focusable gallery track, in a token that reads on both the light and dark sections.
-- Drop the legacy `a:focus` / `outline: 0` rules once the global ring lands.
-- Accessibility is a hard requirement, so pair this with an e2e check that tab order is visibly tracked.
+- One-line, time-windowed, dismissible notice strip above the nav, e.g. "Experience Iaijutsu at the 2026 Austin-Oita Festival".
+- Content and dates come from `src/data/dojo-notice.ts`, the notice appears and expires on its own dates with no redeploy.
+- Scrolls away, the nav re-pins. Dismissal persists in `localStorage`, keyed on the notice id.
+- Zero CLS in every state, the show/hide decision runs before first paint.
+- Plan: [docs/plans/incoming/20260725-dojo-notice.md](plans/incoming/20260725-dojo-notice.md).
 
 ## Nav to native Popover API
 
