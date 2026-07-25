@@ -19,7 +19,7 @@ const NOTICE: DojoNoticeData | null = {
   text: 'Experience Iaijutsu at the 2026 Austin-Oita Festival',
   shortText: 'Iaijutsu at the Austin-Oita Festival',
   href: 'https://www.austinoita.org/2026-oita-japan-festival',
-  start: '2026-08-01',
+  start: '2026-07-25',
   end: '2026-08-30',
 };
 
