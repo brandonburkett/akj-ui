@@ -10,12 +10,16 @@ const STORAGE_NAME = 'dojo-notice';
  * removed the notice before first paint if it is out of its window or dismissed, so
  * reaching this code means the notice is showing.
  *
+ * Translating `.nav-stack` reaches into markup NavStack owns, but the translate only
+ * exists because of the notice and is measured from the notice's height, so splitting
+ * it into a nav-stack script would just duplicate that measurement.
+ *
  * `doc` defaults to the ambient document so the island calls initDojoNotice() while
  * tests inject a jsdom document.
  */
 export function initDojoNotice(doc: Document = document): void {
   const notice = doc.querySelector<HTMLElement>('.dojo-notice');
-  const stack = doc.querySelector<HTMLElement>('.top-stack');
+  const stack = doc.querySelector<HTMLElement>('.nav-stack');
   const closeBtn = notice?.querySelector<HTMLButtonElement>('.dojo-notice-close');
   const noticeId = notice?.dataset.noticeId;
   if (!notice || !stack || !closeBtn || !noticeId) {

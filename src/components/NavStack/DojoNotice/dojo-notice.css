@@ -1,17 +1,3 @@
-/* Pins the notice and the masthead together. Only rendered when a notice ships. */
-.top-stack {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 99;
-}
-
-/* The stack pins now, so the masthead stops pinning itself */
-.top-stack .masthead {
-  position: relative;
-}
-
 .dojo-notice {
   position: relative;
   display: flex;

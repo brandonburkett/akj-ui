@@ -6,7 +6,7 @@ const NOTICE_ID = 'oita-fest-2026';
 const NOTICE_HEIGHT = 34;
 
 const NOTICE_HTML = `
-  <div class="top-stack">
+  <div class="nav-stack">
     <div class="dojo-notice" data-notice-id="${NOTICE_ID}">
       <a class="dojo-notice-link" href="https://example.test">Notice</a>
       <button class="dojo-notice-close" type="button" aria-label="Dismiss notice" hidden></button>
@@ -16,7 +16,7 @@ const NOTICE_HTML = `
 `;
 
 const notice = () => document.querySelector<HTMLElement>('.dojo-notice');
-const stack = () => document.querySelector<HTMLElement>('.top-stack')!;
+const stack = () => document.querySelector<HTMLElement>('.nav-stack')!;
 const closeBtn = () => document.querySelector<HTMLButtonElement>('.dojo-notice-close')!;
 
 // jsdom reports 0 for every offset, so the height the scroll handler clamps to has

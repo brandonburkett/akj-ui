@@ -1,0 +1,14 @@
+/* Pins the notice and the masthead as one unit. Only rendered when a notice ships. */
+.nav-stack {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 99;
+}
+
+/* The stack pins now, so the masthead stops pinning itself. Descendant-scoped, so a
+   bare nav with no stack keeps its own fixed positioning. */
+.nav-stack .masthead {
+  position: relative;
+}
