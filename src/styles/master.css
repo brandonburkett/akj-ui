@@ -296,13 +296,39 @@ body {
   text-shadow: 1px 1px 3px #000;
 }
 
-a:focus {
-  outline: thin dotted;
+/* Two-tone so one band always contrasts, cream panels through photo heroes */
+:root {
+  --focus-ring-band: 0 0 0 2px #eae6db;
 }
 
-a:hover,
-a:active {
-  outline: 0;
+:focus-visible {
+  outline: 3px solid #2d3d09;
+  outline-offset: 2px;
+  box-shadow: var(--focus-ring-band);
+}
+
+/* Offscreen until focused, so :focus not :focus-visible */
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 8px;
+  z-index: 101;
+  padding: 10px 16px;
+  background: #eae6db;
+  color: #2d3d09;
+  border-radius: 3px;
+  text-decoration: none;
+  transition: top 0.15s ease-out;
+}
+
+.skip-link:focus {
+  top: 8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skip-link {
+    transition: none;
+  }
 }
 
 abbr[title] {
@@ -1004,7 +1030,8 @@ video {
 }
 
 .link:hover,
-.link:visited:hover .link:focus {
+.link:visited:hover,
+.link:focus-visible {
   color: #fff;
   background: #2d3d09;
   padding: 0.1em;
@@ -1118,8 +1145,8 @@ tr {
 /*******************************************
  Main Styles *****************************/
 
-/* Main */
-#main {
+/* Class based so #main stays a pure skip-link anchor */
+.main-content {
   position: relative;
   top: 0;
   min-height: 100vh;
@@ -1190,7 +1217,7 @@ tr {
 }
 
 .form-button:hover,
-.form-button:focus {
+.form-button:focus-visible {
   text-decoration: none;
   background-color: #eae6db !important;
 }
@@ -1202,10 +1229,6 @@ tr {
 
 .tac {
   text-align: center;
-}
-
-* {
-  outline: 0;
 }
 
 .space {

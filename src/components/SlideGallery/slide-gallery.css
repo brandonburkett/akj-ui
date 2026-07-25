@@ -28,11 +28,6 @@
   display: none;
 }
 
-.sg-track:focus-visible {
-  outline: 2px solid #eae6db;
-  outline-offset: 2px;
-}
-
 @media (prefers-reduced-motion: reduce) {
   .sg-track {
     scroll-behavior: auto;
@@ -125,8 +120,12 @@
   }
 }
 
+/* composed in, box-shadow does not merge across rules */
 .sg-bullet:focus-visible {
   background: #eae6db;
+  box-shadow:
+    var(--focus-ring-band),
+    0 0 4px rgb(0 0 0 / 60%);
 }
 
 /* fullscreen toggle */

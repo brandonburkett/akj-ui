@@ -99,7 +99,6 @@
   border: none;
   font: inherit;
   cursor: pointer;
-  outline: inherit;
   padding: 10px;
   position: relative;
 }
@@ -153,7 +152,7 @@
 }
 
 .menu-bar .nav-parent:hover,
-.menu-bar .nav-parent:focus {
+.menu-bar .nav-parent:focus-visible {
   background: rgb(067 091 013);
 }
 
@@ -175,7 +174,7 @@
 }
 
 .social-link:hover,
-.social-link:focus {
+.social-link:focus-visible {
   background: #fff;
 }
 
