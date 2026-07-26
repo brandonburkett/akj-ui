@@ -88,10 +88,12 @@ describe('when the notice is absent', () => {
 });
 
 describe('parking, the state CSS already renders', () => {
+  // A no-op is the whole point: touching layout here would score a shift even though
+  // the transform keeps the masthead visually still.
   const expectParked = () => {
-    expect(notice()).toBeNull();
-    // `none`, not empty, which would fall back to the parked offset and hide the nav
-    expect(stack().style.transform).toBe('none');
+    expect(notice()).not.toBeNull();
+    expect(stack().classList.contains('nav-stack-shown')).toBe(false);
+    expect(stack().style.transform).toBe('');
   };
 
   it('parks before the window opens', () => {
@@ -115,7 +117,7 @@ describe('parking, the state CSS already renders', () => {
   it('still shows when a different notice was dismissed', () => {
     storage.write('dojo-notice', 'some-older-notice');
     initDojoNotice(document);
-    expect(notice()).not.toBeNull();
+    expect(stack().classList.contains('nav-stack-shown')).toBe(true);
   });
 });
 
@@ -123,6 +125,11 @@ describe('revealing', () => {
   it('drops the parked offset so the notice slides in', () => {
     initDojoNotice(document);
     expect(stack().style.transform).toBe('translateY(0px)');
+  });
+
+  it('makes the notice visible and focusable', () => {
+    initDojoNotice(document);
+    expect(stack().classList.contains('nav-stack-shown')).toBe(true);
   });
 
   it('adds the one-shot transition class', () => {
@@ -155,37 +162,43 @@ describe('the close button', () => {
     vi.spyOn(storage, 'isAvailable').mockReturnValue(false);
     initDojoNotice(document);
     closeBtn().click();
-    expect(notice()).not.toBeNull();
+    expect(stack().classList.contains('nav-stack-shown')).toBe(true);
   });
 });
 
 describe('dismissing', () => {
-  it('removes the notice and persists the id', () => {
+  it('hides the notice and persists the id', () => {
     initDojoNotice(document);
     closeBtn().click();
-    expect(notice()).toBeNull();
+    expect(stack().classList.contains('nav-stack-shown')).toBe(false);
     expect(storage.read('dojo-notice')).toBe(NOTICE_ID);
   });
 
-  it('still removes the notice when the write fails', () => {
+  it('still hides the notice when the write fails', () => {
     initDojoNotice(document);
     vi.spyOn(storage, 'write').mockReturnValue(false);
     closeBtn().click();
-    expect(notice()).toBeNull();
+    expect(stack().classList.contains('nav-stack-shown')).toBe(false);
   });
 
-  it('parks the stack so the masthead returns to the top', () => {
+  it('leaves the notice in the DOM, so no layout moves', () => {
+    initDojoNotice(document);
+    closeBtn().click();
+    expect(notice()).not.toBeNull();
+  });
+
+  it('clears the inline transform back to the CSS parked offset', () => {
     initDojoNotice(document);
     scrollTo(20);
     closeBtn().click();
-    expect(stack().style.transform).toBe('none');
+    expect(stack().style.transform).toBe('');
   });
 
   it('stops translating the stack after dismissal', () => {
     initDojoNotice(document);
     closeBtn().click();
     scrollTo(20);
-    expect(stack().style.transform).toBe('none');
+    expect(stack().style.transform).toBe('');
   });
 });
 

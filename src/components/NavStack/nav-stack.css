@@ -13,6 +13,17 @@
   transform: translateY(calc(-1 * var(--notice-height)));
 }
 
+/* Hidden rather than removed: taking it out of flow would move the masthead's layout
+   position and score a shift, even though the transform keeps it visually still.
+   visibility also drops it from the a11y tree and tab order while parked. */
+.nav-stack .dojo-notice {
+  visibility: hidden;
+}
+
+.nav-stack-shown .dojo-notice {
+  visibility: visible;
+}
+
 /* One-shot, removed after the reveal so scrolling stays instant */
 @media (prefers-reduced-motion: no-preference) {
   .nav-stack-reveal {

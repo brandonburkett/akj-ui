@@ -37,14 +37,9 @@ export function initDojoNotice(doc: Document = document): void {
     return;
   }
 
-  // `none`, not `''`, which would fall back to the parked offset and hide the masthead
-  const park = () => {
-    notice.remove();
-    stack.style.transform = 'none';
-  };
-
+  // Nothing to undo: CSS already parks and hides it, so this path touches no layout
+  // and no styles, which is what keeps the dismissed case at exactly zero shift.
   if (!isWithinWindow(start, end, Date.now()) || storage.read(STORAGE_NAME) === noticeId) {
-    park();
     return;
   }
 
@@ -74,7 +69,10 @@ export function initDojoNotice(doc: Document = document): void {
   const dismiss = () => {
     // a failed write must not block the dismissal the visitor asked for
     storage.write(STORAGE_NAME, noticeId);
-    park();
+    // back to the CSS parked offset, so it slides out the way it slid in
+    stack.classList.add('nav-stack-reveal');
+    stack.classList.remove('nav-stack-shown');
+    stack.style.transform = '';
     doc.removeEventListener('scroll', onScroll);
     window.removeEventListener('resize', onResize);
   };
@@ -82,7 +80,7 @@ export function initDojoNotice(doc: Document = document): void {
   doc.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onResize);
 
-  stack.classList.add('nav-stack-reveal');
+  stack.classList.add('nav-stack-reveal', 'nav-stack-shown');
   translate();
   window.setTimeout(() => stack.classList.remove('nav-stack-reveal'), REVEAL_MS);
 
