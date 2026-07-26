@@ -14,7 +14,7 @@
   /* z-index: 1; */
   height: 100%;
   width: 100%;
-  background-color: #000;
+  background-color: var(--black);
   background-position: 50% 0;
   background-size: cover;
   background-attachment: fixed;
@@ -32,7 +32,7 @@
 }
 
 .cover-title {
-  color: #fff;
+  color: var(--white);
   text-shadow:
     0 0 4px rgb(0 0 0 / 90%),
     0 0 12px rgb(0 0 0 / 70%);
@@ -42,7 +42,7 @@
 }
 
 .cover-content {
-  color: #fff;
+  color: var(--white);
   text-shadow:
     0 0 4px rgb(0 0 0 / 90%),
     0 0 12px rgb(0 0 0 / 70%);
@@ -71,7 +71,7 @@
   font: inherit;
   cursor: pointer;
   padding: 10px 25px;
-  background-color: #fff;
+  background-color: var(--white);
   border-radius: 50px;
 
   /* now an <a>, not a <button>: keep the pill-button box */

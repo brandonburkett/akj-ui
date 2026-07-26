@@ -1,0 +1,23 @@
+/* Offscreen until focused, so :focus not :focus-visible */
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 8px;
+  z-index: 101;
+  padding: 10px 16px;
+  background: var(--cream);
+  color: var(--olive-dark);
+  border-radius: 3px;
+  text-decoration: none;
+  transition: top 0.15s ease-out;
+}
+
+.skip-link:focus {
+  top: 8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skip-link {
+    transition: none;
+  }
+}

@@ -1,6 +1,6 @@
 /* wrapper — ported verbatim from the old slide-gallery.css */
 .slide-gallery-group {
-  background: #eae6db;
+  background: var(--cream);
 }
 
 .slide-gallery-images {
@@ -52,7 +52,7 @@
   transform: translateY(-50%);
   background: none;
   border: 0;
-  color: #eae6db;
+  color: var(--cream);
   font-size: 5em;
   line-height: 1;
   cursor: pointer;
@@ -75,13 +75,13 @@
 /* keep the vertical centering while scaling up on hover */
 @media (hover: hover) {
   .sg-nav:hover {
-    color: #fff;
+    color: var(--white);
     transform: translateY(-50%) scale(1.2);
   }
 }
 
 .sg-nav:focus-visible {
-  color: #fff;
+  color: var(--white);
   transform: translateY(-50%) scale(1.2);
 }
 
@@ -100,7 +100,7 @@
   width: 12px;
   height: 12px;
   padding: 0;
-  border: 1px solid #eae6db;
+  border: 1px solid var(--cream);
   border-radius: 0;
   background: transparent;
   box-shadow: 0 0 4px rgb(0 0 0 / 60%); /* stand out on light images */
@@ -109,20 +109,20 @@
 }
 
 .sg-bullet[aria-current='true'] {
-  background: #eae6db;
+  background: var(--cream);
 }
 
 /* hover only on hover-capable devices + focus-visible (keyboard) so a touch tap
    doesn't leave a bullet stuck "active" when the next swipe moves aria-current */
 @media (hover: hover) {
   .sg-bullet:hover {
-    background: #eae6db;
+    background: var(--cream);
   }
 }
 
 /* composed in, box-shadow does not merge across rules */
 .sg-bullet:focus-visible {
-  background: #eae6db;
+  background: var(--cream);
   box-shadow:
     var(--focus-ring-band),
     0 0 4px rgb(0 0 0 / 60%);
@@ -135,7 +135,7 @@
   right: 10px;
   background: none;
   border: 0;
-  color: #eae6db;
+  color: var(--cream);
   font-size: 1.5em; /* smaller on mobile so it doesn't crowd the image edge */
   line-height: 1;
   cursor: pointer;
@@ -147,13 +147,13 @@
 
 @media (hover: hover) {
   .sg-fullscreen:hover {
-    color: #fff;
+    color: var(--white);
     transform: scale(1.2);
   }
 }
 
 .sg-fullscreen:focus-visible {
-  color: #fff;
+  color: var(--white);
   transform: scale(1.2);
 }
 
@@ -162,7 +162,7 @@
   width: 100%;
   max-width: none;
   margin: 0;
-  background: #000;
+  background: var(--black);
 }
 
 .slide-gallery-images:fullscreen .sg-track {
@@ -186,10 +186,6 @@
 @media screen and (min-width: 320px) {
   .slide-gallery-images {
     width: 95%;
-  }
-
-  .sg-nav {
-    display: none;
   }
 }
 

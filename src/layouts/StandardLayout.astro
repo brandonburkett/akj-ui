@@ -1,5 +1,6 @@
 ---
 import SeoHead from '@/components/SeoHead/SeoHead.astro';
+import SkipLink from '@/components/SkipLink/SkipLink.astro';
 import NavStack from '@/components/NavStack/NavStack.astro';
 import '@/styles/master.css';
 import '@/styles/responsive.css';
@@ -22,7 +23,7 @@ const { title, desc, path, image, noIndex } = Astro.props;
     <slot name="head" />
   </head>
   <body>
-    <a class="skip-link" href="#main">Skip to main content</a>
+    <SkipLink />
     <NavStack />
     <slot />
   </body>

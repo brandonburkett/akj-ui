@@ -1,7 +1,7 @@
 /* Homepage Quote Panel */
 .home {
-  background: rgb(110 024 011);
-  color: #fff;
+  background: var(--red-deep);
+  color: var(--white);
   top: 100%;
   position: relative;
 
@@ -26,7 +26,6 @@
 
 .home .intro .link:link,
 .home .intro .link:visited {
-  color: rgb(255 255 255);
   color: rgb(255 255 255 / 60%);
   border: none;
   transition: all 0.3s ease;
@@ -34,14 +33,13 @@
 
 .home .intro .link:hover,
 .home .intro .link:focus-visible {
-  color: rgb(255 255 255);
-  color: rgb(255 255 255 / 100%);
+  color: var(--white);
   border: none;
 }
 
 .home .intro h1,
 .home .intro h2 {
-  color: #fff;
+  color: var(--white);
   font-size: 1.25em;
 }
 
@@ -72,7 +70,7 @@
 
 /* homepage Footer */
 .isshin {
-  background: #eae6db;
+  background: var(--cream);
   padding: 1px 0 10px;
   position: relative;
 
