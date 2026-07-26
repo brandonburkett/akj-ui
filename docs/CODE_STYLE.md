@@ -44,6 +44,8 @@ src/components/<Name>/
   relative (`./Nav/Nav.astro`).
 - Unit tests colocate as `*.test.ts`, e2e and a11y specs live in `tests/`.
 - Page-only images live in `src/pages/<page>-images/`, component images in the component's `images/`.
+- Astro's scoped `<style>` blocks are not used anywhere. Every component imports a sibling
+  `.css` file instead, so styles stay greppable and the cascade stays predictable.
 
 ---
 
