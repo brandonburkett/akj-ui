@@ -1,14 +1,32 @@
-/* Pins the notice and the masthead as one unit. Only rendered when a notice ships. */
+/* Defined here because the parked offset below must match it, DojoNotice inherits it */
 .nav-stack {
+  --notice-height: 34px;
+
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 99;
+
+  /* Parked off-screen, which is the dismissed layout, so that state never repaints.
+     Transform movement is excluded from layout shift scoring, so revealing costs no CLS. */
+  transform: translateY(calc(-1 * var(--notice-height)));
 }
 
-/* The stack pins now, so the masthead stops pinning itself. Descendant-scoped, so a
-   bare nav with no stack keeps its own fixed positioning. */
+/* One-shot, removed after the reveal so scrolling stays instant */
+@media (prefers-reduced-motion: no-preference) {
+  .nav-stack-reveal {
+    transition: transform 0.22s ease-out;
+  }
+}
+
+/* Descendant-scoped, so a bare nav with no stack keeps its own fixed positioning */
 .nav-stack .masthead {
   position: relative;
+}
+
+@media screen and (min-width: 600px) {
+  .nav-stack {
+    --notice-height: 38px;
+  }
 }

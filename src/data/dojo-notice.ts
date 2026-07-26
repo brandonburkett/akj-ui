@@ -5,6 +5,8 @@ export interface DojoNoticeData {
   /** Shown below 600px, falls back to `text`. Keep short enough to fit 320px. */
   shortText?: string;
   href: string;
+  /** Defaults to `_self`. `_blank` also gets rel="noopener noreferrer". */
+  target?: '_blank' | '_self';
   /** YYYY-MM-DD, inclusive, read in the visitor's local time. */
   start: string;
   /** YYYY-MM-DD, inclusive through the end of that day, visitor's local time. */
@@ -15,10 +17,11 @@ export interface DojoNoticeData {
 
 /** Set to null when there is nothing to announce, which renders no markup at all. */
 const NOTICE: DojoNoticeData | null = {
-  id: 'oita-fest-2026',
+  id: '2026-oita-fest',
   text: 'Experience Iaijutsu at the 2026 Austin-Oita Festival',
   shortText: 'Iaijutsu at the Austin-Oita Festival',
   href: 'https://www.austinoita.org/2026-oita-japan-festival',
+  target: '_blank',
   start: '2026-07-25',
   end: '2026-08-30',
 };

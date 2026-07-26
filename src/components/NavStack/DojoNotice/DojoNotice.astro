@@ -1,6 +1,5 @@
 ---
 import './dojo-notice.css';
-import { storage } from '@/lib/storage';
 import type { DojoNoticeData } from '@/data/dojo-notice';
 
 interface Props {
@@ -11,15 +10,23 @@ const { notice } = Astro.props;
 const color = notice.color ?? 'olive';
 const shortText = notice.shortText ?? notice.text;
 
-// built here so the `akj:` prefix has exactly one definition, the inline script
-// below cannot import from a bundle
-const storageKey = storage.key('dojo-notice');
+const target = notice.target ?? '_self';
+const isExternal = target === '_blank';
+
+// never hand a new tab a live window.opener
+const rel = isExternal ? 'noopener noreferrer' : undefined;
 ---
 
-<div class:list={['dojo-notice', `dojo-notice-${color}`]} data-notice-id={notice.id}>
-  <a class="dojo-notice-link" href={notice.href}>
+<div
+  class:list={['dojo-notice', `dojo-notice-${color}`]}
+  data-notice-id={notice.id}
+  data-start={notice.start}
+  data-end={notice.end}
+>
+  <a class="dojo-notice-link" href={notice.href} target={target} rel={rel}>
     <span class="dojo-notice-long">{notice.text}</span>
     <span class="dojo-notice-short">{shortText}</span>
+    {isExternal && <span class="visuallyhidden">, opens in a new tab</span>}
   </a>
   <button class="dojo-notice-close" type="button" aria-label="Dismiss notice" hidden>
     <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
@@ -31,36 +38,6 @@ const storageKey = storage.key('dojo-notice');
     </svg>
   </button>
 </div>
-
-{/* Inline and immediately after the markup, so the decision lands before first paint */}
-<script
-  is:inline
-  define:vars={{ noticeId: notice.id, start: notice.start, end: notice.end, storageKey }}
->
-  (function () {
-    const el = document.querySelector('.dojo-notice');
-    if (!el) {
-      return;
-    }
-
-    // date-only strings parse as UTC, date-time without an offset parses as local
-    const now = Date.now();
-    let live = now >= Date.parse(`${start}T00:00:00`) && now <= Date.parse(`${end}T23:59:59.999`);
-
-    // dates first, so storage is only touched while a notice is actually running
-    if (live) {
-      try {
-        live = window.localStorage.getItem(storageKey) !== noticeId;
-      } catch {
-        // storage blocked, keep showing it, the close button stays hidden
-      }
-    }
-
-    if (!live) {
-      el.remove();
-    }
-  })();
-</script>
 
 <script>
   import { initDojoNotice } from './dojo-notice';

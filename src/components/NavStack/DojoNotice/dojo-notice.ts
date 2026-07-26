@@ -3,16 +3,27 @@ import { storage } from '@/lib/storage';
 /** Bare name, the storage module owns the `akj:` prefix. */
 const STORAGE_NAME = 'dojo-notice';
 
+/** Long enough to cover the reveal transition in nav-stack.css. */
+const REVEAL_MS = 300;
+
 /**
- * Wires the notice's dismiss button and the scroll-away translate.
+ * Both bounds inclusive, in the visitor's local time. The time component is load
+ * bearing: a bare YYYY-MM-DD parses as UTC, a date-time without an offset parses local.
+ */
+export function isWithinWindow(start: string, end: string, now: number): boolean {
+  return now >= Date.parse(`${start}T00:00:00`) && now <= Date.parse(`${end}T23:59:59.999`);
+}
+
+/**
+ * Decides whether the notice shows, then wires dismissal and scroll-away.
  *
- * Visibility is not decided here. An inline script in DojoNotice.astro has already
- * removed the notice before first paint if it is out of its window or dismissed, so
- * reaching this code means the notice is showing.
+ * CSS parks the stack one notice-height up, which is the dismissed layout, so a
+ * dismissed visitor gets the final result on the first paint and this runs to a no-op.
+ * Revealing is a transform, which layout shift scoring ignores, so it costs no CLS even
+ * though this script is deferred.
  *
- * Translating `.nav-stack` reaches into markup NavStack owns, but the translate only
- * exists because of the notice and is measured from the notice's height, so splitting
- * it into a nav-stack script would just duplicate that measurement.
+ * Translating `.nav-stack` reaches into markup NavStack owns, but the distance is
+ * measured from the notice's height, so splitting it out would duplicate that.
  *
  * `doc` defaults to the ambient document so the island calls initDojoNotice() while
  * tests inject a jsdom document.
@@ -21,8 +32,19 @@ export function initDojoNotice(doc: Document = document): void {
   const notice = doc.querySelector<HTMLElement>('.dojo-notice');
   const stack = doc.querySelector<HTMLElement>('.nav-stack');
   const closeBtn = notice?.querySelector<HTMLButtonElement>('.dojo-notice-close');
-  const noticeId = notice?.dataset.noticeId;
-  if (!notice || !stack || !closeBtn || !noticeId) {
+  const { noticeId, start, end } = notice?.dataset ?? {};
+  if (!notice || !stack || !closeBtn || !noticeId || !start || !end) {
+    return;
+  }
+
+  // `none`, not `''`, which would fall back to the parked offset and hide the masthead
+  const park = () => {
+    notice.remove();
+    stack.style.transform = 'none';
+  };
+
+  if (!isWithinWindow(start, end, Date.now()) || storage.read(STORAGE_NAME) === noticeId) {
+    park();
     return;
   }
 
@@ -52,14 +74,17 @@ export function initDojoNotice(doc: Document = document): void {
   const dismiss = () => {
     // a failed write must not block the dismissal the visitor asked for
     storage.write(STORAGE_NAME, noticeId);
-    notice.remove();
-    stack.style.transform = '';
+    park();
     doc.removeEventListener('scroll', onScroll);
     window.removeEventListener('resize', onResize);
   };
 
   doc.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onResize);
+
+  stack.classList.add('nav-stack-reveal');
+  translate();
+  window.setTimeout(() => stack.classList.remove('nav-stack-reveal'), REVEAL_MS);
 
   // listener first, then reveal, so the button can never exist without a handler
   if (storage.isAvailable()) {

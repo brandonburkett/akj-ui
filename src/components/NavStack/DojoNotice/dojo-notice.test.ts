@@ -1,13 +1,16 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { initDojoNotice } from './dojo-notice';
+import { initDojoNotice, isWithinWindow } from './dojo-notice';
 import { storage } from '@/lib/storage';
 
-const NOTICE_ID = 'oita-fest-2026';
+const NOTICE_ID = '2026-oita-fest';
 const NOTICE_HEIGHT = 34;
+const START = '2026-07-25';
+const END = '2026-08-30';
+const INSIDE = Date.parse('2026-08-01T12:00:00');
 
-const NOTICE_HTML = `
+const html = (start = START, end = END) => `
   <div class="nav-stack">
-    <div class="dojo-notice" data-notice-id="${NOTICE_ID}">
+    <div class="dojo-notice" data-notice-id="${NOTICE_ID}" data-start="${start}" data-end="${end}">
       <a class="dojo-notice-link" href="https://example.test">Notice</a>
       <button class="dojo-notice-close" type="button" aria-label="Dismiss notice" hidden></button>
     </div>
@@ -35,9 +38,15 @@ function scrollTo(y: number): void {
   document.dispatchEvent(new Event('scroll'));
 }
 
+/** Freezes the clock inside the notice window unless a test says otherwise. */
+function atTime(ms: number): void {
+  vi.spyOn(Date, 'now').mockReturnValue(ms);
+}
+
 beforeEach(() => {
-  document.body.innerHTML = NOTICE_HTML;
+  document.body.innerHTML = html();
   stubNoticeHeight(NOTICE_HEIGHT);
+  atTime(INSIDE);
   vi.stubGlobal('requestAnimationFrame', (callback: FrameRequestCallback) => {
     callback(0);
     return 0;
@@ -53,10 +62,80 @@ afterEach(() => {
   document.body.innerHTML = '';
 });
 
+describe('isWithinWindow', () => {
+  it('includes the whole start day, from local midnight', () => {
+    expect(isWithinWindow(START, END, Date.parse('2026-07-25T00:00:00'))).toBe(true);
+  });
+
+  it('includes the whole end day, through local end of day', () => {
+    expect(isWithinWindow(START, END, Date.parse('2026-08-30T23:59:59'))).toBe(true);
+  });
+
+  it('excludes the moment before the start day', () => {
+    expect(isWithinWindow(START, END, Date.parse('2026-07-24T23:59:59'))).toBe(false);
+  });
+
+  it('excludes the day after the end day', () => {
+    expect(isWithinWindow(START, END, Date.parse('2026-08-31T00:00:00'))).toBe(false);
+  });
+});
+
 describe('when the notice is absent', () => {
   it('returns without throwing', () => {
     document.body.innerHTML = '';
     expect(() => initDojoNotice(document)).not.toThrow();
+  });
+});
+
+describe('parking, the state CSS already renders', () => {
+  const expectParked = () => {
+    expect(notice()).toBeNull();
+    // `none`, not empty, which would fall back to the parked offset and hide the nav
+    expect(stack().style.transform).toBe('none');
+  };
+
+  it('parks before the window opens', () => {
+    atTime(Date.parse('2026-07-01T12:00:00'));
+    initDojoNotice(document);
+    expectParked();
+  });
+
+  it('parks after the window closes', () => {
+    atTime(Date.parse('2026-09-15T12:00:00'));
+    initDojoNotice(document);
+    expectParked();
+  });
+
+  it('parks when this notice was already dismissed', () => {
+    storage.write('dojo-notice', NOTICE_ID);
+    initDojoNotice(document);
+    expectParked();
+  });
+
+  it('still shows when a different notice was dismissed', () => {
+    storage.write('dojo-notice', 'some-older-notice');
+    initDojoNotice(document);
+    expect(notice()).not.toBeNull();
+  });
+});
+
+describe('revealing', () => {
+  it('drops the parked offset so the notice slides in', () => {
+    initDojoNotice(document);
+    expect(stack().style.transform).toBe('translateY(0px)');
+  });
+
+  it('adds the one-shot transition class', () => {
+    initDojoNotice(document);
+    expect(stack().classList.contains('nav-stack-reveal')).toBe(true);
+  });
+
+  it('removes the transition class so scrolling stays instant', () => {
+    vi.useFakeTimers();
+    initDojoNotice(document);
+    vi.runAllTimers();
+    expect(stack().classList.contains('nav-stack-reveal')).toBe(false);
+    vi.useRealTimers();
   });
 });
 
@@ -95,18 +174,18 @@ describe('dismissing', () => {
     expect(notice()).toBeNull();
   });
 
-  it('clears the stack transform so the masthead returns to the top', () => {
+  it('parks the stack so the masthead returns to the top', () => {
     initDojoNotice(document);
     scrollTo(20);
     closeBtn().click();
-    expect(stack().style.transform).toBe('');
+    expect(stack().style.transform).toBe('none');
   });
 
   it('stops translating the stack after dismissal', () => {
     initDojoNotice(document);
     closeBtn().click();
     scrollTo(20);
-    expect(stack().style.transform).toBe('');
+    expect(stack().style.transform).toBe('none');
   });
 });
 
