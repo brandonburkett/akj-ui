@@ -3,8 +3,9 @@ import AxeBuilder from '@axe-core/playwright';
 
 const STORAGE_KEY = 'akj:dojo-notice';
 
-// Inside the committed notice window. The clock must be installed before goto,
-// because the module reads Date.now() as the page loads.
+// Inside the committed notice window. Must be set before goto, because the module reads
+// Date.now() as the page loads. setFixedTime, not install: install also fakes setTimeout,
+// which would stall the timer that ends the reveal transition.
 const INSIDE = new Date('2026-08-01T12:00:00');
 const BEFORE = new Date('2026-07-01T12:00:00');
 const AFTER = new Date('2026-09-15T12:00:00');
@@ -14,11 +15,14 @@ const stack = (page: Page) => page.locator('.nav-stack');
 const closeBtn = (page: Page) => page.locator('.dojo-notice-close');
 
 async function visit(page: Page, at: Date, path = '/'): Promise<void> {
-  await page.clock.install({ time: at });
+  await page.clock.setFixedTime(at);
   await page.goto(path);
 }
 
-/** How far the stack is translated up, in px. 0 means the notice is fully shown. */
+/**
+ * How far the stack is translated up, in px. 0 means the notice is fully shown.
+ * Absolute, because Math.round(-0) is -0 and Object.is(-0, 0) is false.
+ */
 async function parkedBy(page: Page): Promise<number> {
   return page.evaluate(() => {
     const el = document.querySelector('.nav-stack');
@@ -26,7 +30,7 @@ async function parkedBy(page: Page): Promise<number> {
       return -1;
     }
     const { m42 } = new DOMMatrix(getComputedStyle(el).transform);
-    return Math.round(-m42);
+    return Math.abs(Math.round(m42));
   });
 }
 
@@ -45,7 +49,8 @@ test.describe('when a notice is configured', () => {
   test('shows inside its window, with the close button live', async ({ page }) => {
     await expect(notice(page)).toBeVisible();
     await expect(closeBtn(page)).toBeVisible();
-    expect(await parkedBy(page)).toBe(0);
+    // poll, the reveal is a transition and lands a few frames after load
+    await expect.poll(() => parkedBy(page)).toBe(0);
   });
 
   test('the link opens externally and is safe', async ({ page }) => {
@@ -57,31 +62,50 @@ test.describe('when a notice is configured', () => {
     await expect(link).toContainText('opens in a new tab');
   });
 
+  // Parked means hidden in place. Removing it would move the masthead's layout position
+  // and score a shift, so the element stays and visibility carries the state.
   test('stays parked before the window opens', async ({ page }) => {
     await visit(page, BEFORE);
-    await expect(notice(page)).toHaveCount(0);
+    await expect(notice(page)).toBeHidden();
+    expect(await parkedBy(page)).toBeGreaterThan(0);
   });
 
   test('stays parked after the window closes', async ({ page }) => {
     await visit(page, AFTER);
-    await expect(notice(page)).toHaveCount(0);
+    await expect(notice(page)).toBeHidden();
+    expect(await parkedBy(page)).toBeGreaterThan(0);
   });
 
   test('dismissal persists across a reload', async ({ page }) => {
+    const id = await noticeId(page);
     await closeBtn(page).click();
-    await expect(notice(page)).toHaveCount(0);
+    await expect(notice(page)).toBeHidden();
 
     const stored = await page.evaluate((key) => localStorage.getItem(key), STORAGE_KEY);
-    expect(stored).toBe(await noticeId(page).catch(() => stored));
+    expect(stored).toBe(id);
 
     await page.reload();
-    await expect(notice(page)).toHaveCount(0);
+    await expect(notice(page)).toBeHidden();
+  });
+
+  test('a dismissed notice leaves nothing focusable behind', async ({ page }) => {
+    await closeBtn(page).click();
+    await expect(notice(page)).toBeHidden();
+
+    // it is still in the DOM, parked. visibility:hidden must keep it out of tab order.
+    await expect(notice(page)).toHaveCount(1);
+    const reached: string[] = [];
+    for (let i = 0; i < 5; i++) {
+      await page.keyboard.press('Tab');
+      reached.push(await page.evaluate(() => document.activeElement?.className?.toString() ?? ''));
+    }
+    expect(reached.join(' ')).not.toContain('dojo-notice');
   });
 
   test('dismissal carries to another page', async ({ page }) => {
     await closeBtn(page).click();
     await page.goto('/schedule');
-    await expect(notice(page)).toHaveCount(0);
+    await expect(notice(page)).toBeHidden();
   });
 
   test('a stale stored id still shows the current notice', async ({ page }) => {
@@ -93,6 +117,7 @@ test.describe('when a notice is configured', () => {
   test('scrolls away, clamping so the masthead stays pinned', async ({ page }) => {
     const height = await notice(page).evaluate((el) => (el as HTMLElement).offsetHeight);
 
+    await expect.poll(() => parkedBy(page)).toBe(0);
     await page.mouse.wheel(0, 10);
     await expect.poll(() => parkedBy(page)).toBe(10);
 
@@ -129,7 +154,9 @@ test.describe('when a notice is configured', () => {
           setTimeout(() => resolve(total), 1000);
         }),
     );
-    expect(shift).toBe(0);
+    // Not zero: master shows the same 0.000229 from the Amble webfont re-measuring
+    // .brand-title. Assert we stay well under it rather than pretend it is ours.
+    expect(shift).toBeLessThan(0.001);
   });
 
   test('keeps both controls keyboard reachable with a visible ring', async ({ page }) => {
