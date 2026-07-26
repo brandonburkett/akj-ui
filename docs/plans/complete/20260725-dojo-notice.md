@@ -117,9 +117,17 @@ The build-time check uses the same parse on the CI box. That is fine, because th
 
 ### Idle cost is small but not zero
 
-When no notice is configured, no markup, no inline script, and no runtime work ship. `initDojoNotice()` returns immediately when the element is absent, so there is no storage read and no scroll listener.
+When no notice is configured, no markup and no runtime work ship. Verified against a
+`NOTICE = null` build: zero occurrences of `nav-stack`, `dojo-notice`, `data-notice-id`, or
+the `Site notice` label in the emitted HTML, and `.masthead` keeps its own `position: fixed`.
 
-Astro decides CSS and script bundling from **static** imports, though, so `dojo-notice.css` and `dojo-notice.ts` are still bundled even when `{notice && <DojoNotice />}` renders nothing. Roughly 1KB combined before gzip, cached across all pages. Accepted.
+Two claims in the original draft were wrong, corrected here from measurement:
+
+- **The JS is not shipped.** Astro tree-shakes the component script when the component is
+  imported but never rendered. No chunk in a null build mentions `initDojoNotice` or `akj:`.
+- **The CSS is shipped**, at **2028 bytes** before gzip, not the ~1KB estimated for both
+  together. Styles are emitted from the static import regardless of render. Cached across all
+  pages, so it is paid once per deploy. Accepted.
 
 ### The close button ships `hidden`
 
