@@ -1,0 +1,95 @@
+.dojo-notice {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+
+  /* inherited from .nav-stack, which needs the same value for its parked offset */
+  height: var(--notice-height);
+
+  /* symmetric, so the text stays centred whether or not the close button shows */
+  padding: 0 40px;
+  font-size: 0.8125rem;
+  line-height: 1;
+}
+
+.dojo-notice-link {
+  max-width: 100%;
+  overflow: hidden;
+  color: inherit;
+  text-decoration: none;
+  text-overflow: ellipsis;
+
+  /* one line is a hard rule, this is the backstop when copy runs long */
+  white-space: nowrap;
+  border-bottom: 1px solid currentcolor;
+}
+
+.dojo-notice-link:hover {
+  border-bottom-color: transparent;
+}
+
+.dojo-notice-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--notice-height);
+  height: var(--notice-height);
+  padding: 0;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* The class display would otherwise beat the user agent's [hidden] rule */
+.dojo-notice-close[hidden] {
+  display: none;
+}
+
+/* The button is flush with the viewport top and right, so the global outset ring
+   draws off-screen on two sides. Inset it instead. currentcolor resolves to the
+   band's text colour, cream on olive and dark olive on cream, so both keep 6:1+. */
+.dojo-notice-close:focus-visible {
+  outline: 3px solid currentcolor;
+  outline-offset: -5px;
+  box-shadow: none;
+}
+
+.dojo-notice-close svg {
+  width: 12px;
+  height: 12px;
+}
+
+.dojo-notice-long {
+  display: none;
+}
+
+/* Deeper olive from the nav's social bar, not the muted panel olive */
+.dojo-notice-olive {
+  color: #eae6db;
+  background: #435b0d;
+}
+
+.dojo-notice-cream {
+  color: #2d3d09;
+  background: #eae6db;
+}
+
+@media screen and (min-width: 600px) {
+  .dojo-notice {
+    font-size: 0.875rem;
+  }
+
+  .dojo-notice-long {
+    display: inline;
+  }
+
+  .dojo-notice-short {
+    display: none;
+  }
+}

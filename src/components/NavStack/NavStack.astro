@@ -1,0 +1,25 @@
+---
+import './nav-stack.css';
+import Nav from './Nav/Nav.astro';
+import DojoNotice from './DojoNotice/DojoNotice.astro';
+import { getNotice } from '@/data/dojo-notice';
+
+// Only asks whether a notice is configured, never whether it should be visible. The
+// inline script in DojoNotice owns both dates, so a notice turns itself on and off
+// without a redeploy and the date rule has exactly one implementation.
+//
+// With no notice the nav renders bare, keeping its own `position: fixed` and today's
+// layout untouched rather than nesting it in a wrapper it does not need.
+const notice = getNotice();
+---
+
+{
+  notice ? (
+    <div class="nav-stack">
+      <DojoNotice notice={notice} />
+      <Nav />
+    </div>
+  ) : (
+    <Nav />
+  )
+}

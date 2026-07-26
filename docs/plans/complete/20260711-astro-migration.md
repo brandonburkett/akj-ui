@@ -127,6 +127,7 @@ tests/
 Deleted in Task 11: `src/index.tsx`, `src/app.tsx`, `src/app.test.tsx`, `src/logo.svg`, `src/registerServiceWorker.ts`, `src/react-app-env.d.ts`, `src/containers/**/*.tsx`, `src/containers/layouts/`, all `.tsx` component files, `tslint.json`, CRA `.env`/`.env.production` (superseded by `site` config), `public/index.html`.
 
 **Component responsibility notes:**
+
 - `StandardLayout.astro` owns the document shell so pages contain only body content — mirrors the old `StandardLayoutRoute` + `standard-layout` + `public/index.html` combined. Scroll-to-top-on-nav is free (full page loads).
 - `SeoHead.astro` is pure markup (no client JS) — takes `title`, `desc`, `path`, optional `image`/`noIndex`; computes canonical from `SITE_URL`.
 - The three island components each colocate their `<script>` with their markup so behavior + DOM live together.
@@ -136,19 +137,24 @@ Deleted in Task 11: `src/index.tsx`, `src/app.tsx`, `src/app.test.tsx`, `src/log
 ## Task 1: Scaffold Astro + tooling
 
 **Files:**
+
 - Create: `astro.config.mjs`, `tsconfig.json` (replace), `src/env.d.ts`, `src/consts.ts`, `package.json` (rewrite deps/scripts)
 - Delete later (not now): CRA files
 
 **Interfaces:**
+
 - Produces: `SITE_URL`, `SITE_NAME`, `NAV_ITEMS`, `SOCIAL_LINKS` from `src/consts.ts`; a working `npm run dev`/`npm run build`/`npm run check`.
 
 - [ ] **Step 1: Branch + Node** — the isolated worktree/branch (`worktree-astro-migration`) already exists (see Execution Environment), so pin Node and switch to it.
 
 Create `.nvmrc`:
+
 ```
 24.18.0
 ```
+
 Then locally:
+
 ```bash
 nvm install 24.18.0 && nvm use   # Active LTS
 node -v                          # expect v24.18.0
@@ -204,6 +210,7 @@ rm -f .git/hooks/pre-commit         # stale husky v4 shim
 rm -rf node_modules package-lock.json
 npm install
 ```
+
 Expected: installs cleanly; no React packages (`npm ls react` → empty); `git commit` no longer runs the CRA test. `husky` + `lint-staged` are installed but **inactive** (no `prepare` script / `.husky/` dir yet — added in Task 12).
 
 - [ ] **Step 4: Create `astro.config.mjs`**
@@ -234,6 +241,7 @@ export default defineConfig({
   "exclude": ["dist", "src/**/*.tsx", "src/registerServiceWorker.ts", "src/react-app-env.d.ts"]
 }
 ```
+
 During migration the legacy CRA React sources (`src/**/*.tsx`, `registerServiceWorker.ts`, `react-app-env.d.ts`) stay in-tree as the porting reference but import packages that are no longer installed — excluding them keeps `astro check` green. **Remove this exclude in Task 11** once those files are deleted.
 
 - [ ] **Step 6: Create `src/env.d.ts`**
@@ -279,18 +287,23 @@ export const SOCIAL_LINKS: SocialLink[] = [
 - [ ] **Step 8: Create a temporary placeholder page so the build runs**
 
 `src/pages/index.astro`:
+
 ```astro
 ---
+
 ---
+
 <html lang="en"><head><title>scaffold</title></head><body><h1>scaffold ok</h1></body></html>
 ```
 
 - [ ] **Step 9: Verify dev + build + check**
 
 Run:
+
 ```bash
 npm run check && npm run build
 ```
+
 Expected: `astro check` reports 0 errors; build writes `dist/index.html`. `ls dist/index.html` succeeds.
 
 - [ ] **Step 10: Commit**
@@ -307,11 +320,13 @@ git commit -m "chore: scaffold Astro, remove CRA toolchain"
 Moves the existing stylesheets and their referenced assets so the cascade/breakpoints are preserved verbatim. Vite resolves the relative `url()` refs (fonts + `images/lilly.jpg`) and hashes them.
 
 **Files:**
+
 - Move: `src/styles/master.css`, `src/styles/responsive.css`, `src/styles/fonts/*`, `src/styles/images/*` (stay under `src/styles/`)
 - Move: `public/robots.txt` ← `src/robots.txt`; `public/sitemap.xml` ← `src/sitemap.xml`
 - Move: `src/containers/home/local-business-schema.json` → `src/data/local-business-schema.json`
 
 **Interfaces:**
+
 - Produces: two global stylesheets importable via `import '../styles/master.css'` etc. from any `.astro` frontmatter.
 
 - [ ] **Step 1: Relocate SEO text files into `public/`** (served at site root, byte-identical)
@@ -322,23 +337,33 @@ git mv src/sitemap.xml public/sitemap.xml
 mkdir -p src/data
 git mv src/containers/home/local-business-schema.json src/data/local-business-schema.json
 ```
+
 Note: `src/styles/` already lives where Astro expects; leave `master.css`, `responsive.css`, `fonts/`, `images/` in place. Their internal `url('./fonts/...')` and `url("images/lilly.jpg")` refs resolve relative to the CSS file — no edits needed.
 
 - [ ] **Step 2: Update `stylelint` config** — replace `.stylelintrc` contents
 
 `.stylelintrc`:
+
 ```json
-{ "extends": "stylelint-config-standard", "rules": { "no-descending-specificity": null, "font-family-no-missing-generic-family-keyword": null } }
+{
+  "extends": "stylelint-config-standard",
+  "rules": {
+    "no-descending-specificity": null,
+    "font-family-no-missing-generic-family-keyword": null
+  }
+}
 ```
 
 - [ ] **Step 3: Build a throwaway smoke page that imports the globals**
 
 Temporarily edit `src/pages/index.astro`:
+
 ```astro
 ---
 import '../styles/master.css';
 import '../styles/responsive.css';
 ---
+
 <html lang="en">
   <head><meta charset="utf-8" /><title>styles smoke</title></head>
   <body><h1 class="cover-title">Font + base CSS smoke test</h1></body>
@@ -348,9 +373,11 @@ import '../styles/responsive.css';
 - [ ] **Step 4: Verify fonts + CSS load in the built output**
 
 Run:
+
 ```bash
 npm run build
 ```
+
 Expected: build succeeds; `dist/_astro/` contains hashed `master`/`responsive` CSS and hashed Amble font files (`ls dist/_astro | grep -i amble` shows woff/ttf/etc). No unresolved-asset errors.
 
 - [ ] **Step 5: Commit**
@@ -365,10 +392,12 @@ git commit -m "chore: relocate global styles, fonts, robots/sitemap, schema data
 ## Task 3: SEO head + StandardLayout (replace react-helmet + index.html)
 
 **Files:**
+
 - Create: `src/components/SeoHead.astro`, `src/layouts/StandardLayout.astro`
 - Test: `tests/routing.spec.ts` (head assertions added here, expanded in Task 10)
 
 **Interfaces:**
+
 - `SeoHead.astro` **Consumes** props `{ title: string; desc: string; path: string; image?: string; noIndex?: boolean }`. Renders `<meta charset>`, `<title>` (template `"%s, Austin Komei Jyuku"` unless title already is the site name), description, viewport, canonical, OG, Twitter, PWA meta, manifest link, favicon. Canonical/OG URL = `new URL(path, SITE_URL)` with trailing slash stripped (except root).
 - `StandardLayout.astro` **Consumes** the same SEO props (forwarded to `SeoHead`) plus a default `<slot />`. **Produces** the full `<html><head>…</head><body><Nav/><slot/></body></html>` shell. Every page renders through it.
 
@@ -422,6 +451,7 @@ const canonicalUrl = new URL(path, SITE_URL).href.replace(/(.+)\/$/, '$1');
 const ogImage = new URL(image ?? defaultOgp.src, SITE_URL).href;
 const fullTitle = title === SITE_NAME ? SITE_NAME : `${title}, ${SITE_NAME}`;
 ---
+
 <meta charset="utf-8" />
 <title lang="en">{fullTitle}</title>
 <meta name="description" content={desc} />
@@ -453,6 +483,7 @@ const fullTitle = title === SITE_NAME ? SITE_NAME : `${title}, ${SITE_NAME}`;
 <link rel="manifest" href="/manifest.json?v=20240219" />
 <link rel="shortcut icon" href="/favicon.ico" />
 ```
+
 Note: keep the source images where they are (`src/components/head/images/…`, `src/styles/images/…`) until Task 11; imports resolve now.
 
 - [ ] **Step 4: Create `src/layouts/StandardLayout.astro`**
@@ -474,6 +505,7 @@ interface Props {
 
 const { title, desc, path, image, noIndex } = Astro.props;
 ---
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -486,15 +518,18 @@ const { title, desc, path, image, noIndex } = Astro.props;
   </body>
 </html>
 ```
+
 Note: `Nav.astro` is created in Task 5; until then temporarily comment the `import Nav` + `<Nav />` lines, or stub `src/components/Nav.astro` with `<header class="masthead"></header>`.
 
 - [ ] **Step 5: Point the temp index page at the layout to smoke it**
 
 `src/pages/index.astro`:
+
 ```astro
 ---
 import StandardLayout from '../layouts/StandardLayout.astro';
 ---
+
 <StandardLayout title="Traditional Japanese Swordsmanship" desc="test" path={Astro.url.pathname}>
   <main><h1>layout smoke</h1></main>
 </StandardLayout>
@@ -503,9 +538,11 @@ import StandardLayout from '../layouts/StandardLayout.astro';
 - [ ] **Step 6: Verify build + head output**
 
 Run:
+
 ```bash
 npm run build && grep -o 'rel="canonical" href="[^"]*"' dist/index.html
 ```
+
 Expected: prints `rel="canonical" href="https://austin.komeijyuku.com/"` (root keeps its single slash).
 
 - [ ] **Step 7: Commit**
@@ -522,6 +559,7 @@ git commit -m "feat: SeoHead + StandardLayout replacing react-helmet and index.h
 Straight JSX→Astro ports. Rules applied to each: `className`→`class`; `{/* */}`→`<!-- -->`; drop `React`/interfaces into frontmatter `interface Props`; destructure `Astro.props`; `defaultProps`→default values in destructure; children→`<slot />`; keep the component's `.css` import in frontmatter (global, as CRA did); `react-router` `<Link to>`→`<a href>`; image imports use `img.src`.
 
 **Files (create each; move its CSS unchanged):**
+
 - `src/components/Footer.astro` (from `footer/footer.tsx`, import `footer/footer.css`)
 - `src/components/Quote.astro` (from `quote/quote.tsx`)
 - `src/components/PanelSection.astro`, `src/components/PanelContent.astro`
@@ -530,6 +568,7 @@ Straight JSX→Astro ports. Rules applied to each: `className`→`class`; `{/* *
 - `src/components/BlockImageCta.astro`
 
 **Interfaces (Produces — later tasks rely on these prop names):**
+
 - `Footer` — no props.
 - `Quote` — `{ content: string; author: string; quotes?: boolean }` (default `quotes = true`).
 - `PanelSection` — `{ color?: 'olive' | 'cream' }` (default `'olive'`) + slot.
@@ -560,10 +599,12 @@ git mv src/components/ctas/images src/components/ctas-images
 import './footer.css';
 const year = new Date().getFullYear();
 ---
+
 <footer class="site-footer">
   <p>© {year} Austin Komei Jyuku. All rights reserved.</p>
 </footer>
 ```
+
 Note: open `src/components/footer/footer.tsx` and copy its exact inner markup/class names; the copyright line above is a placeholder — match the source verbatim.
 
 - [ ] **Step 3: Create `src/components/Quote.astro`**
@@ -571,69 +612,91 @@ Note: open `src/components/footer/footer.tsx` and copy its exact inner markup/cl
 ```astro
 ---
 import './quote.css';
-interface Props { content: string; author: string; quotes?: boolean; }
+interface Props {
+  content: string;
+  author: string;
+  quotes?: boolean;
+}
 const { content, author, quotes = true } = Astro.props;
 ---
+
 <aside class="quote">
   <blockquote>{quotes ? `“${content}”` : content}</blockquote>
   <cite>{author}</cite>
 </aside>
 ```
+
 Note: match `quote/quote.tsx` markup/classes exactly (it may use a different element structure for the quote marks — port verbatim).
 
 - [ ] **Step 4: Create `PanelSection.astro`, `PanelContent.astro`, `BelowFold.astro`**
 
 `PanelSection.astro`:
+
 ```astro
 ---
 import './panel-section.css';
-interface Props { color?: 'olive' | 'cream'; }
+interface Props {
+  color?: 'olive' | 'cream';
+}
 const { color = 'olive' } = Astro.props;
 ---
+
 <section class={`panel-section ${color}`}><slot /></section>
 ```
 
 `PanelContent.astro`:
+
 ```astro
 ---
 import './panel-content.css';
-interface Props { fullViewHeight?: boolean; }
+interface Props {
+  fullViewHeight?: boolean;
+}
 const { fullViewHeight = false } = Astro.props;
 ---
+
 <div class={`panel-content ${fullViewHeight ? 'full-view-height' : ''}`}>
   <div class="panel-content-inner group"><slot /></div>
 </div>
 ```
 
 `BelowFold.astro`:
+
 ```astro
 ---
 import './below-fold.css';
 const { class: className, ...rest } = Astro.props;
 ---
+
 <div class:list={['below-fold', 'group', className]} {...rest}><slot /></div>
 ```
+
 Note: verify exact class names/structure against `panels/*.tsx` and `below-fold/below-fold.tsx` and match verbatim.
 
 - [ ] **Step 5: Create `ResponsiveImage.astro`, `ResponsiveMap.astro`**
 
 `ResponsiveImage.astro`:
+
 ```astro
 ---
 import './responsive-image.css';
 const { src, alt = '', class: className, ...rest } = Astro.props;
 ---
+
 <img src={src} alt={alt} class:list={[className]} {...rest} />
 ```
 
 `ResponsiveMap.astro`:
+
 ```astro
 ---
 import './responsive-map.css';
 const { class: className, ...rest } = Astro.props;
 ---
+
 <div class:list={['responsive-map', className]} {...rest}><slot /></div>
 ```
+
 Note: match wrapper class names from `maps/responsive-map.tsx`.
 
 - [ ] **Step 6: Create `src/components/BlockImageCta.astro`**
@@ -653,6 +716,7 @@ interface Props {
 }
 const { to, title = '', content = '', imgSrc, imgAlt } = Astro.props;
 ---
+
 <a class="block-image-cta" href={to}>
   <ResponsiveImage src={imgSrc} alt={imgAlt} />
   <div class="block-image-cta-info">
@@ -662,6 +726,7 @@ const { to, title = '', content = '', imgSrc, imgAlt } = Astro.props;
   </div>
 </a>
 ```
+
 Note: open `ctas/block-image-cta.tsx` and mirror its exact class names/structure. `content` may contain HTML entities (`&ldquo;` etc.) — use `set:html` as above so they render, matching the React behavior.
 
 - [ ] **Step 7: Typecheck**
@@ -683,11 +748,13 @@ git commit -m "feat: port static presentational components to Astro"
 Replaces the React class component. Implements the WAI-ARIA **Disclosure Navigation** pattern (correct for a link menu — no arrow-key menubar semantics required): a real toggle `<button aria-expanded>` controlling a region of links, plus close-on-outside-click and Escape-to-close with focus return. Removes the old `role="menubar"/menuitem` roles (they impose arrow-key requirements inappropriate for site links). CSS ported unchanged.
 
 **Files:**
+
 - Create: `src/components/Nav.astro`
 - Move: `git mv src/components/nav/nav.css src/components/nav.css`; `git mv src/components/nav/images src/components/nav-images`
 - Test: `tests/nav.spec.ts`
 
 **Interfaces:**
+
 - `Nav.astro` — no props. Reads `NAV_ITEMS`, `SOCIAL_LINKS` from `consts.ts`. **Produces** DOM with stable hooks the script binds to: button `.menu-icon`, nav `.site-menu`, menu region `#aria-menu-list`. The open state is the `open` class on `.site-menu` + `aria-expanded` on the button + `aria-hidden` on the region.
 
 - [ ] **Step 1: Write `tests/nav.spec.ts` (failing)**
@@ -696,7 +763,9 @@ Replaces the React class component. Implements the WAI-ARIA **Disclosure Navigat
 import { test, expect } from '@playwright/test';
 
 test.describe('nav dropdown', () => {
-  test.beforeEach(async ({ page }) => { await page.goto('/'); });
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/');
+  });
 
   test('toggles open/closed via button, aria-expanded tracks', async ({ page }) => {
     const btn = page.locator('.menu-icon');
@@ -758,6 +827,7 @@ const socialImg: Record<string, string> = {
   YouTube: imgYoutube.src,
 };
 ---
+
 <header class="masthead translate-z">
   <div class="masthead-left">
     <a class="brand-logo" href="/"><img src={imgMon.src} alt="Dojo homepage" /></a>
@@ -773,18 +843,24 @@ const socialImg: Record<string, string> = {
 
     <div id="aria-menu-list" class="menu-bar group" hidden>
       <ul id="nav-list" class="nav-list">
-        {NAV_ITEMS.map((item) => (
-          <li class="nav-list-item">
-            <a class="nav-parent" href={item.href}>{item.label}</a>
-          </li>
-        ))}
+        {
+          NAV_ITEMS.map((item) => (
+            <li class="nav-list-item">
+              <a class="nav-parent" href={item.href}>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
       </ul>
       <div class="social">
-        {SOCIAL_LINKS.map((s) => (
-          <a class="social-link" href={s.href} target="_blank" rel="noopener noreferrer">
-            <img class="social-icon" src={socialImg[s.label]} alt={s.label} />
-          </a>
-        ))}
+        {
+          SOCIAL_LINKS.map((s) => (
+            <a class="social-link" href={s.href} target="_blank" rel="noopener noreferrer">
+              <img class="social-icon" src={socialImg[s.label]} alt={s.label} />
+            </a>
+          ))
+        }
       </div>
     </div>
   </nav>
@@ -808,9 +884,9 @@ const socialImg: Record<string, string> = {
     btn.addEventListener('click', () => setOpen(!isOpen()));
 
     // close after following an internal link (kept for parity; full loads anyway)
-    region.querySelectorAll('a.nav-parent').forEach((a) =>
-      a.addEventListener('click', () => setOpen(false)),
-    );
+    region
+      .querySelectorAll('a.nav-parent')
+      .forEach((a) => a.addEventListener('click', () => setOpen(false)));
 
     // Escape closes and returns focus to the toggle
     document.addEventListener('keydown', (e) => {
@@ -827,6 +903,7 @@ const socialImg: Record<string, string> = {
   }
 </script>
 ```
+
 Note: `nav.css` targets `.site-menu.open`, `.menu-open-img`, `.menu-close-img` etc. — the `open` class + `hidden` attr keep those selectors working. Verify against `nav/nav.css` that hiding the region via `hidden` doesn't fight an existing `display` rule; if it does, drop the `hidden` attribute and rely solely on the `open` class + set `aria-hidden` on the region instead (update the script's `setOpen` accordingly). Keep whichever matches the original visual behavior.
 
 - [ ] **Step 5: Wire `Nav` into `StandardLayout.astro`** (uncomment the import + `<Nav />` from Task 3 Step 4).
@@ -850,11 +927,13 @@ git commit -m "feat: accessible nav dropdown as vanilla TS island"
 Replaces `FullScreenParallaxImage` React class. Vanilla script does the scroll-driven background-position parallax, the smooth-scroll "scroll down" button, and the mobile `background-attachment` fix. Accepts either a title/content pair or slotted children (home uses children).
 
 **Files:**
+
 - Create: `src/components/FullScreenParallaxImage.astro`
 - Move: `git mv src/components/images/full-screen-parallax-image.css src/components/full-screen-parallax-image.css`; move its chevron icon.
 - Test: covered by `tests/a11y.spec.ts` + a scroll assertion in `tests/routing.spec.ts`.
 
 **Interfaces:**
+
 - `FullScreenParallaxImage.astro` — **Consumes** `{ backgroundImgSrc: string; title?: string; content?: string; parallaxSpeed?: number; scrollTargetId?: string }`. When default slot has content, render it instead of title/content (mirrors the React `children ? children : text` branch). `scrollTargetId` is the id of the element to smooth-scroll to (replaces the React ref). Default `parallaxSpeed = 5`.
 
 - [ ] **Step 1: Move CSS + icon**
@@ -879,32 +958,43 @@ interface Props {
   parallaxSpeed?: number;
   scrollTargetId?: string;
 }
-const { backgroundImgSrc, title = '', content = '', parallaxSpeed = 5, scrollTargetId } = Astro.props;
+const {
+  backgroundImgSrc,
+  title = '',
+  content = '',
+  parallaxSpeed = 5,
+  scrollTargetId,
+} = Astro.props;
 const hasSlot = Astro.slots.has('default');
 ---
+
 <section class="cover-parallax">
   <div
     class="cover-image"
     style={`background-image: url('${backgroundImgSrc}')`}
     data-parallax-speed={parallaxSpeed}
   >
-    {hasSlot ? (
-      <slot />
-    ) : (
-      <div class="cover-text">
-        <h1 class="cover-title">{title}</h1>
-        <p class="cover-content">{content}</p>
-      </div>
-    )}
+    {
+      hasSlot ? (
+        <slot />
+      ) : (
+        <div class="cover-text">
+          <h1 class="cover-title">{title}</h1>
+          <p class="cover-content">{content}</p>
+        </div>
+      )
+    }
 
-    {scrollTargetId && (
-      <div class="cover-scroll-cue" data-scroll-target={scrollTargetId}>
-        <!-- real anchor: works with JS disabled (native #jump); script upgrades to smooth-scroll -->
-        <a class="cover-scroll-btn" href={`#${scrollTargetId}`} aria-label="Scroll Down">
-          <img src={imgChevron.src} alt="" aria-hidden="true" />
-        </a>
-      </div>
-    )}
+    {
+      scrollTargetId && (
+        <div class="cover-scroll-cue" data-scroll-target={scrollTargetId}>
+          {/* real anchor: works with JS disabled (native #jump); script upgrades to smooth-scroll */}
+          <a class="cover-scroll-btn" href={`#${scrollTargetId}`} aria-label="Scroll Down">
+            <img src={imgChevron.src} alt="" aria-hidden="true" />
+          </a>
+        </div>
+      )
+    }
   </div>
 </section>
 
@@ -939,9 +1029,10 @@ const hasSlot = Astro.slots.has('default');
   }
 </script>
 ```
+
 Note: the old code passed a `scrollToRef`; here the page gives the below-fold wrapper an `id` (e.g. `id="below-fold-main"`) and passes `scrollTargetId="below-fold-main"`. Verify `full-screen-parallax-image.css` selectors (`.cover-parallax`, `.cover-image`, `.cover-text`, `.cover-title`, `.cover-content`, `.cover-scroll-cue`, `.cover-scroll-btn`) are all present — they are ported unchanged.
 
-**Progressive enhancement (works with JS disabled):** the hero image is a CSS `background-image` written into the static HTML, so it renders without JavaScript — the script only *adds* the parallax motion and upgrades the scroll cue's native `#anchor` jump to a smooth scroll. This is plain HTML + an enhancement `<script>`, not a hydrated framework island.
+**Progressive enhancement (works with JS disabled):** the hero image is a CSS `background-image` written into the static HTML, so it renders without JavaScript — the script only _adds_ the parallax motion and upgrades the scroll cue's native `#anchor` jump to a smooth scroll. This is plain HTML + an enhancement `<script>`, not a hydrated framework island.
 
 - [ ] **Step 3: Build check**
 
@@ -962,11 +1053,13 @@ git commit -m "feat: parallax hero as vanilla TS island"
 Replaces `react-image-gallery` entirely. CSS scroll-snap track (native swipe, fully responsive), bullet buttons, prev/next buttons, native Fullscreen API, IntersectionObserver active-slide tracking, and keyboard support (Arrow/Home/End, Enter/Space on controls). Follows the WAI-ARIA carousel pattern (`aria-roledescription`, slide labels, `aria-live` announcements). New internal CSS replaces the dropped `image-gallery.css`; the existing `.slide-gallery-images` responsive wrapper rules are reused.
 
 **Files:**
+
 - Create: `src/components/SlideGallery.astro`
 - Rewrite: `src/components/slide-gallery.css` (keep `.slide-gallery-group`/`.slide-gallery-images` rules from the old file; replace `.image-gallery-*` internals with `.sg-*`)
 - Test: `tests/gallery.spec.ts`
 
 **Interfaces:**
+
 - `SlideGallery.astro` — **Consumes** `{ items: Array<{ src: string; alt: string }>; label?: string }`. (Home/iaijutsu build this array from image imports.) **Produces** a self-contained carousel; no external control needed.
 
 - [ ] **Step 1: Write `tests/gallery.spec.ts` (failing)**
@@ -975,7 +1068,9 @@ Replaces `react-image-gallery` entirely. CSS scroll-snap track (native swipe, fu
 import { test, expect } from '@playwright/test';
 
 test.describe('image gallery', () => {
-  test.beforeEach(async ({ page }) => { await page.goto('/iaijutsu'); });
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/iaijutsu');
+  });
 
   test('renders slides with alt text and bullet controls', async ({ page }) => {
     const slides = page.locator('.sg-slide');
@@ -986,20 +1081,28 @@ test.describe('image gallery', () => {
 
   test('next button advances active slide and updates aria-current', async ({ page }) => {
     await expect(page.locator('.sg-bullet[aria-current="true"]')).toHaveAttribute(
-      'data-index', '0');
+      'data-index',
+      '0',
+    );
     await page.locator('.sg-next').click();
     await expect(page.locator('.sg-bullet[aria-current="true"]')).toHaveAttribute(
-      'data-index', '1');
+      'data-index',
+      '1',
+    );
   });
 
   test('keyboard arrows move slides when track focused', async ({ page }) => {
     await page.locator('.sg-track').focus();
     await page.keyboard.press('ArrowRight');
     await expect(page.locator('.sg-bullet[aria-current="true"]')).toHaveAttribute(
-      'data-index', '1');
+      'data-index',
+      '1',
+    );
     await page.keyboard.press('Home');
     await expect(page.locator('.sg-bullet[aria-current="true"]')).toHaveAttribute(
-      'data-index', '0');
+      'data-index',
+      '0',
+    );
   });
 
   test('fullscreen button is present and labelled', async ({ page }) => {
@@ -1016,7 +1119,9 @@ Run: `npx playwright test tests/gallery.spec.ts` → FAIL (no `.sg-track`). Re-r
 
 ```css
 /* wrapper — ported verbatim from the old slide-gallery.css */
-.slide-gallery-group { background: #eae6db; }
+.slide-gallery-group {
+  background: #eae6db;
+}
 .slide-gallery-images {
   width: 80%;
   max-width: 1200px;
@@ -1036,11 +1141,23 @@ Run: `npx playwright test tests/gallery.spec.ts` → FAIL (no `.sg-track`). Re-r
   padding: 0;
   scrollbar-width: none;
 }
-.sg-track::-webkit-scrollbar { display: none; }
-.sg-track:focus-visible { outline: 2px solid #eae6db; outline-offset: 2px; }
+.sg-track::-webkit-scrollbar {
+  display: none;
+}
+.sg-track:focus-visible {
+  outline: 2px solid #eae6db;
+  outline-offset: 2px;
+}
 
-.sg-slide { flex: 0 0 100%; scroll-snap-align: center; }
-.sg-slide img { display: block; width: 100%; height: auto; }
+.sg-slide {
+  flex: 0 0 100%;
+  scroll-snap-align: center;
+}
+.sg-slide img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
 
 /* prev/next arrows */
 .sg-nav {
@@ -1056,9 +1173,16 @@ Run: `npx playwright test tests/gallery.spec.ts` → FAIL (no `.sg-track`). Re-r
   padding: 0 10px;
   display: none; /* hidden on mobile, shown >=480px below */
 }
-.sg-prev { left: 0; }
-.sg-next { right: 0; }
-.sg-nav:hover, .sg-nav:focus { color: #fff; }
+.sg-prev {
+  left: 0;
+}
+.sg-next {
+  right: 0;
+}
+.sg-nav:hover,
+.sg-nav:focus {
+  color: #fff;
+}
 
 /* bullets */
 .sg-bullets {
@@ -1079,8 +1203,13 @@ Run: `npx playwright test tests/gallery.spec.ts` → FAIL (no `.sg-track`). Re-r
   background: transparent;
   cursor: pointer;
 }
-.sg-bullet[aria-current="true"] { background: #eae6db; }
-.sg-bullet:hover, .sg-bullet:focus { background: #eae6db; }
+.sg-bullet[aria-current='true'] {
+  background: #eae6db;
+}
+.sg-bullet:hover,
+.sg-bullet:focus {
+  background: #eae6db;
+}
 
 /* fullscreen toggle */
 .sg-fullscreen {
@@ -1093,25 +1222,54 @@ Run: `npx playwright test tests/gallery.spec.ts` → FAIL (no `.sg-track`). Re-r
   font-size: 1.5em;
   cursor: pointer;
 }
-.sg-fullscreen:hover, .sg-fullscreen:focus { color: #fff; }
+.sg-fullscreen:hover,
+.sg-fullscreen:focus {
+  color: #fff;
+}
 
 /* fullscreen presentation via native Fullscreen API */
-.slide-gallery-images:fullscreen { width: 100%; max-width: none; margin: 0; background: #000; }
-.slide-gallery-images:fullscreen .sg-track { height: 100vh; align-items: center; }
-.slide-gallery-images:fullscreen .sg-slide { display: flex; align-items: center; justify-content: center; }
-.slide-gallery-images:fullscreen .sg-slide img { max-height: 100vh; width: auto; object-fit: contain; }
+.slide-gallery-images:fullscreen {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  background: #000;
+}
+.slide-gallery-images:fullscreen .sg-track {
+  height: 100vh;
+  align-items: center;
+}
+.slide-gallery-images:fullscreen .sg-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.slide-gallery-images:fullscreen .sg-slide img {
+  max-height: 100vh;
+  width: auto;
+  object-fit: contain;
+}
 
 /* Responsive — mirrors original breakpoints */
 @media screen and (min-width: 320px) {
-  .slide-gallery-images { width: 95%; }
-  .sg-nav { display: none; }
+  .slide-gallery-images {
+    width: 95%;
+  }
+  .sg-nav {
+    display: none;
+  }
 }
 @media screen and (min-width: 480px) {
-  .slide-gallery-images { width: 80%; }
-  .sg-nav { display: block; }
+  .slide-gallery-images {
+    width: 80%;
+  }
+  .sg-nav {
+    display: block;
+  }
 }
 @media screen and (min-width: 768px) {
-  .sg-bullet[aria-current="true"] { padding: 0; }
+  .sg-bullet[aria-current='true'] {
+    padding: 0;
+  }
 }
 ```
 
@@ -1128,37 +1286,48 @@ interface Props {
 const { items, label = 'Iaido training photos' } = Astro.props;
 const count = items.length;
 ---
+
 <section class="slide-gallery-group group" aria-roledescription="carousel" aria-label={label}>
   <div class="slide-gallery-images">
     <ul class="sg-track" tabindex="0" aria-live="polite">
-      {items.map((item, i) => (
-        <li
-          class="sg-slide"
-          role="group"
-          aria-roledescription="slide"
-          aria-label={`${i + 1} of ${count}`}
-        >
-          <img src={item.src} alt={item.alt} loading={i === 0 ? 'eager' : 'lazy'} decoding="async" />
-        </li>
-      ))}
+      {
+        items.map((item, i) => (
+          <li
+            class="sg-slide"
+            role="group"
+            aria-roledescription="slide"
+            aria-label={`${i + 1} of ${count}`}
+          >
+            <img
+              src={item.src}
+              alt={item.alt}
+              loading={i === 0 ? 'eager' : 'lazy'}
+              decoding="async"
+            />
+          </li>
+        ))
+      }
     </ul>
 
     <button class="sg-nav sg-prev" type="button" aria-label="Previous slide">&#8249;</button>
     <button class="sg-nav sg-next" type="button" aria-label="Next slide">&#8250;</button>
 
     <div class="sg-bullets" role="group" aria-label="Choose slide to display">
-      {items.map((_, i) => (
-        <button
-          class="sg-bullet"
-          type="button"
-          data-index={i}
-          aria-current={i === 0 ? 'true' : 'false'}
-          aria-label={`Go to slide ${i + 1}`}
-        ></button>
-      ))}
+      {
+        items.map((_, i) => (
+          <button
+            class="sg-bullet"
+            type="button"
+            data-index={i}
+            aria-current={i === 0 ? 'true' : 'false'}
+            aria-label={`Go to slide ${i + 1}`}
+          />
+        ))
+      }
     </div>
 
-    <button class="sg-fullscreen" type="button" aria-label="View gallery fullscreen">&#9974;</button>
+    <button class="sg-fullscreen" type="button" aria-label="View gallery fullscreen">&#9974;</button
+    >
   </div>
 </section>
 
@@ -1197,17 +1366,27 @@ const count = items.length;
 
     prev?.addEventListener('click', () => goTo(active - 1));
     next?.addEventListener('click', () => goTo(active + 1));
-    bullets.forEach((b) =>
-      b.addEventListener('click', () => goTo(Number(b.dataset.index))),
-    );
+    bullets.forEach((b) => b.addEventListener('click', () => goTo(Number(b.dataset.index))));
 
     // keyboard support on the focusable track
     track.addEventListener('keydown', (e) => {
       switch (e.key) {
-        case 'ArrowRight': e.preventDefault(); goTo(active + 1); break;
-        case 'ArrowLeft':  e.preventDefault(); goTo(active - 1); break;
-        case 'Home':       e.preventDefault(); goTo(0); break;
-        case 'End':        e.preventDefault(); goTo(slides.length - 1); break;
+        case 'ArrowRight':
+          e.preventDefault();
+          goTo(active + 1);
+          break;
+        case 'ArrowLeft':
+          e.preventDefault();
+          goTo(active - 1);
+          break;
+        case 'Home':
+          e.preventDefault();
+          goTo(0);
+          break;
+        case 'End':
+          e.preventDefault();
+          goTo(slides.length - 1);
+          break;
       }
     });
 
@@ -1243,10 +1422,12 @@ git commit -m "feat: accessible scroll-snap image gallery replacing react-image-
 Each page becomes a `.astro` file that renders `StandardLayout` with SEO props and the ported body. **Conversion recipe for the body markup** (apply to every page): copy the JSX inside each container's `return (…)` verbatim, then `className`→`class`; `{/* */}`→`<!-- -->`; `<React.Fragment>`/`<>` → remove (content goes directly in the slot); child components `<Head …>` → the layout props; `<BelowFold role="main" ref=…>` → `<BelowFold role="main" id="below-fold-main">`; image imports move to frontmatter and are referenced as `img.src`; `props.location.pathname` → `Astro.url.pathname`; `dangerouslySetInnerHTML` → `set:html`. Keep text content, `lang="ja"` spans, entities, and class names exactly.
 
 **Files:**
+
 - Create: `src/pages/index.astro`, `iaijutsu.astro`, `schedule.astro`, `seminars.astro`, `404.astro`, `tokai.astro`
 - Move: `git mv src/containers/home/images src/pages/home-images`; `git mv src/containers/iaijutsu/images src/pages/iaijutsu-images`
 
 **Interfaces:**
+
 - **Consumes** every component from Tasks 3–7 (`StandardLayout`, `BelowFold`, `Footer`, `Quote`, `PanelSection`, `PanelContent`, `ResponsiveImage`, `ResponsiveMap`, `BlockImageCta`, `FullScreenParallaxImage`, `SlideGallery`).
 
 - [ ] **Step 1: Move page images**
@@ -1259,6 +1440,7 @@ git mv src/containers/iaijutsu/images src/pages/iaijutsu-images
 - [ ] **Step 2: Create `src/pages/index.astro`** (Home)
 
 Frontmatter:
+
 ```astro
 ---
 import StandardLayout from '../layouts/StandardLayout.astro';
@@ -1280,8 +1462,13 @@ const title = 'Traditional Japanese Swordsmanship';
 const desc =
   'The Austin Komei Jyuku dojo teaches Yamauchi-Ha Muso Jikiden Eishin-ryu Iaijutsu under Sekiguchi Komei Sensei in Austin, Texas.';
 ---
+
 <StandardLayout title={title} desc={desc} path={Astro.url.pathname}>
-  <FullScreenParallaxImage backgroundImgSrc={imgEnbu.src} scrollTargetId="below-fold-main" parallaxSpeed={5}>
+  <FullScreenParallaxImage
+    backgroundImgSrc={imgEnbu.src}
+    scrollTargetId="below-fold-main"
+    parallaxSpeed={5}
+  >
     <div class="big-brand">
       <div class="logo">
         <ResponsiveImage src={imgMjerKanji.src} alt="Muso Jikiden Eishin-ryu Iaijutsu" />
@@ -1300,11 +1487,13 @@ const desc =
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
 </StandardLayout>
 ```
+
 Note: reproduce the About section, the 3 `BlockImageCta`s (with the exact `content` strings/entities), and the isshin block from `src/containers/home/home.tsx` lines 61–155 exactly. The JSON-LD `<script>` is placed inside the layout slot (renders in `<body>`, valid for structured data) — or hoist into `<head>` via `<Fragment slot="head">` if preferred.
 
 - [ ] **Step 3: Create `src/pages/iaijutsu.astro`**
 
 Frontmatter builds the gallery array from the 14 imports currently in `iaijutsu-image-gallery.ts` (all alt `'Iaido training at Austin Komei Jyuku'`):
+
 ```astro
 ---
 import StandardLayout from '../layouts/StandardLayout.astro';
@@ -1341,6 +1530,7 @@ const title = 'Muso Jikiden Eishin-ryu Iaijutsu';
 const desc =
   'The Austin Komei Jyuku dojo teaches Yamauchi-Ha Muso Jikiden Eishin-ryu Iaido under Sekiguchi Komei sensei.';
 ---
+
 <StandardLayout title={title} desc={desc} path={Astro.url.pathname}>
   <FullScreenParallaxImage
     backgroundImgSrc={imgUkenagashi.src}
@@ -1369,11 +1559,13 @@ const desc =
   </BelowFold>
 </StandardLayout>
 ```
+
 Note: after this page works, delete the now-unused `src/containers/iaijutsu/iaijutsu-image-gallery.ts` in Task 11.
 
 - [ ] **Step 4: Create `schedule.astro`, `seminars.astro`, `404.astro`** (pure static ports)
 
 For each: frontmatter imports `StandardLayout`, `BelowFold`, `Footer`, `Quote`, `PanelSection`, `PanelContent`, `ResponsiveMap`; set `title`/`desc` from the container's `<Head>` props; body ports the container JSX verbatim (including the Google Maps `<iframe loading="lazy">` for schedule/seminars). `404.astro` sets `noIndex` — pass `noIndex={true}` to `StandardLayout` and forward it to `SeoHead` (add `noIndex` to the layout's Props + pass-through). Example skeleton:
+
 ```astro
 ---
 import StandardLayout from '../layouts/StandardLayout.astro';
@@ -1385,6 +1577,7 @@ import PanelContent from '../components/PanelContent.astro';
 import ResponsiveMap from '../components/ResponsiveMap.astro';
 // title/desc copied from schedule.tsx <Head/>
 ---
+
 <StandardLayout title={title} desc={desc} path={Astro.url.pathname}>
   <BelowFold role="main" id="below-fold-main">
     <!-- port schedule.tsx / seminars.tsx / no-match.tsx body verbatim -->
@@ -1400,6 +1593,7 @@ import ResponsiveMap from '../components/ResponsiveMap.astro';
 // Static redirect (S3/CloudFront has no server rewrites); meta-refresh + canonical.
 const target = '/seminars';
 ---
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -1411,14 +1605,17 @@ const target = '/seminars';
   <body><p>Redirecting to <a href={target}>Seminars</a>.</p></body>
 </html>
 ```
+
 Note: Astro also supports `export const redirect` config, but S3 static hosting can't honor server 301s without CloudFront rules; meta-refresh preserves the old `/tokai` deep link. Optionally add a CloudFront function later for a true 301.
 
 - [ ] **Step 6: Build all pages**
 
 Run:
+
 ```bash
 npm run build && ls dist/*.html
 ```
+
 Expected: `dist/index.html dist/iaijutsu.html dist/schedule.html dist/seminars.html dist/404.html dist/tokai.html`.
 
 - [ ] **Step 7: Commit**
@@ -1433,6 +1630,7 @@ git commit -m "feat: port all pages to Astro"
 ## Task 9: Test harness — Vitest unit + coverage, Playwright e2e + axe
 
 Two layers of tests plus the small refactor that makes the island logic unit-testable:
+
 - **Unit (Vitest + jsdom, with coverage)** over pure/interaction logic extracted into importable TS modules.
 - **E2E (Playwright + axe)** over the real pages: full-page behavior + accessibility on every route.
 
@@ -1441,11 +1639,13 @@ The e2e suite is set up and green FIRST so it is the safety net while the island
 Split of responsibility: jsdom-testable logic (nav toggle/Escape/outside-click, gallery index/keyboard/bullet/status, parallax math, SeoHead canonical) is unit-tested; browser-only APIs (IntersectionObserver, Fullscreen) are exercised by the e2e layer (stub or skip them in unit).
 
 **Files:**
+
 - Create: `playwright.config.ts`, `vitest.config.ts`, `tests/a11y.spec.ts`, unit tests as `src/**/*.test.ts`
 - Create (extraction): `src/lib/seo.ts`, `src/scripts/nav.ts`, `src/scripts/parallax.ts`, `src/scripts/gallery.ts`
 - Modify: `SeoHead.astro`, `Nav.astro`, `FullScreenParallaxImage.astro`, `SlideGallery.astro` (import the modules); `package.json` (scripts + devDeps)
 
 **Interfaces (Produces):**
+
 - `src/lib/seo.ts` — `buildCanonical(path: string, siteUrl: string): string` (root keeps its slash; strips `.html`/`/index.html` and other trailing slashes) and `buildOgImage(image: string | undefined, defaultSrc: string, siteUrl: string): string`.
 - `src/scripts/nav.ts` — `initNav(doc?: Document): void`.
 - `src/scripts/parallax.ts` — pure `parallaxOffset(scrollY: number, speed: number): number` + `initParallax(doc?: Document): void`.
@@ -1482,7 +1682,9 @@ for (const path of ['/', '/iaijutsu', '/schedule', '/seminars', '/404']) {
   test(`no serious/critical a11y violations on ${path}`, async ({ page }) => {
     await page.goto(path);
     const results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa']).analyze();
-    const serious = results.violations.filter((v) => ['serious', 'critical'].includes(v.impact ?? ''));
+    const serious = results.violations.filter((v) =>
+      ['serious', 'critical'].includes(v.impact ?? ''),
+    );
     expect(serious, JSON.stringify(serious, null, 2)).toEqual([]);
   });
 }
@@ -1495,6 +1697,7 @@ for (const path of ['/', '/iaijutsu', '/schedule', '/seminars', '/404']) {
 ### Unit + extraction
 
 - [ ] **Step 6: Add deps + scripts** — `npm i -D vitest @vitest/coverage-v8 jsdom`. Set `package.json` scripts:
+
 ```json
 "test": "npm run test:unit && npm run test:e2e",
 "test:unit": "vitest run",
@@ -1511,7 +1714,11 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
     include: ['src/**/*.test.ts'],
-    coverage: { provider: 'v8', include: ['src/lib/**', 'src/scripts/**'], reporter: ['text', 'html'] },
+    coverage: {
+      provider: 'v8',
+      include: ['src/lib/**', 'src/scripts/**'],
+      reporter: ['text', 'html'],
+    },
   },
 });
 ```
@@ -1519,12 +1726,14 @@ export default defineConfig({
 - [ ] **Step 8: Extract SeoHead canonical → `src/lib/seo.ts`** and have `SeoHead.astro` import `buildCanonical`/`buildOgImage`. Behavior identical (root keeps slash, `.html` stripped). Re-run `npm run build` + `npx playwright test`.
 
 - [ ] **Step 9: Extract island scripts → `src/scripts/{nav,parallax,gallery}.ts`**, each exporting `init*` (+ the pure helper). Each `.astro` replaces its inline logic with:
+
 ```astro
 <script>
   import { initNav } from '../scripts/nav';
   initNav();
 </script>
 ```
+
 Do them one at a time and re-run `npx playwright test` after EACH so any behavior drift is caught immediately.
 
 - [ ] **Step 10: Unit tests (`src/**/*.test.ts`, jsdom)**
@@ -1566,6 +1775,7 @@ git commit -m "fix: visual + a11y parity adjustments"
 ## Task 11: Remove CRA remnants + update CI/docs
 
 **Files:**
+
 - Delete: CRA sources; Modify: `.circleci/config.yml`, `.circleci/production.sh`, `.nvmrc`, `README.md`, `.gitignore`, `.prettierrc`
 
 - [ ] **Step 1: Delete dead CRA files**
@@ -1577,6 +1787,7 @@ git rm -r src/index.tsx src/app.tsx src/app.test.tsx src/logo.svg \
   src/containers/iaijutsu/iaijutsu-image-gallery.ts 2>/dev/null || true
 git rm .env .env.production 2>/dev/null || true
 ```
+
 Then remove now-empty component source dirs (`src/components/nav`, `footer`, `quote`, `panels`, `images`, `maps`, `ctas`, `head`, `below-fold`) once their assets/CSS have been moved. Verify nothing references them: `grep -rn "containers/\|react-router\|react-helmet\|react-image-gallery\|react-dom" src` returns nothing.
 
 - [ ] **Step 2: Confirm `.nvmrc`** — already set to `24.18.0` in Task 1; verify it is present and unchanged:
@@ -1588,20 +1799,27 @@ Then remove now-empty component source dirs (`src/components/nav`, `footer`, `qu
 - [ ] **Step 3: Update `.prettierrc`** — add the Astro plugin
 
 ```json
-{ "singleQuote": true, "trailingComma": "all", "printWidth": 100, "plugins": ["prettier-plugin-astro"] }
+{
+  "singleQuote": true,
+  "trailingComma": "all",
+  "printWidth": 100,
+  "plugins": ["prettier-plugin-astro"]
+}
 ```
 
 - [ ] **Step 4: Update `.circleci/config.yml`** — Node 24 image, drop separate prerender, replace test/build steps
 
 Change the docker image to `cimg/node:24.18.0-browsers`; replace the two run steps:
+
 ```yaml
-      - run:
-          name: Type check and tests
-          command: npm run check && npm test
-      - run:
-          name: Build (static, extensionless)
-          command: npm run build
+- run:
+    name: Type check and tests
+    command: npm run check && npm test
+- run:
+    name: Build (static, extensionless)
+    command: npm run build
 ```
+
 Add a Playwright browser install step before tests (`npx playwright install --with-deps chromium`). Keep the deploy step but point it at `dist` (see Step 5). Cache key stays `{{ checksum "package.json" }}` (or switch to `package-lock.json`).
 
 - [ ] **Step 5: Update `.circleci/production.sh`** — Astro `file` format already outputs `dist/*.html`, so skip react-snap's directory-rename; upload from `dist` and drop the src robots/sitemap copy (now in `dist` from `public/`).
@@ -1643,6 +1861,7 @@ gh pr create --title "Migrate to Astro (static, extensionless, a11y islands)" \
 Re-adds a git pre-commit hook (Astro ships none), plus a Claude Code project guide and shared settings. Runs last so the hook and docs reflect the final Astro setup. `.claude/settings.json` is tracked (only `.claude/worktrees/` + `.claude/settings.local.json` are gitignored).
 
 **Files:**
+
 - Create: `.husky/pre-commit`, `CLAUDE.md` (repo root), `.claude/settings.json`; Modify: `package.json` (add `prepare` script + `lint-staged` config)
 
 - [ ] **Step 1: Re-add husky v9 + lint-staged pre-commit hook**
@@ -1652,27 +1871,33 @@ Re-adds a git pre-commit hook (Astro ships none), plus a Claude Code project gui
 ```bash
 npx husky init          # creates .husky/pre-commit + adds "prepare": "husky" to package.json
 ```
+
 Set `.husky/pre-commit` contents to:
+
 ```sh
 npx lint-staged
 ```
+
 Add a `lint-staged` block to `package.json` (mirrors the old CRA intent — format + lint staged files only; Playwright and `astro check` stay in CI, not on every commit, since running them per-commit is too slow):
+
 ```json
 "lint-staged": {
   "*.{ts,astro}": ["prettier --write"],
   "*.css": ["stylelint --fix", "prettier --write"]
 }
 ```
+
 Verify: stage a trivial change and `git commit` — the hook runs prettier/stylelint on staged files and passes.
 
 - [ ] **Step 2: Create `CLAUDE.md`**
 
-````markdown
+```markdown
 # CLAUDE.md
 
 Austin Komei Jyuku dojo site — an **Astro** static site (migrated from CRA).
 
 ## Commands
+
 - `npm run dev` — dev server (http://localhost:4321)
 - `npm run build` — static build to `dist/` (extensionless `*.html`)
 - `npm run preview` — serve the built site
@@ -1681,6 +1906,7 @@ Austin Komei Jyuku dojo site — an **Astro** static site (migrated from CRA).
 - `npm run lint:style` — stylelint; `npm run prettier:write` — format
 
 ## Architecture
+
 - Static MPA: `output: 'static'`, `build.format: 'file'`, `trailingSlash: 'never'` → S3-served extensionless URLs (`/iaijutsu`).
 - Pages in `src/pages/*.astro` render through `src/layouts/StandardLayout.astro` (owns `<head>` via `SeoHead.astro` + the nav).
 - **No UI framework** — three interactive pieces are dependency-free vanilla TS `<script>` islands: nav dropdown (`Nav.astro`), parallax hero (`FullScreenParallaxImage.astro`), image gallery (`SlideGallery.astro`, CSS scroll-snap). All degrade gracefully without JS.
@@ -1688,13 +1914,15 @@ Austin Komei Jyuku dojo site — an **Astro** static site (migrated from CRA).
 - Images imported in frontmatter, used via `img.src`. JSON-LD via `<script type="application/ld+json" set:html={...}>`.
 
 ## Conventions
+
 - TypeScript strict; vanilla DOM APIs only (no React).
 - Accessibility is a hard requirement: real `<button>`/`<a>`, keyboard support, correct ARIA; pages must pass axe (no serious/critical).
 - Node 24.18.0 (`.nvmrc`).
 
 ## Deploy
+
 - CircleCI on push to `master` → build → `.circleci/production.sh` syncs `dist/` to S3 (extensionless keys) + CloudFront invalidation.
-````
+```
 
 - [ ] **Step 3: Create `.claude/settings.json`** — shared permission allowlist for this project's workflow, plus branch-from-HEAD for future worktrees
 
@@ -1720,6 +1948,7 @@ Austin Komei Jyuku dojo site — an **Astro** static site (migrated from CRA).
   "worktree": { "baseRef": "head" }
 }
 ```
+
 Note: `worktree.baseRef: "head"` makes future `EnterWorktree` branches start from local HEAD — avoids the origin/master-vs-local rebase we hit during setup. Refine the allowlist later with the `fewer-permission-prompts` skill. Keep anything sensitive out of `settings.json` and in the gitignored `settings.local.json`.
 
 - [ ] **Step 4: Commit**
@@ -1738,6 +1967,7 @@ Fixes the ~797 `stylelint-config-standard` errors on the ported legacy CSS WITHO
 **Files:** `src/**/*.css` as needed. No `.astro`/`.ts` logic changes.
 
 **Hard constraints:**
+
 - Do NOT change rendered output or any of the 8 breakpoints (320/400/480/600/768/1024/1200/1500).
 - Prefer safe mechanical fixes. Modernize deprecated syntax (legacy IE `*`/underscore hacks, deprecated color/number notation) only when rendering is provably unchanged.
 - Gate: `npm run lint:style` reports 0 errors, `npm run build` passes, `npm test` (Playwright + axe) passes, and the Task 10 visual parity pass is re-run at all 8 breakpoints with no visible diff.
@@ -1756,6 +1986,7 @@ npm run build && npm test
 npm run lint:style        # stylelint --fix: formatting, quotes, spacing, color/number notation
 npm run build
 ```
+
 Confirm the build still passes, then commit. If the husky hook (Task 12) is active, the commit re-runs `stylelint --fix` on staged CSS; that is expected. Reach a clean pass before the final commit; for intermediate WIP commits mid-cleanup you may use `git commit --no-verify`, but the LAST commit must pass the hook (0 errors).
 
 - [ ] **Step 3: Resolve remaining non-auto-fixable errors, file by file**
@@ -1769,6 +2000,7 @@ Run `npm run build`, then `npm test`, then spot-check the affected pages at the 
 - [ ] **Step 5: Final verification + commit**
 
 `npm run lint:style` → 0 errors; full `npm test` green; visual parity confirmed at all 8 breakpoints.
+
 ```bash
 git add -A
 git commit -m "style: lint cleanup and modernization of ported CSS (no visual/breakpoint change)"
@@ -1779,6 +2011,7 @@ git commit -m "style: lint cleanup and modernization of ported CSS (no visual/br
 ## Self-Review
 
 **1. Spec coverage:**
+
 - Move off CRA → Astro ✅ (Tasks 1, 11). Static generation (was react-snap) ✅ (`output:'static'` + `build.format:'file'`, Task 1; deploy Task 11). TypeScript ✅ (Task 1 tsconfig strict). CSS/breakpoints as-is ✅ (Task 2 global imports + Task 4/5/6/7 keep `.css`). Nav dropdown decision (vanilla TS, a11y/keyboard) ✅ (Task 5). Image gallery decision (Option B scroll-snap + tiny TS, responsive + a11y/keyboard) ✅ (Task 7). Parallax hero ✅ (Task 6). SEO/react-helmet ✅ (Task 3). JSON-LD ✅ (Task 8). CircleCI kept + updated ✅ (Task 11). Extensionless URL preservation ✅ (Global Constraints + Tasks 1/10/11). `/tokai` redirect ✅ (Task 8). 404 ✅ (Task 8).
 - Gap check: `robots.txt`/`sitemap.xml`/`manifest`/favicon/PWA icons → covered (Task 2 moves to `public/`; Task 3 links manifest/favicon).
 - User additions: Node 24.18.0 pin ✅ (Global Constraints + Tasks 1/11). Isolated worktree + scoped `.claude` gitignore ✅ (Execution Environment; committed on `master`). CLAUDE.md + tracked `.claude/settings.json` ✅ (Task 12). Parallax degrades without JS — static CSS-bg image + real anchor cue ✅ (Task 6). `astro check` stays green with legacy `.tsx` in-tree via tsconfig exclude ✅ (Task 1). Husky pre-commit hook re-added since Astro ships none ✅ (Task 12; stale v4 hook neutralized in Task 1). CSS lint cleanup/modernization deferred to the end, preserving all breakpoints ✅ (Task 13).

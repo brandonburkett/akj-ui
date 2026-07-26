@@ -1,0 +1,46 @@
+---
+import './dojo-notice.css';
+import type { DojoNoticeData } from '@/data/dojo-notice';
+
+interface Props {
+  notice: DojoNoticeData;
+}
+
+const { notice } = Astro.props;
+const color = notice.color ?? 'olive';
+const shortText = notice.shortText ?? notice.text;
+
+const target = notice.target ?? '_self';
+const isExternal = target === '_blank';
+
+// never hand a new tab a live window.opener
+const rel = isExternal ? 'noopener noreferrer' : undefined;
+---
+
+<section
+  class:list={['dojo-notice', `dojo-notice-${color}`]}
+  aria-label="Site notice"
+  data-notice-id={notice.id}
+  data-start={notice.start}
+  data-end={notice.end}
+>
+  <a class="dojo-notice-link" href={notice.href} target={target} rel={rel}>
+    <span class="dojo-notice-long">{notice.text}</span>
+    <span class="dojo-notice-short">{shortText}</span>
+    {isExternal && <span class="visuallyhidden">, opens in a new tab</span>}
+  </a>
+  <button class="dojo-notice-close" type="button" aria-label="Dismiss notice" hidden>
+    <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+      <path
+        d="M3 3 L13 13 M13 3 L3 13"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"></path>
+    </svg>
+  </button>
+</section>
+
+<script>
+  import { initDojoNotice } from './dojo-notice';
+  initDojoNotice();
+</script>

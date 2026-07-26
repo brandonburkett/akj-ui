@@ -11,6 +11,7 @@ src/
 ├─ pages/            one .astro per route, `<page>-images/` holds page-only images
 ├─ layouts/          StandardLayout.astro wraps every page, owns <head> and the nav
 ├─ components/       one folder per component (see below)
+├─ lib/              shared modules used by more than one component
 ├─ styles/           global CSS (master, responsive, home), fonts/, shared images/
 ├─ data/             JSON data (schema.org, etc.)
 ├─ consts.ts         site-wide constants (nav items, social links, site meta)
@@ -30,12 +31,17 @@ src/components/<Name>/
 ├─ <name>.css        styles, kebab-case
 ├─ <name>.ts         client script, only if the component is interactive
 ├─ <name>.test.ts    Vitest unit test, colocated with the code it tests
-└─ images/           component-only images
+├─ images/           component-only images
+└─ <Child>/          a component only this one renders, same shape, nested
 ```
 
 - Component folders and their `.astro` file use PascalCase, everything else is kebab-case.
 - Keep a component's markup, styles, script, test, and images together in its folder.
-- Cross-folder imports use the `@/*` alias, same-folder imports stay relative (`./`).
+- A component rendered by exactly one parent nests inside it, so the folder tree shows
+  what composes what. `NavStack/Nav/` and `NavStack/DojoNotice/` are the current cases.
+  Components with more than one consumer stay top level, like `ResponsiveImage`.
+- Cross-folder imports use the `@/*` alias, same-folder and nested-child imports stay
+  relative (`./Nav/Nav.astro`).
 - Unit tests colocate as `*.test.ts`, e2e and a11y specs live in `tests/`.
 - Page-only images live in `src/pages/<page>-images/`, component images in the component's `images/`.
 
