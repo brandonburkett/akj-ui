@@ -17,8 +17,9 @@ const isExternal = target === '_blank';
 const rel = isExternal ? 'noopener noreferrer' : undefined;
 ---
 
-<div
+<section
   class:list={['dojo-notice', `dojo-notice-${color}`]}
+  aria-label="Site notice"
   data-notice-id={notice.id}
   data-start={notice.start}
   data-end={notice.end}
@@ -37,7 +38,7 @@ const rel = isExternal ? 'noopener noreferrer' : undefined;
         stroke-linecap="round"></path>
     </svg>
   </button>
-</div>
+</section>
 
 <script>
   import { initDojoNotice } from './dojo-notice';

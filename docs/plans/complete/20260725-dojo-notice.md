@@ -10,6 +10,58 @@
 
 ---
 
+## What actually shipped
+
+The plan below is the design as written. Four things changed during implementation, all
+deliberate, and the reasoning is worth keeping because two of them were corrections to
+mistakes in this document.
+
+### The inline pre-paint script is gone, replaced by a transform
+
+The plan argued a synchronous `is:inline` script was the only way to hit zero CLS, because
+`<script type="module">` is deferred and could run after first paint. That premise was right.
+The conclusion was not.
+
+The Layout Instability spec excludes `transform` changes from shift scoring. So the stack is
+parked at `translateY(calc(-1 * var(--notice-height)))` in CSS, which **is** the dismissed
+layout, and the deferred module drops the transform only after confirming the notice should
+show. A dismissed visitor gets the final result on the first paint and the module is a no-op.
+A first-time visitor gets a 220ms slide-down that reads as intentional.
+
+This removed 348 gzipped bytes per page, let the client use `storage` properly instead of a
+raw `localStorage` call, and gave the script minification and TypeScript back.
+
+Cost, accepted: no-JS visitors never see the notice, since the parked state is the CSS default.
+
+### Parking hides, it does not remove
+
+First attempt at the above called `notice.remove()` in the parked path. That scored **0.0038**
+CLS on the dismissed path, caught by a `PerformanceObserver` probe. Removing the element moved
+the masthead's _layout_ position from `y=38` to `y=0` even though the transform kept it
+visually still, and Chromium scores that.
+
+Parking is now `visibility: hidden` in CSS and the dismissed path in `initDojoNotice` does
+nothing at all. `visibility` also drops the notice from the a11y tree and tab order, which
+removes the off-screen-focusable-link problem.
+
+Residual CLS is **0.000229**, from the Amble webfont re-measuring `.brand-title`. Verified
+identical on `master` with no notice present, so it is pre-existing and not ours.
+
+### NavStack owns the composition
+
+`StandardLayout` is just `<NavStack />`. `NavStack` holds the notice-or-bare-nav decision and
+the `.nav-stack` CSS. `Nav/` and `DojoNotice/` are nested inside `NavStack/`, since it is
+their only consumer. `CODE_STYLE.md` documents that nesting convention.
+
+### No build-time date prune
+
+The plan had frontmatter dropping a notice whose end date had passed. Dropped, because it was
+a second implementation of the date rule running on a UTC clock while the real one runs on the
+visitor's local clock, and because it pruned past-dated notices while deliberately not pruning
+future-dated ones, which is arbitrary. The layout now only asks whether a notice is configured.
+
+---
+
 ## Design decisions
 
 Settled during brainstorming. The non-obvious ones are recorded with their reasoning so they are not relitigated or accidentally reverted.
@@ -34,12 +86,12 @@ This rules out IndexedDB. It is async, so it can never answer before paint, and 
 
 Measured cost of the synchronous read, Chromium, against the real mock:
 
-| Case | Cost |
-|---|---|
-| cold first read, 10 fresh profiles | below `performance.now()` resolution (< 5µs) |
-| warm read, averaged over 1000 | ~0.0001ms (~100ns) |
-| full inline script, dates + read | median and p95 both below resolution |
-| storage disabled (`--disable-local-storage`) | below resolution, throws immediately |
+| Case                                         | Cost                                         |
+| -------------------------------------------- | -------------------------------------------- |
+| cold first read, 10 fresh profiles           | below `performance.now()` resolution (< 5µs) |
+| warm read, averaged over 1000                | ~0.0001ms (~100ns)                           |
+| full inline script, dates + read             | median and p95 both below resolution         |
+| storage disabled (`--disable-local-storage`) | below resolution, throws immediately         |
 
 Roughly six orders of magnitude below a typical FCP. The cold read does not register because Chromium materializes the origin's store during navigation, off the critical path.
 
@@ -50,11 +102,11 @@ Roughly six orders of magnitude below a typical FCP. The cold read does not regi
 Pass the raw `YYYY-MM-DD` strings into the inline script and parse them in the browser. Always append a time component, because a bare `YYYY-MM-DD` is parsed as **UTC** per spec while a date-time without an offset is parsed as **local**:
 
 ```js
-var startMs = Date.parse(start + 'T00:00:00');       // local midnight, inclusive
-var endMs = Date.parse(end + 'T23:59:59.999');       // through the end of that day, inclusive
+var startMs = Date.parse(start + 'T00:00:00'); // local midnight, inclusive
+var endMs = Date.parse(end + 'T23:59:59.999'); // through the end of that day, inclusive
 ```
 
-The build-time check uses the same parse on the CI box. That is fine, because the build check only ever *prunes*, so a few hours of UTC skew costs at most one extra deploy carrying dead markup.
+The build-time check uses the same parse on the CI box. That is fine, because the build check only ever _prunes_, so a few hours of UTC skew costs at most one extra deploy carrying dead markup.
 
 ### Build time can only remove, runtime decides what shows
 
@@ -81,15 +133,15 @@ A × that renders without a working handler is a dead control. So the button shi
 
 Every state resolves before first paint. Page content cannot move in any of them, because the stack is `position: fixed` with nothing in flow behind it. Only the masthead moves, and only inside the stack.
 
-| State | HTML ships | Inline script does | Shift |
-|---|---|---|---|
-| No notice, or `end` passed before build | nothing | n/a | none |
-| Live, first visit | notice + hidden × | leaves it | none |
-| Live, previously dismissed | notice + hidden × | removes pre-paint | none, never painted |
-| Built early, `start` not yet reached | notice + hidden × | removes pre-paint | none, never painted |
-| Live, storage blocked | notice + hidden × | `getItem` throws, caught, × stays hidden | none |
-| Live, JS disabled | notice + hidden × | never runs | none |
-| User clicks × | — | removes notice, masthead rises | excluded, within 500ms of user input |
+| State                                   | HTML ships        | Inline script does                       | Shift                                |
+| --------------------------------------- | ----------------- | ---------------------------------------- | ------------------------------------ |
+| No notice, or `end` passed before build | nothing           | n/a                                      | none                                 |
+| Live, first visit                       | notice + hidden × | leaves it                                | none                                 |
+| Live, previously dismissed              | notice + hidden × | removes pre-paint                        | none, never painted                  |
+| Built early, `start` not yet reached    | notice + hidden × | removes pre-paint                        | none, never painted                  |
+| Live, storage blocked                   | notice + hidden × | `getItem` throws, caught, × stays hidden | none                                 |
+| Live, JS disabled                       | notice + hidden × | never runs                               | none                                 |
+| User clicks ×                           | —                 | removes notice, masthead rises           | excluded, within 500ms of user input |
 
 ---
 
@@ -135,25 +187,22 @@ docs/
 
 **Files:** create `src/lib/storage.ts`, `src/lib/storage.test.ts`; edit `vitest.config.ts`, `docs/CODE_STYLE.md`
 
-**Interfaces — Produces:**
+**Interfaces — Produces:** a `storage` object wrapping `window.localStorage` specifically,
+never `sessionStorage` and with no fallback to one. It owns the `akj:` key prefix so callers
+pass bare names, and never throws: every method degrades to `null` or `false` when storage is
+unavailable, which is the case in Safari private mode and with cookies blocked.
 
-```ts
-/**
- * Namespaced wrapper around window.localStorage, specifically. Not sessionStorage,
- * and it does not fall back to one. Owns the `akj:` key prefix so callers pass bare
- * names, and never throws: every method degrades to null/false when storage is
- * unavailable, which is the case in Safari private mode and with cookies blocked.
- */
-export const storage = {
-  key(name: string): string,                                     // 'dojo-notice' -> 'akj:dojo-notice'
-  isAvailable(store?: Storage): boolean,
-  read(name: string, store?: Storage): string | null,
-  write(name: string, value: string, store?: Storage): boolean,  // false if it threw
-  remove(name: string, store?: Storage): boolean,
-};
-```
+| Method               | Returns          | Notes                                       |
+| -------------------- | ---------------- | ------------------------------------------- |
+| `key(name)`          | `string`         | `'dojo-notice'` becomes `'akj:dojo-notice'` |
+| `isAvailable()`      | `boolean`        | probes with a write, see below              |
+| `read(name)`         | `string \| null` | `null` when unset and when unavailable      |
+| `write(name, value)` | `boolean`        | `false` if it threw                         |
+| `remove(name)`       | `boolean`        | `false` if it threw                         |
 
-The injected parameter is `store`, not `storage`, so it does not shadow the exported const inside the module.
+The module exports a plain object literal and lets TypeScript infer the shape, so there is no
+named type to keep in sync. The plan originally gave each method an injected `store?: Storage`
+parameter for testability; dropped, since `vi.stubGlobal` covers it with no production surface.
 
 - [ ] **Step 1: Write `src/lib/storage.test.ts` (failing).** Cover: `key()` applies the `akj:` prefix once; read/write/remove round trip against jsdom's `localStorage`; `isAvailable()` true under jsdom; an injected `Storage` whose methods throw makes `read` return `null`, `write` return `false`, `remove` return `false`, and `isAvailable` return `false`; and the property-access case, where `window.localStorage` itself throws (simulate with `Object.defineProperty(window, 'localStorage', { get() { throw new Error('blocked'); }, configurable: true })` and restore afterwards).
 
@@ -274,7 +323,9 @@ The injected parameter is `store`, not `storage`, so it does not shadow the expo
   import { storage } from '@/lib/storage';
   import type { DojoNoticeData } from '@/data/dojo-notice';
 
-  interface Props { notice: DojoNoticeData; }
+  interface Props {
+    notice: DojoNoticeData;
+  }
 
   const { notice } = Astro.props;
   const color = notice.color ?? 'olive';
@@ -292,7 +343,10 @@ The injected parameter is `store`, not `storage`, so it does not shadow the expo
   Pass `start`/`end` as **strings**, not epochs, per the local-time decision above. `storageKey` comes from `storage.key()` evaluated in frontmatter, so the `akj:` prefix has exactly one definition.
 
   ```astro
-  <script is:inline define:vars={{ noticeId: notice.id, start: notice.start, end: notice.end, storageKey }}>
+  <script
+    is:inline
+    define:vars={{ noticeId: notice.id, start: notice.start, end: notice.end, storageKey }}
+  >
     (function () {
       var el = document.querySelector('.dojo-notice');
       if (!el) {
@@ -394,14 +448,16 @@ The injected parameter is `store`, not `storage`, so it does not shadow the expo
 - [ ] **Step 2: Render the stack conditionally.** The skip link stays first in `<body>`. When there is no notice, render a bare `<Nav />` exactly as today, so the masthead keeps its own `position: fixed` and the current layout is untouched:
 
   ```astro
-  {notice ? (
-    <div class="top-stack">
-      <DojoNotice notice={notice} />
+  {
+    notice ? (
+      <div class="top-stack">
+        <DojoNotice notice={notice} />
+        <Nav />
+      </div>
+    ) : (
       <Nav />
-    </div>
-  ) : (
-    <Nav />
-  )}
+    )
+  }
   ```
 
 - [ ] **Step 3: Verify both branches.** Build once with `DOJO_NOTICE` set and confirm `dist/index.html` contains `class="top-stack"` and `data-notice-id`. Then temporarily set it to `null`, rebuild, and confirm neither string appears and the emitted `<body>` matches the current site. Restore the data afterwards.
@@ -431,7 +487,9 @@ The injected parameter is `store`, not `storage`, so it does not shadow the expo
     ```ts
     await page.addInitScript(() => {
       Object.defineProperty(window, 'localStorage', {
-        get() { throw new Error('blocked'); },
+        get() {
+          throw new Error('blocked');
+        },
       });
     });
     ```

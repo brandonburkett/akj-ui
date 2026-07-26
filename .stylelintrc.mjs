@@ -8,7 +8,10 @@ export default {
     'no-descending-specificity': null,
     // keep the non-standard webkit idioms autoprefixer can't generate: appearance reset
     // (button/textfield), iOS momentum scroll. Regex matches the prefixed form stylelint 17 checks.
-    'property-no-vendor-prefix': [true, { ignoreProperties: [/appearance$/, /overflow-scrolling$/] }],
+    'property-no-vendor-prefix': [
+      true,
+      { ignoreProperties: [/appearance$/, /overflow-scrolling$/] },
+    ],
     // value-no-vendor-prefix + selector-no-vendor-prefix are inherited from config-standard (no override needed)
     // .visuallyhidden hides content via `clip: rect(...)` — the robust screen-reader pattern; clip-path is not a drop-in
     'property-no-deprecated': [true, { ignoreProperties: ['clip'] }],
