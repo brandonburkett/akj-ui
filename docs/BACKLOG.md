@@ -6,21 +6,19 @@ Deferred post-migration follow-ups. Not blocking, tackled as time allows.
 
 | Priority  | Item                                                    |
 | --------- | ------------------------------------------------------- |
-| 🔴 High   | [Broader dead-CSS sweep](#broader-dead-css-sweep)       |
-| 🟡 Medium | [CSS colour variables](#css-colour-variables)           |
 | 🟡 Medium | [Images to `astro:assets`](#images-to-astroassets)      |
+| 🟡 Medium | [Font loading](#font-loading)                           |
 | 🟢 Low    | [Page-scope `home.css`](#page-scope-homecss)            |
 | 🟢 Low    | [DRY the breakpoints](#dry-the-breakpoints)             |
 | 🟢 Low    | [Nav to native Popover API](#nav-to-native-popover-api) |
 | 🟢 Low    | [`@astrojs/sitemap`](#astrojssitemap)                   |
 | 🟢 Low    | [Lightning CSS](#lightning-css)                         |
 
-## CSS colour variables
+## Font loading
 
-- The palette is duplicated as literals across 10 CSS files, and the same colour appears in more than one notation. `rgb(067 091 013)` and `#435b0d` are byte-identical, split across `master.css`, `footer.css`, `nav.css` (twice), `quote.css`, and `dojo-notice.css`. Black and white have the same problem: `#000` ×10 vs `rgb(0 0 0)` ×4, `#fff` ×25 vs `rgb(255 255 255)` ×2, and `rgb(000 000 000 / 90%)` vs `rgb(0 0 0 / 90%)`.
-- Worth naming, by frequency: `#fff` 25, `#eae6db` cream 16, `#000` 10, `#d1d1d1` 8, `#435b0d` olive 7, `#394352` slate 6, `#2d3d09` dark olive 6, `#595959` 5, `#fffaf4` 4, `#b00000` red 2, `#aaa88f` sage 2, `rgb(110 024 011)` deep red 1.
-- Extend the `:root` block already in `master.css` (it holds `--focus-ring-band`). Custom properties resolve at computed-value time, so bundle order does not matter and every component sheet can use them.
-- Purely additive to define, so the risk is all in the migration. Needs a full screenshot pass, which pairs it with the dead-CSS sweep.
+- No `@font-face` sets `font-display`, so all 8 fall back to `auto`, which browsers treat as `block`. Text stays invisible for up to 3s on a slow connection. `swap` fixes it.
+- There are no woff2 files. woff2 is roughly 30% smaller than woff and every browserslist target supports it. Generating them and listing woff2 first in each `src` is the biggest single font win.
+- 5 of the 8 families (`ambleregular`, `amblelight`, `ambleitalic`, `amblebold_italic`, `amblelight_italic`) are declared but nothing uses them. Kept on purpose so they are there when wanted. Browsers never fetch an unmatched face, so this costs deploy size only, not page speed.
 
 ## Page-scope `home.css`
 
@@ -31,6 +29,7 @@ Deferred post-migration follow-ups. Not blocking, tackled as time allows.
 ## DRY the breakpoints
 
 - 37 `@media (min-width: …)` blocks repeat 8 values: 320 ×8, 400 ×2, 480 ×5, 600 ×6, 768 ×4, 1024 ×5, 1200 ×5, 1500 ×2.
+- The 8 values are also the only breakpoints, so a `--bp-*` set would cover every query with no exceptions.
 - **Custom properties cannot do this.** `@media (min-width: var(--bp-600))` is invalid and silently never matches, because `var()` resolves at computed-value time against an element and media queries are evaluated with no element context.
 - The mechanism is `@custom-media` from Media Queries Level 5, which no browser supports natively, so it has to be a build-time transform.
 - Lightning CSS supports `@custom-media`, so this largely falls out of that migration. Otherwise add `postcss-custom-media` to the chain already running autoprefixer.
@@ -53,7 +52,3 @@ Deferred post-migration follow-ups. Not blocking, tackled as time allows.
 
 - v7 makes lightningcss the default minifier, but we pin `cssMinify: 'esbuild'` so autoprefixer's prefixes survive.
 - Later, adopt lightningcss as the full transformer with `browserslist` targets, drop PostCSS, and re-verify prefixes.
-
-## Broader dead-CSS sweep
-
-- Grep every `master.css` selector and delete unreferenced rules.

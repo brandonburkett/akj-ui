@@ -5,7 +5,7 @@
   height: 55px;
   top: 0;
   left: 0;
-  background: rgb(000 000 000 / 90%);
+  background: rgb(0 0 0 / 90%);
   box-sizing: border-box;
 
   /* three-zone flex row: logo | title | menu */
@@ -45,7 +45,7 @@
 .brand-title {
   flex: 0 1 auto;
   font-size: 1.2rem;
-  color: #fff;
+  color: var(--white);
   text-decoration: none;
   white-space: nowrap;
 }
@@ -58,14 +58,10 @@
   align-items: center;
   justify-content: flex-end;
   position: relative;
-  background: rgb(000 000 000 / 0%);
+  background: rgb(0 0 0 / 0%);
 
   /* should stay on top of everything */
   z-index: 100;
-}
-
-.site-menu.open {
-  background: rgb(000 000 000 / 0%);
 }
 
 .menu-title {
@@ -81,9 +77,9 @@
 
 /* Main Navigation Menubar */
 .menu-bar {
-  background: rgb(000 000 000 / 90%);
-  box-shadow: 0 0 10px 2px rgb(000 000 000);
-  color: #fff;
+  background: rgb(0 0 0 / 90%);
+  box-shadow: 0 0 10px 2px var(--black);
+  color: var(--white);
   width: 250px;
   padding: 5px 0 0;
   position: absolute;
@@ -143,7 +139,7 @@
 
 .menu-bar .nav-parent:link,
 .menu-bar .nav-parent:visited {
-  color: #fff;
+  color: var(--white);
   text-decoration: none;
   padding: 10px 15px;
   display: block;
@@ -153,17 +149,17 @@
 
 .menu-bar .nav-parent:hover,
 .menu-bar .nav-parent:focus-visible {
-  background: rgb(067 091 013);
+  background: var(--olive);
 }
 
 /* Social Links */
 .social {
   display: flex;
   justify-content: space-around;
-  border-top: 1px solid #000;
+  border-top: 1px solid var(--black);
   height: 60px;
   text-align: center;
-  background: rgb(067 091 013);
+  background: var(--olive);
 }
 
 .social-link {
@@ -175,7 +171,7 @@
 
 .social-link:hover,
 .social-link:focus-visible {
-  background: #fff;
+  background: var(--white);
 }
 
 .social-icon {

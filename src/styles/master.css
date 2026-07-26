@@ -1,98 +1,91 @@
-/* Font Faces 3 */
+/* Font Faces. eot (IE) and svg (Safari <=4) dropped, no browserslist target can request them. */
 @font-face {
   font-family: amblebold;
-  src: url('./fonts/Amble-Bold-webfont.eot');
   src:
-    url('./fonts/Amble-Bold-webfont.eot?#iefix') format('embedded-opentype'),
     url('./fonts/Amble-Bold-webfont.woff') format('woff'),
-    url('./fonts/Amble-Bold-webfont.ttf') format('truetype'),
-    url('./fonts/Amble-Bold-webfont.svg#amblebold') format('svg');
+    url('./fonts/Amble-Bold-webfont.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'amblebold_italic';
-  src: url('./fonts/Amble-BoldItalic-webfont.eot');
   src:
-    url('./fonts/Amble-BoldItalic-webfont.eot?#iefix') format('embedded-opentype'),
     url('./fonts/Amble-BoldItalic-webfont.woff') format('woff'),
-    url('./fonts/Amble-BoldItalic-webfont.ttf') format('truetype'),
-    url('./fonts/Amble-BoldItalic-webfont.svg#amblebold_italic') format('svg');
+    url('./fonts/Amble-BoldItalic-webfont.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: ambleitalic;
-  src: url('./fonts/Amble-Italic-webfont.eot');
   src:
-    url('./fonts/Amble-Italic-webfont.eot?#iefix') format('embedded-opentype'),
     url('./fonts/Amble-Italic-webfont.woff') format('woff'),
-    url('./fonts/Amble-Italic-webfont.ttf') format('truetype'),
-    url('./fonts/Amble-Italic-webfont.svg#ambleitalic') format('svg');
+    url('./fonts/Amble-Italic-webfont.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: amblelight;
-  src: url('./fonts/Amble-Light-webfont.eot');
   src:
-    url('./fonts/Amble-Light-webfont.eot?#iefix') format('embedded-opentype'),
     url('./fonts/Amble-Light-webfont.woff') format('woff'),
-    url('./fonts/Amble-Light-webfont.ttf') format('truetype'),
-    url('./fonts/Amble-Light-webfont.svg#amblelight') format('svg');
+    url('./fonts/Amble-Light-webfont.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'amblelight_condensed';
-  src: url('./fonts/Amble-LightCondensed-webfont.eot');
   src:
-    url('./fonts/Amble-LightCondensed-webfont.eot?#iefix') format('embedded-opentype'),
     url('./fonts/Amble-LightCondensed-webfont.woff') format('woff'),
-    url('./fonts/Amble-LightCondensed-webfont.ttf') format('truetype'),
-    url('./fonts/Amble-LightCondensed-webfont.svg#amblelight_condensed') format('svg');
+    url('./fonts/Amble-LightCondensed-webfont.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'amblelight_condensed_italic';
-  src: url('./fonts/Amble-LightCondensedItalic-webfont.eot');
   src:
-    url('./fonts/Amble-LightCondensedItalic-webfont.eot?#iefix') format('embedded-opentype'),
     url('./fonts/Amble-LightCondensedItalic-webfont.woff') format('woff'),
-    url('./fonts/Amble-LightCondensedItalic-webfont.ttf') format('truetype'),
-    url('./fonts/Amble-LightCondensedItalic-webfont.svg#amblelight_condensed_italic') format('svg');
+    url('./fonts/Amble-LightCondensedItalic-webfont.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'amblelight_italic';
-  src: url('./fonts/Amble-LightItalic-webfont.eot');
   src:
-    url('./fonts/Amble-LightItalic-webfont.eot?#iefix') format('embedded-opentype'),
     url('./fonts/Amble-LightItalic-webfont.woff') format('woff'),
-    url('./fonts/Amble-LightItalic-webfont.ttf') format('truetype'),
-    url('./fonts/Amble-LightItalic-webfont.svg#amblelight_italic') format('svg');
+    url('./fonts/Amble-LightItalic-webfont.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: ambleregular;
-  src: url('./fonts/Amble-Regular-webfont.eot');
   src:
-    url('./fonts/Amble-Regular-webfont.eot?#iefix') format('embedded-opentype'),
     url('./fonts/Amble-Regular-webfont.woff') format('woff'),
-    url('./fonts/Amble-Regular-webfont.ttf') format('truetype'),
-    url('./fonts/Amble-Regular-webfont.svg#ambleregular') format('svg');
+    url('./fonts/Amble-Regular-webfont.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
+}
+
+/* Palette. Only colours the site actually renders live here. The boilerplate
+   element defaults (code, mark, ins, kbd and friends) keep their literals on
+   purpose, naming them would imply they are part of the design system. */
+:root {
+  --white: #fff;
+  --black: #000;
+  --cream: #eae6db;
+  --sage: #aaa88f;
+  --olive: #435b0d;
+  --olive-dark: #2d3d09;
+  --slate: #394352;
+  --red-deep: #6e180b;
+
+  /* Two-tone so one band always contrasts, cream panels through photo heroes */
+  --focus-ring-band: 0 0 0 2px var(--cream);
 }
 
 /* CSS Reset and Defaults */
@@ -234,28 +227,7 @@ table {
   clear: both;
 }
 
-.group {
-  zoom: 1;
-}
-
-/* Clear */
-.clear {
-  clear: both;
-  display: block;
-  overflow: hidden;
-  visibility: hidden;
-  width: 0;
-  height: 0;
-}
-
 /* HTML5 Boilerplate: http://html5boilerplate.com/ */
-header,
-hgroup,
-nav,
-section {
-  display: block;
-}
-
 audio,
 canvas,
 video {
@@ -292,17 +264,12 @@ body {
 
 ::selection {
   background: #37515a;
-  color: #fff;
-  text-shadow: 1px 1px 3px #000;
-}
-
-/* Two-tone so one band always contrasts, cream panels through photo heroes */
-:root {
-  --focus-ring-band: 0 0 0 2px #eae6db;
+  color: var(--white);
+  text-shadow: 1px 1px 3px var(--black);
 }
 
 :focus-visible {
-  outline: 3px solid #2d3d09;
+  outline: 3px solid var(--olive-dark);
   outline-offset: 2px;
   box-shadow: var(--focus-ring-band);
 }
@@ -314,8 +281,8 @@ body {
   left: 8px;
   z-index: 101;
   padding: 10px 16px;
-  background: #eae6db;
-  color: #2d3d09;
+  background: var(--cream);
+  color: var(--olive-dark);
   border-radius: 3px;
   text-decoration: none;
   transition: top 0.15s ease-out;
@@ -386,13 +353,13 @@ input[type='submit'] {
 
 input[type='submit'] {
   padding: 5px;
-  border: 1px solid rgb(067 091 013);
+  border: 1px solid var(--olive);
   transition: background 0.25s;
-  background: #fff;
+  background: var(--white);
 }
 
 input[type='submit']:hover {
-  background: #eae6db;
+  background: var(--cream);
 }
 
 button[disabled],
@@ -432,13 +399,6 @@ td {
   vertical-align: top;
 }
 
-.chromeframe {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: black;
-  padding: 0.2em 0;
-}
-
 /* Body */
 html,
 body {
@@ -446,11 +406,15 @@ body {
   position: relative;
   font-family: 'amblelight_condensed', sans-serif;
   font-size: 100%;
-  background: #fff;
-  color: #fff;
+  background: var(--white);
+  color: var(--white);
 }
 
 /* Base 960 Grid for Browsers that Don't Support @media */
+
+/* Column-in-column rules (.cs12 .cs3 and friends) were dropped, no page nests
+   columns. Nest one and the inner span keeps its own width instead of the
+   narrower nested value, so restore them from git if the layout ever needs it. */
 .fc {
   margin-left: 0 !important;
 }
@@ -525,241 +489,45 @@ body {
   width: 920px;
 }
 
-.cs2 .cs1,
-.cs3 .cs1,
-.cs4 .cs1,
-.cs5 .cs1,
-.cs6 .cs1,
-.cs7 .cs1,
-.cs8 .cs1,
-.cs9 .cs1,
-.cs10 .cs1,
-.cs11 .cs1,
-.cs12 .cs1 {
-  width: 40px;
-  margin-left: 20px;
-  margin-right: 20px;
-}
-
-.cs3 .cs2,
-.cs4 .cs2,
-.cs5 .cs2,
-.cs6 .cs2,
-.cs7 .cs2,
-.cs8 .cs2,
-.cs9 .cs2,
-.cs10 .cs2,
-.cs11 .cs2,
-.cs12 .cs2 {
-  width: 120px;
-  margin-left: 20px;
-  margin-right: 20px;
-}
-
-.cs4 .cs3,
-.cs5 .cs3,
-.cs6 .cs3,
-.cs7 .cs3,
-.cs8 .cs3,
-.cs9 .cs3,
-.cs10 .cs3,
-.cs11 .cs3,
-.cs12 .cs3 {
-  width: 220px;
-  margin-left: 20px;
-  margin-right: 20px;
-}
-
-.cs5 .cs4,
-.cs6 .cs4,
-.cs7 .cs4,
-.cs8 .cs4,
-.cs9 .cs4,
-.cs10 .cs4,
-.cs11 .cs4,
-.cs12 .cs4 {
-  width: 280px;
-  margin-left: 20px;
-  margin-right: 20px;
-}
-
-.cs6 .cs5,
-.cs7 .cs5,
-.cs8 .cs5,
-.cs9 .cs5,
-.cs10 .cs5,
-.cs11 .cs5,
-.cs12 .cs5 {
-  width: 360px;
-  margin-left: 20px;
-  margin-right: 20px;
-}
-
-.cs7 .cs6,
-.cs8 .cs6,
-.cs9 .cs6,
-.cs10 .cs6,
-.cs11 .cs6,
-.cs12 .cs6 {
-  width: 440px;
-  margin-left: 20px;
-  margin-right: 20px;
-}
-
-.cs8 .cs7,
-.cs9 .cs7,
-.cs10 .cs7,
-.cs11 .cs7,
-.cs12 .cs7 {
-  width: 520px;
-  margin-left: 20px;
-  margin-right: 20px;
-}
-
-.cs9 .cs8,
-.cs10 .cs8,
-.cs11 .cs8,
-.cs12 .cs8 {
-  width: 600px;
-  margin-left: 20px;
-  margin-right: 20px;
-}
-
-.cs10 .cs9,
-.cs11 .cs9,
-.cs12 .cs9 {
-  width: 680px;
-  margin-left: 20px;
-  margin-right: 20px;
-}
-
-.cs11 .cs10,
-.cs12 .cs10 {
-  width: 760px;
-  margin-left: 20px;
-  margin-right: 20px;
-}
-
-.cs12 .cs11 {
-  width: 840px;
-  margin-left: 20px;
-  margin-right: 20px;
-}
-
-/* CSS3 Columns */
-.c2 {
-  column-count: 2;
-  column-gap: 20px;
-}
-
-.c3 {
-  column-count: 3;
-  column-gap: 20px;
-}
-
-.c4 {
-  column-count: 4;
-  column-gap: 20px;
-}
-
-.c5 {
-  column-count: 5;
-  column-gap: 20px;
-}
-
-.c6 {
-  column-count: 6;
-  column-gap: 20px;
-}
-
-.c7 {
-  column-count: 7;
-  column-gap: 20px;
-}
-
-.c8 {
-  column-count: 8;
-  column-gap: 20px;
-}
-
-.c9 {
-  column-count: 9;
-  column-gap: 20px;
-}
-
-.c10 {
-  column-count: 10;
-  column-gap: 20px;
-}
-
-.c11 {
-  column-count: 11;
-  column-gap: 20px;
-}
-
-.c12 {
-  column-count: 12;
-  column-gap: 20px;
-}
-
-/* Non Grid Columns */
-.half {
-  float: left;
-  width: 47%;
-  margin: 0 2% 0 0;
-}
-
-.third {
-  float: left;
-  width: 30%;
-  margin: 0 2% 0 0;
-}
-
-.quarter {
-  float: left;
-  width: 22%;
-  margin: 0 2% 0 0;
-}
-
 /* Sections */
 h1 {
   font-size: 4em;
   margin: 0 0 10px;
-  color: #394352;
+  color: var(--slate);
   line-height: 1em;
 }
 
 h2 {
   font-size: 2.5em;
   margin: 0 0 10px;
-  color: #394352;
+  color: var(--slate);
   line-height: 1em;
 }
 
 h3 {
   font-size: 2em;
   margin: 0 0 10px;
-  color: #394352;
+  color: var(--slate);
   line-height: 1em;
 }
 
 h4 {
   font-size: 1.2em;
-  color: #394352;
+  color: var(--slate);
   font-weight: bold;
   margin: 0 0 10px;
 }
 
 h5 {
   font-size: 1.1em;
-  color: #394352;
+  color: var(--slate);
   font-weight: bold;
   margin: 0 0 10px;
 }
 
 h6 {
   font-size: 1em;
-  color: #394352;
+  color: var(--slate);
   font-weight: bold;
   margin: 0 0 10px;
 }
@@ -792,7 +560,7 @@ hr {
 
 hr.dark {
   /* margin: 0 0 1em 0; */
-  border-top: 1px solid #000;
+  border-top: 1px solid var(--black);
 }
 
 hr.dark + h3 {
@@ -804,12 +572,10 @@ code,
 kbd,
 samp {
   font-family: monospace, serif;
-  _font-family: 'courier new', monospace;
   font-size: 1em;
 }
 
 pre {
-  white-space: pre;
   white-space: pre-wrap;
   overflow-wrap: break-word;
 }
@@ -868,7 +634,6 @@ q {
 
 q::before,
 q::after {
-  content: '';
   content: none;
 }
 
@@ -903,7 +668,7 @@ code {
 }
 
 var {
-  color: #000;
+  color: var(--black);
   font:
     italic normal normal 1.2em Georgia,
     serif;
@@ -914,7 +679,7 @@ samp {
     normal normal normal 100% Courier,
     monospace;
   color: #333;
-  background: #fff;
+  background: var(--white);
   padding: 0.2em 0.4em;
   border: 1px solid #d1d1d1;
   border-radius: 3px;
@@ -925,14 +690,14 @@ kbd {
   font:
     normal normal normal 100% Courier,
     monospace;
-  color: #000;
+  color: var(--black);
   background: #595959;
   padding: 0.2em 0.4em;
   border-radius: 3px;
   display: inline;
   border: 1px solid #d1d1d1;
   background-color: #ddd;
-  background-image: linear-gradient(to bottom, #ddd, #fff);
+  background-image: linear-gradient(to bottom, #ddd, var(--white));
 }
 
 sub,
@@ -995,36 +760,14 @@ img {
   vertical-align: middle;
 }
 
-embed {
-  /* remove if unstyled */
-}
-
-object {
-  /* remove if unstyled */
-}
-
-param {
-  /* remove if unstyled */
-}
-
-video {
-  /* remove if unstyled */
-}
-
-.max-img {
-  width: auto;
-  max-width: 100%;
-  display: block;
-}
-
 /* Hyperlinks */
 .link:link,
 .link:visited {
   text-decoration: none;
 
-  /* darkened from #435b0d: fails WCAG AA (3.17:1) on the olive info panel (#aaa88f) */
-  color: #2d3d09;
-  border-bottom: 1px solid #2d3d09;
+  /* darkened from var(--olive): fails WCAG AA (3.17:1) on the olive info panel (var(--sage)) */
+  color: var(--olive-dark);
+  border-bottom: 1px solid var(--olive-dark);
   padding-left: 0.1em;
   padding-right: 0.1em;
 }
@@ -1032,12 +775,12 @@ video {
 .link:hover,
 .link:visited:hover,
 .link:focus-visible {
-  color: #fff;
-  background: #2d3d09;
+  color: var(--white);
+  background: var(--olive-dark);
   padding: 0.1em;
   text-decoration: none;
   border-bottom: none;
-  text-shadow: 1px 1px 2px #000;
+  text-shadow: 1px 1px 2px var(--black);
   border-radius: 3px;
 }
 
@@ -1078,68 +821,9 @@ video {
   padding-left: 0;
 }
 
-.dl {
-  margin: 0 0 1.2em;
-}
-
-.dl dt {
-  font-family: amblebold, sans-serif;
-  color: #444;
-  margin: 0.5em 0;
-  line-height: 1.2em;
-}
-
-.dl dd {
-  margin: 0.5em 0;
-  padding: 0 0 0 0.5em;
-  line-height: 1.2em;
-}
-
 /* Tablular Data */
-.table {
-  margin: 0.2em 0 1.8em;
-  width: 100%;
-}
-
-.table caption {
-  text-align: left;
-  font-size: 1.2em;
-  font-family: amblebold, sans-serif;
-  margin: 1em 0 0.2em;
-}
-
-.table th,
-.table td {
-  padding: 0.4em 0.8em;
-  border-right: 1px solid #d1d1d1;
-  border-bottom: 1px solid #d1d1d1;
-}
-
 tr {
   border-left: 1px solid #d1d1d1;
-}
-
-/* Notices */
-.notice {
-  margin: 0 0 1.2em;
-  border: 1px solid #777;
-  padding: 0.8em 1em 0;
-  background: #f1f1f1;
-  color: #515151;
-  border-radius: 2px;
-}
-
-.notice h2 {
-  font-size: 1.2em;
-  color: #515151;
-}
-
-/* Content */
-.teaser {
-  margin: 1em 0;
-  padding: 0 0 1em;
-  color: #000;
-  display: block;
 }
 
 /*******************************************
@@ -1152,114 +836,8 @@ tr {
   min-height: 100vh;
 }
 
-#about .content {
-  padding: 60px 0;
-}
-
-.cards {
-  padding: 20px 0 0;
-  text-align: center;
-}
-
-.card {
-  color: rgb(0 0 0);
-  color: rgb(0 0 0 / 80%);
-  box-shadow: 2px 4px 8px 0 rgb(0 0 0);
-  box-shadow: 2px 4px 8px 0 rgb(0 0 0 / 30%);
-  font-family: arial, sans-serif;
-  font-weight: bold;
-  position: relative;
-  margin: 20px auto;
-  font-size: 0.8em;
-  background-color: #f1f1f1;
-  background-image: linear-gradient(to bottom, #f1f1f1, #fdfdfd);
-  width: 100%;
-  max-width: 300px;
-  text-align: left;
-}
-
-.card img {
-  position: absolute;
-  width: 100px;
-}
-
-.card h4 {
-  color: rgb(0 0 0);
-  color: rgb(0 0 0 / 80%);
-}
-
-.one {
-  transform: rotate(1deg);
-}
-
-.two {
-  transform: rotate(0deg);
-}
-
-.three {
-  transform: rotate(-0.5deg);
-}
-
-.icons {
-  padding: 0 40px;
-}
-
-/* forms */
-.form-button {
-  font:
-    100% arial,
-    sans-serif;
-  margin: 0 0 0.5em;
-  padding: 0.2em 0.8em;
-  border-radius: 3px;
-  background-color: #eae6db;
-  cursor: pointer;
-}
-
-.form-button:hover,
-.form-button:focus-visible {
-  text-decoration: none;
-  background-color: #eae6db !important;
-}
-
-/* Misc */
-.tar {
-  text-align: right;
-}
-
-.tac {
-  text-align: center;
-}
-
-.space {
-  position: relative;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
-
 /*******************************************
  HTML5 Boilerplate Cont. Leave at Bottom */
-.ir {
-  display: block;
-  border: 0;
-  text-indent: -999em;
-  overflow: hidden;
-  background-color: transparent;
-  background-repeat: no-repeat;
-  text-align: left;
-  direction: ltr;
-}
-
-.ir br {
-  display: none;
-}
-
-.hidden {
-  display: none;
-}
-
 .visuallyhidden {
   border: 0;
   clip: rect(0 0 0 0);
@@ -1269,16 +847,6 @@ tr {
   padding: 0;
   position: absolute;
   width: 1px;
-}
-
-.visuallyhidden.focusable:active,
-.visuallyhidden.focusable:focus {
-  clip: auto;
-  height: auto;
-  margin: 0;
-  overflow: visible;
-  position: static;
-  width: auto;
 }
 
 .invisible {
@@ -1307,7 +875,6 @@ tr {
     content: ' (' attr(title) ')';
   }
 
-  .ir a::after,
   a[href^='javascript:']::after,
   a[href^='#']::after {
     content: '';

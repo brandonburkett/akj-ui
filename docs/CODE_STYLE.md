@@ -68,6 +68,22 @@ wiring and side effects so the logic can be unit-tested on its own.
 
 Follow stylelint `stylelint-config-standard` recommendations.
 
+### Colours come from the palette
+
+`master.css` defines the palette in `:root`. Reach for the variable, not the literal.
+
+```css
+/* good */
+background: var(--olive);
+
+/* avoid */
+background: #435b0d;
+```
+
+- The set is `--white`, `--black`, `--cream`, `--sage`, `--olive`, `--olive-dark`, `--slate`, `--red-deep`.
+- Custom properties resolve at computed-value time, so any component sheet can use them and bundle order does not matter.
+- Two deliberate exceptions keep their literals. Alpha blacks and whites (scrims, shadows) are one-off tuned values, so naming them buys nothing. And the boilerplate element defaults (`code`, `mark`, `ins`, `kbd`, `samp` and friends) are starter-theme leftovers for elements the site never renders, so naming them would imply they are part of the palette.
+
 ---
 
 ## TypeScript rules

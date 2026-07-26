@@ -71,13 +71,13 @@
 
 /* Deeper olive from the nav's social bar, not the muted panel olive */
 .dojo-notice-olive {
-  color: #eae6db;
-  background: #435b0d;
+  color: var(--cream);
+  background: var(--olive);
 }
 
 .dojo-notice-cream {
-  color: #2d3d09;
-  background: #eae6db;
+  color: var(--olive-dark);
+  background: var(--cream);
 }
 
 @media screen and (min-width: 600px) {

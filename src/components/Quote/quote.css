@@ -1,6 +1,6 @@
 .quote {
-  background: rgb(067 091 013);
-  color: #fff;
+  background: var(--olive);
+  color: var(--white);
   position: relative;
 
   /* needs to be above full screen parallax */

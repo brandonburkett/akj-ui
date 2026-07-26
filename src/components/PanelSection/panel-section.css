@@ -11,11 +11,11 @@
 }
 
 .info-panel-olive {
-  background: #aaa88f;
+  background: var(--sage);
 }
 
 .info-panel-cream {
-  background: #eae6db;
+  background: var(--cream);
 }
 
 .info-panel-details h1,
@@ -25,5 +25,5 @@
 .info-panel-details p,
 .info-panel-details strong,
 .info-panel-details li {
-  color: #000;
+  color: var(--black);
 }
