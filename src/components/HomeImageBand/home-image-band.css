@@ -1,0 +1,21 @@
+.home-image-band {
+  background: var(--cream);
+
+  /* the 1px top stops the inner 125px margin collapsing through the band */
+  padding: 1px 0 10px;
+  position: relative;
+
+  /* needs to be above full screen parallax */
+  z-index: 1;
+}
+
+/* needed for chrome z-index flicker where you can see background */
+.home-image-band.translate-z {
+  transform: translateZ(1px);
+}
+
+.home-image-band-inner {
+  width: 90%;
+  max-width: 700px;
+  margin: 125px auto;
+}

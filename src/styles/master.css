@@ -744,8 +744,7 @@ img {
   /* darkened from var(--olive): fails WCAG AA (3.17:1) on the olive info panel (var(--sage)) */
   color: var(--olive-dark);
   border-bottom: 1px solid var(--olive-dark);
-  padding-left: 0.1em;
-  padding-right: 0.1em;
+  padding-inline: 0.1em;
 }
 
 .link:hover,
