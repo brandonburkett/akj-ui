@@ -1,5 +1,8 @@
 .below-fold {
   position: absolute;
+
+  /* must match the .cover-parallax height so content starts exactly at the hero's bottom edge */
   top: 100vh;
+  top: 100svh;
   width: 100%;
 }
