@@ -260,3 +260,37 @@ describe('slide tracking follows the resting scroll position', () => {
     expect(activeIndex()).toBe('1'); // no timer advance
   });
 });
+
+// Regression: swipes updated the nav only on the settle debounce, so on iOS,
+// which lacks scrollend, the bullets lagged the slide until the fling stopped.
+describe('a swipe moves the nav live, before settling', () => {
+  it('updates the bullet as the swipe crosses into the next slide', () => {
+    scrollToSlide(1);
+    expect(activeIndex()).toBe('1'); // no settle()
+    expect(status()).toBe('Slide 2 of 3');
+  });
+
+  it('follows each swipe of a rapid multi-swipe', () => {
+    scrollToSlide(1);
+    expect(activeIndex()).toBe('1');
+    scrollToSlide(2);
+    expect(activeIndex()).toBe('2');
+  });
+
+  it('does not flip before the halfway point', () => {
+    scrollToOffset(SLIDE_W * 0.4);
+    expect(activeIndex()).toBe('0');
+  });
+
+  it('a click animation keeps the nav on its target while passing over slides', () => {
+    const scrollSpy = vi.mocked(Element.prototype.scrollIntoView);
+    scrollSpy.mockImplementation(() => {}); // freeze the track, replay the animation by hand
+    next().click();
+    next().click();
+    scrollToOffset(SLIDE_W);
+    expect(activeIndex()).toBe('2');
+    scrollToSlide(2);
+    settle();
+    expect(activeIndex()).toBe('2');
+  });
+});
