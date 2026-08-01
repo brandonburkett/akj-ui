@@ -1,0 +1,80 @@
+.home-about {
+  background: var(--red-deep);
+  color: var(--white);
+  top: 100%;
+  position: relative;
+
+  /* needs to be above full screen parallax */
+  z-index: 1;
+}
+
+/* needed for chrome z-index flicker where you can see background */
+.home-about.translate-z {
+  transform: translateZ(1px);
+}
+
+.home-about-intro {
+  width: 90%;
+  max-width: 700px;
+  margin: 100px auto;
+  font-size: 2.2em;
+  line-height: 1.2em;
+  padding-block: 1em;
+}
+
+.home-about-intro h2 {
+  color: var(--white);
+  font-size: 1.25em;
+}
+
+.home-about-ctas {
+  width: 100%;
+}
+
+@media screen and (min-width: 320px) {
+  .home-about-intro {
+    font-size: 1.2em;
+    margin: 75px auto;
+  }
+}
+
+/* intro and CTAs pair off as floated columns until 1200 */
+@media screen and (min-width: 600px) {
+  .home-about-intro {
+    font-size: 1.2em;
+    float: left;
+    width: 40%;
+    margin: 50px 0 0 5%;
+  }
+
+  .home-about-ctas {
+    width: 45%;
+    float: right;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .home-about-intro {
+    font-size: 1.4em;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .home-about-intro {
+    font-size: 1.7em;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .home-about-intro {
+    font-size: 2.2em;
+    float: none;
+    width: 80%;
+    margin: 100px auto;
+  }
+
+  .home-about-ctas {
+    width: 100%;
+    float: none;
+  }
+}

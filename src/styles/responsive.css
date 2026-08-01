@@ -179,11 +179,6 @@
     width: 920px;
   }
 
-  /* Interior */
-  .intro {
-    font-size: 2em;
-  }
-
   /* End 1024+ Pixel Styles */
 } /********************************  */
 
@@ -238,11 +233,6 @@
 
   .cs12 {
     width: 1064px;
-  }
-
-  /* Interior */
-  .intro {
-    font-size: 2.2em;
   }
 
   /* End 1200+ Pixel Styles */

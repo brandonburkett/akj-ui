@@ -1,0 +1,47 @@
+---
+import './home-about.css';
+import BlockImageCta from '@/components/BlockImageCta/BlockImageCta.astro';
+import imgOitaFest from './images/800-oita-fest.webp';
+import imgMap from './images/800-map-itk.webp';
+import imgSeminar from './images/800-seminar-2025.webp';
+---
+
+<section class="home-about group translate-z">
+  <div class="home-about-intro">
+    <h2>About Us</h2>
+    <p>
+      Austin Komei Jyuku teaches the koryu Japanese sword art of Yamauchi-ha Muso Jikiden Eishin-ryu
+      Iaijutsu as taught by the 21st generation, Sekiguchi Komei sensei. The Komei Jyuku, also known
+      as the Nihon Koden Bujutsu Iaido Renmei, is a member of the Nihon Kobudo Kyokai, one of the
+      premiere martial arts organizations in Japan dedicated to preserving classical martial
+      traditions. The Austin shibucho is Brandon Burkett who is a direct student to Sekiguchi
+      sensei.
+    </p>
+  </div>
+
+  <div class="home-about-ctas group">
+    <BlockImageCta
+      to="/iaijutsu"
+      imgSrc={imgOitaFest.src}
+      imgAlt="Kobushidori"
+      title="Iaijutsu"
+      content="Muso Jikiden Eishin-ryu translates to “peerless, direct
+              transmission, school of Eishin”. It is one of the oldest martial art from Japan with an unbroken
+              history dating back to the late 16th century when it was founded by Hayashizaki Jinsuke Shigenobu."
+    />
+    <BlockImageCta
+      to="/schedule"
+      imgSrc={imgMap.src}
+      imgAlt="Map to dojo"
+      title="Schedule"
+      content="Class is held Monday and Wednesday from 7:30pm - 9:30pm at Immortal Martial Arts Academy. Saturday morning training from 9:00am - 10:00am."
+    />
+    <BlockImageCta
+      to="/seminars"
+      imgSrc={imgSeminar.src}
+      imgAlt="Tomoe sune"
+      title="Seminars"
+      content="Train during our yearly Muso Jikiden Eishin-ryu seminar in Austin. It is a rare opportunity to train with the 21st generation, Sekiguchi Komei sensei."
+    />
+  </div>
+</section>

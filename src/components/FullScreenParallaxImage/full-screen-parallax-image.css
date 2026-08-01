@@ -4,7 +4,10 @@
   position: fixed;
   inset: 0;
   width: 100%;
+
+  /* svh: size to the visible viewport with the mobile URL bar shown, vh first as fallback */
   height: 100vh;
+  height: 100svh;
   z-index: 0;
 }
 

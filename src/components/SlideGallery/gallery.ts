@@ -85,6 +85,14 @@ export function initGallery(doc: Document = document): void {
   track.addEventListener(
     'scroll',
     () => {
+      // handles nav updates on swipe. Skip when pending is set, actions that set pending
+      // use goTo, and goTo manages active itself.
+      if (pending === null) {
+        const i = indexFromScroll();
+        if (i !== active) {
+          setActive(i);
+        }
+      }
       window.clearTimeout(settleTimer);
       settleTimer = window.setTimeout(commit, SETTLE_MS);
     },
