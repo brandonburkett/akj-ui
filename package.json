@@ -41,7 +41,7 @@
     "stylelint": "^17.14.0",
     "stylelint-config-standard": "^40.0.0",
     "typescript": "^5.6.0",
-    "vitest": "^4.1.10"
+    "vitest": "^4.1.11"
   },
   "browserslist": {
     "production": [
