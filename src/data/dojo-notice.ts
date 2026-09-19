@@ -16,15 +16,18 @@ export interface DojoNoticeData {
 }
 
 /** Set to null when there is nothing to announce, which renders no markup at all. */
-const NOTICE: DojoNoticeData | null = {
-  id: '2026-oita-fest',
-  text: 'Experience Iaijutsu at the 2026 Austin-Oita Festival',
-  shortText: 'Iaijutsu at the Austin-Oita Festival',
-  href: 'https://www.austinoita.org/2026-oita-japan-festival',
-  target: '_blank',
-  start: '2026-07-25',
-  end: '2026-08-30',
-};
+const NOTICE: DojoNoticeData | null = null;
+
+// Last notice, kept as a template for the next one:
+// {
+//   id: '2026-oita-fest',
+//   text: 'Experience Iaijutsu at the 2026 Austin-Oita Festival',
+//   shortText: 'Iaijutsu at the Austin-Oita Festival',
+//   href: 'https://www.austinoita.org/2026-oita-japan-festival',
+//   target: '_blank',
+//   start: '2026-07-25',
+//   end: '2026-08-30',
+// }
 
 /**
  * Returns a copy, because the module is evaluated once and every caller would
